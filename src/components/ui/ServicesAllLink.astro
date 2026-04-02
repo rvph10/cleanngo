@@ -1,0 +1,35 @@
+---
+interface Props {
+  variant?: "desktop" | "mobile";
+}
+
+const { variant = "desktop" } = Astro.props;
+
+const linkClass =
+  variant === "desktop"
+    ? "group font-accent text-based flex items-center gap-1 text-[0.95rem] font-semibold tracking-[-0.03em] text-(--color-text-primary) uppercase"
+    : "mt-2 flex items-center gap-1 text-sm font-semibold tracking-[0.08em] text-(--color-text-primary) uppercase";
+
+const strokeWidth = variant === "desktop" ? "2.5" : "1.5";
+---
+
+<a href="/services" class={linkClass}>
+  Découvrir tous nos services
+  <svg
+    class={variant === "desktop"
+      ? "transition-transform duration-300 ease-in-out group-hover:translate-x-1"
+      : ""}
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+  >
+    <path
+      d="M6 12L10 8L6 4"
+      stroke="currentColor"
+      stroke-width={strokeWidth}
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+</a>
