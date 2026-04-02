@@ -1,0 +1,273 @@
+---
+const services = [
+  {
+    title: "Nettoyage résidentiel",
+    href: "/services/nettoyage-residentiel",
+    image:
+      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f6fce06691e7b3b823ae_Feature%20Image.jpg",
+  },
+  {
+    title: "Grand nettoyage",
+    href: "/services/grand-nettoyage",
+    image:
+      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f6e724fd11183bd2b937_Feature%20Image-1.jpg",
+  },
+  {
+    title: "Nettoyage des vitres",
+    href: "/services/nettoyage-vitres",
+    image:
+      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f6d19d5b12fedde64b75_Feature%20Image-2.jpg",
+  },
+  {
+    title: "Nettoyage post-travaux",
+    href: "/services/nettoyage-post-travaux",
+    image:
+      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f6bd044842f251b18caf_Feature%20Image-3.jpg",
+  },
+  {
+    title: "Emménagement Déménagement",
+    href: "/services/emmenagement-demenagement",
+    image:
+      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f6aea927e058f5514187_Feature%20Image-4.jpg",
+  },
+  {
+    title: "Location courte durée",
+    href: "/services/location-courte-duree",
+    image:
+      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f69a500b8f88bb3e31f6_Feature%20Image-5.jpg",
+  },
+  {
+    title: "Bureau & Studio",
+    href: "/services/bureau-studio",
+    image:
+      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936bbc52e5121145759bd27_Feature%20Image-6.jpg",
+  },
+];
+
+const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M4.168 10H15.835M15.835 10L10.001 4.167M15.835 10L10.001 15.833" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+---
+
+<section class="overflow-x-visible">
+  <!-- Headline — padded to match page gutters -->
+  <div class="mb-8 flex flex-col gap-6">
+    <div class="flex w-fit items-center rounded-md bg-(--color-surface-secondary) px-2 py-1">
+      <span
+        class="font-display text-[0.65rem] font-bold tracking-widest text-(--color-text-primary) uppercase"
+      >
+        Service de nettoyage agréé
+      </span>
+    </div>
+    <h2 class="font-display m-0 text-5xl font-bold lg:text-7xl">Ce que nous nettoyons</h2>
+  </div>
+
+  <!-- Marquee — full viewport width, desktop only -->
+  <div class="marquee-viewport -mx-8 hidden overflow-hidden md:block" aria-label="Nos services">
+    <div class="marquee-track flex gap-4">
+      {
+        [...services, ...services].map((service, i) => (
+          <a
+            href={service.href}
+            class="group relative block w-88 flex-none overflow-hidden rounded-2xl text-white uppercase"
+            style="aspect-ratio: 4/5;"
+            aria-label={service.title}
+            aria-hidden={i >= services.length ? "true" : undefined}
+            tabindex={i >= services.length ? -1 : undefined}
+          >
+            <div class="absolute inset-0 z-1">
+              <img
+                src={service.image}
+                alt=""
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div class="absolute inset-0 z-2 flex items-end bg-linear-to-t from-black/60 to-transparent p-6 pr-30">
+              <h4 class="font-display leading-tighter text-3xl font-bold">{service.title}</h4>
+            </div>
+            <div class="absolute right-6 bottom-6 z-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 p-2.5 backdrop-blur-sm transition-colors duration-300 group-hover:bg-white/20">
+              <Fragment set:html={arrowSvg} />
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Horizontal scroll snap — mobile only -->
+  <div
+    class="mobile-scroll -mx-6 flex gap-4 overflow-x-auto px-6 pb-4 md:hidden"
+    role="list"
+    aria-label="Nos services"
+  >
+    {
+      services.map((service) => (
+        <a
+          href={service.href}
+          role="listitem"
+          class="group relative block w-[80vw] max-w-72 flex-none snap-start overflow-hidden rounded-2xl text-white uppercase"
+          style="aspect-ratio: 4/5;"
+          aria-label={service.title}
+        >
+          <div class="absolute inset-0 z-1">
+            <img
+              src={service.image}
+              alt=""
+              loading="lazy"
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
+          <div class="absolute inset-0 z-2 flex items-end bg-linear-to-t from-black/60 to-transparent p-6 pr-30">
+            <h4 class="font-display m-0 text-xl leading-tight font-bold">{service.title}</h4>
+          </div>
+          <div class="absolute right-6 bottom-6 z-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 p-2.5 backdrop-blur-sm transition-colors duration-300 group-hover:bg-white/20">
+            <Fragment set:html={arrowSvg} />
+          </div>
+        </a>
+      ))
+    }
+  </div>
+
+  <!-- Bottom tile — padded to match page gutters -->
+  <div class="my-12 flex max-w-lg flex-col gap-4">
+    <p class="text-lg">
+      Nos formules de nettoyage les plus populaires. Si votre logement nécessite quelque chose en
+      plus, nous avons ce qu'il vous faut.
+    </p>
+    <a
+      href="/services"
+      class="group font-display flex w-fit items-center gap-1 text-lg font-extrabold tracking-wide text-(--color-text-primary) uppercase transition-opacity hover:opacity-70"
+    >
+      <span>Découvrir tous nos services</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        class="transition-transform duration-300 group-hover:translate-x-0.5"
+        aria-hidden="true"
+      >
+        <path
+          d="M6 12L10 8L6 4"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee-track {
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+
+  .mobile-scroll {
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .mobile-scroll::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  const track = document.querySelector<HTMLElement>(".marquee-track");
+  const mobileScroll = document.querySelector<HTMLElement>(".mobile-scroll");
+
+  let mobileAutoScrollTimer: number | undefined;
+  let mobileResumeTimer: number | undefined;
+
+  const isMobile = window.matchMedia("(max-width: 767px)");
+
+  const getMobileStep = () => {
+    if (!mobileScroll) return 0;
+
+    const firstCard = mobileScroll.querySelector<HTMLElement>("[role='listitem']");
+    if (!firstCard) return 0;
+
+    const styles = getComputedStyle(mobileScroll);
+    const gap = parseFloat(styles.columnGap || styles.gap || "0");
+    return firstCard.offsetWidth + gap;
+  };
+
+  const stopMobileAutoScroll = () => {
+    if (mobileAutoScrollTimer) {
+      window.clearInterval(mobileAutoScrollTimer);
+      mobileAutoScrollTimer = undefined;
+    }
+  };
+
+  const mobileAutoScrollTick = () => {
+    if (!mobileScroll || !isMobile.matches) return;
+
+    const step = getMobileStep();
+    if (!step) return;
+
+    const maxScrollLeft = mobileScroll.scrollWidth - mobileScroll.clientWidth;
+    const next = mobileScroll.scrollLeft + step;
+    const target = next >= maxScrollLeft - 2 ? 0 : next;
+
+    mobileScroll.scrollTo({ left: target, behavior: "smooth" });
+  };
+
+  const startMobileAutoScroll = () => {
+    stopMobileAutoScroll();
+    if (!mobileScroll || !isMobile.matches) return;
+    mobileAutoScrollTimer = window.setInterval(mobileAutoScrollTick, 2000);
+  };
+
+  const pauseThenResumeMobileAutoScroll = () => {
+    stopMobileAutoScroll();
+    if (mobileResumeTimer) window.clearTimeout(mobileResumeTimer);
+    mobileResumeTimer = window.setTimeout(startMobileAutoScroll, 4500);
+  };
+
+  track?.addEventListener("mouseenter", () => {
+    track.getAnimations()[0]?.updatePlaybackRate(0.3);
+  });
+
+  track?.addEventListener("mouseleave", () => {
+    track.getAnimations()[0]?.updatePlaybackRate(1);
+  });
+
+  mobileScroll?.addEventListener("pointerdown", pauseThenResumeMobileAutoScroll, {
+    passive: true,
+  });
+  mobileScroll?.addEventListener("touchstart", pauseThenResumeMobileAutoScroll, {
+    passive: true,
+  });
+  mobileScroll?.addEventListener("wheel", pauseThenResumeMobileAutoScroll, {
+    passive: true,
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopMobileAutoScroll();
+      return;
+    }
+    startMobileAutoScroll();
+  });
+
+  isMobile.addEventListener("change", () => {
+    startMobileAutoScroll();
+  });
+
+  startMobileAutoScroll();
+</script>
