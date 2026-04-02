@@ -1,0 +1,186 @@
+---
+import DesktopNav from "./DesktopNav.astro";
+import MobileMenu from "./MobileMenu.astro";
+import { services, featuredServices, navLinks } from "../../data/nav";
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-50">
+  <DesktopNav {services} {featuredServices} {navLinks} />
+  <MobileMenu {services} {navLinks} />
+</header>
+
+<!-- ── Page overlay (dimmed bg when dropdown/mobile menu open) ── -->
+<div
+  id="nav-overlay"
+  class="pointer-events-none fixed inset-0 z-40 bg-black/40 opacity-0 transition-opacity duration-300"
+  aria-hidden="true"
+>
+</div>
+
+<script>
+  import gsap from "gsap";
+
+  const servicesBtn = document.getElementById("services-btn") as HTMLButtonElement;
+  const servicesPanel = document.getElementById("services-panel") as HTMLElement;
+  const servicesChevron = document.getElementById("services-chevron") as HTMLElement;
+  const servicesWrapper = document.getElementById("services-dropdown-wrapper") as HTMLElement;
+
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn") as HTMLButtonElement;
+  const mobileMenu = document.getElementById("mobile-menu") as HTMLElement;
+  const hamburgerIcon = document.getElementById("hamburger-icon") as HTMLElement;
+  const closeIcon = document.getElementById("close-icon") as HTMLElement;
+
+  const mobileServicesBtn = document.getElementById("mobile-services-btn") as HTMLButtonElement;
+  const mobileServicesPanel = document.getElementById("mobile-services-panel") as HTMLElement;
+  const mobileServicesIcon = document.getElementById("mobile-services-icon") as HTMLElement;
+
+  const navOverlay = document.getElementById("nav-overlay") as HTMLElement;
+
+  const serviceItems = Array.from(servicesPanel.querySelectorAll("ul > li"));
+  const featuredCards = Array.from(servicesPanel.querySelectorAll(".featured-card"));
+
+  let dropdownOpen = false;
+  let mobileOpen = false;
+  let mobileServicesOpen = false;
+  let leaveTimer: ReturnType<typeof setTimeout>;
+  let activeTl: gsap.core.Timeline | null = null;
+
+  // ── GSAP initial state ────────────────────────────────────
+  gsap.set(servicesPanel, { transformOrigin: "50% 0%", y: -12, scaleY: 0.95 });
+  gsap.set([serviceItems, featuredCards], { opacity: 0, y: 10 });
+
+  // ── Desktop dropdown ─────────────────────────────────────
+  function openDropdown() {
+    if (dropdownOpen) return;
+    dropdownOpen = true;
+
+    if (activeTl) activeTl.kill();
+
+    servicesPanel.classList.remove("pointer-events-none");
+    servicesPanel.setAttribute("aria-hidden", "false");
+    servicesBtn.setAttribute("aria-expanded", "true");
+    gsap.to(servicesChevron, { rotation: 180, duration: 0.3, ease: "power2.out" });
+    showOverlay();
+
+    activeTl = gsap.timeline();
+    activeTl
+      .to(servicesPanel, { opacity: 1, y: 0, scaleY: 1, duration: 0.38, ease: "power3.out" })
+      .to(
+        serviceItems,
+        { opacity: 1, y: 0, stagger: 0.055, duration: 0.28, ease: "power2.out" },
+        "-=0.2"
+      )
+      .to(
+        featuredCards,
+        { opacity: 1, y: 0, stagger: 0.06, duration: 0.28, ease: "power2.out" },
+        "<0.04"
+      );
+  }
+
+  function closeDropdown() {
+    if (!dropdownOpen) return;
+    dropdownOpen = false;
+
+    if (activeTl) activeTl.kill();
+
+    servicesBtn.setAttribute("aria-expanded", "false");
+    gsap.to(servicesChevron, { rotation: 0, duration: 0.25, ease: "power2.out" });
+    if (!mobileOpen) hideOverlay();
+
+    // Instant close — no linger
+    servicesPanel.classList.add("pointer-events-none");
+    servicesPanel.setAttribute("aria-hidden", "true");
+    gsap.set([serviceItems, featuredCards], { opacity: 0, y: 10 });
+    gsap.set(servicesPanel, { opacity: 0, y: -12, scaleY: 0.95 });
+  }
+
+  // Hover: open on enter, delay close on leave to allow moving to panel
+  servicesWrapper.addEventListener("mouseenter", openDropdown);
+  servicesWrapper.addEventListener("mouseleave", () => {
+    leaveTimer = setTimeout(() => {
+      if (!servicesPanel.matches(":hover")) closeDropdown();
+    }, 80);
+  });
+  servicesPanel.addEventListener("mouseenter", () => clearTimeout(leaveTimer));
+  servicesPanel.addEventListener("mouseleave", closeDropdown);
+
+  // Click toggle (keyboard / touch)
+  servicesBtn.addEventListener("click", () => {
+    if (dropdownOpen) {
+      closeDropdown();
+    } else {
+      openDropdown();
+    }
+  });
+
+  // ── Mobile menu ───────────────────────────────────────────
+  function openMobile() {
+    mobileOpen = true;
+    mobileMenu.classList.remove("opacity-0", "-translate-y-2", "pointer-events-none");
+    mobileMenu.classList.add("opacity-100", "translate-y-0");
+    mobileMenu.setAttribute("aria-hidden", "false");
+    mobileMenuBtn.setAttribute("aria-expanded", "true");
+    hamburgerIcon.classList.add("hidden");
+    closeIcon.classList.remove("hidden");
+    showOverlay();
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMobile() {
+    mobileOpen = false;
+    mobileMenu.classList.add("opacity-0", "-translate-y-2", "pointer-events-none");
+    mobileMenu.classList.remove("opacity-100", "translate-y-0");
+    mobileMenu.setAttribute("aria-hidden", "true");
+    mobileMenuBtn.setAttribute("aria-expanded", "false");
+    hamburgerIcon.classList.remove("hidden");
+    closeIcon.classList.add("hidden");
+    if (!dropdownOpen) hideOverlay();
+    document.body.style.overflow = "";
+  }
+
+  mobileMenuBtn.addEventListener("click", () => {
+    if (mobileOpen) {
+      closeMobile();
+    } else {
+      openMobile();
+    }
+  });
+
+  // ── Mobile services accordion ────────────────────────────
+  mobileServicesBtn.addEventListener("click", () => {
+    mobileServicesOpen = !mobileServicesOpen;
+    if (mobileServicesOpen) {
+      mobileServicesPanel.classList.remove("hidden");
+      mobileServicesPanel.classList.add("flex");
+      mobileServicesIcon.style.transform = "rotate(45deg)";
+    } else {
+      mobileServicesPanel.classList.add("hidden");
+      mobileServicesPanel.classList.remove("flex");
+      mobileServicesIcon.style.transform = "";
+    }
+  });
+
+  // ── Overlay ───────────────────────────────────────────────
+  function showOverlay() {
+    navOverlay.classList.remove("opacity-0", "pointer-events-none");
+    navOverlay.classList.add("opacity-100");
+  }
+
+  function hideOverlay() {
+    navOverlay.classList.add("opacity-0", "pointer-events-none");
+    navOverlay.classList.remove("opacity-100");
+  }
+
+  navOverlay.addEventListener("click", () => {
+    closeDropdown();
+    closeMobile();
+  });
+
+  // ── Escape key ────────────────────────────────────────────
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeDropdown();
+      closeMobile();
+    }
+  });
+</script>

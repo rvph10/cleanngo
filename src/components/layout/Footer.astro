@@ -1,0 +1,20 @@
+---
+import Container from "@components/ui/Container.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-auto border-t border-(--color-border) bg-(--color-surface-secondary)">
+  <Container class="flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
+    <p class="text-sm text-(--color-text-primary)">
+      © {year} My Client. All rights reserved.
+    </p>
+    <nav aria-label="Footer navigation">
+      <ul class="flex gap-6 text-sm text-(--color-text-primary)">
+        <li>
+          <a href="/services" class="transition-colors hover:text-(--color-accent)">Services</a>
+        </li>
+      </ul>
+    </nav>
+  </Container>
+</footer>
