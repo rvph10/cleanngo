@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Font Faces — Local Assets
+   ========================================================= */
+
+/* --- Decalotype Fix --- */
+@font-face {
+  font-family: "Decalotype Fix";
+  src: url("/fonts/Decalotype-Regular-fix.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Decalotype Fix";
+  src: url("/fonts/Decalotype-Medium-fix.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Decalotype Fix";
+  src: url("/fonts/Decalotype-SemiBold-fix.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Decalotype Fix";
+  src: url("/fonts/Decalotype-ExtraBold-fix.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Decalotype Fix";
+  src: url("/fonts/Decalotype-Black-fix.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Bricolage Grotesque --- */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =========================================================
+   Design tokens — CSS custom properties for runtime theming
+   ========================================================= */
+
+@layer base {
+  :root {
+    --font-sans: "Decalotype Fix", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Decalotype Fix", ui-sans-serif, system-ui, sans-serif;
+    --font-accent: "Bricolage Grotesque", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    --color-background: #fdf8f2;
+    --color-surface: #ffffff;
+    --color-surface-secondary: #f3ece4;
+    --color-text-primary: #0e1527;
+    --color-accent: #b6cbfa;
+    --color-border: #0e1527;
+    --section-padding-y: clamp(4rem, 8vw, 8rem);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100dvh;
+    line-height: 1.6;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-accent {
+    font-family: var(--font-accent);
+  }
+}
