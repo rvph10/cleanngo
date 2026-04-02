@@ -1,0 +1,16 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Hero from "@components/sections/Hero.astro";
+import Services from "@components/sections/Services.astro";
+---
+
+<BaseLayout
+  title="CleanNgo | Ménage d'Exception pour Citadins Pressés"
+  description="Services de nettoyage résidentiel haut de gamme à Paris, Lyon et partout en France."
+>
+  <Container class="justify-cente flex min-h-screen flex-col gap-16">
+    <Hero />
+    <Services />
+  </Container>
+</BaseLayout>

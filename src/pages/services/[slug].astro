@@ -1,0 +1,56 @@
+---
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Badge from "@components/ui/Badge.astro";
+import Container from "@components/ui/Container.astro";
+
+export async function getStaticPaths() {
+  const services = await getCollection("services");
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: CollectionEntry<"services">;
+}
+
+const { service } = Astro.props;
+const { Content } = await render(service);
+---
+
+<BaseLayout title={service.data.title} description={service.data.description}>
+  <article class="py-(--section-padding-y)">
+    <Container>
+      <a
+        href="/services"
+        class="inline-flex items-center gap-2 text-sm font-medium text-(--color-accent) hover:underline"
+      >
+        ← Back to services
+      </a>
+
+      <header class="mt-6 mb-10">
+        <p class="text-4xl" aria-hidden="true">{service.data.icon}</p>
+        <h1 class="font-display mt-3 text-4xl font-bold lg:text-6xl">{service.data.title}</h1>
+        <p class="mt-4 max-w-2xl text-lg text-(--color-text-primary)">
+          {service.data.description}
+        </p>
+        {
+          service.data.tags.length > 0 && (
+            <div class="mt-6 flex flex-wrap gap-2">
+              {service.data.tags.map((tag) => (
+                <Badge>{tag}</Badge>
+              ))}
+            </div>
+          )
+        }
+      </header>
+
+      <div class="prose prose-lg max-w-none">
+        <Content />
+      </div>
+    </Container>
+  </article>
+</BaseLayout>
