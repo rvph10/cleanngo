@@ -1,0 +1,39 @@
+---
+import Button from "@components/ui/Button.astro";
+---
+
+<section class="w-full">
+  <div
+    class="flex flex-col items-center justify-center rounded-3xl bg-(--color-accent) px-6 py-20 text-center md:px-12 md:py-28"
+  >
+    <div class="flex max-w-2xl flex-col items-center gap-8">
+      <h2
+        class="font-display m-0 text-5xl leading-[0.9] font-bold tracking-tight text-(--color-text-primary) uppercase lg:text-6xl"
+      >
+        Prêt pour un intérieur plus propre et serein ?
+      </h2>
+
+      <p class="m-0 max-w-sm text-lg leading-relaxed text-(--color-text-primary)/70">
+        Réservez des agents de confiance qui se présentent, prennent soin de votre espace et vous le
+        rendent impeccable.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <Button
+          href="/contact"
+          size="lg"
+          class="bg-(--color-text-primary) text-(--color-surface) hover:bg-(--color-background) hover:text-(--color-text-primary) [&_svg]:text-(--color-text-primary)"
+        >
+          Réserver votre nettoyage
+        </Button>
+        <Button
+          href="/services"
+          size="lg"
+          class="bg-transparent text-(--color-text-primary) ring-2 ring-(--color-text-primary) hover:bg-(--color-text-primary) hover:text-(--color-surface) [&_svg]:text-(--color-surface)"
+        >
+          Voir tous nos services
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
