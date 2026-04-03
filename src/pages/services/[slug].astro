@@ -1,56 +1,221 @@
 ---
-import { getCollection, render } from "astro:content";
-import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import Badge from "@components/ui/Badge.astro";
 import Container from "@components/ui/Container.astro";
+import Button from "@components/ui/Button.astro";
+import CTA from "@/components/sections/CTA.astro";
+import { services } from "@/data/services";
 
-export async function getStaticPaths() {
-  const services = await getCollection("services");
-  return services.map((service) => ({
-    params: { slug: service.slug },
-    props: { service },
-  }));
-}
-
-interface Props {
-  service: CollectionEntry<"services">;
+export function getStaticPaths() {
+  return services.map((service) => {
+    const slug = service.href.replace("/services/", "");
+    return {
+      params: { slug },
+      props: { service },
+    };
+  });
 }
 
 const { service } = Astro.props;
-const { Content } = await render(service);
+
+const howItWorksSteps = [
+  {
+    number: "01",
+    title: "Réservez en ligne",
+    description: "Choisissez votre créneau en moins de 60 secondes sur notre plateforme.",
+  },
+  {
+    number: "02",
+    title: "Nettoyage expert",
+    description: "Votre agent arrive avec tout le matériel et nos produits éco-responsables.",
+  },
+  {
+    number: "03",
+    title: "Résultat impeccable",
+    description: "Tout est nettoyé et rangé selon vos standards. Il ne vous reste qu'à profiter.",
+  },
+  {
+    number: "04",
+    title: "Tranquillité durable",
+    description: "Le même agent de confiance à chaque passage pour un service personnalisé.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Puis-je réserver une seule intervention ?",
+    answer:
+      "Oui, toutes nos prestations sont disponibles à la demande, sans engagement. Vous pouvez aussi opter pour un contrat d'entretien régulier pour bénéficier d'un tarif préférentiel.",
+  },
+  {
+    question: "Combien de temps à l'avance dois-je réserver ?",
+    answer:
+      "Nous recommandons de réserver au moins 48 heures à l'avance. Pour les interventions urgentes, contactez-nous directement par téléphone ou via le formulaire de contact.",
+  },
+  {
+    question: "Que se passe-t-il si je dois annuler ou reporter ?",
+    answer:
+      "Vous pouvez annuler ou reporter sans frais jusqu'à 24 heures avant l'intervention. Au-delà, des frais d'annulation peuvent s'appliquer selon les conditions de votre réservation.",
+  },
+];
 ---
 
-<BaseLayout title={service.data.title} description={service.data.description}>
-  <article class="py-(--section-padding-y)">
-    <Container>
-      <a
-        href="/services"
-        class="inline-flex items-center gap-2 text-sm font-medium text-(--color-accent) hover:underline"
-      >
-        ← Back to services
-      </a>
+<BaseLayout title={service.name} description={service.description} image={service.image}>
+  <Container class="mt-12 items-center">
+    <!-- Headline -->
+    <div class="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
+      <h1 class="font-display text-5xl leading-[0.9] font-bold uppercase md:text-7xl lg:text-8xl">
+        {service.name}
+      </h1>
 
-      <header class="mt-6 mb-10">
-        <p class="text-4xl" aria-hidden="true">{service.data.icon}</p>
-        <h1 class="font-display mt-3 text-4xl font-bold lg:text-6xl">{service.data.title}</h1>
-        <p class="mt-4 max-w-2xl text-lg text-(--color-text-primary)">
-          {service.data.description}
-        </p>
-        {
-          service.data.tags.length > 0 && (
-            <div class="mt-6 flex flex-wrap gap-2">
-              {service.data.tags.map((tag) => (
-                <Badge>{tag}</Badge>
-              ))}
-            </div>
-          )
-        }
-      </header>
-
-      <div class="prose prose-lg max-w-none">
-        <Content />
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/contact" size="lg">Réserver</Button>
+        <Button href="/services" size="lg" variant="secondary">Tous les services</Button>
       </div>
-    </Container>
-  </article>
+    </div>
+
+    <!-- Hero image -->
+    <div class="mt-6 w-full max-w-5xl overflow-hidden rounded-3xl">
+      <img
+        src={service.image}
+        alt={service.name}
+        loading="eager"
+        class="h-72 w-full object-cover md:h-130 lg:h-160"
+      />
+    </div>
+
+    <!-- Service body -->
+    <div class="mx-auto w-full max-w-3xl px-4 md:px-8">
+      <!-- Quote -->
+      {
+        service.quote && (
+          <div class="py-8">
+            <h2 class="font-display text-center text-3xl leading-[0.9] font-bold md:text-4xl lg:text-5xl">
+              {service.quote}
+            </h2>
+          </div>
+        )
+      }
+
+      <!-- What's included -->
+      {
+        service.features && service.features.length > 0 && (
+          <div class="items-center py-16 md:py-24">
+            <h2 class="font-display mb-10 text-center text-3xl font-bold md:text-5xl">
+              Ce qui est inclus
+            </h2>
+            <ul class="flex flex-col gap-6">
+              {service.features.map((feature) => (
+                <li class="flex w-full items-center gap-6 rounded-2xl bg-(--color-surface-secondary) px-6 py-5">
+                  <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-(--color-accent) text-(--color-text-primary)">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M20 6L9 17L4 12"
+                        stroke="currentColor"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span class="text-2xl leading-snug font-semibold">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      <!-- How it works -->
+      <div class="flex flex-col items-center py-12">
+        <h2 class="font-display mb-10 text-2xl font-bold md:text-5xl">Comment ça marche</h2>
+        <div class="flex w-full flex-col gap-4">
+          {
+            howItWorksSteps.map((step, index) => (
+              <div
+                class="sticky flex flex-col gap-12 rounded-3xl bg-(--color-surface-secondary) p-8 lg:p-10"
+                style={`top: calc(7.5rem + ${index * 0.5}rem); z-index: ${10 + index};`}
+              >
+                <span class="font-display text-7xl leading-none font-bold text-(--color-accent) lg:text-8xl">
+                  {step.number}
+                </span>
+                <div class="flex flex-col gap-4">
+                  <h3 class="font-display m-0 text-7xl font-bold text-(--color-text-primary)">
+                    {step.title}
+                  </h3>
+                  <p class="m-0 text-lg leading-relaxed text-(--color-text-primary)/60">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="flex flex-col items-center py-12">
+        <h2 class="font-display mb-10 text-2xl font-bold md:text-5xl">Questions ?</h2>
+        <div class="flex flex-col gap-3">
+          {
+            faqItems.map((faq) => (
+              <div class="slug-faq-item rounded-xl bg-white px-6 py-5">
+                <button
+                  class="slug-faq-trigger flex w-full items-center justify-between gap-6 text-left"
+                  aria-expanded="false"
+                >
+                  <span class="text-lg leading-snug font-semibold md:text-2xl">{faq.question}</span>
+                  <span class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-(--color-accent)">
+                    <span class="absolute h-0.5 w-3 rounded-full bg-(--color-text-primary)" />
+                    <span class="slug-faq-v-bar absolute h-3 w-0.5 rounded-full bg-(--color-text-primary) transition-transform duration-300" />
+                  </span>
+                </button>
+                <div class="slug-faq-body grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+                  <div class="overflow-hidden">
+                    <p class="m-0 pt-5 text-lg leading-relaxed font-medium opacity-60">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <CTA />
+  </Container>
 </BaseLayout>
+
+<style>
+  .slug-faq-item.is-open .slug-faq-body {
+    grid-template-rows: 1fr;
+  }
+  .slug-faq-item.is-open .slug-faq-v-bar {
+    transform: rotate(90deg);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".slug-faq-item").forEach((item) => {
+    item.querySelector(".slug-faq-trigger")?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+
+      document.querySelectorAll(".slug-faq-item").forEach((other) => {
+        other.classList.remove("is-open");
+        other.querySelector(".slug-faq-trigger")?.setAttribute("aria-expanded", "false");
+      });
+
+      if (!isOpen) {
+        item.classList.add("is-open");
+        item.querySelector(".slug-faq-trigger")?.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+</script>
