@@ -1,12 +1,12 @@
 ---
 import DesktopNav from "./DesktopNav.astro";
 import MobileMenu from "./MobileMenu.astro";
-import { services, featuredServices, navLinks } from "../../data/nav";
+import { navServices, featuredServices, navLinks } from "../../data/nav";
 ---
 
 <header id="site-header" class="fixed inset-x-0 top-0 z-50">
-  <DesktopNav {services} {featuredServices} {navLinks} />
-  <MobileMenu {services} {navLinks} />
+  <DesktopNav services={navServices} {featuredServices} {navLinks} />
+  <MobileMenu services={navServices} {navLinks} />
 </header>
 
 <!-- ── Page overlay (dimmed bg when dropdown/mobile menu open) ── -->
