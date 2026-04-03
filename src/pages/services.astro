@@ -1,0 +1,37 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import ServiceCard from "@components/ui/ServiceCard.astro";
+import FAQ from "@/components/sections/FAQ.astro";
+import CTA from "@/components/sections/CTA.astro";
+import { services } from "@/data/services";
+---
+
+<BaseLayout
+  title="Nos Services"
+  description="Découvrez tous nos services de nettoyage professionnel : résidentiel, bureaux, vitres, façades, toitures et bien plus encore."
+>
+  <Container class="items-center">
+    <!-- Headline -->
+    <div
+      class="mx-auto mt-12 mb-16 flex max-w-2xl flex-col items-center gap-6 text-center md:mb-20"
+    >
+      <h1
+        class="font-display text-4xl leading-[0.8] font-bold uppercase md:text-6xl lg:text-[72px]"
+      >
+        Services de nettoyage conçus pour votre quotidien
+      </h1>
+      <p class="max-w-lg text-lg text-(--color-text-primary)/60">
+        Choisissez la prestation adaptée à votre espace, vos disponibilités et votre mode de vie.
+      </p>
+    </div>
+
+    <!-- Services list -->
+    <ul class="flex w-full max-w-7xl flex-col justify-center gap-5 self-center md:gap-6">
+      {services.map((service, index) => <ServiceCard service={service} index={index} />)}
+    </ul>
+
+    <FAQ />
+    <CTA />
+  </Container>
+</BaseLayout>
