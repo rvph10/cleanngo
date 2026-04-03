@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const { title, description, icon } = Astro.props;
+---
+
+<div
+  class="flex flex-col gap-10 rounded-2xl bg-(--color-surface-secondary) p-8 max-sm:flex-row max-sm:items-start lg:p-10"
+>
+  <div
+    class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-(--color-background) text-(--color-text-primary)"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 32 32" fill="none">
+      <Fragment set:html={icon} />
+    </svg>
+  </div>
+  <div class="flex flex-col gap-3">
+    <h3 class="font-display m-0 text-2xl font-bold text-(--color-text-primary)">
+      {title}
+    </h3>
+    <p class="m-0 text-lg leading-relaxed font-semibold text-(--color-text-primary)/75">
+      {description}
+    </p>
+  </div>
+</div>

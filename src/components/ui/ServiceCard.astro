@@ -1,0 +1,43 @@
+---
+import Button from "@components/ui/Button.astro";
+import type { Service } from "@/data/services";
+
+interface Props {
+  service: Service;
+  index: number;
+}
+
+const { service, index } = Astro.props;
+const isReversed = index % 2 !== 0;
+---
+
+<li>
+  <article
+    class:list={[
+      "group relative flex flex-col gap-5 md:gap-6",
+      isReversed ? "md:flex-row-reverse" : "md:flex-row",
+    ]}
+  >
+    <!-- Image -->
+    <div class="h-64 w-full shrink-0 overflow-hidden rounded-2xl md:h-105 md:w-2/5">
+      <img
+        src={service.image}
+        alt=""
+        loading="lazy"
+        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+    </div>
+
+    <!-- Content card -->
+    <div
+      class="flex flex-1 flex-col justify-between gap-10 rounded-2xl bg-(--color-surface-secondary) p-8 md:p-12"
+    >
+      <div class="flex flex-col gap-5">
+        <h2 class="font-display text-2xl font-bold md:text-5xl">{service.name}</h2>
+        <p class="text-base leading-relaxed">{service.description}</p>
+      </div>
+
+      <Button href={service.href} size="lg" class="w-fit">Détails du service</Button>
+    </div>
+  </article>
+</li>
