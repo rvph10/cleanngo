@@ -1,0 +1,68 @@
+---
+import Button from "@components/ui/Button.astro";
+
+const steps = [
+  {
+    number: "01",
+    title: "Réservez en ligne",
+    description: "Choisissez votre créneau en moins de 60 secondes sur notre plateforme.",
+  },
+  {
+    number: "02",
+    title: "Nettoyage expert",
+    description: "Votre agent arrive avec tout le matériel et nos produits éco-responsables.",
+  },
+  {
+    number: "03",
+    title: "Résultat impeccable",
+    description: "Tout est nettoyé et rangé selon vos standards. Il ne vous reste qu'à profiter.",
+  },
+  {
+    number: "04",
+    title: "Tranquillité durable",
+    description: "Le même agent de confiance à chaque passage pour un service personnalisé.",
+  },
+];
+---
+
+<section class="w-full">
+  <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start lg:gap-6">
+    <!-- Left: sticky headline -->
+    <div class="flex flex-col items-start gap-8 lg:sticky lg:top-30">
+      <h2
+        class="font-display m-0 text-5xl leading-tight font-bold tracking-tight text-(--color-text-primary) uppercase lg:text-6xl"
+      >
+        Comment ça marche
+      </h2>
+      <p class="m-0 text-lg leading-relaxed text-(--color-text-primary)/70">
+        Découvrez comment votre nettoyage est géré, étape par étape — simple, rapide et conçu pour
+        vous simplifier la vie.
+      </p>
+      <Button href="/contact" size="lg">Réserver votre nettoyage</Button>
+    </div>
+
+    <!-- Right: stacking step cards -->
+    <div class="flex flex-col gap-4">
+      {
+        steps.map((step, i) => (
+          <div
+            class="sticky flex flex-col gap-12 rounded-3xl bg-(--color-surface-secondary) p-8 lg:p-10"
+            style={`top: calc(7.5rem + ${i * 0.5}rem); z-index: ${10 + i};`}
+          >
+            <span class="font-display text-7xl leading-none font-bold text-(--color-accent) lg:text-8xl">
+              {step.number}
+            </span>
+            <div class="flex flex-col gap-4">
+              <h3 class="font-display m-0 text-7xl font-bold text-(--color-text-primary)">
+                {step.title}
+              </h3>
+              <p class="m-0 text-lg leading-relaxed text-(--color-text-primary)/60">
+                {step.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

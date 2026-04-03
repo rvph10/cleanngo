@@ -1,0 +1,40 @@
+---
+import Button from "@components/ui/Button.astro";
+import SectionLabel from "@components/ui/SectionLabel.astro";
+---
+
+<section id="equipe" class="w-full">
+  <div
+    class="flex flex-col gap-4 overflow-hidden rounded-3xl md:relative md:h-220 md:max-h-[90vh] md:flex-row md:items-end md:gap-0 md:p-6"
+  >
+    <!-- Background image -->
+    <div
+      class="relative h-80 shrink-0 overflow-hidden rounded-3xl md:absolute md:inset-0 md:h-auto md:rounded-3xl"
+    >
+      <img
+        src="/images/team.jpg"
+        loading="lazy"
+        alt="Résultat de l'équipe de nettoyage sur un projet"
+        class="h-full w-full object-cover"
+      />
+    </div>
+
+    <!-- Content card -->
+    <div
+      class="relative z-10 flex flex-col gap-8 rounded-2xl bg-(--color-accent) p-8 md:max-w-[42%] lg:p-12"
+    >
+      <SectionLabel text="Notre équipe" />
+
+      <h2 class="text-xl font-bold tracking-tight text-(--color-text-primary) lg:text-4xl">
+        Notre équipe de professionnels est prête à transformer votre espace en un havre de propreté
+        et de fraîcheur.
+      </h2>
+
+      <div>
+        <Button href="/contact" size="lg" class="bg-(--color-background)">
+          Travailler avec nous
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

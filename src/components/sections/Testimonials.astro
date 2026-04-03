@@ -1,0 +1,328 @@
+---
+import SectionLabel from "@components/ui/SectionLabel.astro";
+
+const starPath =
+  "M9.69824 5.26074C9.84349 5.5561 10.1255 5.76082 10.4512 5.80859L14.2598 6.36719L11.502 9.06348C11.2674 9.293 11.1606 9.62275 11.2158 9.94629L11.8652 13.752L8.46387 11.957C8.17179 11.8029 7.82233 11.8029 7.53027 11.957L4.12891 13.752L4.7793 9.94629C4.8345 9.62285 4.72764 9.29298 4.49316 9.06348L1.73535 6.36719L5.54395 5.80859C5.86948 5.76081 6.15062 5.55594 6.2959 5.26074L7.99707 1.80078L9.69824 5.26074Z";
+
+interface Review {
+  stars: number;
+  text: string;
+  author: string;
+}
+
+const columns: Review[][] = [
+  [
+    {
+      stars: 5,
+      text: "J'ai deux enfants et un chat, donc mon appartement se salit très vite. CleanNgo est le premier service qui nettoie vraiment en profondeur sans que j'aie besoin de revérifier derrière eux. Un vrai soulagement.",
+      author: "Marie D.",
+    },
+    {
+      stars: 5,
+      text: "Rapides, polis et incroyablement minutieux.",
+      author: "Thomas B.",
+    },
+    {
+      stars: 4,
+      text: "Rentrer chez moi après leur passage change vraiment mon humeur. Tout semble plus léger et l'appartement paraît plus grand. Le seul bémol : je n'ai pas reçu de rappel la veille, mais le résultat était parfait.",
+      author: "Camille V.",
+    },
+  ],
+  [
+    {
+      stars: 5,
+      text: "J'étais sceptique au départ — chaque service que j'avais essayé avant était soit bâclé, soit négligent. Cette équipe m'a vraiment surpris. Ils ont organisé chaque surface et ma petite cuisine n'a jamais semblé aussi lumineuse.",
+      author: "Laurent P.",
+    },
+    {
+      stars: 4,
+      text: "Exactement ce dont j'avais besoin après une semaine épuisante. Un léger retard à l'arrivée, mais le résultat final était impeccable. Je les rappelle sans hésiter.",
+      author: "Sophie M.",
+    },
+    {
+      stars: 5,
+      text: "Ils ont géré la poussière post-travaux comme des professionnels. Zéro trace, ce qui m'a franchement bluffé.",
+      author: "Nathalie K.",
+    },
+  ],
+  [
+    {
+      stars: 5,
+      text: "Ils utilisent des produits naturels, ce qui est essentiel avec mes allergies. L'appartement sent le propre sans cette odeur chimique agressive. Je recommande vraiment.",
+      author: "Alexia R.",
+    },
+    {
+      stars: 4,
+      text: "Rentrer chez moi après le nettoyage, c'est comme découvrir un autre appartement. Vraiment agréable — juste un créneau légèrement décalé par rapport à ce qui était prévu.",
+      author: "Julia S.",
+    },
+    {
+      stars: 5,
+      text: "Mon appartement n'a jamais été aussi calme et ordonné. Je comprends maintenant pourquoi on dit que l'ordre extérieur apaise l'esprit.",
+      author: "Pierre F.",
+    },
+  ],
+];
+
+const allReviews = columns.flat();
+---
+
+<section class="w-full py-12">
+  <div class="mb-16 flex flex-col items-center gap-8 text-center">
+    <SectionLabel text="Témoignages" bg="bg-(--color-surface-secondary)" />
+
+    <h2
+      class="font-display m-0 text-5xl leading-tight font-bold tracking-tight text-(--color-text-primary) uppercase lg:text-6xl"
+    >
+      Ils nous ont fait confiance <br>4,8/5
+    </h2>
+
+    <a
+      href="https://www.google.com/search?q=CleanNgo+Avis#lkt=LocalPoiReviews"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group flex items-center gap-2 rounded-full border border-(--color-border) px-5 py-2.5 text-sm font-semibold text-(--color-text-primary) transition-colors duration-200 hover:bg-(--color-text-primary) hover:text-(--color-surface)"
+    >
+      <img src="/images/google-logo.svg" alt="Google" class="h-5 w-5 shrink-0" />
+      Voir tous les avis
+    </a>
+  </div>
+
+  <div class="testimonials-marquee hidden gap-4 md:grid md:grid-cols-3">
+    {
+      columns.map((col, colIdx) => (
+        <div class="mask-fade relative h-170 overflow-hidden">
+          <div class={`marquee-col-${colIdx + 1} flex flex-col`}>
+            {/* First set */}
+            <div class="flex flex-col gap-4 pb-4">
+              {col.map((review) => (
+                <div class="flex flex-col gap-6 rounded-2xl bg-(--color-surface) p-6">
+                  <div class="flex flex-col gap-4">
+                    <div class="flex gap-1">
+                      {Array.from({ length: 5 }, (_, i) => (
+                        <svg
+                          class="h-4 w-4 text-amber-400"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d={starPath}
+                            fill={i < review.stars ? "currentColor" : "none"}
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      ))}
+                    </div>
+                    <p class="m-0 text-base leading-relaxed text-(--color-text-primary)">
+                      "{review.text}"
+                    </p>
+                  </div>
+                  <p class="m-0 text-sm font-semibold text-(--color-text-primary)/50">
+                    {review.author} — Avis Google
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Duplicate set for infinite loop */}
+            <div class="flex flex-col gap-4 pb-4" aria-hidden="true">
+              {col.map((review) => (
+                <div class="flex flex-col gap-6 rounded-2xl bg-(--color-surface) p-6">
+                  <div class="flex flex-col gap-4">
+                    <div class="flex gap-1">
+                      {Array.from({ length: 5 }, (_, i) => (
+                        <svg
+                          class="h-4 w-4 text-amber-400"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d={starPath}
+                            fill={i < review.stars ? "currentColor" : "none"}
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      ))}
+                    </div>
+                    <p class="m-0 text-base leading-relaxed text-(--color-text-primary)">
+                      "{review.text}"
+                    </p>
+                  </div>
+                  <p class="m-0 text-sm font-semibold text-(--color-text-primary)/50">
+                    {review.author} — Avis Google
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="md:hidden">
+    <div
+      id="testimonials-slider"
+      class="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4"
+      style="scrollbar-width: none;"
+    >
+      {
+        allReviews.map((review) => (
+          <div class="w-full shrink-0 snap-start">
+            <div class="flex flex-col gap-6 rounded-2xl bg-(--color-surface) p-6">
+              <div class="flex flex-col gap-4">
+                <div class="flex gap-1">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <svg
+                      class="h-4 w-4 text-amber-400"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d={starPath}
+                        fill={i < review.stars ? "currentColor" : "none"}
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  ))}
+                </div>
+                <p class="m-0 text-base leading-relaxed text-(--color-text-primary)">
+                  "{review.text}"
+                </p>
+              </div>
+              <p class="m-0 text-sm font-semibold text-(--color-text-primary)/50">
+                {review.author} — Avis Google
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-4 flex items-center justify-between">
+      <div class="flex gap-2">
+        <button
+          id="prev-btn"
+          aria-label="Avis précédent"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-text-primary) transition-colors hover:bg-(--color-text-primary) hover:text-(--color-surface)"
+        >
+          <svg
+            class="h-5 w-5 rotate-180"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4.168 10h11.667M15.835 10L10.001 4.167M15.835 10l-5.834 5.833"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <button
+          id="next-btn"
+          aria-label="Avis suivant"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-text-primary) transition-colors hover:bg-(--color-text-primary) hover:text-(--color-surface)"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.168 10h11.667M15.835 10L10.001 4.167M15.835 10l-5.834 5.833"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+      <span id="slide-counter" class="text-sm font-semibold text-(--color-text-primary)/50">
+        1 / {allReviews.length}
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Fades the top and bottom of the scrolling list for a seamless look */
+  .mask-fade {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+
+  .marquee-col-1,
+  .marquee-col-2,
+  .marquee-col-3 {
+    will-change: transform;
+    /* Forces GPU rendering for smoother sub-pixel animation */
+    backface-visibility: hidden;
+    perspective: 1000px;
+    animation-play-state: running;
+  }
+
+  /* Pause all desktop columns on hover/focus so reviews remain readable */
+  .testimonials-marquee:hover .marquee-col-1,
+  .testimonials-marquee:hover .marquee-col-2,
+  .testimonials-marquee:hover .marquee-col-3,
+  .testimonials-marquee:focus-within .marquee-col-1,
+  .testimonials-marquee:focus-within .marquee-col-2,
+  .testimonials-marquee:focus-within .marquee-col-3 {
+    animation-play-state: paused;
+  }
+
+  .marquee-col-1 {
+    animation: marquee-up 22s linear infinite;
+  }
+  .marquee-col-2 {
+    animation: marquee-up 28s linear infinite;
+  }
+  .marquee-col-3 {
+    animation: marquee-up 25s linear infinite;
+  }
+
+  @keyframes marquee-up {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-50%);
+    }
+  }
+</style>
+
+<script>
+  const slider = document.getElementById("testimonials-slider");
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
+  const counter = document.getElementById("slide-counter");
+
+  if (slider && prevBtn && nextBtn && counter) {
+    const total = slider.children.length;
+    let current = 0;
+
+    function goTo(index: number) {
+      if (!slider || !counter) return;
+      current = Math.max(0, Math.min(index, total - 1));
+      const cardWidth = slider.clientWidth + 16;
+      slider.scrollLeft = current * cardWidth;
+      counter.textContent = `${current + 1} / ${total}`;
+    }
+
+    prevBtn.addEventListener("click", () => goTo(current - 1));
+    nextBtn.addEventListener("click", () => goTo(current + 1));
+
+    slider.addEventListener("scroll", () => {
+      if (!slider || !counter) return;
+      const cardWidth = slider.clientWidth + 16;
+      current = Math.round(slider.scrollLeft / cardWidth);
+      counter.textContent = `${current + 1} / ${total}`;
+    });
+  }
+</script>
