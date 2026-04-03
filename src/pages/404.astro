@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import SectionLabel from "@/components/ui/SectionLabel.astro";
+import Button from "@components/ui/Button.astro";
+import Container from "@components/ui/Container.astro";
+---
+
+<BaseLayout
+  title="CleanNgo | Page introuvable"
+  description="Cette page est introuvable. Retournez à l'accueil et laissez-nous faire le ménage."
+  noindex={true}
+>
+  <Container>
+    <section class="flex min-h-screen flex-1 items-center justify-center px-4 py-16">
+      <div class="content_404 flex w-full max-w-3xl flex-col gap-0 overflow-hidden rounded-3xl">
+        <!-- Top tile: dark background, label + heading -->
+        <div class="flex flex-col items-center gap-6">
+          <!-- 404 label -->
+          <SectionLabel text="404" bg="bg-(--color-surface-secondary)" />
+
+          <!-- Heading -->
+          <h1
+            class="font-display max-w-md text-center text-4xl leading-[0.8] font-bold tracking-tight sm:text-5xl lg:text-6xl"
+          >
+            Cette page est trop sale pour apparaître
+          </h1>
+        </div>
+
+        <!-- Bottom tile: accent background, subtext + buttons -->
+        <div class="flex flex-col gap-8 px-8 py-10 md:px-14 md:py-12">
+          <!-- Subtext -->
+          <p
+            class="font-accent max-w-xl text-center text-lg leading-relaxed text-(--color-text-primary)/80"
+          >
+            Elle a peut-être été renversée, piétinée, ou enfouie sous une montagne de poussière —
+            qui sait.
+          </p>
+
+          <!-- Button group -->
+          <div class="flex flex-wrap items-center gap-3">
+            <Button href="/contact" size="lg" class=""> Réserver un nettoyage </Button>
+            <Button
+              href="/"
+              size="lg"
+              class="bg-transparent text-(--color-text-primary) ring-2 ring-(--color-text-primary) hover:bg-(--color-text-primary) hover:text-(--color-surface) [&_svg]:text-(--color-surface)"
+            >
+              Retour à l'accueil
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </Container>
+</BaseLayout>
