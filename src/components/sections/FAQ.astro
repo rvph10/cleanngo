@@ -1,0 +1,131 @@
+---
+import Button from "@components/ui/Button.astro";
+import SectionLabel from "@components/ui/SectionLabel.astro";
+
+const faqs = [
+  {
+    question: "Qu'est-ce qui est inclus dans un nettoyage standard ?",
+    answer:
+      "Un nettoyage standard comprend la cuisine, la salle de bain, les pièces de vie, les sols, le dépoussiérage et la gestion des déchets. Il est conçu pour garder votre intérieur propre et ordonné.",
+  },
+  {
+    question: "Combien coûte un nettoyage ?",
+    answer:
+      "Le prix dépend de la taille de votre logement et de la fréquence souhaitée. Les abonnements hebdomadaires, bimensuels et mensuels bénéficient de remises automatiques.",
+  },
+  {
+    question: "Combien de temps dure un nettoyage ?",
+    answer:
+      "La plupart des nettoyages durent 2 à 3 heures selon la taille et l'état du logement. Les nettoyages en profondeur prennent davantage de temps.",
+  },
+  {
+    question: "Les agents sont-ils vérifiés ?",
+    answer:
+      "Oui. Chaque agent fait l'objet d'une vérification des antécédents, d'un entretien et d'une sélection rigoureuse avant toute intervention.",
+  },
+  {
+    question: "Utilisez-vous des produits écologiques ?",
+    answer:
+      "Oui — tout ce que nous apportons est non toxique et sans danger pour les enfants et les animaux de compagnie.",
+  },
+  {
+    question: "Puis-je demander le même agent à chaque fois ?",
+    answer:
+      "Oui — si vous réservez des nettoyages récurrents, nous attribuons le même agent dans la mesure du possible.",
+  },
+];
+---
+
+<section class="w-full">
+  <div
+    class="rounded-3xl bg-(--color-surface-secondary) px-6 py-16 md:px-12 md:py-24"
+  >
+    <!-- Headline -->
+    <div
+      class="mx-auto mb-16 flex max-w-2xl flex-col items-center gap-4 text-center"
+    >
+      <SectionLabel text="FAQ" />
+      <h2
+        class="font-display text-5xl font-bold uppercase leading-[0.8] tracking-tight lg:text-[88px]"
+      >
+        Réponses à vos questions
+      </h2>
+      <p class="max-w-sm text-2xl tracking-tight leading-none opacity-70 font-semibold">
+        Tout ce que vous devez savoir avant de réserver votre premier nettoyage.
+      </p>
+    </div>
+
+    <!-- FAQ items -->
+    <div class="mx-auto flex max-w-2xl flex-col gap-3">
+      {
+        faqs.map((faq) => (
+          <div class="faq-item rounded-xl bg-white px-6 py-5">
+            <button
+              class="faq-trigger flex w-full items-center justify-between gap-6 text-left"
+              aria-expanded="false"
+            >
+              <span class="text-lg font-semibold leading-snug md:text-2xl">
+                {faq.question}
+              </span>
+              <!-- +/× icon -->
+              <span class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-(--color-accent)">
+                <span class="absolute h-0.5 w-3 rounded-full bg-(--color-text-primary)" />
+                <span class="faq-v-bar absolute h-3 w-0.5 rounded-full bg-(--color-text-primary) transition-transform duration-300" />
+              </span>
+            </button>
+            <div class="faq-body grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+              <div class="overflow-hidden">
+                <p class="m-0 pt-5 text-lg leading-relaxed font-medium opacity-60">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-16 flex justify-center">
+      <Button
+          size="lg"
+          href="tel:+32486518181"
+          class="hover:bg-(--color-text-primary) hover:text-(--color-background) [&_svg]:text-(--color-background)"
+        >
+          Poser nous vos questions
+        </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-item.is-open .faq-body {
+    grid-template-rows: 1fr;
+  }
+  .faq-item.is-open .faq-v-bar {
+    transform: rotate(90deg);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".faq-item").forEach((item) => {
+    item.querySelector(".faq-trigger")?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+
+      // Close all
+      document.querySelectorAll(".faq-item").forEach((other) => {
+        other.classList.remove("is-open");
+        other
+          .querySelector(".faq-trigger")
+          ?.setAttribute("aria-expanded", "false");
+      });
+
+      if (!isOpen) {
+        item.classList.add("is-open");
+        item
+          .querySelector(".faq-trigger")
+          ?.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+</script>
