@@ -39,7 +39,7 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
             type="button"
             class:list={[
               "flex cursor-pointer items-center gap-1.5 text-[1.1rem] font-bold tracking-[-0.015em] transition-colors duration-300 ease-out hover:text-(--color-accent)",
-              isServicesActive ? "text-blue-600" : "text-(--color-text-primary)",
+              isServicesActive ? "text-(--color-accent)" : "text-(--color-text-primary)",
             ]}
             aria-expanded="false"
             aria-controls="services-panel"
@@ -70,7 +70,7 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
               href={link.href}
               class:list={[
                 "text-[1.1rem] font-bold tracking-[-0.015em] transition-colors duration-300 ease-out hover:text-(--color-accent)",
-                isActivePath(link.href) ? "text-blue-600" : "text-(--color-text-primary)",
+                isActivePath(link.href) ? "text-(--color-accent)" : "text-(--color-text-primary)",
               ]}
             >
               {link.name}
@@ -153,7 +153,9 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
                       href={s.href}
                       class:list={[
                         "text-xl leading-tight font-semibold tracking-[-0.03em] transition-colors duration-300 ease-out hover:text-(--color-accent)",
-                        isActivePath(s.href) ? "text-blue-600" : "text-(--color-text-primary)",
+                        isActivePath(s.href)
+                          ? "text-(--color-accent)"
+                          : "text-(--color-text-primary)",
                       ]}
                     >
                       {s.name}

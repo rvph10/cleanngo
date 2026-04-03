@@ -34,7 +34,7 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
           type="button"
           class:list={[
             "flex w-full items-center justify-between py-4 text-2xl font-semibold tracking-[-0.02em] transition-colors duration-300 ease-out hover:text-(--color-accent)",
-            isServicesActive ? "text-blue-600" : "text-(--color-text-primary)",
+            isServicesActive ? "text-(--color-accent)" : "text-(--color-text-primary)",
           ]}
         >
           Nos Services
@@ -64,7 +64,7 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
                 href={s.href}
                 class:list={[
                   "py-1 text-base font-medium tracking-[-0.01em] transition-colors duration-300 ease-out hover:text-(--color-accent)",
-                  isActivePath(s.href) ? "text-blue-600" : "text-(--color-text-primary)/60",
+                  isActivePath(s.href) ? "text-(--color-accent)" : "text-(--color-text-primary)/60",
                 ]}
               >
                 {s.name}
@@ -81,7 +81,7 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
             href={link.href}
             class:list={[
               "border-b border-(--color-border)/10 py-4 text-2xl font-semibold tracking-[-0.02em] transition-colors duration-300 ease-out hover:text-(--color-accent)",
-              isActivePath(link.href) ? "text-blue-600" : "text-(--color-text-primary)",
+              isActivePath(link.href) ? "text-(--color-accent)" : "text-(--color-text-primary)",
             ]}
           >
             {link.name}
