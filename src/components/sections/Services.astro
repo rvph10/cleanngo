@@ -1,48 +1,6 @@
 ---
-const services = [
-  {
-    title: "Nettoyage résidentiel",
-    href: "/services/nettoyage-residentiel",
-    image:
-      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f6fce06691e7b3b823ae_Feature%20Image.jpg",
-  },
-  {
-    title: "Grand nettoyage",
-    href: "/services/grand-nettoyage",
-    image:
-      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f6e724fd11183bd2b937_Feature%20Image-1.jpg",
-  },
-  {
-    title: "Nettoyage des vitres",
-    href: "/services/nettoyage-vitres",
-    image:
-      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f6d19d5b12fedde64b75_Feature%20Image-2.jpg",
-  },
-  {
-    title: "Nettoyage post-travaux",
-    href: "/services/nettoyage-post-travaux",
-    image:
-      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f6bd044842f251b18caf_Feature%20Image-3.jpg",
-  },
-  {
-    title: "Emménagement Déménagement",
-    href: "/services/emmenagement-demenagement",
-    image:
-      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f6aea927e058f5514187_Feature%20Image-4.jpg",
-  },
-  {
-    title: "Location courte durée",
-    href: "/services/location-courte-duree",
-    image:
-      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936f69a500b8f88bb3e31f6_Feature%20Image-5.jpg",
-  },
-  {
-    title: "Bureau & Studio",
-    href: "/services/bureau-studio",
-    image:
-      "https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cae2/6936bbc52e5121145759bd27_Feature%20Image-6.jpg",
-  },
-];
+import SectionLabel from "../ui/SectionLabel.astro";
+import { services } from "@/data/services";
 
 const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <path d="M4.168 10H15.835M15.835 10L10.001 4.167M15.835 10L10.001 15.833" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -51,14 +9,8 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
 
 <section class="overflow-x-visible">
   <!-- Headline — padded to match page gutters -->
-  <div class="mb-8 flex flex-col gap-6">
-    <div class="flex w-fit items-center rounded-md bg-(--color-surface-secondary) px-2 py-1">
-      <span
-        class="font-display text-[0.65rem] font-bold tracking-widest text-(--color-text-primary) uppercase"
-      >
-        Service de nettoyage agréé
-      </span>
-    </div>
+  <div class="mt-12 mb-8 flex flex-col gap-6">
+    <SectionLabel text="Services de nettoyage agréé" bg="bg-(--color-surface-secondary)" />
     <h2 class="font-display m-0 text-5xl font-bold lg:text-7xl">Ce que nous nettoyons</h2>
   </div>
 
@@ -71,7 +23,7 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
             href={service.href}
             class="group relative block w-88 flex-none overflow-hidden rounded-2xl text-white uppercase"
             style="aspect-ratio: 4/5;"
-            aria-label={service.title}
+            aria-label={service.name}
             aria-hidden={i >= services.length ? "true" : undefined}
             tabindex={i >= services.length ? -1 : undefined}
           >
@@ -84,7 +36,7 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
               />
             </div>
             <div class="absolute inset-0 z-2 flex items-end bg-linear-to-t from-black/60 to-transparent p-6 pr-30">
-              <h4 class="font-display leading-tighter text-3xl font-bold">{service.title}</h4>
+              <h4 class="font-display leading-tighter text-3xl font-bold">{service.name}</h4>
             </div>
             <div class="absolute right-6 bottom-6 z-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 p-2.5 backdrop-blur-sm transition-colors duration-300 group-hover:bg-white/20">
               <Fragment set:html={arrowSvg} />
@@ -108,7 +60,7 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
           role="listitem"
           class="group relative block w-[80vw] max-w-72 flex-none snap-start overflow-hidden rounded-2xl text-white uppercase"
           style="aspect-ratio: 4/5;"
-          aria-label={service.title}
+          aria-label={service.name}
         >
           <div class="absolute inset-0 z-1">
             <img
@@ -119,7 +71,7 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
             />
           </div>
           <div class="absolute inset-0 z-2 flex items-end bg-linear-to-t from-black/60 to-transparent p-6 pr-30">
-            <h4 class="font-display m-0 text-xl leading-tight font-bold">{service.title}</h4>
+            <h4 class="font-display m-0 text-xl leading-tight font-bold">{service.name}</h4>
           </div>
           <div class="absolute right-6 bottom-6 z-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 p-2.5 backdrop-blur-sm transition-colors duration-300 group-hover:bg-white/20">
             <Fragment set:html={arrowSvg} />
@@ -137,9 +89,9 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
     </p>
     <a
       href="/services"
-      class="group font-display flex w-fit items-center gap-1 text-lg font-extrabold tracking-wide text-(--color-text-primary) uppercase transition-opacity hover:opacity-70"
+      class="group font-display flex w-fit items-center gap-1 text-xl font-bold tracking-wide text-(--color-text-primary) uppercase transition-opacity hover:opacity-70"
     >
-      <span>Découvrir tous nos services</span>
+      <span class="font-extrabold">Découvrir tous nos services</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
