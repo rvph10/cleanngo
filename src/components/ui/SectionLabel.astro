@@ -1,0 +1,14 @@
+---
+interface Props {
+  text: string;
+  bg?: string;
+}
+
+const { text, bg = "bg-(--color-background)" } = Astro.props;
+---
+
+<div class:list={["w-fit rounded-full px-3", bg]}>
+  <span class="text-xs font-semibold tracking-widest text-(--color-text-primary) uppercase">
+    {text}
+  </span>
+</div>
