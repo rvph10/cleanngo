@@ -1,0 +1,659 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import SectionLabel from "@components/ui/SectionLabel.astro";
+import Button from "@components/ui/Button.astro";
+import { services } from "@/data/services";
+
+const reviews = [
+  {
+    text: "Rentrer chez moi après leur passage, c'est comme retrouver un appartement neuf. Calme, propre et frais.",
+    platform: "Avis Google",
+  },
+  {
+    text: "J'ai essayé d'autres services, mais CleanNgo est dans une autre catégorie. Attentionnés, soigneux et constants.",
+    platform: "Avis Google",
+  },
+  {
+    text: "J'adore qu'ils utilisent des produits naturels — mes enfants et mon chien sont en sécurité, et tout sent divinement bon.",
+    platform: "Avis Google",
+  },
+  {
+    text: "Ponctualité parfaite, travail impeccable. Je recommande CleanNgo les yeux fermés à toute ma famille.",
+    platform: "Avis Google",
+  },
+];
+
+const marqueeReviews = [...reviews, ...reviews, ...reviews];
+---
+
+<BaseLayout
+  title="Réserver un nettoyage | CleanNgo"
+  description="Réservez votre service de nettoyage en 60 secondes. CleanNgo intervient à Bruxelles et en périphérie."
+>
+  <Container class="pt-12 pb-24 md:pt-20">
+    <section class="mx-auto mb-12 flex max-w-4xl flex-col items-center gap-8 text-center">
+      <SectionLabel text="Réserver" bg="bg-(--color-surface-secondary)" />
+
+      <h1 data-reveal="words" class="font-display text-4xl leading-[0.85] font-bold uppercase md:text-8xl">
+        ON S'OCCUPE DE TOUT
+      </h1>
+
+      <p data-reveal="fade" class="max-w-2xl text-lg text-(--color-text-primary)/70 md:text-xl">
+        Faites votre demande en ligne, nous vous confirmons par téléphone ou SMS dans les 2 heures.
+        Sans frais cachés, sans mauvaise surprise.
+      </p>
+
+      <div class="mt-2 flex w-full items-center justify-center">
+        <a
+          href="https://www.google.com/search?q=Clean+Ngo+Avis#lkt=LocalPoiReviews"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Consultez nos 4.9 étoiles sur Google"
+          class="group flex w-fit items-center gap-3 rounded-full bg-(--color-surface-secondary) p-1 pr-5 transition-all duration-300 hover:ring-1 hover:ring-(--color-border)/20"
+        >
+          <div
+            class="flex size-8 shrink-0 items-center justify-center rounded-full bg-white shadow-sm transition-transform duration-300 group-hover:scale-110 sm:size-9"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+              class="sm:size-5"
+            >
+              <path
+                fill="#EA4335"
+                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+              ></path>
+              <path
+                fill="#4285F4"
+                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+              ></path>
+              <path
+                fill="#FBBC05"
+                d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24s.92 7.54 2.56 10.78l7.97-6.19z"
+              ></path>
+              <path
+                fill="#34A853"
+                d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+              ></path>
+            </svg>
+          </div>
+          <span class="text-[10px] font-bold tracking-widest uppercase sm:text-sm"
+            >4.9 sur Google</span
+          >
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-4xl">
+      <!-- Formulaire de réservation -->
+      <div data-form-card class="rounded-3xl bg-(--color-surface-secondary) p-6 sm:p-10 lg:p-12">
+        <div data-form-header class="mb-8">
+          <h2 class="font-display text-3xl font-bold">Réservez en 60 secondes</h2>
+          <p class="font-medium text-(--color-text-primary)/60">
+            Pour ceux qui préfèrent réserver instantanément.
+          </p>
+        </div>
+
+        <form id="booking-form" novalidate class="flex flex-col gap-5">
+          <!-- Nom complet -->
+          <div data-form-field class="flex flex-col gap-1.5">
+            <label for="name" class="text-xs font-bold tracking-widest uppercase opacity-60"
+              >Nom complet <span aria-hidden="true" class="text-(--color-accent)">*</span></label
+            >
+            <div class="input-wrap group relative flex items-center">
+              <span
+                class="pointer-events-none absolute left-4 text-(--color-text-primary)/30 transition-colors group-focus-within:text-(--color-accent)"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 21C20 19.1362 20 18.2044 19.6955 17.4693C19.2895 16.4892 18.5108 15.7105 17.5307 15.3045C16.7956 15 15.8638 15 14 15H10C8.13623 15 7.20435 15 6.46927 15.3045C5.48915 15.7105 4.71046 16.4892 4.30448 17.4693C4 18.2044 4 19.1362 4 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Jean Dupont"
+                autocomplete="name"
+                class="field-input w-full rounded-xl border-none bg-white py-3.5 pr-5 pl-11 text-(--color-text-primary) transition-all duration-200 placeholder:text-(--color-text-primary)/30 focus:shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-accent)_12%,transparent)] focus:outline-none"
+              />
+            </div>
+            <p class="field-error hidden text-xs font-semibold text-red-500" data-field="name">
+              Veuillez entrer votre nom complet.
+            </p>
+          </div>
+
+          <!-- Téléphone + Email (au moins un requis) -->
+          <div data-form-field class="flex flex-col gap-1.5">
+            <div class="flex items-baseline justify-between">
+              <span class="text-xs font-bold tracking-widest uppercase opacity-60">Contact</span>
+              <span class="text-xs font-semibold text-(--color-text-primary)/65"
+                >Au moins l'un des deux</span
+              >
+            </div>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div class="input-wrap group relative flex items-center">
+                <span
+                  class="pointer-events-none absolute left-4 text-(--color-text-primary)/30 transition-colors group-focus-within:text-(--color-accent)"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M18.444 22.0907C18.7193 22.2172 19.0296 22.246 19.3236 22.1726C19.6175 22.0992 19.8777 21.9278 20.0613 21.6867L20.5346 21.0667C20.783 20.7355 21.1051 20.4667 21.4754 20.2815C21.8457 20.0964 22.254 20 22.668 20H26.668C27.3752 20 28.0535 20.281 28.5536 20.7811C29.0537 21.2812 29.3346 21.9594 29.3346 22.6667V26.6667C29.3346 27.3739 29.0537 28.0522 28.5536 28.5523C28.0535 29.0524 27.3752 29.3334 26.668 29.3334C20.3028 29.3334 14.1983 26.8048 9.69741 22.3039C5.19653 17.803 2.66797 11.6985 2.66797 5.33335C2.66797 4.62611 2.94892 3.94783 3.44902 3.44774C3.94911 2.94764 4.62739 2.66669 5.33464 2.66669H9.33464C10.0419 2.66669 10.7202 2.94764 11.2203 3.44774C11.7203 3.94783 12.0013 4.62611 12.0013 5.33335V9.33335C12.0013 9.74734 11.9049 10.1556 11.7198 10.5259C11.5346 10.8962 11.2658 11.2183 10.9346 11.4667L10.3106 11.9347C10.0659 12.1216 9.89333 12.3875 9.82236 12.6872C9.75138 12.9868 9.78635 13.3019 9.9213 13.5787C11.7435 17.2798 14.7405 20.2731 18.444 22.0907Z"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      transform="scale(0.72) translate(3.3 3.3)"></path>
+                  </svg>
+                </span>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+32 486 00 00 00"
+                  autocomplete="tel"
+                  class="field-input w-full rounded-xl border-none bg-white py-3.5 pr-5 pl-11 text-(--color-text-primary) transition-all duration-200 placeholder:text-(--color-text-primary)/30 focus:shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-accent)_12%,transparent)] focus:outline-none"
+                />
+              </div>
+              <div class="input-wrap group relative flex items-center">
+                <span
+                  class="pointer-events-none absolute left-4 text-(--color-text-primary)/30 transition-colors group-focus-within:text-(--color-accent)"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 7L10.1649 12.7154C10.8261 13.1783 11.1567 13.4097 11.5163 13.4993C11.8339 13.5785 12.1661 13.5785 12.4837 13.4993C12.8433 13.4097 13.1739 13.1783 13.8351 12.7154L22 7M6.8 20H17.2C18.8802 20 19.7202 20 20.362 19.673C20.9265 19.3854 21.3854 18.9265 21.673 18.362C22 17.7202 22 16.8802 22 15.2V8.8C22 7.11984 22 6.27976 21.673 5.63803C21.3854 5.07354 20.9265 4.6146 20.362 4.32698C19.7202 4 18.8802 4 17.2 4H6.8C5.11984 4 4.27976 4 3.63803 4.32698C3.07354 4.6146 2.6146 5.07354 2.32698 5.63803C2 6.27976 2 7.11984 2 8.8V15.2C2 16.8802 2 17.7202 2.32698 18.362C2.6146 18.9265 3.07354 19.3854 3.63803 19.673C4.27976 20 5.11984 20 6.8 20Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                </span>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="jean@exemple.be"
+                  autocomplete="email"
+                  class="field-input w-full rounded-xl border-none bg-white py-3.5 pr-5 pl-11 text-(--color-text-primary) transition-all duration-200 placeholder:text-(--color-text-primary)/30 focus:shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-accent)_12%,transparent)] focus:outline-none"
+                />
+              </div>
+            </div>
+            <p class="field-error hidden text-xs font-semibold text-red-500" data-field="contact">
+              Veuillez renseigner un numéro de téléphone ou une adresse e-mail valide.
+            </p>
+          </div>
+
+          <!-- Ville -->
+          <div data-form-field class="flex flex-col gap-1.5">
+            <label for="city" class="text-xs font-bold tracking-widest uppercase opacity-60"
+              >Ville <span aria-hidden="true" class="text-(--color-accent)">*</span></label
+            >
+            <div class="input-wrap group relative flex items-center">
+              <span
+                class="pointer-events-none absolute left-4 text-(--color-text-primary)/30 transition-colors group-focus-within:text-(--color-accent)"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M12 22C16 18 20 14.4183 20 10C20 5.58172 16.4183 2 12 2C7.58172 2 4 5.58172 4 10C4 14.4183 8 18 12 22Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <input
+                id="city"
+                name="city"
+                type="text"
+                placeholder="Bruxelles"
+                autocomplete="address-level2"
+                list="city-suggestions"
+                class="field-input w-full rounded-xl border-none bg-white py-3.5 pr-5 pl-11 text-(--color-text-primary) transition-all duration-200 placeholder:text-(--color-text-primary)/30 focus:shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-accent)_12%,transparent)] focus:outline-none"
+              />
+              <datalist id="city-suggestions">
+                <option value="Bruxelles"></option>
+                <option value="Ixelles"></option>
+                <option value="Etterbeek"></option>
+                <option value="Uccle"></option>
+                <option value="Schaerbeek"></option>
+                <option value="Woluwe-Saint-Lambert"></option>
+                <option value="Woluwe-Saint-Pierre"></option>
+                <option value="Auderghem"></option>
+                <option value="Watermael-Boitsfort"></option>
+                <option value="Forest"></option>
+                <option value="Anderlecht"></option>
+                <option value="Molenbeek-Saint-Jean"></option>
+                <option value="Saint-Gilles"></option>
+                <option value="Saint-Josse-ten-Noode"></option>
+                <option value="Laeken"></option>
+                <option value="Evere"></option>
+                <option value="Jette"></option>
+                <option value="Koekelberg"></option>
+                <option value="Berchem-Sainte-Agathe"></option>
+                <option value="Ganshoren"></option>
+                <option value="Waterloo"></option>
+                <option value="Rhode-Saint-Genèse"></option>
+                <option value="Rixensart"></option>
+                <option value="Overijse"></option>
+                <option value="Kraainem"></option>
+                <option value="Wezembeek-Oppem"></option>
+                <option value="Tervuren"></option>
+                <option value="Zaventem"></option>
+                <option value="Vilvoorde"></option>
+                <option value="Mechelen"></option>
+              </datalist>
+            </div>
+            <p class="field-error hidden text-xs font-semibold text-red-500" data-field="city">
+              Veuillez indiquer votre ville.
+            </p>
+          </div>
+
+          <!-- Services (multi-select chips) -->
+          <div data-form-field class="flex flex-col gap-2">
+            <div class="flex items-baseline justify-between">
+              <span class="text-xs font-bold tracking-widest uppercase opacity-60"
+                >Service(s) souhaité(s) <span aria-hidden="true" class="text-(--color-accent)"
+                  >*</span
+                ></span
+              >
+              <span class="text-xs font-semibold text-(--color-text-primary)/65"
+                >Sélection multiple</span
+              >
+            </div>
+            <div class="flex flex-wrap gap-2" role="group" aria-label="Sélectionnez vos services">
+              {
+                services.map((service: (typeof services)[number]) => (
+                  <label class="service-chip cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      name="services"
+                      value={service.href}
+                      class="peer sr-only"
+                    />
+                    <span class="block rounded-xl border-none bg-white px-4 py-2 text-sm font-semibold text-(--color-text-primary)/70 transition-all duration-150 peer-checked:bg-(--color-accent) peer-checked:text-(--color-text-primary) peer-focus-visible:ring-2 peer-focus-visible:ring-(--color-accent) peer-focus-visible:ring-offset-1 hover:text-(--color-text-primary)">
+                      {service.name}
+                    </span>
+                  </label>
+                ))
+              }
+            </div>
+            <p class="field-error hidden text-xs font-semibold text-red-500" data-field="services">
+              Veuillez sélectionner au moins un service.
+            </p>
+          </div>
+
+          <!-- Notes -->
+          <div data-form-field class="flex flex-col gap-1.5">
+            <label for="notes" class="text-xs font-bold tracking-widest uppercase opacity-60"
+              >Informations complémentaires</label
+            >
+            <textarea
+              id="notes"
+              name="notes"
+              rows="4"
+              placeholder="Surface approximative, accès au logement, animaux de compagnie, instructions particulières, disponibilités..."
+              class="w-full resize-none rounded-xl border-none bg-white px-5 py-3.5 text-(--color-text-primary) transition-all duration-200 placeholder:text-(--color-text-primary)/30 focus:shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-accent)_12%,transparent)] focus:outline-none"
+            ></textarea>
+          </div>
+
+          <!-- Confirmation success message -->
+          <div
+            id="form-success"
+            class="hidden rounded-2xl border border-green-200 bg-green-50 px-6 py-4 text-center"
+          >
+            <p class="font-bold text-green-700">Demande envoyée !</p>
+            <p class="text-sm text-green-600">Nous vous confirmons par téléphone dans les 2h.</p>
+          </div>
+
+          <div
+            data-form-field
+            class="mt-2 flex flex-col items-center justify-between gap-6 border-t border-(--color-border)/10 pt-6 sm:flex-row"
+          >
+            <p class="max-w-62.5 text-sm font-medium text-(--color-text-primary)/60">
+              Confirmation par appel ou SMS. Aucun frais caché, jamais.
+            </p>
+            <Button type="submit" size="lg" class="w-full justify-center sm:w-auto">
+              Envoyer ma demande
+            </Button>
+          </div>
+        </form>
+      </div>
+
+    </section>
+
+    <section class="mx-auto mt-4 w-full max-w-4xl">
+      <h2 data-reveal="words" class="font-display mb-4 text-3xl font-bold">Vous préférez parler ?</h2>
+      <div data-reveal="cards" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <a
+          href="tel:+32486518181"
+          class="group flex items-center gap-6 rounded-3xl bg-(--color-surface-secondary) p-8 transition-colors hover:bg-(--color-accent) hover:text-(--color-text-primary)"
+        >
+          <div
+            class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white text-(--color-text-primary) transition-colors group-hover:bg-(--color-text-primary)/10"
+          >
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18.444 22.0907C18.7193 22.2172 19.0296 22.246 19.3236 22.1726C19.6175 22.0992 19.8777 21.9278 20.0613 21.6867L20.5346 21.0667C20.783 20.7355 21.1051 20.4667 21.4754 20.2815C21.8457 20.0964 22.254 20 22.668 20H26.668C27.3752 20 28.0535 20.281 28.5536 20.7811C29.0537 21.2812 29.3346 21.9594 29.3346 22.6667V26.6667C29.3346 27.3739 29.0537 28.0522 28.5536 28.5523C28.0535 29.0524 27.3752 29.3334 26.668 29.3334C20.3028 29.3334 14.1983 26.8048 9.69741 22.3039C5.19653 17.803 2.66797 11.6985 2.66797 5.33335C2.66797 4.62611 2.94892 3.94783 3.44902 3.44774C3.94911 2.94764 4.62739 2.66669 5.33464 2.66669H9.33464C10.0419 2.66669 10.7202 2.94764 11.2203 3.44774C11.7203 3.94783 12.0013 4.62611 12.0013 5.33335V9.33335C12.0013 9.74734 11.9049 10.1556 11.7198 10.5259C11.5346 10.8962 11.2658 11.2183 10.9346 11.4667L10.3106 11.9347C10.0659 12.1216 9.89333 12.3875 9.82236 12.6872C9.75138 12.9868 9.78635 13.3019 9.9213 13.5787C11.7435 17.2798 14.7405 20.2731 18.444 22.0907Z"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <div class="text-left">
+            <div class="font-display text-2xl font-bold">Appeler</div>
+            <div class="text-lg font-medium opacity-80">+32 486 51 81 81</div>
+            <div class="mt-1 text-xs font-semibold tracking-wide uppercase opacity-50">
+              Lun – Sam · 8h – 19h
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="https://wa.me/32486518181?text=Bonjour%20CleanNgo%2C%20je%20souhaite%20r%C3%A9server%20un%20nettoyage."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-center gap-6 rounded-3xl bg-(--color-surface-secondary) p-8 transition-colors hover:bg-(--color-accent) hover:text-(--color-text-primary)"
+        >
+          <div
+            class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white text-(--color-text-primary) transition-colors group-hover:bg-(--color-text-primary)/10"
+          >
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3.99022 21.7893C4.18628 22.2839 4.22992 22.8258 4.11556 23.3453L2.69556 27.732C2.6498 27.9544 2.66163 28.1849 2.72992 28.4015C2.79822 28.6181 2.92071 28.8137 3.08578 28.9697C3.25085 29.1257 3.45304 29.2369 3.67316 29.2928C3.89328 29.3488 4.12404 29.3476 4.34356 29.2893L8.89422 27.9586C9.38451 27.8614 9.89226 27.9039 10.3596 28.0813C13.2067 29.4109 16.432 29.6922 19.4664 28.8756C22.5008 28.059 25.1493 26.1968 26.9445 23.6178C28.7397 21.0388 29.5664 17.9085 29.2786 14.7794C28.9909 11.6502 27.6072 8.72327 25.3716 6.51491C23.1361 4.30654 20.1925 2.9587 17.0601 2.70917C13.9276 2.45965 10.8077 3.32449 8.25081 5.1511C5.69389 6.97771 3.86427 9.6487 3.08475 12.6928C2.30523 15.737 2.62592 18.9586 3.99022 21.7893Z"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <div class="text-left">
+            <div class="font-display text-2xl font-bold">WhatsApp</div>
+            <div class="text-lg font-medium opacity-80">+32 486 51 81 81</div>
+            <div class="mt-1 text-xs font-semibold tracking-wide uppercase opacity-50">
+              Réponse rapide garantie
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+  </Container>
+
+  <section class="overflow-x-visible pb-24">
+    <div class="marquee-viewport overflow-hidden" aria-label="Avis clients">
+      <div class="marquee-track flex w-max gap-6">
+        {
+          marqueeReviews.map((review) => (
+            <div class="flex w-87.5 flex-col items-center justify-center gap-6 rounded-3xl bg-(--color-surface-secondary) p-10 text-center sm:w-112.5">
+              <div class="flex gap-1 text-amber-400">
+                {Array.from({ length: 5 }, () => (
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.5268 2.29489C11.5706 2.20635 11.6383 2.13183 11.7223 2.07972C11.8062 2.02761 11.903 2 12.0018 2C12.1006 2 12.1974 2.02761 12.2813 2.07972C12.3653 2.13183 12.433 2.20635 12.4768 2.29489L14.7868 6.97389C14.939 7.28186 15.1636 7.5483 15.4414 7.75035C15.7192 7.95239 16.0419 8.08401 16.3818 8.13389L21.5478 8.88989C21.6457 8.90408 21.7376 8.94537 21.8133 9.00909C21.8889 9.07282 21.9452 9.15644 21.9758 9.2505C22.0064 9.34456 22.0101 9.4453 21.9864 9.54133C21.9627 9.63736 21.9126 9.72485 21.8418 9.79389L18.1058 13.4319C17.8594 13.672 17.6751 13.9684 17.5686 14.2955C17.4622 14.6227 17.4369 14.9708 17.4948 15.3099L18.3768 20.4499C18.3941 20.5477 18.3835 20.6485 18.3463 20.7406C18.3091 20.8327 18.2467 20.9125 18.1663 20.9709C18.086 21.0293 17.9908 21.0639 17.8917 21.0708C17.7926 21.0777 17.6935 21.0566 17.6058 21.0099L12.9878 18.5819C12.6835 18.4221 12.345 18.3386 12.0013 18.3386C11.6576 18.3386 11.3191 18.4221 11.0148 18.5819L6.3978 21.0099C6.31013 21.0563 6.2112 21.0772 6.11225 21.0701C6.0133 21.0631 5.91832 21.0285 5.83809 20.9701C5.75787 20.9118 5.69563 20.8321 5.65846 20.7401C5.62128 20.6481 5.61066 20.5476 5.6278 20.4499L6.5088 15.3109C6.567 14.9716 6.54178 14.6233 6.43534 14.2959C6.32889 13.9686 6.14441 13.672 5.8978 13.4319L2.1618 9.79489C2.09039 9.72593 2.03979 9.63829 2.01576 9.54197C1.99173 9.44565 1.99524 9.34451 2.02588 9.25008C2.05652 9.15566 2.11307 9.07174 2.18908 9.00788C2.26509 8.94402 2.3575 8.90279 2.4558 8.88889L7.6208 8.13389C7.96106 8.08439 8.28419 7.95295 8.56238 7.75088C8.84058 7.54881 9.0655 7.28216 9.2178 6.97389L11.5268 2.29489Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                ))}
+              </div>
+
+              <p class="font-display text-xl leading-tight font-semibold text-(--color-text-primary) md:text-2xl">
+                "{review.text}"
+              </p>
+
+              <p class="text-sm font-bold tracking-widest text-(--color-text-primary)/60 uppercase">
+                {review.platform}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-50% - 12px));
+    }
+  }
+
+  .marquee-track {
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const card = document.querySelector<HTMLElement>("[data-form-card]");
+    const header = document.querySelector<HTMLElement>("[data-form-header]");
+    const fields = document.querySelectorAll<HTMLElement>("[data-form-field]");
+
+    // 1. Card wipes in from the bottom
+    if (card) {
+      gsap.set(card, { clipPath: "inset(100% 0 0 0)" });
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 94%",
+        once: true,
+        onEnter: () =>
+          gsap.to(card, { clipPath: "inset(0% 0 0 0)", duration: 1, ease: "expo.out" }),
+      });
+    }
+
+    // 2. Form header fades in after card starts revealing
+    if (header) {
+      gsap.set(header, { y: 16, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: card ?? header,
+        start: "top 94%",
+        once: true,
+        onEnter: () =>
+          gsap.to(header, { y: 0, opacity: 1, duration: 0.7, delay: 0.3, ease: "power3.out" }),
+      });
+    }
+
+    // 3. Each field group staggers in after the header
+    if (fields.length) {
+      gsap.set(fields, { y: 20, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: card ?? fields[0],
+        start: "top 94%",
+        once: true,
+        onEnter: () =>
+          gsap.to(fields, {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.07,
+            delay: 0.5,
+            ease: "power3.out",
+          }),
+      });
+    }
+
+    // 4. Input focus micro-interaction — subtle scale on the wrapper
+    document.querySelectorAll<HTMLElement>(".input-wrap").forEach((wrap) => {
+      const input = wrap.querySelector("input");
+      input?.addEventListener("focus", () =>
+        gsap.to(wrap, { scale: 1.015, duration: 0.2, ease: "power2.out" })
+      );
+      input?.addEventListener("blur", () =>
+        gsap.to(wrap, { scale: 1, duration: 0.25, ease: "power2.inOut" })
+      );
+    });
+
+    // 5. Service chip selection — bounce on toggle
+    document.querySelectorAll<HTMLElement>(".service-chip").forEach((chip) => {
+      const checkbox = chip.querySelector("input");
+      const label = chip.querySelector("span");
+      checkbox?.addEventListener("change", () => {
+        if (label) gsap.fromTo(label, { scale: 0.88 }, { scale: 1, duration: 0.35, ease: "back.out(2.5)" });
+      });
+    });
+
+    // 6. Success message animates in when revealed by the form script
+    const successEl = document.getElementById("form-success");
+    if (successEl) {
+      const observer = new MutationObserver(() => {
+        if (!successEl.classList.contains("hidden")) {
+          gsap.from(successEl, { y: -14, opacity: 0, duration: 0.5, ease: "back.out(1.5)" });
+        }
+      });
+      observer.observe(successEl, { attributes: true, attributeFilter: ["class"] });
+    }
+  }
+</script>
+
+<script>
+  const form = document.getElementById("booking-form") as HTMLFormElement;
+  const successMsg = document.getElementById("form-success");
+
+  function isValidPhone(v: string) {
+    return /^[+\d\s\-().]{7,20}$/.test(v.trim());
+  }
+  function isValidEmail(v: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+  }
+
+  function setError(field: string, show: boolean, inputIds: string[] = [field]) {
+    const msg = form.querySelector(`[data-field="${field}"]`) as HTMLElement | null;
+    msg?.classList.toggle("hidden", !show);
+    for (const id of inputIds) {
+      const el = form.querySelector(`#${id}`) as HTMLElement | null;
+      el?.classList.toggle("!shadow-[0_0_0_2px_theme(colors.red.400)]", show);
+    }
+  }
+
+  // Live clearing of errors as user types
+  form?.addEventListener("input", (e) => {
+    const target = e.target as HTMLInputElement;
+    if (!target.name) return;
+    if (target.name === "phone" || target.name === "email") {
+      setError("contact", false, ["phone", "email"]);
+    } else if (target.name === "services") {
+      setError("services", false);
+    } else {
+      setError(target.name, false);
+    }
+  });
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    const name = (form.querySelector("#name") as HTMLInputElement).value.trim();
+    const phone = (form.querySelector("#phone") as HTMLInputElement).value.trim();
+    const email = (form.querySelector("#email") as HTMLInputElement).value.trim();
+    const city = (form.querySelector("#city") as HTMLInputElement).value.trim();
+    const selectedServices = form.querySelectorAll('input[name="services"]:checked');
+
+    if (!name) {
+      setError("name", true);
+      valid = false;
+    } else {
+      setError("name", false);
+    }
+
+    const phoneOk = phone && isValidPhone(phone);
+    const emailOk = email && isValidEmail(email);
+    if (!phoneOk && !emailOk) {
+      setError("contact", true, ["phone", "email"]);
+      valid = false;
+    } else {
+      setError("contact", false, ["phone", "email"]);
+    }
+
+    if (!city) {
+      setError("city", true);
+      valid = false;
+    } else {
+      setError("city", false);
+    }
+
+    if (selectedServices.length === 0) {
+      setError("services", true);
+      valid = false;
+    } else {
+      setError("services", false);
+    }
+
+    if (!valid) {
+      form
+        .querySelector(".field-error:not(.hidden)")
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    // Here you would POST to your backend / form service
+    successMsg?.classList.remove("hidden");
+    form.querySelectorAll("input, textarea, button[type=submit]").forEach((el) => {
+      (el as HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement).disabled = true;
+    });
+  });
+</script>
