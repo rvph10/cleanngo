@@ -119,6 +119,16 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
       ]
     })} />
 
+    <!-- Umami analytics (production only — omit PUBLIC_UMAMI_WEBSITE_ID on staging) -->
+    {import.meta.env.PUBLIC_UMAMI_WEBSITE_ID && (
+      <script
+        is:inline
+        defer
+        src="https://analytics.lab.upintown.dev/script.js"
+        data-website-id={import.meta.env.PUBLIC_UMAMI_WEBSITE_ID}
+      />
+    )}
+
     <!-- Inject additional head tags per-page -->
     <slot name="head" />
   </head>
