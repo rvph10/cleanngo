@@ -4,10 +4,13 @@
 
 export interface ContactFormData {
   name: string;
-  email: string;
-  company?: string;
-  message: string;
-  budget?: "small" | "medium" | "large" | "enterprise";
+  /** At least one of phone / email is required */
+  phone?: string;
+  email?: string;
+  city: string;
+  /** Comma-separated list of service slugs */
+  services: string;
+  notes?: string;
 }
 
 export interface ContactFormResponse {

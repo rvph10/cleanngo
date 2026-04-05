@@ -17,49 +17,89 @@ function getResendClient(): Resend {
 }
 
 // =========================================================
-// Contact email
+// Booking email
 // =========================================================
 
-export async function sendContactEmail(data: ContactFormData): Promise<void> {
+export async function sendBookingEmail(data: ContactFormData): Promise<void> {
   const resend = getResendClient();
 
-  const contactEmail = import.meta.env.CONTACT_EMAIL;
-  if (!contactEmail) {
+  const toEmail = import.meta.env.CONTACT_EMAIL;
+  if (!toEmail) {
     throw new Error("CONTACT_EMAIL environment variable is not set.");
   }
 
-  const budgetLabels: Record<NonNullable<ContactFormData["budget"]>, string> = {
-    small: "Less than €5k",
-    medium: "€5k – €20k",
-    large: "€20k – €50k",
-    enterprise: "€50k+",
-  };
+  const fromEmail = import.meta.env.RESEND_FROM_EMAIL ?? "CleanNgo <noreply@cleanngo.be>";
 
-  const budgetText = data.budget ? budgetLabels[data.budget] : "Not specified";
+  const serviceList = data.services
+    .split(",")
+    .map((s) => `<li>${escapeHtml(s.trim())}</li>`)
+    .join("");
+
+  const replyTo = data.email ?? undefined;
 
   const { error } = await resend.emails.send({
-    from: "Contact Form <noreply@example.com>",
-    to: [contactEmail],
-    replyTo: data.email,
-    subject: `New contact from ${data.name}${data.company ? ` (${data.company})` : ""}`,
+    from: fromEmail,
+    to: [toEmail],
+    ...(replyTo ? { replyTo } : {}),
+    subject: `Nouvelle demande de réservation — ${escapeHtml(data.name)} (${escapeHtml(data.city)})`,
     html: `
-      <h2>New contact form submission</h2>
-      <table cellpadding="8" style="border-collapse:collapse">
-        <tr><th align="left">Name</th><td>${escapeHtml(data.name)}</td></tr>
-        <tr><th align="left">Email</th><td>${escapeHtml(data.email)}</td></tr>
-        ${data.company ? `<tr><th align="left">Company</th><td>${escapeHtml(data.company)}</td></tr>` : ""}
-        <tr><th align="left">Budget</th><td>${budgetText}</td></tr>
-        <tr><th align="left" style="vertical-align:top">Message</th><td><pre style="white-space:pre-wrap">${escapeHtml(data.message)}</pre></td></tr>
-      </table>
+      <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a">
+        <h2 style="margin-bottom:4px">Nouvelle demande de réservation</h2>
+        <p style="color:#666;margin-top:0">Reçue via cleanngo.be</p>
+
+        <table cellpadding="10" style="border-collapse:collapse;width:100%;margin-top:16px">
+          <tr style="background:#f5f5f5">
+            <th align="left" style="width:140px;white-space:nowrap">Nom</th>
+            <td>${escapeHtml(data.name)}</td>
+          </tr>
+          <tr>
+            <th align="left">Téléphone</th>
+            <td>${data.phone ? escapeHtml(data.phone) : "<em style='color:#999'>Non renseigné</em>"}</td>
+          </tr>
+          <tr style="background:#f5f5f5">
+            <th align="left">E-mail</th>
+            <td>${data.email ? escapeHtml(data.email) : "<em style='color:#999'>Non renseigné</em>"}</td>
+          </tr>
+          <tr>
+            <th align="left">Ville</th>
+            <td>${escapeHtml(data.city)}</td>
+          </tr>
+          <tr style="background:#f5f5f5">
+            <th align="left" style="vertical-align:top">Service(s)</th>
+            <td><ul style="margin:0;padding-left:18px">${serviceList}</ul></td>
+          </tr>
+          ${
+            data.notes
+              ? `<tr>
+            <th align="left" style="vertical-align:top">Notes</th>
+            <td><pre style="white-space:pre-wrap;margin:0;font-family:inherit">${escapeHtml(data.notes)}</pre></td>
+          </tr>`
+              : ""
+          }
+        </table>
+
+        ${
+          data.phone
+            ? `<p style="margin-top:24px">
+            <a href="tel:${escapeHtml(data.phone)}" style="background:#1a1a1a;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:600">
+              Appeler ${escapeHtml(data.name)}
+            </a>
+          </p>`
+            : ""
+        }
+      </div>
     `,
     text: [
-      `Name: ${data.name}`,
-      `Email: ${data.email}`,
-      data.company ? `Company: ${data.company}` : null,
-      `Budget: ${budgetText}`,
-      `\nMessage:\n${data.message}`,
+      "Nouvelle demande de réservation — cleanngo.be",
+      "",
+      `Nom      : ${data.name}`,
+      `Téléphone: ${data.phone ?? "Non renseigné"}`,
+      `E-mail   : ${data.email ?? "Non renseigné"}`,
+      `Ville    : ${data.city}`,
+      `Services : ${data.services}`,
+      data.notes ? `\nNotes :\n${data.notes}` : null,
     ]
-      .filter(Boolean)
+      .filter((l) => l !== null)
       .join("\n"),
   });
 

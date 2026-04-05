@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { sendContactEmail } from "@lib/resend";
+import { sendBookingEmail } from "@lib/resend";
 import type { ContactFormData, ContactFormResponse } from "@/types/index";
 
 export const prerender = false;
@@ -8,8 +8,12 @@ export const prerender = false;
 // Validation
 // =========================================================
 
-function isValidEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+function isValidPhone(v: string): boolean {
+  return /^\+?[\d\s\-().]{7,20}$/.test(v.trim());
+}
+
+function isValidEmail(v: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 }
 
 function validateBody(
@@ -21,33 +25,51 @@ function validateBody(
 
   const d = data as Record<string, unknown>;
 
+  // Honeypot – silently succeed if filled by a bot
+  if (d.website) {
+    return { valid: true, data: null as never };
+  }
+
   if (!d.name || typeof d.name !== "string" || d.name.trim().length < 2) {
-    return { valid: false, error: "Name must be at least 2 characters." };
+    return { valid: false, error: "Le nom doit contenir au moins 2 caractères." };
   }
 
-  if (!d.email || typeof d.email !== "string" || !isValidEmail(d.email)) {
-    return { valid: false, error: "A valid email address is required." };
+  if (d.name.trim().length > 100) {
+    return { valid: false, error: "Le nom est trop long." };
   }
 
-  if (!d.message || typeof d.message !== "string" || d.message.trim().length < 10) {
-    return { valid: false, error: "Message must be at least 10 characters." };
+  const phone = typeof d.phone === "string" ? d.phone.trim() : "";
+  const email = typeof d.email === "string" ? d.email.trim() : "";
+
+  const phoneOk = phone && isValidPhone(phone);
+  const emailOk = email && isValidEmail(email);
+
+  if (!phoneOk && !emailOk) {
+    return { valid: false, error: "Un numéro de téléphone ou une adresse e-mail valide est requis." };
   }
 
-  const validBudgets = ["small", "medium", "large", "enterprise"] as const;
-  const budget = d.budget as ContactFormData["budget"] | undefined;
+  if (!d.city || typeof d.city !== "string" || d.city.trim().length < 2) {
+    return { valid: false, error: "La ville est requise." };
+  }
 
-  if (budget !== undefined && !validBudgets.includes(budget as never)) {
-    return { valid: false, error: "Invalid budget selection." };
+  if (!d.services || typeof d.services !== "string" || d.services.trim().length === 0) {
+    return { valid: false, error: "Veuillez sélectionner au moins un service." };
+  }
+
+  const notes = typeof d.notes === "string" ? d.notes.trim() : undefined;
+  if (notes && notes.length > 1000) {
+    return { valid: false, error: "Les informations complémentaires sont trop longues." };
   }
 
   return {
     valid: true,
     data: {
       name: d.name.trim(),
-      email: d.email.trim().toLowerCase(),
-      company: typeof d.company === "string" && d.company.trim() ? d.company.trim() : undefined,
-      message: d.message.trim(),
-      budget,
+      phone: phoneOk ? phone : undefined,
+      email: emailOk ? email.toLowerCase() : undefined,
+      city: (d.city as string).trim(),
+      services: d.services.trim(),
+      notes: notes || undefined,
     },
   };
 }
@@ -63,7 +85,7 @@ export const POST: APIRoute = async ({ request }) => {
     body = await request.json();
   } catch {
     return Response.json(
-      { success: false, message: "Invalid JSON body." } satisfies ContactFormResponse,
+      { success: false, message: "Corps de requête invalide." } satisfies ContactFormResponse,
       { status: 400 }
     );
   }
@@ -77,14 +99,19 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
+  // Honeypot triggered — respond as if success but don't send email
+  if (!validation.data) {
+    return Response.json(
+      { success: true, message: "Demande envoyée." } satisfies ContactFormResponse,
+      { status: 200 }
+    );
+  }
+
   try {
-    await sendContactEmail(validation.data);
+    await sendBookingEmail(validation.data);
 
     return Response.json(
-      {
-        success: true,
-        message: "Thank you! We will be in touch shortly.",
-      } satisfies ContactFormResponse,
+      { success: true, message: "Demande envoyée." } satisfies ContactFormResponse,
       { status: 200 }
     );
   } catch (err) {
@@ -93,7 +120,7 @@ export const POST: APIRoute = async ({ request }) => {
     return Response.json(
       {
         success: false,
-        message: "Something went wrong. Please try again or contact us directly.",
+        message: "Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.",
       } satisfies ContactFormResponse,
       { status: 500 }
     );

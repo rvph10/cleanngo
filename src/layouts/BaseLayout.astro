@@ -79,29 +79,26 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const defer = (fn: () => void) => {
-    if ("requestIdleCallback" in window) {
-      requestIdleCallback(fn, { timeout: 2000 });
-    } else {
-      setTimeout(fn, 1);
-    }
-  };
-
   // Respect user's motion preference
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    defer(() => {
-      // ── Header scroll state ────────────────────────────────
-      const header = document.getElementById("site-header");
-      if (header) {
-        ScrollTrigger.create({
-          start: "top -72px",
-          end: 99999,
-          onEnter: () => header.setAttribute("data-scrolled", ""),
-          onLeaveBack: () => header.removeAttribute("data-scrolled"),
-        });
-      }
+    // ── Header scroll state ────────────────────────────────
+    // Synchronous: single, lightweight ScrollTrigger — safe to run immediately.
+    const header = document.getElementById("site-header");
+    if (header) {
+      ScrollTrigger.create({
+        start: "top -72px",
+        end: 99999,
+        onEnter: () => header.setAttribute("data-scrolled", ""),
+        onLeaveBack: () => header.removeAttribute("data-scrolled"),
+      });
+    }
 
-      // ── Word-reveal headings ───────────────────────────────
+    // Each reveal group runs in its own macrotask (setTimeout 0).
+    // This lets the browser render a frame between each batch so no single
+    // task blocks long enough to inflate TBT.
+
+    // ── Word-reveal headings ───────────────────────────────
+    setTimeout(() => {
       document.querySelectorAll<HTMLElement>('[data-reveal="words"]').forEach((el) => {
         const spans = splitWords(el);
         gsap.set(spans, { y: "105%" });
@@ -117,8 +114,10 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
           },
         });
       });
+    }, 0);
 
-      // ── Fade-up elements ───────────────────────────────────
+    // ── Fade-up elements ───────────────────────────────────
+    setTimeout(() => {
       document.querySelectorAll<HTMLElement>('[data-reveal="fade"]').forEach((el) => {
         gsap.set(el, { y: 22, opacity: 0 });
         ScrollTrigger.create({
@@ -130,8 +129,10 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
           },
         });
       });
+    }, 0);
 
-      // ── Wipe-in images & blocks ────────────────────────────
+    // ── Wipe-in images & blocks ────────────────────────────
+    setTimeout(() => {
       document.querySelectorAll<HTMLElement>('[data-reveal="wipe"]').forEach((el) => {
         gsap.set(el, { clipPath: "inset(100% 0 0 0)" });
         ScrollTrigger.create({
@@ -143,8 +144,10 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
           },
         });
       });
+    }, 0);
 
-      // ── Staggered cards / items ────────────────────────────
+    // ── Staggered cards / items ────────────────────────────
+    setTimeout(() => {
       document.querySelectorAll<HTMLElement>('[data-reveal="cards"]').forEach((container) => {
         const cards = Array.from(container.children) as HTMLElement[];
         gsap.set(cards, { y: 32, opacity: 0 });
@@ -157,10 +160,11 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
           },
         });
       });
+    }, 0);
 
-      // ── Magnetic buttons ───────────────────────────────────
-      // Applied to all elements with [data-magnetic]
+    // ── Magnetic buttons ───────────────────────────────────
+    setTimeout(() => {
       magneticEffect("[data-magnetic]", 0.22);
-    });
+    }, 0);
   }
 </script>
