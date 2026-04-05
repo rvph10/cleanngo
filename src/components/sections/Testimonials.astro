@@ -72,9 +72,10 @@ const allReviews = columns.flat();
     <SectionLabel text="Témoignages" bg="bg-(--color-surface-secondary)" />
 
     <h2
+      data-reveal="fade"
       class="font-display m-0 text-5xl leading-tight font-bold tracking-tight text-(--color-text-primary) uppercase lg:text-6xl"
     >
-      Ils nous ont fait confiance <br>4,8/5
+      Ils nous ont fait confiance <br />4,8/5
     </h2>
 
     <a
@@ -120,7 +121,7 @@ const allReviews = columns.flat();
                       "{review.text}"
                     </p>
                   </div>
-                  <p class="m-0 text-sm font-semibold text-(--color-text-primary)/50">
+                  <p class="m-0 text-sm font-semibold text-(--color-text-primary)/70">
                     {review.author} — Avis Google
                   </p>
                 </div>
@@ -154,7 +155,7 @@ const allReviews = columns.flat();
                       "{review.text}"
                     </p>
                   </div>
-                  <p class="m-0 text-sm font-semibold text-(--color-text-primary)/50">
+                  <p class="m-0 text-sm font-semibold text-(--color-text-primary)/70">
                     {review.author} — Avis Google
                   </p>
                 </div>
@@ -199,7 +200,7 @@ const allReviews = columns.flat();
                   "{review.text}"
                 </p>
               </div>
-              <p class="m-0 text-sm font-semibold text-(--color-text-primary)/50">
+              <p class="m-0 text-sm font-semibold text-(--color-text-primary)/70">
                 {review.author} — Avis Google
               </p>
             </div>
@@ -244,7 +245,7 @@ const allReviews = columns.flat();
           </svg>
         </button>
       </div>
-      <span id="slide-counter" class="text-sm font-semibold text-(--color-text-primary)/50">
+      <span id="slide-counter" class="text-sm font-semibold text-(--color-text-primary)/70">
         1 / {allReviews.length}
       </span>
     </div>
@@ -265,16 +266,6 @@ const allReviews = columns.flat();
     backface-visibility: hidden;
     perspective: 1000px;
     animation-play-state: running;
-  }
-
-  /* Pause all desktop columns on hover/focus so reviews remain readable */
-  .testimonials-marquee:hover .marquee-col-1,
-  .testimonials-marquee:hover .marquee-col-2,
-  .testimonials-marquee:hover .marquee-col-3,
-  .testimonials-marquee:focus-within .marquee-col-1,
-  .testimonials-marquee:focus-within .marquee-col-2,
-  .testimonials-marquee:focus-within .marquee-col-3 {
-    animation-play-state: paused;
   }
 
   .marquee-col-1 {

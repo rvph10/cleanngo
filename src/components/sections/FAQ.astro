@@ -46,6 +46,7 @@ const faqs = [
     >
       <SectionLabel text="FAQ" />
       <h2
+        data-reveal="words"
         class="font-display text-5xl font-bold uppercase leading-[0.8] tracking-tight lg:text-[88px]"
       >
         Réponses à vos questions
@@ -56,7 +57,7 @@ const faqs = [
     </div>
 
     <!-- FAQ items -->
-    <div class="mx-auto flex max-w-2xl flex-col gap-3">
+    <div data-reveal="cards" class="mx-auto flex max-w-2xl flex-col gap-3">
       {
         faqs.map((faq) => (
           <div class="faq-item rounded-xl bg-white px-6 py-5">

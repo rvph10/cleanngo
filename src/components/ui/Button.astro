@@ -69,7 +69,7 @@ const mergedClasses = cn(
 );
 ---
 
-<Tag href={href} type={!href ? type : undefined} class={mergedClasses} {...rest}>
+<Tag href={href} type={!href ? type : undefined} class={mergedClasses} data-magnetic {...rest}>
   <span class:list={["relative z-10 transition-transform duration-300 ease-in-out", s.textShift]}>
     <slot />
   </span>

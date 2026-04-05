@@ -8,17 +8,18 @@ import Button from "@components/ui/Button.astro";
   >
     <div class="flex max-w-2xl flex-col items-center gap-8">
       <h2
+        data-reveal="words"
         class="font-display m-0 text-5xl leading-[0.9] font-bold tracking-tight text-(--color-text-primary) uppercase lg:text-6xl"
       >
         Prêt pour un intérieur plus propre et serein ?
       </h2>
 
-      <p class="m-0 max-w-sm text-xl leading-[0.9] text-(--color-text-primary)/70">
+      <p data-reveal="fade" class="m-0 max-w-sm text-xl leading-[0.9] text-(--color-text-primary)/70">
         Réservez des agents de confiance qui se présentent, prennent soin de votre espace et vous le
         rendent impeccable.
       </p>
 
-      <div class="flex flex-wrap items-center justify-center gap-3">
+      <div data-reveal="cards" class="flex flex-wrap items-center justify-center gap-3">
         <Button
           href="/contact"
           size="lg"

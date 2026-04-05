@@ -28,7 +28,7 @@ const steps = [
 <section class="w-full">
   <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start lg:gap-6">
     <!-- Left: sticky headline -->
-    <div class="flex flex-col items-start gap-8 lg:sticky lg:top-30">
+    <div data-hiw-left class="flex flex-col items-start gap-8 lg:sticky lg:top-30">
       <h2
         class="font-display m-0 text-5xl leading-tight font-bold tracking-tight text-(--color-text-primary) uppercase lg:text-6xl"
       >
@@ -46,6 +46,7 @@ const steps = [
       {
         steps.map((step, i) => (
           <div
+            data-hiw-step
             class="sticky flex flex-col gap-12 rounded-3xl bg-(--color-surface-secondary) p-8 lg:p-10"
             style={`top: calc(7.5rem + ${i * 0.5}rem); z-index: ${10 + i};`}
           >
@@ -66,3 +67,35 @@ const steps = [
     </div>
   </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // Left column slides in from the left
+    const left = document.querySelector<HTMLElement>("[data-hiw-left]");
+    if (left) {
+      gsap.set(left, { x: -32, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: left,
+        start: "top 94%",
+        once: true,
+        onEnter: () => gsap.to(left, { x: 0, opacity: 1, duration: 0.7, ease: "power3.out" }),
+      });
+    }
+
+    document.querySelectorAll<HTMLElement>("[data-hiw-step]").forEach((card, i) => {
+      gsap.set(card, { y: 28, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 96%",
+        once: true,
+        onEnter: () =>
+          gsap.to(card, { y: 0, opacity: 1, duration: 0.6, delay: i * 0.06, ease: "power3.out" }),
+      });
+    });
+  }
+</script>

@@ -1,5 +1,6 @@
 ---
 import Button from "@components/ui/Button.astro";
+import Picture from "@components/ui/Picture.astro";
 import type { Service } from "@/data/services";
 
 interface Props {
@@ -11,7 +12,7 @@ const { service, index } = Astro.props;
 const isReversed = index % 2 !== 0;
 ---
 
-<li>
+<li data-service-card data-reversed={isReversed ? "true" : "false"}>
   <article
     class:list={[
       "group relative flex flex-col gap-5 md:gap-6",
@@ -19,8 +20,8 @@ const isReversed = index % 2 !== 0;
     ]}
   >
     <!-- Image -->
-    <div class="h-64 w-full shrink-0 overflow-hidden rounded-2xl md:h-105 md:w-2/5">
-      <img
+    <div data-service-image class="h-64 w-full shrink-0 overflow-hidden rounded-2xl md:h-105 md:w-2/5">
+      <Picture
         src={service.image}
         alt=""
         loading="lazy"
@@ -30,6 +31,7 @@ const isReversed = index % 2 !== 0;
 
     <!-- Content card -->
     <div
+      data-service-content
       class="flex flex-1 flex-col justify-between gap-10 rounded-2xl bg-(--color-surface-secondary) p-8 md:p-12"
     >
       <div class="flex flex-col gap-5">
@@ -41,3 +43,62 @@ const isReversed = index % 2 !== 0;
     </div>
   </article>
 </li>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const defer = (fn: () => void) => {
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(fn, { timeout: 2000 });
+    } else {
+      setTimeout(fn, 1);
+    }
+  };
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    defer(() => {
+      document.querySelectorAll<HTMLElement>("[data-service-card]").forEach((card) => {
+        const isReversed = card.dataset.reversed === "true";
+        const image = card.querySelector<HTMLElement>("[data-service-image]");
+        const content = card.querySelector<HTMLElement>("[data-service-content]");
+
+        // Image: clip-path wipe from the outer edge inward
+        // Even cards (ltr): image is on the left → wipe from left (inset 0 0 0 100% → 0)
+        // Odd cards (rtl):  image is on the right → wipe from right (inset 0 100% 0 0 → 0)
+        if (image) {
+          const fromClip = isReversed ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)";
+          gsap.set(image, { clipPath: fromClip });
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 94%",
+            once: true,
+            onEnter: () =>
+              gsap.to(image, { clipPath: "inset(0 0% 0 0%)", duration: 1.1, ease: "expo.out" }),
+          });
+        }
+
+        // Content: slides in from the opposite side with a slight delay
+        if (content) {
+          const fromX = isReversed ? -28 : 28;
+          gsap.set(content, { x: fromX, opacity: 0 });
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 94%",
+            once: true,
+            onEnter: () =>
+              gsap.to(content, {
+                x: 0,
+                opacity: 1,
+                duration: 0.85,
+                delay: 0.18,
+                ease: "power3.out",
+              }),
+          });
+        }
+      });
+    });
+  }
+</script>

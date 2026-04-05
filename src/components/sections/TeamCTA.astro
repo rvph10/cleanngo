@@ -1,6 +1,7 @@
 ---
 import Button from "@components/ui/Button.astro";
 import SectionLabel from "@components/ui/SectionLabel.astro";
+import Picture from "@components/ui/Picture.astro";
 ---
 
 <section id="equipe" class="w-full">
@@ -9,9 +10,10 @@ import SectionLabel from "@components/ui/SectionLabel.astro";
   >
     <!-- Background image -->
     <div
+      data-team-image
       class="relative h-80 shrink-0 overflow-hidden rounded-3xl md:absolute md:inset-0 md:h-auto md:rounded-3xl"
     >
-      <img
+      <Picture
         src="/images/team.jpg"
         loading="lazy"
         alt="Résultat de l'équipe de nettoyage sur un projet"
@@ -21,6 +23,7 @@ import SectionLabel from "@components/ui/SectionLabel.astro";
 
     <!-- Content card -->
     <div
+      data-team-card
       class="relative z-10 flex flex-col gap-8 rounded-2xl bg-(--color-accent) p-8 md:max-w-[42%] lg:p-12"
     >
       <SectionLabel text="Notre équipe" />
@@ -38,3 +41,38 @@ import SectionLabel from "@components/ui/SectionLabel.astro";
     </div>
   </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const image = document.querySelector<HTMLElement>("[data-team-image]");
+    const card = document.querySelector<HTMLElement>("[data-team-card]");
+
+    if (image) {
+      // Wipe from right to left — reveals as if sliding open a curtain
+      gsap.set(image, { clipPath: "inset(0 100% 0 0)" });
+      ScrollTrigger.create({
+        trigger: image,
+        start: "top 94%",
+        once: true,
+        onEnter: () =>
+          gsap.to(image, { clipPath: "inset(0 0% 0 0)", duration: 1.1, ease: "expo.out" }),
+      });
+    }
+
+    if (card) {
+      gsap.set(card, { y: 36, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 94%",
+        once: true,
+        onEnter: () =>
+          gsap.to(card, { y: 0, opacity: 1, duration: 0.7, delay: 0.2, ease: "power3.out" }),
+      });
+    }
+  }
+</script>

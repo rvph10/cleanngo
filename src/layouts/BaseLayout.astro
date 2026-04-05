@@ -50,8 +50,11 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fontlibrary.org//face/decalotype" type="text/css" />
+    <!-- Font preloads — Regular + Bold for each family (most-used weights) -->
+    <link rel="preload" href="/fonts/Decalotype-Regular-fix.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Decalotype-Black-fix.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/BricolageGrotesque-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/BricolageGrotesque-Bold.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -68,3 +71,96 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
     <Footer />
   </body>
 </html>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { splitWords, magneticEffect } from "@/lib/animations";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const defer = (fn: () => void) => {
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(fn, { timeout: 2000 });
+    } else {
+      setTimeout(fn, 1);
+    }
+  };
+
+  // Respect user's motion preference
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    defer(() => {
+      // ── Header scroll state ────────────────────────────────
+      const header = document.getElementById("site-header");
+      if (header) {
+        ScrollTrigger.create({
+          start: "top -72px",
+          end: 99999,
+          onEnter: () => header.setAttribute("data-scrolled", ""),
+          onLeaveBack: () => header.removeAttribute("data-scrolled"),
+        });
+      }
+
+      // ── Word-reveal headings ───────────────────────────────
+      document.querySelectorAll<HTMLElement>('[data-reveal="words"]').forEach((el) => {
+        const spans = splitWords(el);
+        gsap.set(spans, { y: "105%" });
+        // Unhide the container — CSS hides it to prevent FOUC; now the words
+        // are clipped by their overflow:hidden wrappers so nothing shows yet.
+        gsap.set(el, { opacity: 1 });
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 96%",
+          once: true,
+          onEnter: () => {
+            gsap.to(spans, { y: "0%", duration: 0.75, stagger: 0.035, ease: "power3.out" });
+          },
+        });
+      });
+
+      // ── Fade-up elements ───────────────────────────────────
+      document.querySelectorAll<HTMLElement>('[data-reveal="fade"]').forEach((el) => {
+        gsap.set(el, { y: 22, opacity: 0 });
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 98%",
+          once: true,
+          onEnter: () => {
+            gsap.to(el, { y: 0, opacity: 1, duration: 0.65, ease: "power3.out" });
+          },
+        });
+      });
+
+      // ── Wipe-in images & blocks ────────────────────────────
+      document.querySelectorAll<HTMLElement>('[data-reveal="wipe"]').forEach((el) => {
+        gsap.set(el, { clipPath: "inset(100% 0 0 0)" });
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 94%",
+          once: true,
+          onEnter: () => {
+            gsap.to(el, { clipPath: "inset(0% 0 0 0)", duration: 1, ease: "expo.out" });
+          },
+        });
+      });
+
+      // ── Staggered cards / items ────────────────────────────
+      document.querySelectorAll<HTMLElement>('[data-reveal="cards"]').forEach((container) => {
+        const cards = Array.from(container.children) as HTMLElement[];
+        gsap.set(cards, { y: 32, opacity: 0 });
+        ScrollTrigger.create({
+          trigger: container,
+          start: "top 94%",
+          once: true,
+          onEnter: () => {
+            gsap.to(cards, { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: "power3.out" });
+          },
+        });
+      });
+
+      // ── Magnetic buttons ───────────────────────────────────
+      // Applied to all elements with [data-magnetic]
+      magneticEffect("[data-magnetic]", 0.22);
+    });
+  }
+</script>

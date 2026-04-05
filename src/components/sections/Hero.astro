@@ -3,8 +3,9 @@ import Button from "@components/ui/Button.astro";
 ---
 
 <section class="w-full pt-8 lg:pt-12">
-  <div class="flex flex-col gap-4 lg:grid lg:grid-cols-2">
+  <div class="flex flex-col gap-4 lg:grid lg:grid-cols-2" data-hero-grid>
     <div
+      data-hero-left
       class="relative flex flex-col justify-between gap-12 overflow-hidden rounded-3xl bg-(--color-text-primary) p-4 text-(--color-surface) md:p-8 lg:gap-16 lg:p-12"
     >
       <div class="relative mb-8 h-56 overflow-hidden rounded-2xl lg:hidden">
@@ -13,18 +14,18 @@ import Button from "@components/ui/Button.astro";
           loop
           muted
           playsinline
+          preload="metadata"
           class="absolute inset-0 h-full w-full object-cover"
-          poster="/images/glass_cleaning.jpg"
+          poster="/images/glass_cleaning.avif"
         >
-          <source
-            src="https://cdn.prod.website-files.com/692f17afc3743c9cd4b7cac6%2F693817393d800624450974eb_hero%20%281%29_mp4.mp4"
-            type="video/mp4"
-          />
+          <source src="/images/hero_video.webm" type="video/webm" />
+          <source src="/images/hero_video_opt.mp4" type="video/mp4" />
         </video>
       </div>
 
       <div class="-mt-12 flex flex-col items-start gap-8 lg:mt-0 lg:gap-10">
         <a
+          data-hero-badge
           href="https://www.google.com/search?q=Clean+Ngo+Avis#lkt=LocalPoiReviews"
           target="_blank"
           rel="noopener noreferrer"
@@ -62,11 +63,12 @@ import Button from "@components/ui/Button.astro";
           <span
             class="text-[10px] font-bold tracking-widest text-(--color-surface) uppercase sm:text-sm"
           >
-            4.9 sur Google
+            4.8 sur Google
           </span>
         </a>
 
         <h1
+          data-hero-title
           class="font-display text-[3.5rem] leading-[0.9] font-bold uppercase sm:text-5xl lg:text-[100px]"
         >
           <span class="block">Nettoyage <br /> d'exception <br /> pour citadins</span>
@@ -95,7 +97,7 @@ import Button from "@components/ui/Button.astro";
         </h1>
       </div>
 
-      <div class="flex w-full flex-wrap items-center gap-2">
+      <div data-hero-cta class="flex w-full flex-wrap items-center gap-2">
         <Button
           size="lg"
           href="/contact"
@@ -114,6 +116,7 @@ import Button from "@components/ui/Button.astro";
     </div>
 
     <div
+      data-hero-right
       class="relative isolate hidden h-56 w-full overflow-hidden rounded-3xl sm:h-80 lg:block lg:h-full"
     >
       <video
@@ -121,14 +124,36 @@ import Button from "@components/ui/Button.astro";
         loop
         muted
         playsinline
+        preload="metadata"
         class="absolute inset-0 -z-10 h-full w-full bg-center object-cover"
-        poster="/images/glass_cleaning.jpg"
+        poster="/images/glass_cleaning.avif"
       >
-        <source src="/images/hero_video.mp4" type="video/mp4" />
+        <source src="/images/hero_video.webm" type="video/webm" />
+        <source src="/images/hero_video_opt.mp4" type="video/mp4" />
       </video>
     </div>
   </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    gsap.set("[data-hero-left]", { y: 32, opacity: 0 });
+    gsap.set("[data-hero-right]", { scale: 1.025, opacity: 0 });
+    gsap.set("[data-hero-badge]", { y: 10, opacity: 0 });
+    gsap.set("[data-hero-title]", { y: 16, opacity: 0 });
+    gsap.set("[data-hero-cta]", { y: 10, opacity: 0 });
+
+    const tl = gsap.timeline();
+
+    tl.to("[data-hero-left]", { y: 0, opacity: 1, duration: 0.65, ease: "expo.out" })
+      .to("[data-hero-right]", { scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, "<0.08")
+      .to("[data-hero-badge]", { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, "-=0.5")
+      .to("[data-hero-title]", { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, "-=0.3")
+      .to("[data-hero-cta]", { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, "-=0.3");
+  }
+</script>
 
 <style>
   .animate-slot-machine {

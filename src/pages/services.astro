@@ -17,16 +17,17 @@ import { services } from "@/data/services";
       class="mx-auto mt-12 mb-16 flex max-w-2xl flex-col items-center gap-6 text-center md:mb-20"
     >
       <h1
+        data-reveal="words"
         class="font-display text-4xl leading-[0.8] font-bold uppercase md:text-6xl lg:text-[72px]"
       >
         Services de nettoyage conçus pour votre quotidien
       </h1>
-      <p class="max-w-lg text-lg text-(--color-text-primary)/60">
+      <p data-reveal="fade" class="max-w-lg text-lg text-(--color-text-primary)/60">
         Choisissez la prestation adaptée à votre espace, vos disponibilités et votre mode de vie.
       </p>
     </div>
 
-    <!-- Services list -->
+    <!-- Services list — each card animates individually via ServiceCard's own script -->
     <ul class="flex w-full max-w-7xl flex-col justify-center gap-5 self-center md:gap-6">
       {services.map((service, index) => <ServiceCard service={service} index={index} />)}
     </ul>

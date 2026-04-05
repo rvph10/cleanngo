@@ -15,6 +15,8 @@ import CTA from "@components/sections/CTA.astro";
   title="CleanNgo | Ménage d'Exception pour Citadins Pressés"
   description="Services de nettoyage résidentiel haut de gamme à Paris, Lyon et partout en France."
 >
+  <!-- Preload the LCP video poster (hero, above the fold) -->
+  <link slot="head" rel="preload" as="image" href="/images/glass_cleaning.avif" type="image/avif" />
   <Container>
     <Hero />
     <Services />
