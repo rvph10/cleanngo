@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import node from "@astrojs/node";
 import tailwindcss from "@tailwindcss/vite";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   // "static" is the default in Astro v5. Pages with `export const prerender = false`
@@ -9,8 +10,13 @@ export default defineConfig({
   adapter: node({
     mode: "standalone",
   }),
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes("/api/"),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss() as never],
   },
-  site: "https://example.com",
+  site: "https://cleanngo.be",
 });
