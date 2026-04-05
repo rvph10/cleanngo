@@ -23,7 +23,7 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
 <div
   id="mobile-menu"
   class="font-accent pointer-events-none absolute inset-x-0 top-full z-40 -translate-y-2 opacity-0 transition-all duration-300 lg:hidden"
-  aria-hidden="true"
+  inert
 >
   <div class="rounded-b-2xl bg-(--color-background) px-6 py-6">
     <div class="flex flex-col">
@@ -89,7 +89,7 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
         ))
       }
 
-      <Button href="tel:+32486518181" class="mt-6 w-full justify-center">Appelez nous</Button>
+      <Button href="tel:+32486518181" class="mt-6 w-full justify-center">Appelez-nous</Button>
 
       <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
         <div></div>
