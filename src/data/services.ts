@@ -153,7 +153,7 @@ export const services: Service[] = [
     description:
       "Les façades exposées aux intempéries accumulent avec le temps mousses, algues, pollution et salissures qui ternissent l'esthétique de votre bâtiment. Notre équipe réalise des interventions techniques par nettoyage haute pression, traitement chimique adapté ou sablage selon la nature du support — crépi, pierre, brique ou béton. Redonnez de l'éclat à votre façade et protégez votre patrimoine immobilier.",
     href: "/services/nettoyage-facade",
-    image: "/images/house_cleaning.jpeg",
+    image: "/images/facade_cleaning.jpg",
     quote:
       "La façade, c'est la première impression de votre bâtiment. Une surface propre, c'est une valeur préservée et une image soignée.",
     features: [
@@ -187,7 +187,7 @@ export const services: Service[] = [
     description:
       "Les vérandas et coupoles accumulent poussières, dépôts calcaires et algues sur leurs surfaces vitrées et leur structure en aluminium ou PVC. Notre nettoyage intérieur et extérieur restaure la transparence de vos vitrages et l'éclat de votre charpente, pour profiter pleinement de la luminosité naturelle. Nous intervenons en hauteur en toute sécurité, avec des produits adaptés à chaque matériau.",
     href: "/services/nettoyage-veranda",
-    image: "/images/veranda_cleaning.jpeg",
+    image: "/images/veranda_cleaning.jpg",
     quote:
       "Une véranda, c'est fait pour laisser entrer la lumière. Quand les vitres sont propres, vous redécouvrez l'espace que vous avez.",
     features: [

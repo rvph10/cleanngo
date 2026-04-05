@@ -7,7 +7,7 @@
 /* --- Decalotype Fix --- */
 @font-face {
   font-family: "Decalotype Fix";
-  src: url("/fonts/Decalotype-Regular-fix.otf") format("opentype");
+  src: url("/fonts/Decalotype-Regular-fix.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -15,7 +15,7 @@
 
 @font-face {
   font-family: "Decalotype Fix";
-  src: url("/fonts/Decalotype-Medium-fix.otf") format("opentype");
+  src: url("/fonts/Decalotype-Medium-fix.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -23,7 +23,7 @@
 
 @font-face {
   font-family: "Decalotype Fix";
-  src: url("/fonts/Decalotype-SemiBold-fix.otf") format("opentype");
+  src: url("/fonts/Decalotype-SemiBold-fix.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -31,7 +31,7 @@
 
 @font-face {
   font-family: "Decalotype Fix";
-  src: url("/fonts/Decalotype-ExtraBold-fix.otf") format("opentype");
+  src: url("/fonts/Decalotype-ExtraBold-fix.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -39,7 +39,7 @@
 
 @font-face {
   font-family: "Decalotype Fix";
-  src: url("/fonts/Decalotype-Black-fix.otf") format("opentype");
+  src: url("/fonts/Decalotype-Black-fix.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -48,7 +48,7 @@
 /* --- Bricolage Grotesque --- */
 @font-face {
   font-family: "Bricolage Grotesque";
-  src: url("/fonts/BricolageGrotesque-Regular.ttf") format("truetype");
+  src: url("/fonts/BricolageGrotesque-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -56,7 +56,7 @@
 
 @font-face {
   font-family: "Bricolage Grotesque";
-  src: url("/fonts/BricolageGrotesque-Medium.ttf") format("truetype");
+  src: url("/fonts/BricolageGrotesque-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -64,7 +64,7 @@
 
 @font-face {
   font-family: "Bricolage Grotesque";
-  src: url("/fonts/BricolageGrotesque-SemiBold.ttf") format("truetype");
+  src: url("/fonts/BricolageGrotesque-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -72,7 +72,7 @@
 
 @font-face {
   font-family: "Bricolage Grotesque";
-  src: url("/fonts/BricolageGrotesque-Bold.ttf") format("truetype");
+  src: url("/fonts/BricolageGrotesque-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -80,7 +80,7 @@
 
 @font-face {
   font-family: "Bricolage Grotesque";
-  src: url("/fonts/BricolageGrotesque-ExtraBold.ttf") format("truetype");
+  src: url("/fonts/BricolageGrotesque-ExtraBold.woff2") format("woff2");
   font-weight: 800;
   font-style: normal;
   font-display: swap;
@@ -124,6 +124,8 @@
   body {
     min-height: 100dvh;
     line-height: 1.6;
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
   }
 
   .font-display {
@@ -132,5 +134,62 @@
 
   .font-accent {
     font-family: var(--font-accent);
+  }
+}
+
+/* =========================================================
+   Header — scroll state
+   Applied via JS when page is scrolled past the hero.
+   ========================================================= */
+
+#site-header[data-scrolled] > * {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 12%, transparent);
+  background-color: color-mix(in srgb, var(--color-background) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    backdrop-filter 0.4s ease;
+}
+
+/* =========================================================
+   Animation initial states — prevents FOUC by hiding
+   animated elements before GSAP's deferred script runs.
+   GSAP's inline styles will override these once it fires.
+   ========================================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal="words"] {
+    opacity: 0;
+  }
+
+  [data-reveal="fade"] {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  [data-reveal="wipe"] {
+    clip-path: inset(100% 0 0 0);
+  }
+
+  [data-reveal="cards"] > * {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+
+  /* Contact page form elements */
+  [data-form-card] {
+    clip-path: inset(100% 0 0 0);
+  }
+
+  [data-form-header] {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  [data-form-field] {
+    opacity: 0;
+    transform: translateY(20px);
   }
 }
