@@ -7,13 +7,14 @@ import Features from "@components/sections/Features.astro";
 import Testimonials from "@components/sections/Testimonials.astro";
 import HowItWorks from "@components/sections/HowItWorks.astro";
 import TeamCTA from "@components/sections/TeamCTA.astro";
+import ServiceAreas from "@components/sections/ServiceAreas.astro";
 import FAQ from "@components/sections/FAQ.astro";
 import CTA from "@components/sections/CTA.astro";
 ---
 
 <BaseLayout
-  title="CleanNgo | Ménage d'Exception pour Citadins Pressés"
-  description="Services de nettoyage résidentiel haut de gamme à Paris, Lyon et partout en France."
+  title="Entreprise de nettoyage à Bruxelles et périphérie"
+  description="CleanNgo : nettoyage résidentiel, bureaux, vitres, toitures et panneaux solaires à Bruxelles et alentours. Devis gratuit en 2 minutes."
 >
   <!-- Preload the LCP video poster (hero, above the fold) -->
   <link slot="head" rel="preload" as="image" href="/images/glass_cleaning.avif" type="image/avif" />
@@ -24,6 +25,7 @@ import CTA from "@components/sections/CTA.astro";
     <Testimonials />
     <HowItWorks />
     <TeamCTA />
+    <ServiceAreas />
     <FAQ />
     <CTA />
   </Container>

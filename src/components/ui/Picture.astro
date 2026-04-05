@@ -14,7 +14,16 @@ interface Props {
   [key: string]: unknown;
 }
 
-const { src, alt, loading = "lazy", fetchpriority, width = 1600, height = 900, class: className, ...imgAttrs } = Astro.props;
+const {
+  src,
+  alt,
+  loading = "lazy",
+  fetchpriority,
+  width = 1600,
+  height = 900,
+  class: className,
+  ...imgAttrs
+} = Astro.props;
 const isJpeg = /\.(jpg|jpeg)$/i.test(src);
 const avifSrc = isJpeg ? src.replace(/\.(jpg|jpeg)$/i, ".avif") : null;
 ---
@@ -23,9 +32,27 @@ const avifSrc = isJpeg ? src.replace(/\.(jpg|jpeg)$/i, ".avif") : null;
   isJpeg ? (
     <picture class="contents">
       <source srcset={avifSrc!} type="image/avif" width={width} height={height} />
-      <img src={src} alt={alt} loading={loading} fetchpriority={fetchpriority} width={width} height={height} class={className} {...imgAttrs} />
+      <img
+        src={src}
+        alt={alt}
+        loading={loading}
+        fetchpriority={fetchpriority}
+        width={width}
+        height={height}
+        class={className}
+        {...imgAttrs}
+      />
     </picture>
   ) : (
-    <img src={src} alt={alt} loading={loading} fetchpriority={fetchpriority} width={width} height={height} class={className} {...imgAttrs} />
+    <img
+      src={src}
+      alt={alt}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      width={width}
+      height={height}
+      class={className}
+      {...imgAttrs}
+    />
   )
 }

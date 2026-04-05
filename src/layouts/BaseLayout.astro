@@ -20,12 +20,12 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? "https://example.com";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 const ogImageUrl = new URL(image, siteUrl).toString();
 
-const siteName = "My Client Website";
+const siteName = "CleanNgo";
 const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="fr-BE" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -82,6 +82,42 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- LocalBusiness structured data -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "CleanNgo",
+      "url": "https://cleanngo.be",
+      "telephone": "+32486518181",
+      "email": "clean-ngo@outlook.com",
+      "image": `${siteUrl}/og-image.png`,
+      "priceRange": "€€",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bruxelles",
+        "addressRegion": "Bruxelles-Capitale",
+        "addressCountry": "BE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 50.8503,
+        "longitude": 4.3517
+      },
+      "areaServed": [
+        "Bruxelles", "Uccle", "Ixelles", "Etterbeek", "Waterloo",
+        "Wavre", "Ottignies", "Louvain-la-Neuve", "Nivelles",
+        "Braine-l'Alleud", "Lasne", "Genappe"
+      ].map(name => ({ "@type": "City", name })),
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        }
+      ]
+    })} />
 
     <!-- Inject additional head tags per-page -->
     <slot name="head" />

@@ -4,37 +4,47 @@ import SectionLabel from "@components/ui/SectionLabel.astro";
 
 const faqs = [
   {
-    question: "Qu'est-ce qui est inclus dans un nettoyage standard ?",
+    question: "Dans quelles communes intervenez-vous ?",
     answer:
-      "Un nettoyage standard comprend la cuisine, la salle de bain, les pièces de vie, les sols, le dépoussiérage et la gestion des déchets. Il est conçu pour garder votre intérieur propre et ordonné.",
+      "Nous intervenons à Bruxelles et dans toute la périphérie : Uccle, Ixelles, Waterloo, Braine-l'Alleud, Wavre, Ottignies, Louvain-la-Neuve, Nivelles, Tervuren, Overijse et environs. Vous ne trouvez pas votre commune ? Contactez-nous, nous étudions toute demande.",
   },
   {
-    question: "Combien coûte un nettoyage ?",
+    question: "Combien coûte un nettoyage à Bruxelles ?",
     answer:
-      "Le prix dépend de la taille de votre logement et de la fréquence souhaitée. Les abonnements hebdomadaires, bimensuels et mensuels bénéficient de remises automatiques.",
+      "Le prix dépend du type de prestation, de la superficie et de la fréquence. Nous proposons des devis gratuits et personnalisés — contactez-nous pour recevoir une estimation en moins de 2 heures. Les contrats réguliers bénéficient de tarifs préférentiels.",
+  },
+  {
+    question: "Qu'est-ce qui est inclus dans un nettoyage standard ?",
+    answer:
+      "Un nettoyage standard comprend la cuisine, la salle de bain, les pièces de vie, les sols, le dépoussiérage et la gestion des déchets. Il est conçu pour maintenir votre intérieur propre et sain au quotidien.",
   },
   {
     question: "Combien de temps dure un nettoyage ?",
     answer:
-      "La plupart des nettoyages durent 2 à 3 heures selon la taille et l'état du logement. Les nettoyages en profondeur prennent davantage de temps.",
+      "La plupart des nettoyages résidentiels durent 2 à 3 heures selon la taille et l'état du logement. Les grands nettoyages ou interventions post-travaux peuvent nécessiter une demi-journée complète.",
   },
   {
-    question: "Les agents sont-ils vérifiés ?",
+    question: "Les agents sont-ils vérifiés et assurés ?",
     answer:
-      "Oui. Chaque agent fait l'objet d'une vérification des antécédents, d'un entretien et d'une sélection rigoureuse avant toute intervention.",
+      "Oui. Chaque agent fait l'objet d'une vérification des antécédents, d'un entretien et d'une sélection rigoureuse. Nos équipes sont entièrement assurées pour intervenir chez vous en toute sécurité.",
   },
   {
     question: "Utilisez-vous des produits écologiques ?",
     answer:
-      "Oui — tout ce que nous apportons est non toxique et sans danger pour les enfants et les animaux de compagnie.",
-  },
-  {
-    question: "Puis-je demander le même agent à chaque fois ?",
-    answer:
-      "Oui — si vous réservez des nettoyages récurrents, nous attribuons le même agent dans la mesure du possible.",
+      "Oui — nous privilégions des produits certifiés éco-responsables, non toxiques et sans danger pour les enfants et les animaux de compagnie. Sur demande, nous adaptons les produits selon vos préférences ou allergies.",
   },
 ];
 ---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(({ question, answer }) => ({
+    "@type": "Question",
+    "name": question,
+    "acceptedAnswer": { "@type": "Answer", "text": answer }
+  }))
+})} />
 
 <section id="faq" class="w-full">
   <div

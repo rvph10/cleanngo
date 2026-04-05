@@ -52,32 +52,28 @@ const howItWorksSteps = [
   },
 ];
 
-const faqItems = [
-  {
-    question: "Puis-je réserver une seule intervention ?",
-    answer:
-      "Oui, toutes nos prestations sont disponibles à la demande, sans engagement. Vous pouvez aussi opter pour un contrat d'entretien régulier pour bénéficier d'un tarif préférentiel.",
-  },
-  {
-    question: "Combien de temps à l'avance dois-je réserver ?",
-    answer:
-      "Nous recommandons de réserver au moins 48 heures à l'avance. Pour les interventions urgentes, contactez-nous directement par téléphone ou via le formulaire de contact.",
-  },
-  {
-    question: "Que se passe-t-il si je dois annuler ou reporter ?",
-    answer:
-      "Vous pouvez annuler ou reporter sans frais jusqu'à 24 heures avant l'intervention. Au-delà, des frais d'annulation peuvent s'appliquer selon les conditions de votre réservation.",
-  },
-];
+const faqItems = service.faqItems;
 ---
 
-<BaseLayout title={service.name} description={service.description} image={service.image}>
-  <link
+<BaseLayout
+  title={`${service.name} à Bruxelles`}
+  description={service.metaDescription}
+  image={service.image}
+>
+  <link slot="head" rel="preload" as="image" href={heroPreloadHref} type={heroPreloadType} />
+  <script
+    is:inline
     slot="head"
-    rel="preload"
-    as="image"
-    href={heroPreloadHref}
-    type={heroPreloadType}
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqItems.map(({ question, answer }) => ({
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: { "@type": "Answer", text: answer },
+      })),
+    })}
   />
   <Container class="mt-12 items-center">
     <!-- Headline -->
@@ -112,12 +108,12 @@ const faqItems = [
       {
         service.quote && (
           <div class="py-8">
-            <h2
+            <blockquote
               data-reveal="fade"
               class="font-display text-center text-3xl leading-[0.9] font-bold md:text-4xl lg:text-5xl"
             >
               {service.quote}
-            </h2>
+            </blockquote>
           </div>
         )
       }
