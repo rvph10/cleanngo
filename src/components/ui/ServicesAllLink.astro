@@ -7,8 +7,8 @@ const { variant = "desktop" } = Astro.props;
 
 const linkClass =
   variant === "desktop"
-    ? "group font-accent text-based flex items-center gap-1 text-[0.95rem] font-bold tracking-[-0.03em] text-(--color-text-primary) uppercase"
-    : "mt-2 flex items-center gap-1 text-sm font-semibold tracking-[0.08em] text-(--color-text-primary) uppercase";
+    ? "group text-based flex items-center gap-1 text-[0.95rem] font-bold tracking-[-0.03em] text-(--color-text-primary) uppercase"
+    : "mt-2 flex items-center gap-1 text-base font-bold tracking-tight text-(--color-text-primary) uppercase";
 
 const strokeWidth = variant === "desktop" ? "2.5" : "1.5";
 ---
