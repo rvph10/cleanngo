@@ -45,6 +45,8 @@ const stats = [
           <Button
             href="/contact"
             size="lg"
+            data-umami-event="cta_click"
+            data-umami-event-location="footer"
             class="hover:bg-(--color-surface) hover:text-(--color-text-primary)"
           >
             Contactez-nous
@@ -138,6 +140,7 @@ const stats = [
             <!-- Phone -->
             <a
               href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+              data-umami-event="phone_click"
               class="group flex items-center gap-4 text-(--color-surface)/70 transition-colors duration-200 hover:text-(--color-accent)"
             >
               <span
@@ -165,6 +168,7 @@ const stats = [
             <!-- Email -->
             <a
               href={`mailto:${contactInfo.email}`}
+              data-umami-event="email_click"
               class="group flex items-center gap-4 text-(--color-surface)/70 transition-colors duration-200 hover:text-(--color-accent)"
             >
               <span

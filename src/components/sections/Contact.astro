@@ -110,6 +110,10 @@
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending…";
 
+    type UmamiWindow = Window & { umami?: { track(name: string, data?: Record<string, string>): void } };
+    const umamiTrack = (name: string, data?: Record<string, string>) =>
+      (window as UmamiWindow).umami?.track(name, data);
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -125,16 +129,19 @@
         statusEl.className =
           "rounded-md border border-(--color-border) bg-(--color-surface-secondary) p-4 text-sm text-(--color-text-primary)";
         statusEl.textContent = json.message;
+        umamiTrack("contact_form_submit", { budget: getValue("budget") || "not_specified" });
         form.reset();
       } else {
         statusEl.className =
           "rounded-md border border-(--color-border) bg-(--color-surface-secondary) p-4 text-sm text-(--color-text-primary)";
         statusEl.textContent = json.message;
+        umamiTrack("contact_form_error", { status: String(res.status) });
       }
     } catch {
       statusEl.className =
         "rounded-md border border-(--color-border) bg-(--color-surface-secondary) p-4 text-sm text-(--color-text-primary)";
       statusEl.textContent = "Network error. Please try again.";
+      umamiTrack("contact_form_error", { status: "network_error" });
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = "Send message";
