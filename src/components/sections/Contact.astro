@@ -110,7 +110,9 @@
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending…";
 
-    type UmamiWindow = Window & { umami?: { track(name: string, data?: Record<string, string>): void } };
+    type UmamiWindow = Window & {
+      umami?: { track(name: string, data?: Record<string, string>): void };
+    };
     const umamiTrack = (name: string, data?: Record<string, string>) =>
       (window as UmamiWindow).umami?.track(name, data);
 
