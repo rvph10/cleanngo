@@ -1,66 +1,133 @@
 ---
+import SectionLabel from "@components/ui/SectionLabel.astro";
+
 const areas = [
   "Bruxelles",
-  "Uccle",
   "Ixelles",
   "Etterbeek",
+  "Woluwe-Saint-Lambert",
+  "Woluwe-Saint-Pierre",
+  "Auderghem",
+  "Watermael-Boitsfort",
+  "Schaerbeek",
+  "Evere",
+  "Saint-Gilles",
   "Forest",
+  "Uccle",
   "Anderlecht",
   "Molenbeek",
-  "Schaerbeek",
+  "Laeken",
+  "Jette",
+  "Koekelberg",
+  "Berchem-Sainte-Agathe",
+  "Kraainem",
+  "Wezembeek-Oppem",
+  "Tervuren",
+  "Zaventem",
+  "Overijse",
+  "Rhode-Saint-Genèse",
+  "Rixensart",
   "Waterloo",
-  "Uccle",
   "Braine-l'Alleud",
   "Lasne",
   "Wavre",
   "Ottignies",
   "Louvain-la-Neuve",
-  "Nivelles",
   "Genappe",
-  "Overijse",
-  "Tervuren",
-  "Rixensart",
 ];
-
-// deduplicate (Uccle appears twice in source intentionally only once)
-const uniqueAreas = [...new Set(areas)];
 ---
 
-<section class="w-full py-16 md:py-20">
-  <div class="flex flex-col items-center gap-8 text-center">
-    <p class="font-display text-xs font-bold tracking-[0.25em] text-(--color-text-primary)/40 uppercase">
-      Zones d'intervention
-    </p>
-    <h2
-      data-reveal="words"
-      class="font-display max-w-2xl text-4xl leading-[0.9] font-bold uppercase md:text-5xl"
-    >
-      Bruxelles et toute la périphérie
-    </h2>
-    <p data-reveal="fade" class="max-w-lg text-lg text-(--color-text-primary)/60">
-      Nous intervenons à Bruxelles et dans les communes environnantes du Brabant Wallon et Brabant Flamand.
-    </p>
+<section class="w-full" aria-label="Zones d'intervention CleanNgo">
+  <!-- Card: heading + towns -->
+  <div data-area-card class="rounded-3xl bg-(--color-surface-secondary) p-8 lg:p-10">
+    <div class="mb-8 flex flex-col gap-4">
+      <SectionLabel text="Zones d'intervention" />
+      <h2
+        data-area-heading
+        class="font-display m-0 text-5xl leading-[0.9] font-bold uppercase lg:text-6xl"
+      >
+        Bruxelles &amp; toute la périphérie
+      </h2>
+    </div>
 
-    <ul
-      data-reveal="cards"
-      class="flex flex-wrap justify-center gap-3 max-w-3xl"
-      aria-label="Communes desservies"
-    >
+    <ul class="flex flex-wrap gap-2" aria-label="Communes desservies">
       {
-        uniqueAreas.map((area) => (
-          <li class="rounded-full border border-(--color-text-primary)/15 bg-(--color-surface-secondary) px-4 py-2 text-sm font-semibold text-(--color-text-primary)/70">
+        areas.map((area) => (
+          <li
+            data-area-pill
+            class="rounded-full bg-(--color-background) px-4 py-2 text-sm font-semibold text-(--color-text-primary)/70"
+          >
             {area}
           </li>
         ))
       }
     </ul>
-
-    <p data-reveal="fade" class="text-sm text-(--color-text-primary)/40">
-      Votre commune n'est pas listée ?{" "}
-      <a href="/contact" class="underline underline-offset-2 hover:text-(--color-text-primary) transition-colors">
-        Contactez-nous
-      </a>
-      , nous étudions toute demande.
-    </p>
   </div>
+  <!-- Hidden SEO node -->
+  <ul class="sr-only" aria-hidden="true">
+    {areas.map((area) => <li>Nettoyage à {area}</li>)}
+  </ul>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // Heading slides up
+    const heading = document.querySelector<HTMLElement>("[data-area-heading]");
+    if (heading) {
+      gsap.set(heading, { y: 28, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: heading,
+        start: "top 92%",
+        once: true,
+        onEnter: () => gsap.to(heading, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }),
+      });
+    }
+
+    // Card wipes in
+    const card = document.querySelector<HTMLElement>("[data-area-card]");
+    if (card) {
+      gsap.set(card, { clipPath: "inset(100% 0 0 0 round 1.5rem)" });
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 94%",
+        once: true,
+        onEnter: () =>
+          gsap.to(card, {
+            clipPath: "inset(0% 0 0 0 round 1.5rem)",
+            duration: 0.9,
+            ease: "expo.out",
+          }),
+      });
+    }
+
+    // Pills pop in with unsynchronized delays
+    document.querySelectorAll<HTMLElement>("[data-area-pill]").forEach((pill, i) => {
+      const delay = (i % 5) * 0.045 + Math.floor(i / 5) * 0.02;
+      gsap.set(pill, { scale: 0.82, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: pill,
+        start: "top 97%",
+        once: true,
+        onEnter: () =>
+          gsap.to(pill, { scale: 1, opacity: 1, duration: 0.38, delay, ease: "back.out(1.8)" }),
+      });
+    });
+
+    // Footer note fades in
+    const note = document.querySelector<HTMLElement>("[data-area-note]");
+    if (note) {
+      gsap.set(note, { y: 12, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: note,
+        start: "top 98%",
+        once: true,
+        onEnter: () => gsap.to(note, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }),
+      });
+    }
+  }
+</script>

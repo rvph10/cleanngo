@@ -351,6 +351,50 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
             </p>
           </div>
 
+          <!-- Fréquence d'intervention -->
+          <div data-form-field class="flex flex-col gap-2">
+            <div class="flex items-baseline justify-between">
+              <span class="text-xs font-bold tracking-widest uppercase opacity-60"
+                >Fréquence souhaitée <span aria-hidden="true" class="text-(--color-accent)">*</span></span
+              >
+            </div>
+            <div
+              class="flex flex-wrap gap-2"
+              role="radiogroup"
+              aria-label="Sélectionnez la fréquence"
+              aria-required="true"
+              aria-describedby="frequency-error"
+            >
+              {
+                [
+                  { label: "Ponctuel", value: "ponctuel" },
+                  { label: "Hebdomadaire", value: "hebdomadaire" },
+                  { label: "Toutes les 2 semaines", value: "bimensuel" },
+                  { label: "Mensuel", value: "mensuel" },
+                ].map((opt) => (
+                  <label class="frequency-chip cursor-pointer select-none">
+                    <input
+                      type="radio"
+                      name="frequency"
+                      value={opt.value}
+                      class="peer sr-only"
+                    />
+                    <span class="block rounded-xl border-none bg-white px-4 py-2 text-sm font-semibold text-(--color-text-primary)/70 transition-all duration-150 peer-checked:bg-(--color-accent) peer-checked:text-(--color-text-primary) peer-focus-visible:ring-2 peer-focus-visible:ring-(--color-accent) peer-focus-visible:ring-offset-1 hover:text-(--color-text-primary)">
+                      {opt.label}
+                    </span>
+                  </label>
+                ))
+              }
+            </div>
+            <p
+              id="frequency-error"
+              class="field-error hidden text-xs font-semibold text-red-500"
+              data-field="frequency"
+            >
+              Veuillez sélectionner une fréquence d'intervention.
+            </p>
+          </div>
+
           <!-- Notes -->
           <div data-form-field class="flex flex-col gap-1.5">
             <label for="notes" class="text-xs font-bold tracking-widest uppercase opacity-60"
@@ -617,6 +661,16 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
       });
     });
 
+    // 5b. Frequency chip selection — bounce on select
+    document.querySelectorAll<HTMLElement>(".frequency-chip").forEach((chip) => {
+      const radio = chip.querySelector("input");
+      const label = chip.querySelector("span");
+      radio?.addEventListener("change", () => {
+        if (label)
+          gsap.fromTo(label, { scale: 0.88 }, { scale: 1, duration: 0.35, ease: "back.out(2.5)" });
+      });
+    });
+
     // 6. Success message animates in when revealed by the form script
     const successEl = document.getElementById("form-success");
     if (successEl) {
@@ -655,7 +709,7 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
     }
   }
 
-  // Live clearing of errors as user types
+  // Live clearing of errors as user types / changes
   form?.addEventListener("input", (e) => {
     const target = e.target as HTMLInputElement;
     if (!target.name) return;
@@ -663,6 +717,8 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
       setError("contact", false, ["phone", "email"]);
     } else if (target.name === "services") {
       setError("services", false);
+    } else if (target.name === "frequency") {
+      setError("frequency", false);
     } else {
       setError(target.name, false);
     }
@@ -677,6 +733,7 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
     const email = (form.querySelector("#email") as HTMLInputElement).value.trim();
     const city = (form.querySelector("#city") as HTMLInputElement).value.trim();
     const selectedServices = form.querySelectorAll('input[name="services"]:checked');
+    const selectedFrequency = form.querySelector('input[name="frequency"]:checked');
 
     // Honeypot check – abort silently if filled by a bot
     const honeypot = (form.querySelector("#website") as HTMLInputElement)?.value;
@@ -710,6 +767,13 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
       valid = false;
     } else {
       setError("services", false);
+    }
+
+    if (!selectedFrequency) {
+      setError("frequency", true);
+      valid = false;
+    } else {
+      setError("frequency", false);
     }
 
     if (!valid) {

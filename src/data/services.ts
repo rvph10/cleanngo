@@ -14,188 +14,7 @@ export interface Service {
   features?: string[];
   faqItems: FaqItem[];
 }
-
 export const services: Service[] = [
-  {
-    name: "Nettoyage résidentiel",
-    description:
-      "Profitez d'un intérieur sain et impeccable grâce à notre service de nettoyage résidentiel professionnel. Que ce soit pour un entretien régulier hebdomadaire ou une intervention ponctuelle, notre équipe prend en charge maisons, appartements et studios. Sols, sanitaires, cuisine et pièces à vivre : chaque surface est traitée avec soin et des produits adaptés.",
-    metaDescription:
-      "Nettoyage résidentiel professionnel à Bruxelles et périphérie. Maisons, appartements, studios — sols, sanitaires, cuisine. Devis gratuit en ligne.",
-    href: "/services/nettoyage-residentiel",
-    image: "/images/house_cleaning.jpg",
-    quote:
-      "Un chez-soi propre, c'est un espace où l'on se ressource vraiment. Moins de poussière, plus d'air — et une sérénité que vous méritez.",
-    features: [
-      "Sols aspirés et lavés",
-      "Sanitaires désinfectés de fond en comble",
-      "Cuisine et surfaces de travail",
-      "Dépoussiérage du mobilier et des luminaires",
-      "Miroirs, interrupteurs et poignées",
-      "Vides-poches et recoins oubliés",
-    ],
-    faqItems: [
-      {
-        question: "À quelle fréquence recommandez-vous un nettoyage résidentiel ?",
-        answer:
-          "Pour un entretien courant, nous recommandons une intervention hebdomadaire ou bimensuelle. Pour les ménages chargés ou les familles avec enfants, une fois par semaine garantit un intérieur toujours sain. Nous adaptons la fréquence à votre mode de vie.",
-      },
-      {
-        question: "Faut-il être présent lors de l'intervention ?",
-        answer:
-          "Non, votre présence n'est pas obligatoire. Beaucoup de nos clients nous confient une clé ou un code d'accès. Nos équipes sont assurées et formées pour intervenir en toute discrétion et sécurité.",
-      },
-      {
-        question: "Utilisez-vous des produits éco-responsables ?",
-        answer:
-          "Oui, nous privilégions des produits certifiés éco-responsables, efficaces et sans danger pour vos enfants et animaux de compagnie. Sur demande, nous pouvons adapter les produits utilisés selon vos préférences ou allergies.",
-      },
-    ],
-  },
-  {
-    name: "Grand nettoyage",
-    description:
-      "Le grand nettoyage va bien au-delà du ménage ordinaire : décapage des sols, désinfection des sanitaires, nettoyage en profondeur des hottes et cuisinières, dépoussiérage complet du mobilier et des recoins inaccessibles. Idéal en début ou fin de saison, avant une mise en location ou après une longue absence. Retrouvez un logement véritablement remis à neuf, de fond en comble.",
-    metaDescription:
-      "Grand nettoyage en profondeur à Bruxelles et périphérie. Décapage des sols, désinfection sanitaires, hottes et recoins inaccessibles. Devis gratuit.",
-    href: "/services/grand-nettoyage",
-    image: "/images/major_cleaning.jpg",
-    quote:
-      "Le grand nettoyage, c'est repartir de zéro. Chaque recoin, chaque surface, traités en profondeur — comme si c'était la première fois.",
-    features: [
-      "Décapage et traitement des sols",
-      "Désinfection complète des sanitaires",
-      "Nettoyage en profondeur de la cuisine",
-      "Hottes, fours et électroménager encastré",
-      "Dépoussiérage des recoins inaccessibles",
-      "Nettoyage des fenêtres et rebords",
-    ],
-    faqItems: [
-      {
-        question: "Quelle est la différence entre le grand nettoyage et le nettoyage régulier ?",
-        answer:
-          "Le nettoyage régulier entretient un espace déjà propre : aspiration, lavage des sols, surfaces. Le grand nettoyage va beaucoup plus loin : décapage des sols, dégraissage des hottes et fours, désinfection complète, recoins inaccessibles. C'est une remise à neuf totale.",
-      },
-      {
-        question: "Combien de temps dure un grand nettoyage ?",
-        answer:
-          "La durée dépend de la superficie et de l'état du logement. Pour un appartement de 80 m², comptez en général entre 4 et 6 heures. Nous vous communiquons une estimation précise lors de la prise de contact.",
-      },
-      {
-        question: "Quand est-il recommandé de faire un grand nettoyage ?",
-        answer:
-          "Le grand nettoyage est idéal en début ou fin de saison, avant une mise en location, après une longue absence, ou simplement une fois par an comme remise à zéro complète de votre logement.",
-      },
-    ],
-  },
-  {
-    name: "Nettoyage post-travaux",
-    description:
-      "Après un chantier de rénovation ou de construction, les poussières fines et résidus s'accumulent partout. Notre service de nettoyage post-travaux élimine plâtre, silicone, colle, peinture et débris sur chaque surface : sols, fenêtres, interrupteurs, plinthes et faux-plafonds. Vous récupérez un espace prêt à habiter ou à livrer, sans traces ni résidus.",
-    metaDescription:
-      "Nettoyage après travaux à Bruxelles et périphérie. Élimination plâtre, silicone, peinture sur toutes surfaces. Espace livré prêt à habiter. Devis gratuit.",
-    href: "/services/nettoyage-post-travaux",
-    image: "/images/post_work.jpg",
-    quote:
-      "Après les travaux, la poussière s'installe partout — même là où vous ne regardez jamais. On s'en charge, vous récupérez un espace prêt à vivre.",
-    features: [
-      "Élimination des poussières fines de chantier",
-      "Nettoyage des vitres et huisseries",
-      "Débarras des résidus (plâtre, silicone, peinture)",
-      "Sols, plinthes et faux-plafonds",
-      "Interrupteurs, prises et boiseries",
-      "Livraison d'un espace prêt à habiter",
-    ],
-    faqItems: [
-      {
-        question: "Quels types de résidus de chantier éliminez-vous ?",
-        answer:
-          "Nous éliminons l'ensemble des résidus courants de chantier : poussières de plâtre, projections de silicone, résidus de colle, éclaboussures de peinture, dépôts de ciment et débris divers sur toutes les surfaces.",
-      },
-      {
-        question: "Intervenez-vous en fin de chantier ou aussi en cours de travaux ?",
-        answer:
-          "Nous intervenons principalement en fin de chantier, une fois les travaux terminés. Pour les grands projets en plusieurs phases, nous pouvons organiser des interventions intermédiaires sur demande.",
-      },
-      {
-        question: "Puis-je combiner un nettoyage post-travaux et un grand nettoyage ?",
-        answer:
-          "Oui, et c'est souvent recommandé. Après l'élimination des résidus de chantier, un grand nettoyage complémentaire assure une remise à neuf totale de votre espace. Contactez-nous pour un devis combiné.",
-      },
-    ],
-  },
-  {
-    name: "Emménagement & Déménagement",
-    description:
-      "Un emménagement réussi commence par un logement propre, et un déménagement serein exige une restitution irréprochable. Notre service couvre la remise en état complète d'un bien pour un état des lieux de sortie comme la préparation d'un nouveau domicile avant votre installation. Placards, salle de bain, cuisine, sols et vitres : tout est traité pour que vous n'ayez qu'à poser vos affaires.",
-    metaDescription:
-      "Nettoyage état des lieux à Bruxelles et périphérie. Remise en état complète pour sortie ou entrée de location. Certification de propreté disponible.",
-    href: "/services/emmenagement-demenagement",
-    image: "/images/moving_in.jpg",
-    quote:
-      "Partir ou arriver dans un logement impeccable, ça change tout. On s'assure que votre état des lieux se passe sans accroc.",
-    features: [
-      "Nettoyage complet avant emménagement",
-      "Remise en état pour état des lieux de sortie",
-      "Placards, tiroirs et rangements",
-      "Salle de bain et cuisine",
-      "Sols et fenêtres",
-      "Certification de propreté disponible",
-    ],
-    faqItems: [
-      {
-        question: "Pouvez-vous fournir un certificat de propreté pour l'état des lieux ?",
-        answer:
-          "Oui, sur demande nous délivrons un document attestant de notre intervention, utile lors de l'état des lieux de sortie pour justifier la restitution du logement dans un état impeccable.",
-      },
-      {
-        question: "Combien de temps avant l'état des lieux dois-je réserver ?",
-        answer:
-          "Nous recommandons de réserver au moins 48 à 72 heures à l'avance. Pour les fins de mois — période de forte demande — anticipez une semaine à l'avance pour être sûr d'avoir un créneau.",
-      },
-      {
-        question: "Nettoyez-vous aussi les placards, tiroirs et rangements intégrés ?",
-        answer:
-          "Oui, placards, tiroirs, étagères et rangements intégrés sont systématiquement vidés et nettoyés. C'est un point souvent vérifié lors des états des lieux et nous y accordons une attention particulière.",
-      },
-    ],
-  },
-  {
-    name: "Bureaux & Commerces",
-    description:
-      "Un espace de travail propre et sain améliore la productivité, l'image de votre entreprise et le bien-être de vos collaborateurs. Nous intervenons dans vos bureaux, open spaces, salles de réunion, sanitaires et espaces communs selon un planning adapté à votre activité — tôt le matin, en soirée ou le week-end. Contrats d'entretien régulier ou interventions ponctuelles disponibles.",
-    metaDescription:
-      "Nettoyage de bureaux et commerces à Bruxelles et périphérie. Postes de travail, sanitaires, espaces communs. Contrats réguliers ou ponctuels. Devis gratuit.",
-    href: "/services/bureaux-commerces",
-    image: "/images/office_cleaning.webp",
-    quote:
-      "Un espace de travail propre, c'est plus qu'une question d'image. C'est une condition pour que vos équipes performent et que vos clients reviennent.",
-    features: [
-      "Postes de travail et surfaces de bureau",
-      "Salles de réunion et espaces communs",
-      "Sanitaires et vestiaires",
-      "Poignées, interrupteurs et zones de contact",
-      "Sols (aspiration, lavage, entretien)",
-      "Intervention selon votre planning (matin, soir, week-end)",
-    ],
-    faqItems: [
-      {
-        question: "Intervenez-vous en dehors des heures de bureau ?",
-        answer:
-          "Oui, nous adaptons nos horaires à votre activité. Nous intervenons tôt le matin avant l'ouverture, en soirée après la fermeture ou le week-end pour ne pas perturber votre travail.",
-      },
-      {
-        question: "Proposez-vous des contrats d'entretien pour les entreprises ?",
-        answer:
-          "Oui, nous proposons des contrats d'entretien sur mesure — hebdomadaires, bimensuels ou mensuels. Les contrats réguliers bénéficient d'un tarif préférentiel et d'une équipe dédiée.",
-      },
-      {
-        question: "Quels espaces couvrez-vous dans les bureaux ?",
-        answer:
-          "Nous intervenons sur l'ensemble des espaces : bureaux individuels, open spaces, salles de réunion, couloirs, cuisines d'entreprise, sanitaires, vestiaires et espaces d'accueil.",
-      },
-    ],
-  },
   {
     name: "Nettoyage de vitres & châssis",
     description:
@@ -304,6 +123,150 @@ export const services: Service[] = [
         question: "Y a-t-il un risque d'infiltration lors du nettoyage haute pression ?",
         answer:
           "Non, à condition de régler correctement la pression et de travailler dans le bon sens. Nos techniciens sont formés à ces techniques spécifiques. Nous réalisons également un contrôle visuel des fixations avant intervention.",
+      },
+    ],
+  },
+  {
+    name: "Nettoyage résidentiel",
+    description:
+      "Profitez d'un intérieur sain et impeccable grâce à notre service de nettoyage résidentiel professionnel. Que ce soit pour un entretien régulier hebdomadaire ou une intervention ponctuelle, notre équipe prend en charge maisons, appartements et studios. Sols, sanitaires, cuisine et pièces à vivre : chaque surface est traitée avec soin et des produits adaptés.",
+    metaDescription:
+      "Nettoyage résidentiel professionnel à Bruxelles et périphérie. Maisons, appartements, studios — sols, sanitaires, cuisine. Devis gratuit en ligne.",
+    href: "/services/nettoyage-residentiel",
+    image: "/images/house_cleaning.jpg",
+    quote:
+      "Un chez-soi propre, c'est un espace où l'on se ressource vraiment. Moins de poussière, plus d'air — et une sérénité que vous méritez.",
+    features: [
+      "Sols aspirés et lavés",
+      "Sanitaires désinfectés de fond en comble",
+      "Cuisine et surfaces de travail",
+      "Dépoussiérage du mobilier et des luminaires",
+      "Miroirs, interrupteurs et poignées",
+      "Vides-poches et recoins oubliés",
+    ],
+    faqItems: [
+      {
+        question: "À quelle fréquence recommandez-vous un nettoyage résidentiel ?",
+        answer:
+          "Pour un entretien courant, nous recommandons une intervention hebdomadaire ou bimensuelle. Pour les ménages chargés ou les familles avec enfants, une fois par semaine garantit un intérieur toujours sain. Nous adaptons la fréquence à votre mode de vie.",
+      },
+      {
+        question: "Faut-il être présent lors de l'intervention ?",
+        answer:
+          "Non, votre présence n'est pas obligatoire. Beaucoup de nos clients nous confient une clé ou un code d'accès. Nos équipes sont assurées et formées pour intervenir en toute discrétion et sécurité.",
+      },
+      {
+        question: "Utilisez-vous des produits éco-responsables ?",
+        answer:
+          "Oui, nous privilégions des produits certifiés éco-responsables, efficaces et sans danger pour vos enfants et animaux de compagnie. Sur demande, nous pouvons adapter les produits utilisés selon vos préférences ou allergies.",
+      },
+    ],
+  },
+  {
+    name: "Nettoyage post-travaux",
+    description:
+      "Après un chantier de rénovation ou de construction, les poussières fines et résidus s'accumulent partout. Notre service de nettoyage post-travaux élimine plâtre, silicone, colle, peinture et débris sur chaque surface : sols, fenêtres, interrupteurs, plinthes et faux-plafonds. Vous récupérez un espace prêt à habiter ou à livrer, sans traces ni résidus.",
+    metaDescription:
+      "Nettoyage après travaux à Bruxelles et périphérie. Élimination plâtre, silicone, peinture sur toutes surfaces. Espace livré prêt à habiter. Devis gratuit.",
+    href: "/services/nettoyage-post-travaux",
+    image: "/images/post_work.jpg",
+    quote:
+      "Après les travaux, la poussière s'installe partout — même là où vous ne regardez jamais. On s'en charge, vous récupérez un espace prêt à vivre.",
+    features: [
+      "Élimination des poussières fines de chantier",
+      "Nettoyage des vitres et huisseries",
+      "Débarras des résidus (plâtre, silicone, peinture)",
+      "Sols, plinthes et faux-plafonds",
+      "Interrupteurs, prises et boiseries",
+      "Livraison d'un espace prêt à habiter",
+    ],
+    faqItems: [
+      {
+        question: "Quels types de résidus de chantier éliminez-vous ?",
+        answer:
+          "Nous éliminons l'ensemble des résidus courants de chantier : poussières de plâtre, projections de silicone, résidus de colle, éclaboussures de peinture, dépôts de ciment et débris divers sur toutes les surfaces.",
+      },
+      {
+        question: "Intervenez-vous en fin de chantier ou aussi en cours de travaux ?",
+        answer:
+          "Nous intervenons principalement en fin de chantier, une fois les travaux terminés. Pour les grands projets en plusieurs phases, nous pouvons organiser des interventions intermédiaires sur demande.",
+      },
+      {
+        question: "Puis-je combiner un nettoyage post-travaux et un grand nettoyage ?",
+        answer:
+          "Oui, et c'est souvent recommandé. Après l'élimination des résidus de chantier, un grand nettoyage complémentaire assure une remise à neuf totale de votre espace. Contactez-nous pour un devis combiné.",
+      },
+    ],
+  },
+  {
+    name: "Nettoyage État des Lieux",
+    description:
+      "Un état des lieux réussi repose sur une restitution impeccable ou une préparation irréprochable. Notre service couvre le nettoyage complet d'un bien en fin de bail pour un état des lieux de sortie sans accroc, ou la remise en état d'un logement avant votre entrée. Placards, salle de bain, cuisine, sols et vitres : chaque surface est traitée pour que le résultat soit incontestable.",
+    metaDescription:
+      "Nettoyage état des lieux à Bruxelles et périphérie. Remise en état complète pour sortie ou entrée de location. Certification de propreté disponible.",
+    href: "/services/nettoyage-etat-des-lieux",
+    image: "/images/moving_in.jpg",
+    quote:
+      "Un état des lieux, ça ne pardonne pas. On s'assure que chaque surface est irréprochable — pour que vous récupériez votre caution sans discussion.",
+    features: [
+      "Nettoyage complet avant état des lieux d'entrée",
+      "Remise en état pour état des lieux de sortie",
+      "Placards, tiroirs et rangements",
+      "Salle de bain et cuisine en profondeur",
+      "Sols, plinthes et fenêtres",
+      "Certification de propreté disponible",
+    ],
+    faqItems: [
+      {
+        question: "Pouvez-vous fournir un certificat de propreté pour l'état des lieux ?",
+        answer:
+          "Oui, sur demande nous délivrons un document attestant de notre intervention, utile lors de l'état des lieux de sortie pour justifier la restitution du logement dans un état impeccable.",
+      },
+      {
+        question: "Combien de temps avant l'état des lieux dois-je réserver ?",
+        answer:
+          "Nous recommandons de réserver au moins 48 à 72 heures à l'avance. Pour les fins de mois — période de forte demande — anticipez une semaine à l'avance pour être sûr d'avoir un créneau.",
+      },
+      {
+        question: "Nettoyez-vous aussi les placards, tiroirs et rangements intégrés ?",
+        answer:
+          "Oui, placards, tiroirs, étagères et rangements intégrés sont systématiquement vidés et nettoyés. C'est un point souvent vérifié lors des états des lieux et nous y accordons une attention particulière.",
+      },
+    ],
+  },
+  {
+    name: "Bureaux & Commerces",
+    description:
+      "Un espace de travail propre et sain améliore la productivité, l'image de votre entreprise et le bien-être de vos collaborateurs. Nous intervenons dans vos bureaux, open spaces, salles de réunion, sanitaires et espaces communs selon un planning adapté à votre activité — tôt le matin, en soirée ou le week-end. Contrats d'entretien régulier ou interventions ponctuelles disponibles.",
+    metaDescription:
+      "Nettoyage de bureaux et commerces à Bruxelles et périphérie. Postes de travail, sanitaires, espaces communs. Contrats réguliers ou ponctuels. Devis gratuit.",
+    href: "/services/bureaux-commerces",
+    image: "/images/office_cleaning.webp",
+    quote:
+      "Un espace de travail propre, c'est plus qu'une question d'image. C'est une condition pour que vos équipes performent et que vos clients reviennent.",
+    features: [
+      "Postes de travail et surfaces de bureau",
+      "Salles de réunion et espaces communs",
+      "Sanitaires et vestiaires",
+      "Poignées, interrupteurs et zones de contact",
+      "Sols (aspiration, lavage, entretien)",
+      "Intervention selon votre planning (matin, soir, week-end)",
+    ],
+    faqItems: [
+      {
+        question: "Intervenez-vous en dehors des heures de bureau ?",
+        answer:
+          "Oui, nous adaptons nos horaires à votre activité. Nous intervenons tôt le matin avant l'ouverture, en soirée après la fermeture ou le week-end pour ne pas perturber votre travail.",
+      },
+      {
+        question: "Proposez-vous des contrats d'entretien pour les entreprises ?",
+        answer:
+          "Oui, nous proposons des contrats d'entretien sur mesure — hebdomadaires, bimensuels ou mensuels. Les contrats réguliers bénéficient d'un tarif préférentiel et d'une équipe dédiée.",
+      },
+      {
+        question: "Quels espaces couvrez-vous dans les bureaux ?",
+        answer:
+          "Nous intervenons sur l'ensemble des espaces : bureaux individuels, open spaces, salles de réunion, couloirs, cuisines d'entreprise, sanitaires, vestiaires et espaces d'accueil.",
       },
     ],
   },
