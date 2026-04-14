@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cleanngo.be/sitemap-index.xml
+Sitemap: https://cleanngo.be/sitemap.xml

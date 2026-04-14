@@ -50,6 +50,7 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <meta property="og:locale" content="fr_BE" />
 
     <!-- Font preloads — Regular + Bold for each family (most-used weights) -->
     <link
@@ -107,6 +108,13 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
           "@type": "GeoCoordinates",
           latitude: 50.8503,
           longitude: 4.3517,
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.9",
+          bestRating: "5",
+          worstRating: "1",
+          ratingCount: "15",
         },
         areaServed: [
           "Bruxelles",
