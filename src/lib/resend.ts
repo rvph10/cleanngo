@@ -28,7 +28,7 @@ export async function sendBookingEmail(data: ContactFormData): Promise<void> {
     throw new Error("CONTACT_EMAIL environment variable is not set.");
   }
 
-  const fromEmail = import.meta.env.RESEND_FROM_EMAIL ?? "CleanNgo <noreply@cleanngo.be>";
+  const fromEmail = "CleanNgo <noreply@cleanngo.be>";
 
   const serviceList = data.services
     .split(",")
