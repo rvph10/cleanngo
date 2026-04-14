@@ -150,13 +150,17 @@ import { imageAssets } from "@/data/images";
     gsap.set("[data-hero-title]", { y: 16, opacity: 0 });
     gsap.set("[data-hero-cta]", { y: 10, opacity: 0 });
 
-    const tl = gsap.timeline();
+    // Wait for fonts before animating so GSAP measures correct dimensions
+    // and no font-swap reflow interrupts the entrance sequence.
+    document.fonts.ready.then(() => {
+      const tl = gsap.timeline();
 
-    tl.to("[data-hero-left]", { y: 0, opacity: 1, duration: 0.65, ease: "expo.out" })
-      .to("[data-hero-right]", { scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, "<0.08")
-      .to("[data-hero-badge]", { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, "-=0.5")
-      .to("[data-hero-title]", { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, "-=0.3")
-      .to("[data-hero-cta]", { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, "-=0.3");
+      tl.to("[data-hero-left]", { y: 0, opacity: 1, duration: 0.65, ease: "expo.out" })
+        .to("[data-hero-right]", { scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, "<0.08")
+        .to("[data-hero-badge]", { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, "-=0.5")
+        .to("[data-hero-title]", { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, "-=0.3")
+        .to("[data-hero-cta]", { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, "-=0.3");
+    });
   }
 </script>
 

@@ -5,12 +5,15 @@
    ========================================================= */
 
 /* --- Decalotype Fix --- */
+/* block: shows invisible text while loading instead of a fallback font,
+   preventing the layout shift that breaks GSAP entrance animations.
+   Safe because all critical weights are preloaded in BaseLayout. */
 @font-face {
   font-family: "Decalotype Fix";
   src: url("/fonts/Decalotype-Regular-fix.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -18,7 +21,7 @@
   src: url("/fonts/Decalotype-Medium-fix.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -26,7 +29,7 @@
   src: url("/fonts/Decalotype-SemiBold-fix.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -34,7 +37,7 @@
   src: url("/fonts/Decalotype-ExtraBold-fix.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -42,16 +45,18 @@
   src: url("/fonts/Decalotype-Black-fix.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* --- Bricolage Grotesque --- */
+/* block: prevents the swap flash. Regular + Bold are preloaded so they
+   arrive before the block period expires; other weights are secondary. */
 @font-face {
   font-family: "Bricolage Grotesque";
   src: url("/fonts/BricolageGrotesque-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -59,7 +64,7 @@
   src: url("/fonts/BricolageGrotesque-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -67,7 +72,7 @@
   src: url("/fonts/BricolageGrotesque-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -75,7 +80,7 @@
   src: url("/fonts/BricolageGrotesque-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -83,7 +88,7 @@
   src: url("/fonts/BricolageGrotesque-ExtraBold.woff2") format("woff2");
   font-weight: 800;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* =========================================================
@@ -160,6 +165,29 @@
    ========================================================= */
 
 @media (prefers-reduced-motion: no-preference) {
+  /* Hero entrance — hidden before GSAP sets its inline styles,
+     prevents the visible→invisible→animate flash on hard refresh. */
+  [data-hero-left] {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+
+  [data-hero-right] {
+    opacity: 0;
+    transform: scale(1.025);
+  }
+
+  [data-hero-badge],
+  [data-hero-cta] {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  [data-hero-title] {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
   [data-reveal="words"] {
     opacity: 0;
   }
