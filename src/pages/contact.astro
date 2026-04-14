@@ -355,7 +355,8 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
           <div data-form-field class="flex flex-col gap-2">
             <div class="flex items-baseline justify-between">
               <span class="text-xs font-bold tracking-widest uppercase opacity-60"
-                >Fréquence souhaitée <span aria-hidden="true" class="text-(--color-accent)">*</span></span
+                >Fréquence souhaitée <span aria-hidden="true" class="text-(--color-accent)">*</span
+                ></span
               >
             </div>
             <div
@@ -373,12 +374,7 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
                   { label: "Mensuel", value: "mensuel" },
                 ].map((opt) => (
                   <label class="frequency-chip cursor-pointer select-none">
-                    <input
-                      type="radio"
-                      name="frequency"
-                      value={opt.value}
-                      class="peer sr-only"
-                    />
+                    <input type="radio" name="frequency" value={opt.value} class="peer sr-only" />
                     <span class="block rounded-xl border-none bg-white px-4 py-2 text-sm font-semibold text-(--color-text-primary)/70 transition-all duration-150 peer-checked:bg-(--color-accent) peer-checked:text-(--color-text-primary) peer-focus-visible:ring-2 peer-focus-visible:ring-(--color-accent) peer-focus-visible:ring-offset-1 hover:text-(--color-text-primary)">
                       {opt.label}
                     </span>

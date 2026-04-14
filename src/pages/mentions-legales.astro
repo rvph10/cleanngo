@@ -10,14 +10,10 @@ import Container from "@components/ui/Container.astro";
 >
   <Container class="py-20">
     <div class="mx-auto max-w-3xl">
-
-      <h1 class="font-display mb-4 text-4xl font-bold uppercase md:text-5xl">
-        Mentions légales
-      </h1>
+      <h1 class="font-display mb-4 text-4xl font-bold uppercase md:text-5xl">Mentions légales</h1>
       <p class="mb-16 text-sm text-(--color-text-primary)/40">Dernière mise à jour : avril 2025</p>
 
       <div class="space-y-12 text-(--color-text-primary)">
-
         <!-- 1. Éditeur du site -->
         <section>
           <h2 class="font-display mb-4 text-2xl font-bold">1. Éditeur du site</h2>
@@ -30,9 +26,17 @@ import Container from "@components/ui/Container.astro";
             <li><strong>Forme juridique :</strong> Société à responsabilité limitée (SRL)</li>
             <li><strong>Numéro BCE :</strong> 1016.238.910</li>
             <li><strong>Numéro de TVA :</strong> BE 1016.238.910</li>
-            <li><strong>Adresse du siège social :</strong> Leliestraat 51, 1800 Vilvoorde, Belgique</li>
-            <li><strong>Téléphone :</strong> <a href="tel:+32486518181" class="underline">+32 486 51 81 81</a></li>
-            <li><strong>E-mail :</strong> <a href="mailto:clean-ngo@outlook.com" class="underline">clean-ngo@outlook.com</a></li>
+            <li>
+              <strong>Adresse du siège social :</strong> Leliestraat 51, 1800 Vilvoorde, Belgique
+            </li>
+            <li>
+              <strong>Téléphone :</strong>
+              <a href="tel:+32486518181" class="underline">+32 486 51 81 81</a>
+            </li>
+            <li>
+              <strong>E-mail :</strong>
+              <a href="mailto:clean-ngo@outlook.com" class="underline">clean-ngo@outlook.com</a>
+            </li>
           </ul>
         </section>
 
@@ -40,34 +44,52 @@ import Container from "@components/ui/Container.astro";
         <section>
           <h2 class="font-display mb-4 text-2xl font-bold">2. Directeur de la publication</h2>
           <p class="text-(--color-text-primary)/80">
-            Le directeur de la publication est <strong>Trung Ngo</strong>,
-            en sa qualité de gérant de NDN Services SRL (CleanNgo).
+            Le directeur de la publication est <strong>Trung Ngo</strong>, en sa qualité de gérant
+            de NDN Services SRL (CleanNgo).
           </p>
         </section>
 
         <!-- 3. Hébergeur -->
         <section>
           <h2 class="font-display mb-4 text-2xl font-bold">3. Hébergement</h2>
-          <p class="mb-6 text-(--color-text-primary)/80">
-            Le site est hébergé et administré par :
-          </p>
+          <p class="mb-6 text-(--color-text-primary)/80">Le site est hébergé et administré par :</p>
 
           <div class="space-y-6">
             <div>
               <p class="mb-2 font-semibold text-(--color-text-primary)">Hébergeur technique</p>
               <ul class="space-y-1 text-(--color-text-primary)/80">
                 <li><strong>Nom :</strong> Raphael Genu</li>
-                <li><strong>Adresse :</strong> Kerkedelle 51A, 1200 Woluwe-Saint-Lambert, Bruxelles, Belgique</li>
-                <li><strong>Site web :</strong> <a href="https://upintown.dev" target="_blank" rel="noopener noreferrer" class="underline">upintown.dev</a></li>
+                <li>
+                  <strong>Adresse :</strong> Kerkedelle 51A, 1200 Woluwe-Saint-Lambert, Bruxelles, Belgique
+                </li>
+                <li>
+                  <strong>Site web :</strong>
+                  <a
+                    href="https://upintown.dev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline">upintown.dev</a
+                  >
+                </li>
               </ul>
             </div>
 
             <div>
-              <p class="mb-2 font-semibold text-(--color-text-primary)">Hébergeur physique (serveur)</p>
+              <p class="mb-2 font-semibold text-(--color-text-primary)">
+                Hébergeur physique (serveur)
+              </p>
               <ul class="space-y-1 text-(--color-text-primary)/80">
                 <li><strong>Société :</strong> Hetzner Online GmbH</li>
                 <li><strong>Adresse :</strong> Industriestr. 25, 91710 Gunzenhausen, Allemagne</li>
-                <li><strong>Site web :</strong> <a href="https://www.hetzner.com" target="_blank" rel="noopener noreferrer" class="underline">www.hetzner.com</a></li>
+                <li>
+                  <strong>Site web :</strong>
+                  <a
+                    href="https://www.hetzner.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline">www.hetzner.com</a
+                  >
+                </li>
                 <li><strong>Localisation des serveurs :</strong> Allemagne (Union européenne)</li>
               </ul>
             </div>
@@ -78,14 +100,14 @@ import Container from "@components/ui/Container.astro";
         <section>
           <h2 class="font-display mb-4 text-2xl font-bold">4. Propriété intellectuelle</h2>
           <p class="text-(--color-text-primary)/80">
-            L'ensemble des éléments constituant ce site (textes, images, logo, structure, charte graphique)
-            est la propriété exclusive de CleanNgo ou de ses ayants droit, et est protégé par les lois
-            belges et internationales relatives à la propriété intellectuelle.
+            L'ensemble des éléments constituant ce site (textes, images, logo, structure, charte
+            graphique) est la propriété exclusive de CleanNgo ou de ses ayants droit, et est protégé
+            par les lois belges et internationales relatives à la propriété intellectuelle.
           </p>
           <p class="mt-4 text-(--color-text-primary)/80">
-            Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie
-            des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans
-            l'autorisation écrite préalable de CleanNgo.
+            Toute reproduction, représentation, modification, publication ou adaptation de tout ou
+            partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite
+            sans l'autorisation écrite préalable de CleanNgo.
           </p>
         </section>
 
@@ -93,16 +115,16 @@ import Container from "@components/ui/Container.astro";
         <section>
           <h2 class="font-display mb-4 text-2xl font-bold">5. Limitation de responsabilité</h2>
           <p class="text-(--color-text-primary)/80">
-            CleanNgo s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur
-            ce site. Toutefois, CleanNgo ne peut garantir l'exactitude, la précision ou l'exhaustivité
-            des informations mises à disposition et décline toute responsabilité pour toute imprécision,
-            inexactitude ou omission.
+            CleanNgo s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées
+            sur ce site. Toutefois, CleanNgo ne peut garantir l'exactitude, la précision ou
+            l'exhaustivité des informations mises à disposition et décline toute responsabilité pour
+            toute imprécision, inexactitude ou omission.
           </p>
           <p class="mt-4 text-(--color-text-primary)/80">
             CleanNgo ne saurait être tenu responsable des dommages directs ou indirects résultant de
-            l'accès au site ou de l'utilisation des informations qui y sont contenues, ni des dommages
-            résultant d'une interruption de service, d'une intrusion extérieure ou de la présence de
-            virus informatiques.
+            l'accès au site ou de l'utilisation des informations qui y sont contenues, ni des
+            dommages résultant d'une interruption de service, d'une intrusion extérieure ou de la
+            présence de virus informatiques.
           </p>
         </section>
 
@@ -110,9 +132,9 @@ import Container from "@components/ui/Container.astro";
         <section>
           <h2 class="font-display mb-4 text-2xl font-bold">6. Liens hypertextes</h2>
           <p class="text-(--color-text-primary)/80">
-            Ce site peut contenir des liens vers des sites tiers. CleanNgo n'exerce aucun contrôle sur
-            ces sites et décline toute responsabilité quant à leur contenu ou leurs pratiques en matière
-            de protection des données.
+            Ce site peut contenir des liens vers des sites tiers. CleanNgo n'exerce aucun contrôle
+            sur ces sites et décline toute responsabilité quant à leur contenu ou leurs pratiques en
+            matière de protection des données.
           </p>
         </section>
 
@@ -120,21 +142,25 @@ import Container from "@components/ui/Container.astro";
         <section>
           <h2 class="font-display mb-4 text-2xl font-bold">7. Droit applicable</h2>
           <p class="text-(--color-text-primary)/80">
-            Les présentes mentions légales sont régies par le droit belge. En cas de litige relatif à
-            l'interprétation ou à l'exécution des présentes, et à défaut d'accord amiable, les tribunaux
-            compétents de l'arrondissement judiciaire de Bruxelles seront seuls compétents.
+            Les présentes mentions légales sont régies par le droit belge. En cas de litige relatif
+            à l'interprétation ou à l'exécution des présentes, et à défaut d'accord amiable, les
+            tribunaux compétents de l'arrondissement judiciaire de Bruxelles seront seuls
+            compétents.
           </p>
         </section>
 
         <!-- 8. Protection des données -->
         <section>
-          <h2 class="font-display mb-4 text-2xl font-bold">8. Protection des données personnelles</h2>
+          <h2 class="font-display mb-4 text-2xl font-bold">
+            8. Protection des données personnelles
+          </h2>
           <p class="text-(--color-text-primary)/80">
-            Pour toute information relative au traitement de vos données personnelles, veuillez consulter
-            notre <a href="/politique-de-confidentialite" class="underline">Politique de confidentialité</a>.
+            Pour toute information relative au traitement de vos données personnelles, veuillez
+            consulter notre <a href="/politique-de-confidentialite" class="underline"
+              >Politique de confidentialité</a
+            >.
           </p>
         </section>
-
       </div>
     </div>
   </Container>

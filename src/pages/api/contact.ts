@@ -45,7 +45,10 @@ function validateBody(
   const emailOk = email && isValidEmail(email);
 
   if (!phoneOk && !emailOk) {
-    return { valid: false, error: "Un numéro de téléphone ou une adresse e-mail valide est requis." };
+    return {
+      valid: false,
+      error: "Un numéro de téléphone ou une adresse e-mail valide est requis.",
+    };
   }
 
   if (!d.city || typeof d.city !== "string" || d.city.trim().length < 2) {
