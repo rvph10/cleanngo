@@ -2,6 +2,7 @@
 import SectionLabel from "@components/ui/SectionLabel.astro";
 import FeaturesCard from "@components/ui/FeaturesCard.astro";
 import Picture from "@components/ui/Picture.astro";
+import { imageAssets } from "@/data/images";
 
 const features = [
   {
@@ -30,13 +31,13 @@ const features = [
 ---
 
 <section class="w-full">
-  <div class="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_1.5fr]">
-    <div data-reveal="wipe" class="h-72 overflow-hidden rounded-3xl lg:h-auto lg:min-h-full">
+  <div class="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-[1fr_1.5fr]">
+    <div data-reveal="wipe" class="relative h-72 overflow-hidden rounded-3xl lg:h-auto">
       <Picture
-        src="/images/glass_cleaning.jpg"
+        src={imageAssets.featuresPhoto}
         loading="lazy"
         alt="Nettoyage de vitres"
-        class="h-full w-full object-cover"
+        class="h-full w-full object-cover lg:absolute lg:inset-0"
       />
     </div>
 

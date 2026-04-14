@@ -1,3 +1,5 @@
+import { serviceImageAssets } from "./images";
+
 export interface FaqItem {
   question: string;
   answer: string;
@@ -22,7 +24,7 @@ export const services: Service[] = [
     metaDescription:
       "Nettoyage de vitres professionnel à Bruxelles et périphérie. Fenêtres, baies vitrées, vitrines, velux — intérieur et extérieur. Résultat sans traces.",
     href: "/services/nettoyage-vitres",
-    image: "/images/glass_cleaning.jpg",
+    image: serviceImageAssets.glassCleaning,
     featured: true,
     quote:
       "Une vitre propre change toute l'atmosphère d'une pièce. Plus de lumière, plus de clarté — et moins de « pourquoi c'est flou là ? »",
@@ -59,7 +61,7 @@ export const services: Service[] = [
     metaDescription:
       "Nettoyage de panneaux solaires à Bruxelles et périphérie. Eau déminéralisée, sans endommager les cellules. Récupérez jusqu'à 30% de rendement perdu.",
     href: "/services/panneaux-solaires",
-    image: "/images/solar_panel.jpg",
+    image: serviceImageAssets.solarPanel,
     featured: true,
     quote:
       "Des panneaux encrassés, c'est de l'énergie perdue. Un nettoyage régulier, c'est un investissement qui se rentabilise — et qui protège vos cellules.",
@@ -96,7 +98,7 @@ export const services: Service[] = [
     metaDescription:
       "Démoussage de toiture à Bruxelles et Brabant. Traitement anti-mousse, biocide et hydrofuge sur tuiles, ardoises et toits plats. Devis gratuit.",
     href: "/services/nettoyage-toiture",
-    image: "/images/demoussage.jpg",
+    image: serviceImageAssets.demoussage,
     featured: true,
     quote:
       "La mousse sur votre toiture, c'est silencieux mais ravageur. On intervient avant que les dégâts ne deviennent coûteux.",
@@ -133,7 +135,7 @@ export const services: Service[] = [
     metaDescription:
       "Nettoyage résidentiel professionnel à Bruxelles et périphérie. Maisons, appartements, studios — sols, sanitaires, cuisine. Devis gratuit en ligne.",
     href: "/services/nettoyage-residentiel",
-    image: "/images/house_cleaning.jpg",
+    image: serviceImageAssets.houseCleaning,
     quote:
       "Un chez-soi propre, c'est un espace où l'on se ressource vraiment. Moins de poussière, plus d'air — et une sérénité que vous méritez.",
     features: [
@@ -169,7 +171,7 @@ export const services: Service[] = [
     metaDescription:
       "Nettoyage après travaux à Bruxelles et périphérie. Élimination plâtre, silicone, peinture sur toutes surfaces. Espace livré prêt à habiter. Devis gratuit.",
     href: "/services/nettoyage-post-travaux",
-    image: "/images/post_work.jpg",
+    image: serviceImageAssets.postWork,
     quote:
       "Après les travaux, la poussière s'installe partout — même là où vous ne regardez jamais. On s'en charge, vous récupérez un espace prêt à vivre.",
     features: [
@@ -205,7 +207,7 @@ export const services: Service[] = [
     metaDescription:
       "Nettoyage état des lieux à Bruxelles et périphérie. Remise en état complète pour sortie ou entrée de location. Certification de propreté disponible.",
     href: "/services/nettoyage-etat-des-lieux",
-    image: "/images/moving_in.jpg",
+    image: serviceImageAssets.movingIn,
     quote:
       "Un état des lieux, ça ne pardonne pas. On s'assure que chaque surface est irréprochable — pour que vous récupériez votre caution sans discussion.",
     features: [
@@ -241,7 +243,7 @@ export const services: Service[] = [
     metaDescription:
       "Nettoyage de bureaux et commerces à Bruxelles et périphérie. Postes de travail, sanitaires, espaces communs. Contrats réguliers ou ponctuels. Devis gratuit.",
     href: "/services/bureaux-commerces",
-    image: "/images/office_cleaning.webp",
+    image: serviceImageAssets.officeCleaning,
     quote:
       "Un espace de travail propre, c'est plus qu'une question d'image. C'est une condition pour que vos équipes performent et que vos clients reviennent.",
     features: [
@@ -277,7 +279,7 @@ export const services: Service[] = [
     metaDescription:
       "Nettoyage de façades à Bruxelles et périphérie. Haute pression, traitement algues et mousses sur crépi, pierre, brique et béton. Devis gratuit.",
     href: "/services/nettoyage-facade",
-    image: "/images/facade_cleaning.jpg",
+    image: serviceImageAssets.facadeCleaning,
     quote:
       "La façade, c'est la première impression de votre bâtiment. Une surface propre, c'est une valeur préservée et une image soignée.",
     features: [
@@ -313,7 +315,7 @@ export const services: Service[] = [
     metaDescription:
       "Nettoyage de terrasses et allées à Bruxelles et périphérie. Haute pression sur bois, dalles, pavés et carrelage extérieur. Option imperméabilisant. Devis gratuit.",
     href: "/services/nettoyage-terrasse",
-    image: "/images/outside_cleaning.avif",
+    image: serviceImageAssets.outsideCleaning,
     quote:
       "Vos espaces extérieurs méritent autant d'attention que l'intérieur. Un nettoyage professionnel, et ils retrouvent leur éclat — et leur sécurité.",
     features: [
@@ -349,7 +351,7 @@ export const services: Service[] = [
     metaDescription:
       "Nettoyage de vérandas et coupoles à Bruxelles et périphérie. Vitrages intérieur/extérieur, dépôts calcaires, structure aluminium ou PVC. Devis gratuit.",
     href: "/services/nettoyage-veranda",
-    image: "/images/veranda_cleaning.jpg",
+    image: serviceImageAssets.verandaCleaning,
     quote:
       "Une véranda, c'est fait pour laisser entrer la lumière. Quand les vitres sont propres, vous redécouvrez l'espace que vous avez.",
     features: [
@@ -385,7 +387,7 @@ export const services: Service[] = [
     metaDescription:
       "Débouchage et nettoyage de gouttières à Bruxelles et périphérie. Évacuation optimale, contrôle des fixations. Intervention sécurisée en hauteur. Devis gratuit.",
     href: "/services/nettoyage-gouttieres",
-    image: "/images/corniere.webp",
+    image: serviceImageAssets.corniere,
     quote:
       "Des gouttières bouchées, ça ne se voit pas — jusqu'au jour où l'eau s'infiltre. Mieux vaut prévenir que réparer.",
     features: [

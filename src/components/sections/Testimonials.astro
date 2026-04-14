@@ -1,5 +1,6 @@
 ---
 import SectionLabel from "@components/ui/SectionLabel.astro";
+import { imageAssets } from "@/data/images";
 
 const starPath =
   "M9.69824 5.26074C9.84349 5.5561 10.1255 5.76082 10.4512 5.80859L14.2598 6.36719L11.502 9.06348C11.2674 9.293 11.1606 9.62275 11.2158 9.94629L11.8652 13.752L8.46387 11.957C8.17179 11.8029 7.82233 11.8029 7.53027 11.957L4.12891 13.752L4.7793 9.94629C4.8345 9.62285 4.72764 9.29298 4.49316 9.06348L1.73535 6.36719L5.54395 5.80859C5.86948 5.76081 6.15062 5.55594 6.2959 5.26074L7.99707 1.80078L9.69824 5.26074Z";
@@ -84,7 +85,7 @@ const allReviews = columns.flat();
       rel="noopener noreferrer"
       class="group flex items-center gap-2 rounded-full border border-(--color-border) px-5 py-2.5 text-sm font-semibold text-(--color-text-primary) transition-colors duration-200 hover:bg-(--color-text-primary) hover:text-(--color-surface)"
     >
-      <img src="/images/google-logo.svg" alt="Google" class="h-5 w-5 shrink-0" />
+      <img src={imageAssets.googleLogo} alt="Google" class="h-5 w-5 shrink-0" />
       Voir tous les avis
     </a>
   </div>

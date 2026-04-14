@@ -1,5 +1,6 @@
 ---
 import Button from "@components/ui/Button.astro";
+import { imageAssets } from "@/data/images";
 ---
 
 <section class="w-full pt-8 lg:pt-12">
@@ -16,10 +17,10 @@ import Button from "@components/ui/Button.astro";
           playsinline
           preload="metadata"
           class="absolute inset-0 h-full w-full object-cover"
-          poster="/images/glass_cleaning.avif"
+          poster={imageAssets.heroPoster}
         >
-          <source src="/images/hero_video.webm" type="video/webm" />
-          <source src="/images/hero_video_opt.mp4" type="video/mp4" />
+          <source src={imageAssets.heroVideoWebm} type="video/webm" />
+          <source src={imageAssets.heroVideoMp4} type="video/mp4" />
         </video>
       </div>
 
@@ -130,10 +131,10 @@ import Button from "@components/ui/Button.astro";
         playsinline
         preload="metadata"
         class="absolute inset-0 -z-10 h-full w-full bg-center object-cover"
-        poster="/images/glass_cleaning.avif"
+        poster={imageAssets.heroPoster}
       >
-        <source src="/images/hero_video.webm" type="video/webm" />
-        <source src="/images/hero_video_opt.mp4" type="video/mp4" />
+        <source src={imageAssets.heroVideoWebm} type="video/webm" />
+        <source src={imageAssets.heroVideoMp4} type="video/mp4" />
       </video>
     </div>
   </div>
@@ -166,19 +167,61 @@ import Button from "@components/ui/Button.astro";
 
   /* 14 items → step = 100/14 = 7.14% per slot, hold 5%, transition 2% */
   @keyframes textSwap {
-    0%,   5%  { transform: translateY(0);        }
-    7%,  12%  { transform: translateY(-7.14%);   }
-    14%, 19%  { transform: translateY(-14.29%);  }
-    21%, 26%  { transform: translateY(-21.43%);  }
-    28%, 33%  { transform: translateY(-28.57%);  }
-    35%, 40%  { transform: translateY(-35.71%);  }
-    42%, 47%  { transform: translateY(-42.86%);  }
-    49%, 54%  { transform: translateY(-50%);     }
-    56%, 61%  { transform: translateY(-57.14%);  }
-    63%, 68%  { transform: translateY(-64.29%);  }
-    70%, 75%  { transform: translateY(-71.43%);  }
-    77%, 82%  { transform: translateY(-78.57%);  }
-    84%, 89%  { transform: translateY(-85.71%);  }
-    91%, 100% { transform: translateY(-92.86%);  }
+    0%,
+    5% {
+      transform: translateY(0);
+    }
+    7%,
+    12% {
+      transform: translateY(-7.14%);
+    }
+    14%,
+    19% {
+      transform: translateY(-14.29%);
+    }
+    21%,
+    26% {
+      transform: translateY(-21.43%);
+    }
+    28%,
+    33% {
+      transform: translateY(-28.57%);
+    }
+    35%,
+    40% {
+      transform: translateY(-35.71%);
+    }
+    42%,
+    47% {
+      transform: translateY(-42.86%);
+    }
+    49%,
+    54% {
+      transform: translateY(-50%);
+    }
+    56%,
+    61% {
+      transform: translateY(-57.14%);
+    }
+    63%,
+    68% {
+      transform: translateY(-64.29%);
+    }
+    70%,
+    75% {
+      transform: translateY(-71.43%);
+    }
+    77%,
+    82% {
+      transform: translateY(-78.57%);
+    }
+    84%,
+    89% {
+      transform: translateY(-85.71%);
+    }
+    91%,
+    100% {
+      transform: translateY(-92.86%);
+    }
   }
 </style>

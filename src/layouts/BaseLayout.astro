@@ -2,6 +2,7 @@
 import "@styles/global.css";
 import Header from "@components/layout/Header.astro";
 import Footer from "@components/layout/Footer.astro";
+import { imageAssets } from "@/data/images";
 import type { SEOMeta } from "@/types/index";
 
 interface Props extends SEOMeta {
@@ -11,7 +12,7 @@ interface Props extends SEOMeta {
 const {
   title,
   description,
-  image = "/og-image.png",
+  image = imageAssets.ogImage,
   noindex = false,
   class: className,
 } = Astro.props;
@@ -81,53 +82,68 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
     />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={imageAssets.favicon} />
 
     <!-- LocalBusiness structured data -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "CleanNgo",
-      "url": "https://cleanngo.be",
-      "telephone": "+32486518181",
-      "email": "clean-ngo@outlook.com",
-      "image": `${siteUrl}/og-image.png`,
-      "priceRange": "€€",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Bruxelles",
-        "addressRegion": "Bruxelles-Capitale",
-        "addressCountry": "BE"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 50.8503,
-        "longitude": 4.3517
-      },
-      "areaServed": [
-        "Bruxelles", "Uccle", "Ixelles", "Etterbeek", "Waterloo",
-        "Wavre", "Ottignies", "Louvain-la-Neuve", "Nivelles",
-        "Braine-l'Alleud", "Lasne", "Genappe"
-      ].map(name => ({ "@type": "City", name })),
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-          "opens": "08:00",
-          "closes": "18:00"
-        }
-      ]
-    })} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        name: "CleanNgo",
+        url: "https://cleanngo.be",
+        telephone: "+32486518181",
+        email: "clean-ngo@outlook.com",
+        image: `${siteUrl}${imageAssets.ogImage}`,
+        priceRange: "€€",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Bruxelles",
+          addressRegion: "Bruxelles-Capitale",
+          addressCountry: "BE",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 50.8503,
+          longitude: 4.3517,
+        },
+        areaServed: [
+          "Bruxelles",
+          "Uccle",
+          "Ixelles",
+          "Etterbeek",
+          "Waterloo",
+          "Wavre",
+          "Ottignies",
+          "Louvain-la-Neuve",
+          "Nivelles",
+          "Braine-l'Alleud",
+          "Lasne",
+          "Genappe",
+        ].map((name) => ({ "@type": "City", name })),
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            opens: "08:00",
+            closes: "18:00",
+          },
+        ],
+      })}
+    />
 
     <!-- Umami analytics (production only — omit PUBLIC_UMAMI_WEBSITE_ID on staging) -->
-    {import.meta.env.PUBLIC_UMAMI_WEBSITE_ID && (
-      <script
-        is:inline
-        defer
-        src="https://analytics.lab.upintown.dev/script.js"
-        data-website-id={import.meta.env.PUBLIC_UMAMI_WEBSITE_ID}
-      />
-    )}
+    {
+      import.meta.env.PUBLIC_UMAMI_WEBSITE_ID && (
+        <script
+          is:inline
+          defer
+          src="https://analytics.lab.upintown.dev/script.js"
+          data-website-id={import.meta.env.PUBLIC_UMAMI_WEBSITE_ID}
+        />
+      )
+    }
 
     <!-- Inject additional head tags per-page -->
     <slot name="head" />

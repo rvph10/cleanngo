@@ -2,6 +2,7 @@
 import Container from "@components/ui/Container.astro";
 import SocialLinks from "@components/ui/SocialLinks.astro";
 import Button from "@components/ui/Button.astro";
+import { imageAssets } from "@/data/images";
 import { navLinks } from "../../data/nav";
 
 const year = new Date().getFullYear();
@@ -61,7 +62,7 @@ const stats = [
         <div class="flex flex-col gap-7">
           <a href="/" aria-label="CleanNgo – Accueil" class="group w-fit">
             <img
-              src="/images/logo.svg"
+              src={imageAssets.brandLogo}
               alt="CleanNgo"
               class="h-16 w-auto brightness-0 invert transition-opacity duration-200 group-hover:opacity-60"
             />

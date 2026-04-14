@@ -10,6 +10,7 @@ import TeamCTA from "@components/sections/TeamCTA.astro";
 import ServiceAreas from "@components/sections/ServiceAreas.astro";
 import FAQ from "@components/sections/FAQ.astro";
 import CTA from "@components/sections/CTA.astro";
+import { imageAssets } from "@/data/images";
 ---
 
 <BaseLayout
@@ -17,7 +18,7 @@ import CTA from "@components/sections/CTA.astro";
   description="CleanNgo : nettoyage résidentiel, bureaux, vitres, toitures et panneaux solaires à Bruxelles et alentours. Devis gratuit en 2 minutes."
 >
   <!-- Preload the LCP video poster (hero, above the fold) -->
-  <link slot="head" rel="preload" as="image" href="/images/glass_cleaning.avif" type="image/avif" />
+  <link slot="head" rel="preload" as="image" href={imageAssets.heroPoster} type="image/avif" />
   <Container>
     <Hero />
     <Services />
