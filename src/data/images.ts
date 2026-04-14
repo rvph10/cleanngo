@@ -1,7 +1,7 @@
 export const imageAssets = {
   brandLogo: "/images/logo.svg",
   googleLogo: "/images/google-logo.svg",
-  teamPhoto: "/images/team.jpg",
+  teamPhoto: "/images/team_photo.webp",
   featuresPhoto: "/images/window_cleaning_back_view.jpg",
   heroPoster: "/images/glass_cleaning.avif",
   heroVideoWebm: "/images/hero_video.webm",
