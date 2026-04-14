@@ -5,15 +5,17 @@
    ========================================================= */
 
 /* --- Decalotype Fix --- */
-/* block: shows invisible text while loading instead of a fallback font,
-   preventing the layout shift that breaks GSAP entrance animations.
-   Safe because all critical weights are preloaded in BaseLayout. */
+/* ExtraBold (700) and Black (900) are preloaded in BaseLayout — keep
+   font-display:block so invisible text holds until the preloaded file
+   arrives, preventing a reflow that would break GSAP entrance timing.
+   All other weights are NOT preloaded; swap shows the fallback
+   immediately and substitutes when the file loads (~450 ms LCP saving). */
 @font-face {
   font-family: "Decalotype Fix";
   src: url("/fonts/Decalotype-Regular-fix.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 @font-face {
@@ -21,7 +23,7 @@
   src: url("/fonts/Decalotype-Medium-fix.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 @font-face {
@@ -29,7 +31,7 @@
   src: url("/fonts/Decalotype-SemiBold-fix.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 @font-face {
@@ -49,8 +51,8 @@
 }
 
 /* --- Bricolage Grotesque --- */
-/* block: prevents the swap flash. Regular + Bold are preloaded so they
-   arrive before the block period expires; other weights are secondary. */
+/* Regular (400) and Bold (700) are preloaded — keep block.
+   Medium, SemiBold, ExtraBold are not preloaded — use swap. */
 @font-face {
   font-family: "Bricolage Grotesque";
   src: url("/fonts/BricolageGrotesque-Regular.woff2") format("woff2");
@@ -64,7 +66,7 @@
   src: url("/fonts/BricolageGrotesque-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 @font-face {
@@ -72,7 +74,7 @@
   src: url("/fonts/BricolageGrotesque-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 @font-face {
@@ -88,7 +90,7 @@
   src: url("/fonts/BricolageGrotesque-ExtraBold.woff2") format("woff2");
   font-weight: 800;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 /* =========================================================
