@@ -109,6 +109,88 @@ export async function sendBookingEmail(data: ContactFormData): Promise<void> {
 }
 
 // =========================================================
+// Confirmation email (sent to the client)
+// =========================================================
+
+export async function sendConfirmationEmail(data: ContactFormData): Promise<void> {
+  if (!data.email) return;
+
+  const resend = getResendClient();
+
+  const serviceList = data.services
+    .split(",")
+    .map((s) => `<li>${escapeHtml(s.trim())}</li>`)
+    .join("");
+
+  const { error } = await resend.emails.send({
+    from: "CleanNgo <noreply@cleanngo.be>",
+    to: [data.email],
+    replyTo: "clean-ngo@outlook.com",
+    subject: "Nous avons bien reçu votre demande — CleanNgo",
+    html: `
+      <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a">
+        <h2 style="margin-bottom:4px">Merci, ${escapeHtml(data.name)} !</h2>
+        <p style="color:#666;margin-top:0">
+          Votre demande a bien été reçue. Notre équipe vous recontactera très prochainement
+          pour confirmer les détails de votre réservation.
+        </p>
+
+        <h3 style="margin-bottom:8px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#666">
+          Récapitulatif de votre demande
+        </h3>
+        <table cellpadding="10" style="border-collapse:collapse;width:100%">
+          <tr style="background:#f5f5f5">
+            <th align="left" style="width:140px;white-space:nowrap;font-size:14px">Ville</th>
+            <td style="font-size:14px">${escapeHtml(data.city)}</td>
+          </tr>
+          <tr>
+            <th align="left" style="vertical-align:top;font-size:14px">Service(s)</th>
+            <td style="font-size:14px"><ul style="margin:0;padding-left:18px">${serviceList}</ul></td>
+          </tr>
+          ${
+            data.notes
+              ? `<tr style="background:#f5f5f5">
+            <th align="left" style="vertical-align:top;font-size:14px">Notes</th>
+            <td style="font-size:14px"><pre style="white-space:pre-wrap;margin:0;font-family:inherit">${escapeHtml(data.notes)}</pre></td>
+          </tr>`
+              : ""
+          }
+        </table>
+
+        <p style="margin-top:24px;font-size:14px;color:#666">
+          Une question ? Répondez simplement à cet e-mail ou appelez-nous au
+          <a href="tel:+32486518181" style="color:#1a1a1a;font-weight:600">+32 486 51 81 81</a>.
+        </p>
+
+        <p style="margin-top:32px;font-size:13px;color:#999">
+          — L'équipe CleanNgo
+        </p>
+      </div>
+    `,
+    text: [
+      `Merci, ${data.name} !`,
+      "",
+      "Votre demande a bien été reçue. Notre équipe vous recontactera très prochainement.",
+      "",
+      "Récapitulatif :",
+      `  Ville    : ${data.city}`,
+      `  Services : ${data.services}`,
+      data.notes ? `  Notes    : ${data.notes}` : null,
+      "",
+      "Une question ? Répondez à cet e-mail ou appelez-nous au +32 486 51 81 81.",
+      "",
+      "— L'équipe CleanNgo",
+    ]
+      .filter((l) => l !== null)
+      .join("\n"),
+  });
+
+  if (error) {
+    throw new Error(`Resend confirmation error: ${error.message}`);
+  }
+}
+
+// =========================================================
 // Utilities
 // =========================================================
 

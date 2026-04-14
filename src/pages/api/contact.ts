@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { sendBookingEmail } from "@lib/resend";
+import { sendBookingEmail, sendConfirmationEmail } from "@lib/resend";
 import type { ContactFormData, ContactFormResponse } from "@/types/index";
 
 export const prerender = false;
@@ -111,7 +111,10 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
-    await sendBookingEmail(validation.data);
+    await Promise.all([
+      sendBookingEmail(validation.data),
+      sendConfirmationEmail(validation.data),
+    ]);
 
     return Response.json(
       { success: true, message: "Demande envoyée." } satisfies ContactFormResponse,
