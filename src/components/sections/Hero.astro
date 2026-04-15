@@ -11,11 +11,11 @@ import { imageAssets } from "@/data/images";
     >
       <div class="relative mb-8 h-56 overflow-hidden rounded-2xl lg:hidden">
         <video
-          autoplay
           loop
           muted
           playsinline
-          preload="metadata"
+          preload="none"
+          data-hero-video
           class="absolute inset-0 h-full w-full object-cover"
           poster={imageAssets.heroPoster}
         >
@@ -125,11 +125,11 @@ import { imageAssets } from "@/data/images";
       class="relative isolate hidden h-56 w-full overflow-hidden rounded-3xl sm:h-80 lg:block lg:h-full"
     >
       <video
-        autoplay
         loop
         muted
         playsinline
-        preload="metadata"
+        preload="none"
+        data-hero-video
         class="absolute inset-0 -z-10 h-full w-full bg-center object-cover"
         poster={imageAssets.heroPoster}
       >
@@ -142,6 +142,19 @@ import { imageAssets } from "@/data/images";
 
 <script>
   import gsap from "gsap";
+
+  // Start hero videos after the page has fully loaded so they don't compete
+  // with critical resources (fonts, CSS, LCP) during the initial render.
+  function startHeroVideos() {
+    document.querySelectorAll<HTMLVideoElement>("video[data-hero-video]").forEach((v) => {
+      v.play().catch(() => {});
+    });
+  }
+  if (document.readyState === "complete") {
+    startHeroVideos();
+  } else {
+    window.addEventListener("load", startHeroVideos, { once: true });
+  }
 
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     gsap.set("[data-hero-left]", { y: 32, opacity: 0 });

@@ -15,6 +15,12 @@ export default defineConfig({
       filter: (page) => !page.includes("/api/"),
     }),
   ],
+  build: {
+    // Inline all stylesheets to eliminate the render-blocking CSS request.
+    // The generated CSS bundle is small (~10 KiB) so the inline cost is
+    // negligible compared to the round-trip saved on the critical render path.
+    inlineStylesheets: "always",
+  },
   vite: {
     plugins: [tailwindcss() as never],
   },
