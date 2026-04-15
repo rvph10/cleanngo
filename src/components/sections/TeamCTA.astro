@@ -1,8 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import Button from "@components/ui/Button.astro";
 import SectionLabel from "@components/ui/SectionLabel.astro";
-import Picture from "@components/ui/Picture.astro";
-import { imageAssets } from "@/data/images";
+import { staticImageAssets } from "@/data/images";
 ---
 
 <section id="equipe" class="w-full">
@@ -14,8 +14,10 @@ import { imageAssets } from "@/data/images";
       data-team-image
       class="relative h-80 shrink-0 overflow-hidden rounded-3xl md:absolute md:inset-0 md:h-auto md:rounded-3xl"
     >
-      <Picture
-        src={imageAssets.teamPhoto}
+      <Image
+        src={staticImageAssets.teamPhoto}
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 767px) 100vw, 70vw"
         loading="lazy"
         alt="Résultat de l'équipe de nettoyage sur un projet"
         class="h-full w-full object-cover"

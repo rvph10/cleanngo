@@ -1,8 +1,8 @@
 ---
 import SectionLabel from "@components/ui/SectionLabel.astro";
 import FeaturesCard from "@components/ui/FeaturesCard.astro";
-import Picture from "@components/ui/Picture.astro";
-import { imageAssets } from "@/data/images";
+import { Image } from "astro:assets";
+import { staticImageAssets } from "@/data/images";
 
 const features = [
   {
@@ -33,8 +33,10 @@ const features = [
 <section class="w-full">
   <div class="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-[1fr_1.5fr]">
     <div data-reveal="wipe" class="relative h-72 overflow-hidden rounded-3xl lg:h-auto">
-      <Picture
-        src={imageAssets.featuresPhoto}
+      <Image
+        src={staticImageAssets.featuresPhoto}
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 1023px) 100vw, 40vw"
         loading="lazy"
         alt="Nettoyage de vitres"
         class="h-full w-full object-cover lg:absolute lg:inset-0"

@@ -1,3 +1,4 @@
+import type { ImageMetadata } from "astro";
 import { serviceImageAssets } from "./images";
 
 export interface FaqItem {
@@ -10,7 +11,7 @@ export interface Service {
   description: string;
   metaDescription: string;
   href: string;
-  image: string;
+  image: ImageMetadata;
   featured?: boolean;
   quote?: string;
   features?: string[];
