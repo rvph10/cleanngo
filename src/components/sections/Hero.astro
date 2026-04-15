@@ -147,7 +147,11 @@ import { imageAssets } from "@/data/images";
   // with critical resources (fonts, CSS, LCP) during the initial render.
   function startHeroVideos() {
     document.querySelectorAll<HTMLVideoElement>("video[data-hero-video]").forEach((v) => {
-      v.play().catch(() => {});
+      // Skip videos hidden by CSS (the mobile video on desktop and vice-versa)
+      // to avoid downloading and decoding a video that is never displayed.
+      if (getComputedStyle(v).display !== "none") {
+        v.play().catch(() => {});
+      }
     });
   }
   if (document.readyState === "complete") {

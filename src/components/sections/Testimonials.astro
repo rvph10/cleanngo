@@ -262,11 +262,11 @@ const allReviews = columns.flat();
   .marquee-col-1,
   .marquee-col-2,
   .marquee-col-3 {
-    will-change: transform;
-    /* Forces GPU rendering for smoother sub-pixel animation */
+    /* will-change is applied dynamically via IntersectionObserver
+       to avoid permanent GPU compositor layers when off-screen */
     backface-visibility: hidden;
     perspective: 1000px;
-    animation-play-state: running;
+    animation-play-state: paused;
   }
 
   .marquee-col-1 {
@@ -290,6 +290,26 @@ const allReviews = columns.flat();
 </style>
 
 <script>
+  // ── Marquee: run only when visible, promote GPU layer only while running ──
+  const marquee = document.querySelector<HTMLElement>(".testimonials-marquee");
+  if (marquee) {
+    const cols = marquee.querySelectorAll<HTMLElement>(
+      ".marquee-col-1, .marquee-col-2, .marquee-col-3"
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries[0].isIntersecting;
+        cols.forEach((col) => {
+          col.style.willChange = visible ? "transform" : "auto";
+          col.style.animationPlayState = visible ? "running" : "paused";
+        });
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(marquee);
+  }
+
+  // ── Mobile slider ─────────────────────────────────────────────────────────
   const slider = document.getElementById("testimonials-slider");
   const prevBtn = document.getElementById("prev-btn");
   const nextBtn = document.getElementById("next-btn");
