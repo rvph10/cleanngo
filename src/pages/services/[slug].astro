@@ -50,7 +50,7 @@ const faqItems = service.faqItems;
 ---
 
 <BaseLayout
-  title={`${service.name} à Bruxelles`}
+  title={service.metaTitle ?? `${service.name} à Bruxelles | CleanNgo`}
   description={service.metaDescription}
   image={service.image.src}
 >
