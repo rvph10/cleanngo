@@ -19,9 +19,9 @@ export function getStaticPaths() {
 const { service } = Astro.props;
 
 // Preload the LCP hero image using the actual optimized URL from Astro's image pipeline
-const heroOptimized = await getImage({ src: service.image, width: 1200, format: "webp" });
+const heroOptimized = await getImage({ src: service.image, width: 1200, format: "avif" });
 const heroPreloadHref = heroOptimized.src;
-const heroPreloadType = "image/webp";
+const heroPreloadType = "image/avif";
 
 const howItWorksSteps = [
   {
