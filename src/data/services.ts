@@ -58,7 +58,7 @@ export const services: Service[] = [
   },
   {
     name: "Panneaux solaires",
-    metaTitle: "Nettoyage de panneaux solaires à Bruxelles",
+    metaTitle: "Nettoyage de panneaux solaires à Bruxelles | CleanNgo",
     description:
       "Des panneaux solaires encrassés peuvent perdre jusqu'à 30 % de leur rendement énergétique. Notre service de nettoyage éco-responsable utilise de l'eau déminéralisée et des brosses douces adaptées pour éliminer poussières, fientes d'oiseaux, pollens et dépôts calcaires sans endommager les cellules photovoltaïques. Retrouvez une production optimale et protégez votre investissement sur le long terme.",
     metaDescription:
@@ -96,7 +96,7 @@ export const services: Service[] = [
   },
   {
     name: "Toitures & Démoussage",
-    metaTitle: "Démoussage toiture à Bruxelles — traitement anti-mousse",
+    metaTitle: "Démoussage toiture à Bruxelles — traitement anti-mousse | CleanNgo",
     description:
       "La mousse et les lichens retiennent l'humidité et accélèrent la dégradation de vos tuiles, ardoises et toitures plates. Notre traitement anti-mousse combine nettoyage haute pression, application de produit biocide et traitement hydrofuge pour protéger durablement votre couverture. Nous intervenons en toute sécurité sur tous types de toitures pour prolonger leur durée de vie et prévenir les infiltrations.",
     metaDescription:
@@ -242,7 +242,7 @@ export const services: Service[] = [
   },
   {
     name: "Bureaux & Commerces",
-    metaTitle: "Nettoyage de bureaux et commerces à Bruxelles",
+    metaTitle: "Nettoyage de bureaux et commerces à Bruxelles | CleanNgo",
     description:
       "Un espace de travail propre et sain améliore la productivité, l'image de votre entreprise et le bien-être de vos collaborateurs. Nous intervenons dans vos bureaux, open spaces, salles de réunion, sanitaires et espaces communs selon un planning adapté à votre activité — tôt le matin, en soirée ou le week-end. Contrats d'entretien régulier ou interventions ponctuelles disponibles.",
     metaDescription:
@@ -315,7 +315,7 @@ export const services: Service[] = [
   },
   {
     name: "Terrasses & Allées",
-    metaTitle: "Nettoyage terrasses et allées à Bruxelles — haute pression",
+    metaTitle: "Nettoyage terrasses et allées à Bruxelles — haute pression | CleanNgo",
     description:
       "Terrasses en bois, dalles béton, pavés, carrelages extérieurs ou allées : chaque surface mérite un entretien adapté. Grâce au nettoyage haute pression, nous éliminons mousses, taches verdâtres, huiles et incrustations pour redonner à vos espaces extérieurs un aspect propre et sécurisé. Un traitement imperméabilisant peut être appliqué en complément pour une protection longue durée.",
     metaDescription:
@@ -352,7 +352,7 @@ export const services: Service[] = [
   },
   {
     name: "Vérandas & Coupoles",
-    metaTitle: "Nettoyage vérandas et coupoles à Bruxelles",
+    metaTitle: "Nettoyage vérandas et coupoles à Bruxelles | CleanNgo",
     description:
       "Les vérandas et coupoles accumulent poussières, dépôts calcaires et algues sur leurs surfaces vitrées et leur structure en aluminium ou PVC. Notre nettoyage intérieur et extérieur restaure la transparence de vos vitrages et l'éclat de votre charpente, pour profiter pleinement de la luminosité naturelle. Nous intervenons en hauteur en toute sécurité, avec des produits adaptés à chaque matériau.",
     metaDescription:
@@ -389,7 +389,7 @@ export const services: Service[] = [
   },
   {
     name: "Corniches & Gouttières",
-    metaTitle: "Débouchage et nettoyage gouttières à Bruxelles",
+    metaTitle: "Débouchage et nettoyage gouttières à Bruxelles | CleanNgo",
     description:
       "Des gouttières obstruées par les feuilles, mousses et débris sont à l'origine de débordements, infiltrations et dégâts des eaux coûteux. Notre service de débouchage et nettoyage de gouttières et corniches garantit une évacuation optimale des eaux de pluie et prolonge la durée de vie de vos installations. Nous réalisons également un contrôle visuel des fixations et signalons toute anomalie détectée.",
     metaDescription:
