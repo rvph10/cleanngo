@@ -23,6 +23,9 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss() as never],
+    build: {
+      minify: "esbuild",
+    },
   },
   site: "https://cleanngo.be",
   redirects: {
