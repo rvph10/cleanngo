@@ -136,7 +136,7 @@ const faqItems = service.faqItems;
               data-reveal="words"
               class="font-display mb-10 text-center text-3xl font-bold md:text-5xl"
             >
-              Ce qui est inclus
+              Ce qui est inclus dans notre {service.name.toLowerCase()}
             </h2>
             <ul data-reveal="cards" class="flex flex-col gap-6">
               {service.features.map((feature) => (
@@ -170,7 +170,7 @@ const faqItems = service.faqItems;
       <!-- How it works -->
       <div class="flex flex-col items-center py-12">
         <h2 data-reveal="words" class="font-display mb-10 text-2xl font-bold md:text-5xl">
-          Comment ça marche ?
+          Comment fonctionne notre {service.name.toLowerCase()} ?
         </h2>
         <div data-reveal="cards" class="flex w-full flex-col gap-4">
           {
