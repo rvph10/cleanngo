@@ -242,7 +242,7 @@ export const services: Service[] = [
     description:
       "Un espace de travail propre et sain améliore la productivité, l'image de votre entreprise et le bien-être de vos collaborateurs. Nous intervenons dans vos bureaux, open spaces, salles de réunion, sanitaires et espaces communs selon un planning adapté à votre activité — tôt le matin, en soirée ou le week-end. Contrats d'entretien régulier ou interventions ponctuelles disponibles.",
     metaDescription:
-      "Nettoyage de bureaux et commerces à Bruxelles et périphérie. Postes de travail, sanitaires, espaces communs. Contrats réguliers ou ponctuels. Devis gratuit.",
+      "Nettoyage de bureaux et commerces à Bruxelles. Postes de travail, sanitaires, espaces communs. Contrats réguliers ou ponctuels. Devis gratuit.",
     href: "/services/bureaux-commerces",
     image: serviceImageAssets.officeCleaning,
     quote:
@@ -314,7 +314,7 @@ export const services: Service[] = [
     description:
       "Terrasses en bois, dalles béton, pavés, carrelages extérieurs ou allées : chaque surface mérite un entretien adapté. Grâce au nettoyage haute pression, nous éliminons mousses, taches verdâtres, huiles et incrustations pour redonner à vos espaces extérieurs un aspect propre et sécurisé. Un traitement imperméabilisant peut être appliqué en complément pour une protection longue durée.",
     metaDescription:
-      "Nettoyage de terrasses et allées à Bruxelles et périphérie. Haute pression sur bois, dalles, pavés et carrelage extérieur. Option imperméabilisant. Devis gratuit.",
+      "Nettoyage de terrasses et allées à Bruxelles. Haute pression sur bois, dalles, pavés et carrelage. Option imperméabilisant. Devis gratuit.",
     href: "/services/nettoyage-terrasse",
     image: serviceImageAssets.outsideCleaning,
     quote:
@@ -386,7 +386,7 @@ export const services: Service[] = [
     description:
       "Des gouttières obstruées par les feuilles, mousses et débris sont à l'origine de débordements, infiltrations et dégâts des eaux coûteux. Notre service de débouchage et nettoyage de gouttières et corniches garantit une évacuation optimale des eaux de pluie et prolonge la durée de vie de vos installations. Nous réalisons également un contrôle visuel des fixations et signalons toute anomalie détectée.",
     metaDescription:
-      "Débouchage et nettoyage de gouttières à Bruxelles et périphérie. Évacuation optimale, contrôle des fixations. Intervention sécurisée en hauteur. Devis gratuit.",
+      "Débouchage et nettoyage de gouttières à Bruxelles. Évacuation optimale, contrôle des fixations. Intervention sécurisée en hauteur. Devis gratuit.",
     href: "/services/nettoyage-gouttieres",
     image: serviceImageAssets.corniere,
     quote:
