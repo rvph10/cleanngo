@@ -33,7 +33,7 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
             <div class="absolute inset-0 z-1">
               <Image
                 src={service.image}
-                alt=""
+                alt={service.name}
                 widths={[352, 704]}
                 sizes="352px"
                 format="avif"
@@ -71,7 +71,7 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
           <div class="absolute inset-0 z-1">
             <Image
               src={service.image}
-              alt=""
+              alt={service.name}
               widths={[288, 576]}
               sizes="(max-width: 767px) 80vw, 288px"
               format="avif"

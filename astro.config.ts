@@ -25,6 +25,7 @@ export default defineConfig({
     plugins: [tailwindcss() as never],
   },
   site: "https://cleanngo.be",
+  trailingSlash: "always",
   redirects: {
     "/review": "https://g.page/r/CR0AgGP0Bx2HEBM/review",
   },
