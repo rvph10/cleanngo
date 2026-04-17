@@ -17,8 +17,8 @@ const {
   class: className,
 } = Astro.props;
 
-const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? "https://example.com";
-const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const siteUrl = (Astro.site ?? new URL("https://cleanngo.be")).toString().replace(/\/$/, "");
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl + "/").toString();
 const ogImageUrl = new URL(image, siteUrl).toString();
 
 const siteName = "CleanNgo";
