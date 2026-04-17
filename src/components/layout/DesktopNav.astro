@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Button from "@components/ui/Button.astro";
 import ServicesAllLink from "@components/ui/ServicesAllLink.astro";
+import SocialLinks from "@components/ui/SocialLinks.astro";
 import { imageAssets } from "@/data/images";
 import type { Service, FeaturedService, NavLink } from "../../data/nav";
 
@@ -82,8 +83,9 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
       </div>
     </div>
 
-    <!-- Right: CTA + hamburger -->
-    <div class="flex items-center gap-1">
+    <!-- Right: social links + CTA + hamburger -->
+    <div class="flex items-center gap-3">
+      <SocialLinks />
       <Button href="tel:+32486518181" class="hidden lg:inline-flex">Appelez-nous</Button>
 
       <button

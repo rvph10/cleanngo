@@ -1,7 +1,6 @@
 ---
 import Button from "@components/ui/Button.astro";
 import ServicesAllLink from "@components/ui/ServicesAllLink.astro";
-import SocialLinks from "@components/ui/SocialLinks.astro";
 import type { Service, NavLink } from "../../data/nav";
 
 interface Props {
@@ -90,11 +89,6 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
       }
 
       <Button href="tel:+32486518181" class="mt-6 w-full justify-center">Appelez-nous</Button>
-
-      <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
-        <div></div>
-        <SocialLinks />
-      </div>
     </div>
   </div>
 </div>
