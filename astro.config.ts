@@ -8,7 +8,7 @@ export default defineConfig({
   // will be server-rendered by the node adapter (e.g. src/pages/api/contact.ts).
   output: "static",
   adapter: node({
-    mode: "middleware",
+    mode: "standalone",
   }),
   integrations: [
     sitemap({
