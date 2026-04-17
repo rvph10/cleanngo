@@ -116,6 +116,8 @@ const faqItems = service.faqItems;
         "Zaventem",
       ].map((city) => ({ "@type": "City", name: city })),
       serviceType: service.name,
+      image: `https://cleanngo.be${service.image.src}`,
+      priceRange: "€€",
       offers: {
         "@type": "Offer",
         priceCurrency: "EUR",
