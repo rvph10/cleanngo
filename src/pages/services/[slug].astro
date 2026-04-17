@@ -83,6 +83,46 @@ const faqItems = service.faqItems;
       ],
     })}
   />
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: service.name,
+      description: service.metaDescription,
+      url: `https://cleanngo.be${service.href}/`,
+      provider: {
+        "@type": "LocalBusiness",
+        name: "CleanNgo",
+        url: "https://cleanngo.be",
+        telephone: "+32486518181",
+      },
+      areaServed: [
+        "Bruxelles",
+        "Ixelles",
+        "Etterbeek",
+        "Woluwe-Saint-Lambert",
+        "Woluwe-Saint-Pierre",
+        "Schaerbeek",
+        "Evere",
+        "Saint-Gilles",
+        "Forest",
+        "Uccle",
+        "Kraainem",
+        "Wezembeek-Oppem",
+        "Tervuren",
+        "Zaventem",
+      ].map((city) => ({ "@type": "City", name: city })),
+      serviceType: service.name,
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+      },
+    })}
+  />
   <Container class="mt-12 items-center">
     <!-- Headline -->
     <div class="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
