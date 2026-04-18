@@ -78,8 +78,18 @@ const faqItems = service.faqItems;
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Accueil", item: "https://cleanngo.be" },
-        { "@type": "ListItem", position: 2, name: "Services", item: "https://cleanngo.be/services" },
-        { "@type": "ListItem", position: 3, name: service.name, item: `https://cleanngo.be${service.href}` },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Services",
+          item: "https://cleanngo.be/services",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: service.name,
+          item: `https://cleanngo.be${service.href}`,
+        },
       ],
     })}
   />
