@@ -96,7 +96,7 @@ export const services: Service[] = [
   },
   {
     name: "Toitures & Démoussage",
-    metaTitle: "Démoussage toiture à Bruxelles — traitement anti-mousse | CleanNgo",
+    metaTitle: "Démoussage toiture Bruxelles — anti-mousse | CleanNgo",
     description:
       "La mousse et les lichens retiennent l'humidité et accélèrent la dégradation de vos tuiles, ardoises et toitures plates. Notre traitement anti-mousse combine nettoyage haute pression, application de produit biocide et traitement hydrofuge pour protéger durablement votre couverture. Nous intervenons en toute sécurité sur tous types de toitures pour prolonger leur durée de vie et prévenir les infiltrations.",
     metaDescription:
@@ -315,7 +315,7 @@ export const services: Service[] = [
   },
   {
     name: "Terrasses & Allées",
-    metaTitle: "Nettoyage terrasses et allées à Bruxelles — haute pression | CleanNgo",
+    metaTitle: "Nettoyage terrasses et allées à Bruxelles | CleanNgo",
     description:
       "Terrasses en bois, dalles béton, pavés, carrelages extérieurs ou allées : chaque surface mérite un entretien adapté. Grâce au nettoyage haute pression, nous éliminons mousses, taches verdâtres, huiles et incrustations pour redonner à vos espaces extérieurs un aspect propre et sécurisé. Un traitement imperméabilisant peut être appliqué en complément pour une protection longue durée.",
     metaDescription:
