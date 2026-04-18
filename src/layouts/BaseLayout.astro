@@ -22,7 +22,9 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl + "/").toString();
 const ogImageUrl = new URL(image, siteUrl).toString();
 
 const siteName = "CleanNgo";
-const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
+const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const hasSiteName = new RegExp(`\\b${escapeRegExp(siteName)}\\b`, "i").test(title);
+const pageTitle = hasSiteName ? title : `${title} | ${siteName}`;
 ---
 
 <!doctype html>
