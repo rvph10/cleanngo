@@ -30,5 +30,6 @@ export default defineConfig({
   site: "https://cleanngo.be",
   redirects: {
     "/review": "https://g.page/r/CR0AgGP0Bx2HEBM/review",
+    "/nettoyage-des-panneaux-solaires": "/services/panneaux-solaires",
   },
 });
