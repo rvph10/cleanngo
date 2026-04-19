@@ -122,6 +122,11 @@ export const services: Service[] = [
           "Avec le traitement biocide et hydrofuge que nous appliquons, la protection est généralement efficace entre 3 et 5 ans selon l'exposition de la toiture et les conditions climatiques locales.",
       },
       {
+        question: "Quel est le prix d'un nettoyage de toiture à Bruxelles ?",
+        answer:
+          "Le prix dépend surtout de la surface à traiter, du type de toit (tuiles, ardoises, toit plat), du niveau d'encrassement, de l'accessibilité et des options choisies (traitement anti-mousse, biocide, hydrofuge). Nous privilégions toujours un devis clair et transparent après évaluation, avec un devis gratuit et sans engagement.",
+      },
+      {
         question: "Intervenez-vous sur tous types de toitures ?",
         answer:
           "Oui, nous traitons les toitures en tuiles, ardoises, béton et toitures plates. Nous adaptons la pression et les produits utilisés à chaque type de matériau pour éviter tout endommagement.",
@@ -307,6 +312,11 @@ export const services: Service[] = [
           "Pas si la pression est adaptée au matériau. Nous réglons systématiquement la pression en fonction du support — plus douce sur crépi ou pierre taillée, plus forte sur béton. Une évaluation préalable est toujours réalisée.",
       },
       {
+        question: "Quel est le prix d'un nettoyage de façade à Bruxelles ?",
+        answer:
+          "Le tarif varie selon la surface de façade, le type de support (crépi, brique, pierre, béton), la hauteur du bâtiment, l'accessibilité et le niveau de salissures (pollution, mousses, algues). Des traitements complémentaires peuvent aussi influencer le prix. Nous vous remettons un devis gratuit, détaillé et sans engagement.",
+      },
+      {
         question: "Traitez-vous aussi les graffitis sur façades ?",
         answer:
           "Oui, nous pouvons traiter les graffitis selon la nature du support et du produit utilisé. Un traitement anti-graffiti peut également être appliqué en prévention pour faciliter les nettoyages futurs.",
@@ -416,6 +426,11 @@ export const services: Service[] = [
         question: "Comment savoir si mes gouttières ont besoin d'être nettoyées ?",
         answer:
           "Les signes les plus courants : débordement visible lors de fortes pluies, présence de mousse ou de végétation dans la gouttière, taches d'humidité sur la façade sous la gouttière, ou simplement si elles n'ont pas été nettoyées depuis plus d'un an.",
+      },
+      {
+        question: "Quel est le prix d'un nettoyage de gouttières à Bruxelles ?",
+        answer:
+          "Le prix dépend principalement de la longueur des gouttières, de la hauteur d'intervention, de l'accessibilité, du niveau d'obstruction (feuilles, mousses, débris) et du nombre de descentes à contrôler. Si des réparations sont nécessaires, elles sont chiffrées séparément. Nous proposons un devis gratuit, transparent et sans engagement.",
       },
       {
         question: "À quelle fréquence recommandez-vous le nettoyage des gouttières ?",
