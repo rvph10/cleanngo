@@ -21,6 +21,7 @@ export interface Service {
 export const services: Service[] = [
   {
     name: "Nettoyage de vitres & châssis",
+    metaTitle: "Nettoyage & lavage de vitres à Bruxelles | CleanNgo",
     description:
       "Des vitres impeccables transforment l'ambiance de votre intérieur et valorisent l'image de votre commerce ou entreprise. Nous utilisons des techniques professionnelles à la raclette et à la perche télescopique pour éliminer calcaire, traces de doigts et dépôts sans laisser de marques. Fenêtres, baies vitrées, vitrines, velux et châssis sont traités intérieur comme extérieur.",
     metaDescription:
