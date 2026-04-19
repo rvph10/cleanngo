@@ -88,7 +88,15 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
         ))
       }
 
-      <Button href="tel:+32486518181" class="mt-6 w-full justify-center">Appelez-nous</Button>
+      <Button
+        href="tel:+32486518181"
+        data-umami-event="phone_click"
+        data-umami-event-location="nav_mobile"
+        data-umami-event-channel="phone"
+        class="mt-6 w-full justify-center"
+      >
+        Appelez-nous
+      </Button>
     </div>
   </div>
 </div>

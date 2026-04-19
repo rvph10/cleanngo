@@ -146,8 +146,27 @@ const faqItems = service.faqItems;
       </h1>
 
       <div data-reveal="cards" class="flex flex-wrap justify-center gap-4">
-        <Button href="/contact" size="lg">Réserver</Button>
-        <Button href="/services" size="lg" variant="secondary">Tous les services</Button>
+        <Button
+          href="/contact"
+          size="lg"
+          data-umami-event="cta_click"
+          data-umami-event-location="service_detail_hero"
+          data-umami-event-destination="contact"
+          data-umami-event-service={service.href.replace("/services/", "")}
+        >
+          Réserver
+        </Button>
+        <Button
+          href="/services"
+          size="lg"
+          variant="secondary"
+          data-umami-event="services_all_click"
+          data-umami-event-location="service_detail_hero"
+          data-umami-event-destination="services"
+          data-umami-event-service={service.href.replace("/services/", "")}
+        >
+          Tous les services
+        </Button>
       </div>
     </div>
 

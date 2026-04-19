@@ -13,7 +13,12 @@ const linkClass =
 const strokeWidth = variant === "desktop" ? "2.5" : "1.5";
 ---
 
-<a href="/services" class={linkClass}>
+<a
+  href="/services"
+  data-umami-event="services_all_click"
+  data-umami-event-location={variant === "desktop" ? "nav_dropdown" : "mobile_menu"}
+  class={linkClass}
+>
   Découvrir tous nos services
   <svg
     class={variant === "desktop"

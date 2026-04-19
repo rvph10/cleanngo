@@ -38,10 +38,22 @@ import Container from "@components/ui/Container.astro";
 
           <!-- Button group -->
           <div class="flex flex-wrap items-center gap-3">
-            <Button href="/contact" size="lg" class=""> Réserver un nettoyage </Button>
+            <Button
+              href="/contact"
+              size="lg"
+              data-umami-event="not_found_recovery_click"
+              data-umami-event-location="404"
+              data-umami-event-destination="contact"
+              class=""
+            >
+              Réserver un nettoyage
+            </Button>
             <Button
               href="/"
               size="lg"
+              data-umami-event="not_found_recovery_click"
+              data-umami-event-location="404"
+              data-umami-event-destination="home"
               class="bg-transparent text-(--color-text-primary) ring-2 ring-(--color-text-primary) hover:bg-(--color-text-primary) hover:text-(--color-surface) [&_svg]:text-(--color-surface)"
             >
               Retour à l'accueil

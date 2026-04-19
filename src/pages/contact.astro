@@ -53,6 +53,9 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Consultez nos 4.9 étoiles sur Google"
+          data-umami-event="google_reviews_click"
+          data-umami-event-location="contact_page"
+          data-umami-event-channel="google"
           class="group flex w-fit items-center gap-3 rounded-full bg-(--color-surface-secondary) p-1 pr-5 transition-all duration-300 hover:ring-1 hover:ring-(--color-border)/20"
         >
           <div
@@ -454,6 +457,9 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
       <div data-reveal="cards" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <a
           href="tel:+32486518181"
+          data-umami-event="phone_click"
+          data-umami-event-location="contact_page"
+          data-umami-event-channel="phone"
           class="group flex items-center gap-6 rounded-3xl bg-(--color-surface-secondary) p-8 transition-colors hover:bg-(--color-accent) hover:text-(--color-text-primary)"
         >
           <div
@@ -487,6 +493,9 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
           href="https://wa.me/32486518181?text=Bonjour%20CleanNgo%2C%20je%20souhaite%20r%C3%A9server%20un%20nettoyage."
           target="_blank"
           rel="noopener noreferrer"
+          data-umami-event="whatsapp_click"
+          data-umami-event-location="contact_page"
+          data-umami-event-channel="whatsapp"
           class="group flex items-center gap-6 rounded-3xl bg-(--color-surface-secondary) p-8 transition-colors hover:bg-(--color-accent) hover:text-(--color-text-primary)"
         >
           <div
@@ -688,6 +697,12 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
   const successMsg = document.getElementById("form-success");
   const errorMsg = document.getElementById("form-error");
 
+  type UmamiWindow = Window & {
+    umami?: { track(name: string, data?: Record<string, string>): void };
+  };
+  const umamiTrack = (name: string, data?: Record<string, string>) =>
+    (window as UmamiWindow).umami?.track(name, data);
+
   function isValidPhone(v: string) {
     return /^\+?[\d\s\-().]{7,20}$/.test(v.trim());
   }
@@ -730,6 +745,7 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
     const city = (form.querySelector("#city") as HTMLInputElement).value.trim();
     const selectedServices = form.querySelectorAll('input[name="services"]:checked');
     const selectedFrequency = form.querySelector('input[name="frequency"]:checked');
+    const frequencyValue = (selectedFrequency as HTMLInputElement | null)?.value ?? "none";
 
     // Honeypot check – abort silently if filled by a bot
     const honeypot = (form.querySelector("#website") as HTMLInputElement)?.value;
@@ -773,11 +789,27 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
     }
 
     if (!valid) {
+      umamiTrack("contact_form_validation_error", {
+        page: "contact",
+        has_name: String(Boolean(name)),
+        has_phone: String(Boolean(phone)),
+        has_email: String(Boolean(email)),
+        has_city: String(Boolean(city)),
+        services_count: String(selectedServices.length),
+        has_frequency: String(Boolean(selectedFrequency)),
+      });
       form
         .querySelector(".field-error:not(.hidden)")
         ?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
+
+    umamiTrack("contact_form_submit_attempt", {
+      page: "contact",
+      services_count: String(selectedServices.length),
+      frequency: frequencyValue,
+      contact_method: phoneOk && emailOk ? "phone_email" : phoneOk ? "phone" : "email",
+    });
 
     const btn = form.querySelector("button[type=submit]") as HTMLButtonElement;
     btn.disabled = true;
@@ -798,11 +830,18 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       successMsg?.classList.remove("hidden");
+      umamiTrack("contact_form_submit", {
+        page: "contact",
+        services_count: String(selectedServices.length),
+        frequency: frequencyValue,
+        contact_method: phoneOk && emailOk ? "phone_email" : phoneOk ? "phone" : "email",
+      });
       form.querySelectorAll("input, textarea, button[type=submit]").forEach((el) => {
         (el as HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement).disabled = true;
       });
     } catch {
       errorMsg?.classList.remove("hidden");
+      umamiTrack("contact_form_error", { page: "contact", source: "booking_form_submit" });
       btn.disabled = false;
       btn.textContent = originalLabel;
     }

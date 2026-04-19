@@ -47,7 +47,16 @@ const isReversed = index % 2 !== 0;
         <p class="text-base leading-relaxed">{service.description}</p>
       </div>
 
-      <Button href={service.href} size="lg" class="w-fit">Détails du service</Button>
+      <Button
+        href={service.href}
+        size="lg"
+        data-umami-event="service_detail_click"
+        data-umami-event-location="services_list"
+        data-umami-event-service={service.href.replace("/services/", "")}
+        class="w-fit"
+      >
+        Détails du service
+      </Button>
     </div>
   </article>
 </li>
