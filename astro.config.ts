@@ -32,5 +32,12 @@ export default defineConfig({
   redirects: {
     "/review": "https://g.page/r/CR0AgGP0Bx2HEBM/review",
     "/nettoyage-des-panneaux-solaires": "/services/panneaux-solaires",
+    "/nettoyage-verandas": "/services/nettoyage-veranda",
+    "/nettoyage-des-vitres": "/services/nettoyage-vitres",
+    "/contact-5": "/contact",
+    "/book-online": "/contact",
+    "/services-9": "/services",
+    "/about-6": "/",
+    "/copie-de-politique-de-confidentialité": "/politique-de-confidentialite",
   },
 });
