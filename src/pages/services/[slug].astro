@@ -147,7 +147,7 @@ const faqItems = service.faqItems;
         data-reveal="words"
         class="font-display text-5xl leading-[0.9] font-bold uppercase md:text-7xl lg:text-8xl"
       >
-        {service.processTitle ?? `${service.name} à Bruxelles et périphérie`}
+        {service.h1 ?? `${service.name} à Bruxelles et périphérie`}
       </h1>
 
       <div data-reveal="cards" class="flex flex-wrap justify-center gap-4">
@@ -192,7 +192,7 @@ const faqItems = service.faqItems;
     </div>
 
     <!-- Service body -->
-    <div class="mx-auto w-full max-w-3xl px-4 md:px-8">
+    <div class="mx-auto w-full max-w-5xl px-4 md:px-8">
       <!-- Quote -->
       {
         service.quote && (
@@ -242,6 +242,42 @@ const faqItems = service.faqItems;
                 </li>
               ))}
             </ul>
+          </div>
+        )
+      }
+
+      <!-- Editorial content -->
+      {
+        service.editorial && (
+          <div class="">
+            <h2 data-reveal="words" class="font-display mb-8 text-xl font-bold md:text-2xl">
+              En savoir plus sur {service.name.toLowerCase()}
+            </h2>
+            <div data-reveal="cards" class="mb-10 flex flex-col gap-5">
+              {service.editorial.split("\n\n").map((paragraph) => (
+                <p class="font-accent m-0 text-lg leading-relaxed text-(--color-text-primary)/70">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+            <div
+              data-reveal="fade"
+              class="flex flex-col gap-4 rounded-2xl bg-(--color-surface-secondary) p-6 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <p class="font-accent m-0 text-base font-medium text-(--color-text-primary)/80">
+                Vous avez un projet&nbsp;? On vous répond en 2 heures.
+              </p>
+              <Button
+                href="/contact"
+                size="md"
+                data-umami-event="cta_click"
+                data-umami-event-location="service_detail_editorial"
+                data-umami-event-destination="contact"
+                data-umami-event-service={service.href.replace("/services/", "")}
+              >
+                Réserver
+              </Button>
+            </div>
           </div>
         )
       }

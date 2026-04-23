@@ -14,6 +14,7 @@ export interface ProcessStep {
 
 export interface Service {
   name: string;
+  h1?: string;
   processTitle: string;
   metaTitle?: string;
   description: string;
@@ -22,6 +23,7 @@ export interface Service {
   image: ImageMetadata;
   featured?: boolean;
   quote?: string;
+  editorial?: string;
   features?: string[];
   faqItems: FaqItem[];
   process: ProcessStep[];
@@ -29,6 +31,7 @@ export interface Service {
 export const services: Service[] = [
   {
     name: "Nettoyage de vitres & châssis",
+    h1: "Lavage et nettoyage de vitres à Bruxelles — Sans traces",
     processTitle: "notre nettoyage de vitres",
     metaTitle: "Nettoyage & lavage de vitres à Bruxelles | CleanNgo",
     description:
@@ -40,6 +43,11 @@ export const services: Service[] = [
     featured: true,
     quote:
       "Une vitre propre change toute l'atmosphère d'une pièce. Plus de lumière, plus de clarté — et moins de « pourquoi c'est flou là ? »",
+    editorial: `Les vitres sales ne sont pas seulement une question d'esthétique : une vitre encrassée filtre jusqu'à 30 % de la lumière naturelle, et dans les maisons et appartements bruxellois où chaque mètre carré de luminosité compte, c'est une perte tangible au quotidien. Pour les commerces et vitrines, une vitrine terne envoie un signal négatif avant même que le client franchisse la porte.
+
+Le lavage de vitres en DIY produit rarement un résultat vraiment satisfaisant. Les produits ménagers classiques laissent des résidus qui attirent la poussière, et sans raclette professionnelle ni technique adaptée, on se retrouve souvent avec autant de stries qu'avant. Un laveur de vitres expérimenté travaille avec des solutions détartrantes calibrées, une raclette de précision et des chiffons non pelucheux — la combinaison qui garantit un nettoyage de vitres sans traces durable, y compris sur les châssis et rails souvent négligés.
+
+Nous intervenons dans tout Bruxelles et le Brabant — maisons, appartements, commerces, vitrines, velux et baies vitrées. Une prestation complète intérieur/extérieur, réalisée en une seule visite, avec une attention particulière portée aux châssis et aux rebords où le calcaire s'accumule.`,
     features: [
       "Nettoyage intérieur des vitres",
       "Vitres extérieures accessibles",
@@ -94,6 +102,7 @@ export const services: Service[] = [
   },
   {
     name: "Panneaux solaires",
+    h1: "Nettoyage de panneaux solaires et photovoltaïques à Bruxelles",
     processTitle: "notre nettoyage de panneaux solaires",
     metaTitle: "Nettoyage de panneaux solaires à Bruxelles | CleanNgo",
     description:
@@ -105,6 +114,11 @@ export const services: Service[] = [
     featured: true,
     quote:
       "Des panneaux encrassés, c'est de l'énergie perdue. Un nettoyage régulier, c'est un investissement qui se rentabilise — et qui protège vos cellules.",
+    editorial: `Un investissement dans des panneaux photovoltaïques se rembourse sur le long terme — à condition que les cellules fonctionnent à leur plein potentiel. Or, en milieu urbain comme dans la périphérie bruxelloise, les salissures s'accumulent rapidement : fientes d'oiseaux, pollens de printemps, poussières industrielles et dépôts calcaires peuvent réduire le rendement énergétique de 15 à 30 % en quelques mois. Ce que l'œil ne voit pas se traduit directement sur la facture d'électricité.
+
+Le nettoyage panneau solaire ne s'improvise pas. L'eau du robinet contient du calcaire qui, en séchant, laisse des dépôts microscopiques sur les cellules — c'est précisément ce que l'on cherche à éviter. La méthode professionnelle repose sur l'eau déminéralisée, qui s'évapore sans résidu, associée à des brosses souples spécifiquement conçues pour les surfaces photovoltaïques. Aucune pression agressive, aucun produit chimique susceptible d'endommager les joints d'étanchéité.
+
+Nous intervenons en sécurité sur les toitures inclinées de Bruxelles et du Brabant, avec les équipements de protection nécessaires. Après chaque intervention, un rapport avec photos avant/après vous est transmis pour que vous puissiez constater la récupération de rendement.`,
     features: [
       "Nettoyage à l'eau déminéralisée",
       "Brosses douces adaptées aux cellules photovoltaïques",
@@ -159,6 +173,7 @@ export const services: Service[] = [
   },
   {
     name: "Toitures & Démoussage",
+    h1: "Démoussage et nettoyage de toiture à Bruxelles",
     processTitle: "notre démoussage de toiture",
     metaTitle: "Démoussage toiture Bruxelles — anti-mousse | CleanNgo",
     description:
@@ -170,6 +185,11 @@ export const services: Service[] = [
     featured: true,
     quote:
       "La mousse sur votre toiture, c'est silencieux mais ravageur. On intervient avant que les dégâts ne deviennent coûteux.",
+    editorial: `La mousse et les lichens s'installent discrètement, mais leurs effets sur une couverture sont loin d'être anodins. En retenant l'humidité en permanence contre les tuiles ou les ardoises, ils accélèrent la dégradation des matériaux, soulèvent progressivement les éléments de couverture et créent les conditions idéales pour des infiltrations. À Bruxelles et dans le Brabant, où les hivers sont humides et les toitures exposées au nord peu séchées par le soleil, ce phénomène s'amplifie rapidement.
+
+Le nettoyage toiture en autonomie est non seulement risqué — monter sur un toit sans équipement professionnel représente un danger réel — mais souvent contre-productif. Un jet d'eau à pression inadaptée peut déplacer des tuiles, créer des infiltrations ou endommager des ardoises fragiles. Le démoussage toiture professionnel repose sur une pression calibrée selon le type de matériau, orientée dans le bon sens pour ne pas forcer sous les éléments de couverture, suivie d'un traitement biocide qui continue d'agir plusieurs semaines après l'intervention.
+
+Le nettoyage du toit que nous réalisons intègre également un traitement hydrofuge final : une protection qui repousse l'humidité et ralentit significativement le retour de la végétation, pour une durée d'effet généralement comprise entre trois et cinq ans.`,
     features: [
       "Traitement anti-mousse haute pression",
       "Application de produit biocide",
@@ -239,6 +259,11 @@ export const services: Service[] = [
     image: serviceImageAssets.houseCleaning,
     quote:
       "Un chez-soi propre, c'est un espace où l'on se ressource vraiment. Moins de poussière, plus d'air — et une sérénité que vous méritez.",
+    editorial: `Dans le rythme d'une semaine chargée, le nettoyage résidentiel est souvent la première chose qui passe à la trappe — et la poussière, le calcaire et les graisses de cuisine ne font pas de compromis. Ce n'est pas une question de volonté : entretenir correctement une maison ou un appartement demande du temps, des produits adaptés à chaque surface et une méthode rigoureuse qui va au-delà du coup de serpillière rapide.
+
+La différence entre un ménage professionnel et un entretien quotidien tient à la méthode autant qu'aux produits. Un technicien de nettoyage travaille de haut en bas — plafonds, luminaires, étagères avant les sols — pour ne jamais recontaminer une surface déjà traitée. Il dégraisse la cuisine avec des produits calibrés pour chaque support, détartre les sanitaires en profondeur et atteint les recoins que l'habitude fait oublier : rails de fenêtres, plinthes, espaces derrière les meubles.
+
+Nous intervenons dans les maisons et appartements de Bruxelles et de la périphérie, avec des produits éco-responsables certifiés, sans danger pour les enfants et les animaux. Intervention hebdomadaire, bimensuelle ou ponctuelle — le planning s'adapte à votre mode de vie, pas l'inverse.`,
     features: [
       "Sols aspirés et lavés",
       "Sanitaires désinfectés de fond en comble",
@@ -303,6 +328,11 @@ export const services: Service[] = [
     image: serviceImageAssets.postWork,
     quote:
       "Après les travaux, la poussière s'installe partout — même là où vous ne regardez jamais. On s'en charge, vous récupérez un espace prêt à vivre.",
+    editorial: `Après un chantier de rénovation ou de construction, la poussière de chantier s'infiltre dans des endroits improbables : derrière les prises, dans les gaines de ventilation, sur les dessus de portes, dans les rails de fenêtres. Ce que vous voyez à l'œil nu n'est qu'une partie du problème — les particules fines de plâtre ou de ponçage se déposent partout et se redistribuent dans l'air pendant plusieurs jours si elles ne sont pas aspirées correctement.
+
+Le nettoyage après travaux exige un outillage que l'on ne trouve pas dans un ménage ordinaire : aspirateurs industriels avec filtre HEPA pour capturer les résidus de plâtre et les poussières fines, grattoirs spécifiques pour éliminer les projections de silicone et de peinture sur les vitrages ou les carrelages, produits adaptés aux finitions neuves. Utiliser un aspirateur domestique standard sur une poussière de chantier finit souvent par redistribuer les particules dans la pièce plutôt que de les éliminer.
+
+Nous intervenons en fin de chantier à Bruxelles et dans toute la périphérie — rénovations de maisons, appartements, locaux commerciaux — et vous restituons un espace propre, sans trace de résidus, prêt à être habité ou livré au client final.`,
     features: [
       "Élimination des poussières fines de chantier",
       "Nettoyage des vitres et huisseries",
@@ -367,6 +397,11 @@ export const services: Service[] = [
     image: serviceImageAssets.movingIn,
     quote:
       "Un état des lieux, ça ne pardonne pas. On s'assure que chaque surface est irréprochable — pour que vous récupériez votre caution sans discussion.",
+    editorial: `La restitution d'un logement est un moment de tension : un état des lieux de sortie raté peut aboutir à des retenues sur caution pour des motifs de propreté qui auraient pu être évités. Les propriétaires et agences immobilières à Bruxelles et en Brabant sont souvent plus exigeants qu'on ne l'anticipe — four, hotte, joints de salle de bain, intérieur des placards, plinthes — chaque surface est vérifiée méthodiquement.
+
+La remise en état d'un logement avant un état des lieux va bien au-delà d'un grand ménage classique. Il s'agit de répondre à une grille de contrôle précise : détartrage complet de la robinetterie et des sanitaires, dégraissage du four et de la hotte jusqu'aux filtres, nettoyage intérieur des placards et tiroirs, vitres sans traces, sols sans résidu. Un nettoyage état des lieux professionnel suit exactement cette logique, pièce par pièce, sans rien oublier.
+
+Sur demande, nous délivrons un certificat de propreté attestant de notre intervention, un document utile pour appuyer votre position lors de la remise des clés. Que ce soit pour une sortie de location ou pour préparer votre entrée dans un nouveau logement, la prestation est adaptée à votre situation.`,
     features: [
       "Nettoyage complet avant état des lieux d'entrée",
       "Remise en état pour état des lieux de sortie",
@@ -431,6 +466,11 @@ export const services: Service[] = [
     image: serviceImageAssets.officeCleaning,
     quote:
       "Un espace de travail propre, c'est plus qu'une question d'image. C'est une condition pour que vos équipes performent et que vos clients reviennent.",
+    editorial: `Un espace professionnel mal entretenu crée une impression durable — et rarement la bonne. Pour les clients et partenaires qui visitent vos locaux, l'état d'un bureau ou d'un commerce reflète directement le soin apporté à votre activité. Pour vos collaborateurs, travailler dans un environnement propre a un impact mesurable sur la concentration, le confort et l'absentéisme. Ce n'est pas un luxe : c'est une condition de travail.
+
+Faire appel à une entreprise de nettoyage professionnelle change fondamentalement le niveau de résultat. Un technicien formé sait traiter correctement les différents revêtements de sols, désinfecter les zones de contact à haute fréquence — poignées, interrupteurs, claviers — et gérer l'ensemble des espaces dans un ordre logique et documenté : open space, sanitaires, cuisine d'entreprise, salle de réunion.
+
+En tant que société de nettoyage à Bruxelles, nous proposons des contrats d'entretien sur mesure, adaptés à votre activité et à vos horaires. Nos équipes interviennent tôt le matin, en soirée ou le week-end pour ne jamais perturber votre fonctionnement. Hebdomadaire, bimensuel ou mensuel — la fréquence et le périmètre sont définis avec vous, pas imposés.`,
     features: [
       "Postes de travail et surfaces de bureau",
       "Salles de réunion et espaces communs",
@@ -495,6 +535,11 @@ export const services: Service[] = [
     image: serviceImageAssets.facadeCleaning,
     quote:
       "La façade, c'est la première impression de votre bâtiment. Une surface propre, c'est une valeur préservée et une image soignée.",
+    editorial: `La façade d'un bâtiment absorbe tout : pluie acide, pollution urbaine, algues, mousses et lichens. À Bruxelles, où le parc immobilier est majoritairement ancien et les façades souvent en brique ou en crépi, ces dépôts s'accumulent rapidement et finissent par ternir l'aspect d'un bien — et parfois par favoriser les infiltrations lorsqu'ils retiennent l'humidité contre des matériaux poreux.
+
+Le nettoyage des façades n'est pas une opération standard. Nettoyer une façade crépi avec la même pression qu'une façade en béton peut la détériorer irrémédiablement. Pour les briques, un traitement algicide est souvent nécessaire en complément du nettoyage facade brique à haute pression, pour éliminer les mousses en profondeur et pas seulement en surface. Nettoyer une facade crepi demande une pression plus douce et un produit détartrant adapté à la porosité du support — chaque matériau a ses contraintes.
+
+Nous réalisons un diagnostic préalable avant chaque intervention pour adapter la méthode — haute pression calibrée, pré-traitement chimique ou combinaison des deux. Un traitement hydrofuge peut être appliqué en finition pour imperméabiliser la façade et prolonger durablement l'effet du nettoyage. Nous intervenons sur les bâtiments résidentiels et commerciaux de Bruxelles et du Brabant wallon.`,
     features: [
       "Nettoyage haute pression adapté au support",
       "Traitement des mousses et algues",
@@ -554,6 +599,7 @@ export const services: Service[] = [
   },
   {
     name: "Terrasses & Allées",
+    h1: "Nettoyage de terrasse et allées à Bruxelles — Haute pression",
     processTitle: "notre nettoyage de terrasses",
     metaTitle: "Nettoyage terrasses et allées à Bruxelles | CleanNgo",
     description:
@@ -564,6 +610,11 @@ export const services: Service[] = [
     image: serviceImageAssets.outsideCleaning,
     quote:
       "Vos espaces extérieurs méritent autant d'attention que l'intérieur. Un nettoyage professionnel, et ils retrouvent leur éclat — et leur sécurité.",
+    editorial: `Les terrasses et allées accumulent tout ce que les intérieurs ne voient jamais : mousses humides entre les joints, taches de barbecue, dépôts verts sur le dallage, laitances calcaires sur les dalles en pierre. Ce qui ressemblait à une surface présentable à l'installation devient en quelques saisons un revêtement terne et glissant, rendu dangereux par les algues après les pluies.
+
+Nettoyer une terrasse en bois n'est pas la même opération que traiter un dallage en béton ou des pavés. Le bois exotique ou traité ne tolère pas n'importe quelle pression sans risquer de s'effriter ou de se décolorer ; un jet inadapté peut ouvrir les fibres et fragiliser le revêtement. La technique professionnelle consiste à calibrer précisément la haute pression selon le support, à utiliser un dégraissant spécifique pour les taches incrustées et à appliquer le nettoyage terrasse dans le bon sens pour ne pas forcer les joints.
+
+Nous intervenons sur tous les types de surfaces extérieures — terrasses bois, dallage béton, pavés, carrelage extérieur, allées et cours — à Bruxelles et dans sa périphérie. Un traitement imperméabilisant peut être appliqué en complément sur les surfaces calcaires ou en bois pour une protection durable contre le retour des mousses.`,
     features: [
       "Nettoyage haute pression des surfaces",
       "Bois, dalles, pavés, carrelage extérieur",
@@ -628,6 +679,11 @@ export const services: Service[] = [
     image: serviceImageAssets.verandaCleaning,
     quote:
       "Une véranda, c'est fait pour laisser entrer la lumière. Quand les vitres sont propres, vous redécouvrez l'espace que vous avez.",
+    editorial: `Une véranda est l'espace de la maison le plus exposé aux éléments — et le plus difficile à entretenir correctement. Les vitrages orientés vers le ciel accumulent les dépôts calcaires, les algues et les résidus de pollen en couches successives qui opacifient progressivement le verre. La structure aluminium ou PVC, exposée aux UV et aux intempéries, se ternit et accumule des traces qui résistent à un simple essuyage.
+
+Le nettoyage de vitres chez particulier sur une véranda pose des contraintes spécifiques : il faut intervenir simultanément sur les deux faces des vitrages inclinés, traiter la structure sans abîmer les joints d'étanchéité, et éliminer des dépôts calcaires souvent anciens sans rayer les surfaces. Les produits du commerce ne sont généralement pas conçus pour ce niveau d'encrassement — les laveurs de vitres pour particuliers expérimentés utilisent des détartrants spécifiques au verre, appliqués avec un temps de contact contrôlé.
+
+Nous traitons les vérandas et coupoles de A à Z — vitrages intérieur et extérieur, structure aluminium ou PVC, rails de coulissement et joints — dans tout Bruxelles et le Brabant. Résultat : transparence retrouvée, luminosité maximale, sans traces ni résidus calcaires.`,
     features: [
       "Nettoyage intérieur et extérieur des vitrages",
       "Traitement des dépôts calcaires",
@@ -692,6 +748,11 @@ export const services: Service[] = [
     image: serviceImageAssets.corniere,
     quote:
       "Des gouttières bouchées, ça ne se voit pas — jusqu'au jour où l'eau s'infiltre. Mieux vaut prévenir que réparer.",
+    editorial: `Les gouttières font partie de ces éléments qu'on n'inspecte jamais — jusqu'au moment où elles débordent ou où une tache d'humidité apparaît sur un mur. Pourtant, des gouttières obstruées par des feuilles, de la mousse ou des débris créent une pression d'eau qui, à force de cycles gel-dégel, peut déformer les profils, desceller les fixations et favoriser les infiltrations dans les murs ou les planchers de toiture.
+
+Le nettoyage gouttières n'est pas une tâche anodine lorsqu'il s'agit de travailler en hauteur avec une échelle. Pour les maisons à étage ou les toitures dont l'accès est complexe, l'intervention d'un professionnel est non seulement plus sûre, mais aussi plus complète. Le débouchage gouttières ne se limite pas à retirer les feuilles visibles : il faut tester les descentes pluviales par rinçage pour s'assurer qu'elles ne sont pas bouchées plus bas, et contrôler l'état des fixations, joints et soudures.
+
+Nous réalisons systématiquement un contrôle visuel complet lors de chaque intervention à Bruxelles et en Brabant : tout signe d'anomalie — fixation desserrée, fissure, joint défaillant — est signalé avec photo. Un entretien annuel en automne suffit dans la plupart des cas pour prévenir les infiltrations avant l'hiver.`,
     features: [
       "Débouchage et nettoyage des gouttières",
       "Nettoyage des corniches",
