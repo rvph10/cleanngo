@@ -8,6 +8,7 @@ export interface FaqItem {
 
 export interface Service {
   name: string;
+  h1?: string;
   metaTitle?: string;
   description: string;
   metaDescription: string;
@@ -21,11 +22,12 @@ export interface Service {
 export const services: Service[] = [
   {
     name: "Nettoyage de vitres & châssis",
-    metaTitle: "Nettoyage & lavage de vitres à Bruxelles | CleanNgo",
+    h1: "Nettoyage de vitres professionnel à Bruxelles et périphérie",
+    metaTitle: "Nettoyage vitres à Bruxelles — Maison & Bureaux | CleanNgo",
     description:
       "Des vitres impeccables transforment l'ambiance de votre intérieur et valorisent l'image de votre commerce ou entreprise. Nous utilisons des techniques professionnelles à la raclette et à la perche télescopique pour éliminer calcaire, traces de doigts et dépôts sans laisser de marques. Fenêtres, baies vitrées, vitrines, velux et châssis sont traités intérieur comme extérieur.",
     metaDescription:
-      "Nettoyage de vitres professionnel à Bruxelles et périphérie. Fenêtres, baies vitrées, vitrines, velux — intérieur et extérieur. Résultat sans traces.",
+      "Lavage de vitres professionnel à Bruxelles et périphérie. Châssis, rails et rebords inclus. Devis gratuit en 2h. ☎ 0486 51 81 81",
     href: "/services/nettoyage-vitres",
     image: serviceImageAssets.glassCleaning,
     featured: true,
@@ -59,11 +61,12 @@ export const services: Service[] = [
   },
   {
     name: "Panneaux solaires",
-    metaTitle: "Nettoyage de panneaux solaires à Bruxelles | CleanNgo",
+    h1: "Nettoyage de panneaux solaires à Bruxelles — Rendement Optimal",
+    metaTitle: "Nettoyage panneaux solaires Bruxelles — Rendement | CleanNgo",
     description:
       "Des panneaux solaires encrassés peuvent perdre jusqu'à 30 % de leur rendement énergétique. Notre service de nettoyage éco-responsable utilise de l'eau déminéralisée et des brosses douces adaptées pour éliminer poussières, fientes d'oiseaux, pollens et dépôts calcaires sans endommager les cellules photovoltaïques. Retrouvez une production optimale et protégez votre investissement sur le long terme.",
     metaDescription:
-      "Nettoyage de panneaux solaires à Bruxelles et périphérie. Eau déminéralisée, sans endommager les cellules. Récupérez jusqu'à 30% de rendement perdu.",
+      "Nettoyage professionnel de panneaux solaires à Bruxelles. Optimisez le rendement de votre installation photovoltaïque. Devis gratuit en 2h.",
     href: "/services/panneaux-solaires",
     image: serviceImageAssets.solarPanel,
     featured: true,
@@ -97,11 +100,12 @@ export const services: Service[] = [
   },
   {
     name: "Toitures & Démoussage",
-    metaTitle: "Démoussage toiture Bruxelles — anti-mousse | CleanNgo",
+    h1: "Démoussage et nettoyage de toiture à Bruxelles",
+    metaTitle: "Démoussage toiture à Bruxelles — Anti-Mousse | CleanNgo",
     description:
       "La mousse et les lichens retiennent l'humidité et accélèrent la dégradation de vos tuiles, ardoises et toitures plates. Notre traitement anti-mousse combine nettoyage haute pression, application de produit biocide et traitement hydrofuge pour protéger durablement votre couverture. Nous intervenons en toute sécurité sur tous types de toitures pour prolonger leur durée de vie et prévenir les infiltrations.",
     metaDescription:
-      "Démoussage de toiture à Bruxelles et Brabant. Traitement anti-mousse, biocide et hydrofuge sur tuiles, ardoises et toits plats. Devis gratuit.",
+      "Démoussage et nettoyage de toiture à Bruxelles et périphérie. Traitement biocide, hydrofuge. Intervention rapide. Devis gratuit.",
     href: "/services/nettoyage-toiture",
     image: serviceImageAssets.demoussage,
     featured: true,
@@ -140,11 +144,12 @@ export const services: Service[] = [
   },
   {
     name: "Nettoyage résidentiel",
-    metaTitle: "Nettoyage résidentiel à Bruxelles — Maisons & appartements | CleanNgo",
+    h1: "Nettoyage de maison et appartement à Bruxelles",
+    metaTitle: "Nettoyage résidentiel Bruxelles — Maison & Appart | CleanNgo",
     description:
       "Profitez d'un intérieur sain et impeccable grâce à notre service de nettoyage résidentiel professionnel. Que ce soit pour un entretien régulier hebdomadaire ou une intervention ponctuelle, notre équipe prend en charge maisons, appartements et studios. Sols, sanitaires, cuisine et pièces à vivre : chaque surface est traitée avec soin et des produits adaptés.",
     metaDescription:
-      "Nettoyage résidentiel professionnel à Bruxelles et périphérie. Maisons, appartements, studios — sols, sanitaires, cuisine. Devis gratuit en ligne.",
+      "Service de nettoyage résidentiel à Bruxelles. Maisons et appartements, particuliers. Produits éco-responsables. Devis gratuit en 2h.",
     href: "/services/nettoyage-residentiel",
     image: serviceImageAssets.houseCleaning,
     quote:
@@ -177,11 +182,12 @@ export const services: Service[] = [
   },
   {
     name: "Nettoyage post-travaux",
-    metaTitle: "Nettoyage après travaux à Bruxelles — Chantier & rénovation | CleanNgo",
+    h1: "Nettoyage après travaux à Bruxelles — Rapide & Soigné",
+    metaTitle: "Nettoyage après travaux à Bruxelles — Rénovation | CleanNgo",
     description:
       "Après un chantier de rénovation ou de construction, les poussières fines et résidus s'accumulent partout. Notre service de nettoyage post-travaux élimine plâtre, silicone, colle, peinture et débris sur chaque surface : sols, fenêtres, interrupteurs, plinthes et faux-plafonds. Vous récupérez un espace prêt à habiter ou à livrer, sans traces ni résidus.",
     metaDescription:
-      "Nettoyage après travaux à Bruxelles et périphérie. Élimination plâtre, silicone, peinture sur toutes surfaces. Espace livré prêt à habiter. Devis gratuit.",
+      "Nettoyage post-travaux à Bruxelles. Remise en état après chantier, rénovation ou construction. Intervention rapide. Devis gratuit.",
     href: "/services/nettoyage-post-travaux",
     image: serviceImageAssets.postWork,
     quote:
@@ -214,11 +220,12 @@ export const services: Service[] = [
   },
   {
     name: "Nettoyage État des Lieux",
-    metaTitle: "Nettoyage état des lieux à Bruxelles — Entrée & sortie | CleanNgo",
+    h1: "Nettoyage état des lieux à Bruxelles — Garantie Caution",
+    metaTitle: "Nettoyage état des lieux à Bruxelles — Caution | CleanNgo",
     description:
       "Un état des lieux réussi repose sur une restitution impeccable ou une préparation irréprochable. Notre service couvre le nettoyage complet d'un bien en fin de bail pour un état des lieux de sortie sans accroc, ou la remise en état d'un logement avant votre entrée. Placards, salle de bain, cuisine, sols et vitres : chaque surface est traitée pour que le résultat soit incontestable.",
     metaDescription:
-      "Nettoyage état des lieux à Bruxelles et périphérie. Remise en état complète pour sortie ou entrée de location. Certification de propreté disponible.",
+      "Nettoyage professionnel pour état des lieux à Bruxelles. Maximisez vos chances de récupérer votre caution. Devis gratuit en 2h.",
     href: "/services/nettoyage-etat-des-lieux",
     image: serviceImageAssets.movingIn,
     quote:
@@ -251,11 +258,12 @@ export const services: Service[] = [
   },
   {
     name: "Bureaux & Commerces",
-    metaTitle: "Nettoyage de bureaux et commerces à Bruxelles | CleanNgo",
+    h1: "Nettoyage de bureaux et commerces à Bruxelles",
+    metaTitle: "Nettoyage bureaux Bruxelles — Contrats Entreprise | CleanNgo",
     description:
       "Un espace de travail propre et sain améliore la productivité, l'image de votre entreprise et le bien-être de vos collaborateurs. Nous intervenons dans vos bureaux, open spaces, salles de réunion, sanitaires et espaces communs selon un planning adapté à votre activité — tôt le matin, en soirée ou le week-end. Contrats d'entretien régulier ou interventions ponctuelles disponibles.",
     metaDescription:
-      "Nettoyage de bureaux et commerces à Bruxelles. Postes de travail, sanitaires, espaces communs. Contrats réguliers ou ponctuels. Devis gratuit.",
+      "Nettoyage professionnel de bureaux et commerces à Bruxelles. Contrats d'entretien sur mesure pour entreprises. Devis gratuit.",
     href: "/services/bureaux-commerces",
     image: serviceImageAssets.officeCleaning,
     quote:
@@ -288,11 +296,12 @@ export const services: Service[] = [
   },
   {
     name: "Nettoyage de Façades",
-    metaTitle: "Nettoyage de façades à Bruxelles — Prix & devis | CleanNgo",
+    h1: "Nettoyage de façades à Bruxelles — Crépi, Brique & Pierre",
+    metaTitle: "Nettoyage façade à Bruxelles — Crépi & Brique | CleanNgo",
     description:
       "Les façades exposées aux intempéries accumulent avec le temps mousses, algues, pollution et salissures qui ternissent l'esthétique de votre bâtiment. Notre équipe réalise des interventions techniques par nettoyage haute pression, traitement chimique adapté ou sablage selon la nature du support — crépi, pierre, brique ou béton. Redonnez de l'éclat à votre façade et protégez votre patrimoine immobilier.",
     metaDescription:
-      "Nettoyage de façades à Bruxelles et périphérie. Haute pression, traitement algues et mousses sur crépi, pierre, brique et béton. Devis gratuit.",
+      "Nettoyage haute pression de façades à Bruxelles. Crépi, brique, pierre et béton. Traitement mousses et algues. Devis gratuit sans engagement.",
     href: "/services/nettoyage-facade",
     image: serviceImageAssets.facadeCleaning,
     quote:
@@ -330,11 +339,12 @@ export const services: Service[] = [
   },
   {
     name: "Terrasses & Allées",
-    metaTitle: "Nettoyage terrasses et allées à Bruxelles | CleanNgo",
+    h1: "Nettoyage de terrasses et allées à Bruxelles",
+    metaTitle: "Nettoyage terrasse à Bruxelles — Haute Pression | CleanNgo",
     description:
       "Terrasses en bois, dalles béton, pavés, carrelages extérieurs ou allées : chaque surface mérite un entretien adapté. Grâce au nettoyage haute pression, nous éliminons mousses, taches verdâtres, huiles et incrustations pour redonner à vos espaces extérieurs un aspect propre et sécurisé. Un traitement imperméabilisant peut être appliqué en complément pour une protection longue durée.",
     metaDescription:
-      "Nettoyage de terrasses et allées à Bruxelles. Haute pression sur bois, dalles, pavés et carrelage. Option imperméabilisant. Devis gratuit.",
+      "Nettoyage haute pression de terrasses et allées à Bruxelles. Carrelage, dallage, bois et pierre. Devis gratuit sans engagement.",
     href: "/services/nettoyage-terrasse",
     image: serviceImageAssets.outsideCleaning,
     quote:
@@ -367,11 +377,12 @@ export const services: Service[] = [
   },
   {
     name: "Vérandas & Coupoles",
-    metaTitle: "Nettoyage vérandas et coupoles à Bruxelles | CleanNgo",
+    h1: "Nettoyage de vérandas et coupoles à Bruxelles",
+    metaTitle: "Nettoyage véranda à Bruxelles — Vitres & Structure | CleanNgo",
     description:
       "Les vérandas et coupoles accumulent poussières, dépôts calcaires et algues sur leurs surfaces vitrées et leur structure en aluminium ou PVC. Notre nettoyage intérieur et extérieur restaure la transparence de vos vitrages et l'éclat de votre charpente, pour profiter pleinement de la luminosité naturelle. Nous intervenons en hauteur en toute sécurité, avec des produits adaptés à chaque matériau.",
     metaDescription:
-      "Nettoyage de vérandas et coupoles à Bruxelles et périphérie. Vitrages intérieur/extérieur, dépôts calcaires, structure aluminium ou PVC. Devis gratuit.",
+      "Nettoyage professionnel de vérandas et coupoles à Bruxelles. Élimination mousses, dépôts verts et saletés. Devis gratuit en 2h.",
     href: "/services/nettoyage-veranda",
     image: serviceImageAssets.verandaCleaning,
     quote:
@@ -404,11 +415,12 @@ export const services: Service[] = [
   },
   {
     name: "Corniches & Gouttières",
-    metaTitle: "Débouchage et nettoyage gouttières à Bruxelles | CleanNgo",
+    h1: "Débouchage et nettoyage de gouttières à Bruxelles",
+    metaTitle: "Nettoyage gouttières à Bruxelles — Débouchage | CleanNgo",
     description:
       "Des gouttières obstruées par les feuilles, mousses et débris sont à l'origine de débordements, infiltrations et dégâts des eaux coûteux. Notre service de débouchage et nettoyage de gouttières et corniches garantit une évacuation optimale des eaux de pluie et prolonge la durée de vie de vos installations. Nous réalisons également un contrôle visuel des fixations et signalons toute anomalie détectée.",
     metaDescription:
-      "Débouchage et nettoyage de gouttières à Bruxelles. Évacuation optimale, contrôle des fixations. Intervention sécurisée en hauteur. Devis gratuit.",
+      "Débouchage et nettoyage de gouttières à Bruxelles et périphérie. Évitez les dégâts des eaux. Intervention rapide. Devis gratuit.",
     href: "/services/nettoyage-gouttieres",
     image: serviceImageAssets.corniere,
     quote:
