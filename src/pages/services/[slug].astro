@@ -6,6 +6,7 @@ import Button from "@components/ui/Button.astro";
 import CTA from "@/components/sections/CTA.astro";
 import ServiceAreas from "@/components/sections/ServiceAreas.astro";
 import { services } from "@/data/services";
+import { reviews } from "@/data/reviews";
 
 export function getStaticPaths() {
   return services.map((service) => {
@@ -18,34 +19,15 @@ export function getStaticPaths() {
 }
 
 const { service } = Astro.props;
+const slug = service.href.replace("/services/", "");
+const serviceReviews = reviews
+  .filter((r) => !r.service || r.service === slug)
+  .slice(0, 3);
 
 // Preload the LCP hero image using the actual optimized URL from Astro's image pipeline
 const heroOptimized = await getImage({ src: service.image, width: 1200, format: "webp" });
 const heroPreloadHref = heroOptimized.src;
 const heroPreloadType = "image/webp";
-
-const howItWorksSteps = [
-  {
-    number: "01",
-    title: "Réservez en ligne",
-    description: "Choisissez votre créneau en moins de 60 secondes sur notre plateforme.",
-  },
-  {
-    number: "02",
-    title: "Nettoyage expert",
-    description: "Votre agent arrive avec tout le matériel et nos produits éco-responsables.",
-  },
-  {
-    number: "03",
-    title: "Résultat impeccable",
-    description: "Tout est nettoyé et rangé selon vos standards. Il ne vous reste qu'à profiter.",
-  },
-  {
-    number: "04",
-    title: "Tranquillité durable",
-    description: "Le même agent de confiance à chaque passage pour un service personnalisé.",
-  },
-];
 
 const faqItems = service.faqItems;
 ---
@@ -152,6 +134,12 @@ const faqItems = service.faqItems;
         priceCurrency: "EUR",
         availability: "https://schema.org/InStock",
       },
+      review: serviceReviews.map((r) => ({
+        "@type": "Review",
+        author: { "@type": "Person", name: r.author },
+        reviewRating: { "@type": "Rating", ratingValue: String(r.rating), bestRating: "5" },
+        reviewBody: r.text,
+      })),
     })}
   />
   <Container class="mt-12 items-center">
@@ -263,17 +251,17 @@ const faqItems = service.faqItems;
       <!-- How it works -->
       <div class="flex flex-col items-center py-12">
         <h2 data-reveal="words" class="font-display mb-10 text-2xl font-bold md:text-5xl">
-          Comment fonctionne notre {service.name.toLowerCase()} ?
+          Comment fonctionne {service.processTitle} ?
         </h2>
         <div data-reveal="cards" class="flex w-full flex-col gap-4">
           {
-            howItWorksSteps.map((step, index) => (
+            service.process.map((step, index) => (
               <div
                 class="sticky flex flex-col gap-12 rounded-3xl bg-(--color-surface-secondary) p-8 lg:p-10"
                 style={`top: calc(7.5rem + ${index * 0.5}rem); z-index: ${10 + index};`}
               >
                 <span class="font-display text-7xl leading-none font-bold text-(--color-accent) lg:text-8xl">
-                  {step.number}
+                  {step.step}
                 </span>
                 <div class="flex flex-col gap-4">
                   <h3 class="font-display m-0 text-5xl font-bold text-(--color-text-primary) lg:text-7xl">

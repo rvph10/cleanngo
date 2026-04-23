@@ -4,6 +4,7 @@ import Header from "@components/layout/Header.astro";
 import Footer from "@components/layout/Footer.astro";
 import { imageAssets } from "@/data/images";
 import type { SEOMeta } from "@/types/index";
+import { googleAggregate } from "@/data/reviews";
 
 interface Props extends SEOMeta {
   class?: string;
@@ -116,10 +117,10 @@ const pageTitle = hasSiteName ? title : `${title} | ${siteName}`;
         },
         aggregateRating: {
           "@type": "AggregateRating",
-          ratingValue: "4.9",
+          ratingValue: String(googleAggregate.ratingValue),
           bestRating: "5",
-          worstRating: "4",
-          ratingCount: "15",
+          worstRating: "1",
+          ratingCount: String(googleAggregate.ratingCount),
         },
         areaServed: [
           "Bruxelles",

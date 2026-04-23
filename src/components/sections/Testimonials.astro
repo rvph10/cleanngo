@@ -1,71 +1,10 @@
 ---
 import SectionLabel from "@components/ui/SectionLabel.astro";
 import { imageAssets } from "@/data/images";
+import { reviews, reviewColumns } from "@/data/reviews";
 
 const starPath =
   "M9.69824 5.26074C9.84349 5.5561 10.1255 5.76082 10.4512 5.80859L14.2598 6.36719L11.502 9.06348C11.2674 9.293 11.1606 9.62275 11.2158 9.94629L11.8652 13.752L8.46387 11.957C8.17179 11.8029 7.82233 11.8029 7.53027 11.957L4.12891 13.752L4.7793 9.94629C4.8345 9.62285 4.72764 9.29298 4.49316 9.06348L1.73535 6.36719L5.54395 5.80859C5.86948 5.76081 6.15062 5.55594 6.2959 5.26074L7.99707 1.80078L9.69824 5.26074Z";
-
-interface Review {
-  stars: number;
-  text: string;
-  author: string;
-}
-
-const columns: Review[][] = [
-  [
-    {
-      stars: 5,
-      text: "J'ai deux enfants et un chat, donc mon appartement se salit très vite. CleanNgo est le premier service qui nettoie vraiment en profondeur sans que j'aie besoin de revérifier derrière eux. Un vrai soulagement.",
-      author: "Marie D.",
-    },
-    {
-      stars: 5,
-      text: "Rapides, polis et incroyablement minutieux.",
-      author: "Thomas B.",
-    },
-    {
-      stars: 4,
-      text: "Rentrer chez moi après leur passage change vraiment mon humeur. Tout semble plus léger et l'appartement paraît plus grand. Le seul bémol : je n'ai pas reçu de rappel la veille, mais le résultat était parfait.",
-      author: "Camille V.",
-    },
-  ],
-  [
-    {
-      stars: 5,
-      text: "J'étais sceptique au départ — chaque service que j'avais essayé avant était soit bâclé, soit négligent. Cette équipe m'a vraiment surpris. Ils ont organisé chaque surface et ma petite cuisine n'a jamais semblé aussi lumineuse.",
-      author: "Laurent P.",
-    },
-    {
-      stars: 4,
-      text: "Exactement ce dont j'avais besoin après une semaine épuisante. Un léger retard à l'arrivée, mais le résultat final était impeccable. Je les rappelle sans hésiter.",
-      author: "Sophie M.",
-    },
-    {
-      stars: 5,
-      text: "Ils ont géré la poussière post-travaux comme des professionnels. Zéro trace, ce qui m'a franchement bluffé.",
-      author: "Nathalie K.",
-    },
-  ],
-  [
-    {
-      stars: 5,
-      text: "Ils utilisent des produits naturels, ce qui est essentiel avec mes allergies. L'appartement sent le propre sans cette odeur chimique agressive. Je recommande vraiment.",
-      author: "Alexia R.",
-    },
-    {
-      stars: 4,
-      text: "Rentrer chez moi après le nettoyage, c'est comme découvrir un autre appartement. Vraiment agréable — juste un créneau légèrement décalé par rapport à ce qui était prévu.",
-      author: "Julia S.",
-    },
-    {
-      stars: 5,
-      text: "Mon appartement n'a jamais été aussi calme et ordonné. Je comprends maintenant pourquoi on dit que l'ordre extérieur apaise l'esprit.",
-      author: "Pierre F.",
-    },
-  ],
-];
-
-const allReviews = columns.flat();
 ---
 
 <section class="w-full py-12">
@@ -92,7 +31,7 @@ const allReviews = columns.flat();
 
   <div class="testimonials-marquee hidden gap-4 md:grid md:grid-cols-3">
     {
-      columns.map((col, colIdx) => (
+      reviewColumns.map((col, colIdx) => (
         <div class="mask-fade relative h-170 overflow-hidden">
           <div class={`marquee-col-${colIdx + 1} flex flex-col`}>
             {/* First set */}
@@ -110,7 +49,7 @@ const allReviews = columns.flat();
                         >
                           <path
                             d={starPath}
-                            fill={i < review.stars ? "currentColor" : "none"}
+                            fill={i < review.rating ? "currentColor" : "none"}
                             stroke="currentColor"
                             stroke-linecap="round"
                             stroke-linejoin="round"
@@ -144,7 +83,7 @@ const allReviews = columns.flat();
                         >
                           <path
                             d={starPath}
-                            fill={i < review.stars ? "currentColor" : "none"}
+                            fill={i < review.rating ? "currentColor" : "none"}
                             stroke="currentColor"
                             stroke-linecap="round"
                             stroke-linejoin="round"
@@ -175,7 +114,7 @@ const allReviews = columns.flat();
       style="scrollbar-width: none;"
     >
       {
-        allReviews.map((review) => (
+        reviews.map((review) => (
           <div class="w-full shrink-0 snap-start">
             <div class="flex flex-col gap-6 rounded-2xl bg-(--color-surface) p-6">
               <div class="flex flex-col gap-4">
@@ -189,7 +128,7 @@ const allReviews = columns.flat();
                     >
                       <path
                         d={starPath}
-                        fill={i < review.stars ? "currentColor" : "none"}
+                        fill={i < review.rating ? "currentColor" : "none"}
                         stroke="currentColor"
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -247,7 +186,7 @@ const allReviews = columns.flat();
         </button>
       </div>
       <span id="slide-counter" class="text-sm font-semibold text-(--color-text-primary)/70">
-        1 / {allReviews.length}
+        1 / {reviews.length}
       </span>
     </div>
   </div>
