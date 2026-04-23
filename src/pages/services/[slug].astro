@@ -253,9 +253,9 @@ const faqItems = service.faqItems;
             <h2 data-reveal="words" class="font-display mb-8 text-xl font-bold md:text-2xl">
               En savoir plus sur {service.name.toLowerCase()}
             </h2>
-            <div data-reveal="cards" class="mb-10 flex flex-col gap-5">
+            <div class="mb-10 flex flex-col gap-5">
               {service.editorial.split("\n\n").map((paragraph) => (
-                <p class="font-accent m-0 text-lg leading-relaxed text-(--color-text-primary)/70">
+                <p data-reveal="fade" class="font-accent m-0 text-lg leading-relaxed text-(--color-text-primary)/70">
                   {paragraph}
                 </p>
               ))}
