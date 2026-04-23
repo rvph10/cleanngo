@@ -20,9 +20,7 @@ export function getStaticPaths() {
 
 const { service } = Astro.props;
 const slug = service.href.replace("/services/", "");
-const serviceReviews = reviews
-  .filter((r) => !r.service || r.service === slug)
-  .slice(0, 3);
+const serviceReviews = reviews.filter((r) => !r.service || r.service === slug).slice(0, 3);
 
 // Preload the LCP hero image using the actual optimized URL from Astro's image pipeline
 const heroOptimized = await getImage({ src: service.image, width: 1200, format: "webp" });
@@ -149,7 +147,7 @@ const faqItems = service.faqItems;
         data-reveal="words"
         class="font-display text-5xl leading-[0.9] font-bold uppercase md:text-7xl lg:text-8xl"
       >
-        {service.h1 ?? `${service.name} à Bruxelles et périphérie`}
+        {service.processTitle ?? `${service.name} à Bruxelles et périphérie`}
       </h1>
 
       <div data-reveal="cards" class="flex flex-wrap justify-center gap-4">
