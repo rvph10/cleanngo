@@ -60,20 +60,4 @@ const areas = [
       }
     </ul>
   </div>
-  <!-- Hidden SEO node -->
-  <ul class="sr-only" aria-hidden="true">
-    {areas.map((area, i) => {
-      const keywords = [
-        "Nettoyage de vitres",
-        "Démoussage de toiture",
-        "Nettoyage de façade",
-        "Nettoyage de panneaux solaires",
-        "Débouchage de gouttières",
-        "Nettoyage de terrasse",
-        "Nettoyage état des lieux",
-        "Nettoyage après travaux",
-      ];
-      return <li>{keywords[i % keywords.length]} à {area}</li>;
-    })}
-  </ul>
 </section>
