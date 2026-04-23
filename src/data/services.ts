@@ -140,7 +140,7 @@ export const services: Service[] = [
   },
   {
     name: "Nettoyage résidentiel",
-    metaTitle: "Nettoyage résidentiel à Bruxelles — Maisons & appartements | CleanNgo",
+    metaTitle: "Nettoyage résidentiel Bruxelles — Maisons & Appart | CleanNgo",
     description:
       "Profitez d'un intérieur sain et impeccable grâce à notre service de nettoyage résidentiel professionnel. Que ce soit pour un entretien régulier hebdomadaire ou une intervention ponctuelle, notre équipe prend en charge maisons, appartements et studios. Sols, sanitaires, cuisine et pièces à vivre : chaque surface est traitée avec soin et des produits adaptés.",
     metaDescription:
@@ -177,7 +177,7 @@ export const services: Service[] = [
   },
   {
     name: "Nettoyage post-travaux",
-    metaTitle: "Nettoyage après travaux à Bruxelles — Chantier & rénovation | CleanNgo",
+    metaTitle: "Nettoyage après travaux Bruxelles — Rénovation | CleanNgo",
     description:
       "Après un chantier de rénovation ou de construction, les poussières fines et résidus s'accumulent partout. Notre service de nettoyage post-travaux élimine plâtre, silicone, colle, peinture et débris sur chaque surface : sols, fenêtres, interrupteurs, plinthes et faux-plafonds. Vous récupérez un espace prêt à habiter ou à livrer, sans traces ni résidus.",
     metaDescription:
@@ -214,7 +214,7 @@ export const services: Service[] = [
   },
   {
     name: "Nettoyage État des Lieux",
-    metaTitle: "Nettoyage état des lieux à Bruxelles — Entrée & sortie | CleanNgo",
+    metaTitle: "Nettoyage état des lieux Bruxelles — Caution | CleanNgo",
     description:
       "Un état des lieux réussi repose sur une restitution impeccable ou une préparation irréprochable. Notre service couvre le nettoyage complet d'un bien en fin de bail pour un état des lieux de sortie sans accroc, ou la remise en état d'un logement avant votre entrée. Placards, salle de bain, cuisine, sols et vitres : chaque surface est traitée pour que le résultat soit incontestable.",
     metaDescription:
