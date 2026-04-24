@@ -5,6 +5,7 @@ import Container from "@components/ui/Container.astro";
 import Button from "@components/ui/Button.astro";
 import CTA from "@/components/sections/CTA.astro";
 import ServiceAreas from "@/components/sections/ServiceAreas.astro";
+import RelatedServices from "@/components/sections/RelatedServices.astro";
 import { services } from "@/data/services";
 import { reviews } from "@/data/reviews";
 
@@ -21,6 +22,10 @@ export function getStaticPaths() {
 const { service } = Astro.props;
 const slug = service.href.replace("/services/", "");
 const serviceReviews = reviews.filter((r) => !r.service || r.service === slug).slice(0, 3);
+
+const related = (service.relatedServices ?? [])
+  .map((s) => services.find((item) => item.href === "/services/" + s))
+  .filter((s): s is (typeof services)[0] => s !== undefined);
 
 // Preload the LCP hero image using the actual optimized URL from Astro's image pipeline
 const heroOptimized = await getImage({ src: service.image, width: 1200, format: "webp" });
@@ -343,6 +348,7 @@ const faqItems = service.faqItems;
         </div>
       </div>
     </div>
+    {related.length > 0 && <RelatedServices relatedServices={related} />}
     <ServiceAreas />
     <CTA />
   </Container>
