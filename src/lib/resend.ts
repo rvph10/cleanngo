@@ -125,7 +125,7 @@ export async function sendConfirmationEmail(data: ContactFormData): Promise<void
   const { error } = await resend.emails.send({
     from: "CleanNgo <noreply@cleanngo.be>",
     to: [data.email],
-    replyTo: "clean-ngo@outlook.com",
+    replyTo: "contact@cleanngo.be",
     subject: "Nous avons bien reçu votre demande — CleanNgo",
     html: `
       <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a">
