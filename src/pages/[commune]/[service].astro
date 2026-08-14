@@ -1,0 +1,490 @@
+---
+import { Image, getImage } from "astro:assets";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Button from "@components/ui/Button.astro";
+import SectionLabel from "@components/ui/SectionLabel.astro";
+import CTA from "@/components/sections/CTA.astro";
+import { services } from "@/data/services";
+import { getRotatingReviews } from "@/data/reviews";
+import { communes, communeServiceContent, priorityServiceSlugs } from "@/data/communes";
+
+export function getStaticPaths() {
+  const paths: {
+    params: { commune: string; service: string };
+    props: { communeSlug: string; serviceSlug: string };
+  }[] = [];
+
+  for (const commune of communes) {
+    const entries = communeServiceContent[commune.slug];
+    if (!entries) continue;
+    for (const serviceSlug of priorityServiceSlugs) {
+      if (entries[serviceSlug]) {
+        paths.push({
+          params: { commune: commune.slug, service: serviceSlug },
+          props: { communeSlug: commune.slug, serviceSlug },
+        });
+      }
+    }
+  }
+
+  return paths;
+}
+
+const { communeSlug, serviceSlug } = Astro.props;
+
+const commune = communes.find((c) => c.slug === communeSlug)!;
+const content = communeServiceContent[communeSlug]![serviceSlug]!;
+const service = services.find((s) => s.href === `/services/${serviceSlug}`)!;
+
+const faqItems = [...service.faqItems.slice(0, 2), content.uniqueFaq];
+
+const reviews = getRotatingReviews(`${communeSlug}-${serviceSlug}`, 3);
+
+const neighborCommunes = commune.neighbors
+  .map((slug) => communes.find((c) => c.slug === slug))
+  .filter((c): c is (typeof communes)[0] => c !== undefined);
+
+const heroOptimized = await getImage({ src: service.image, width: 1200, format: "webp" });
+const heroPreloadHref = heroOptimized.src;
+const heroPreloadType = "image/webp";
+---
+
+<BaseLayout title={content.metaTitle} description={content.metaDescription} image={service.image.src}>
+  <link slot="head" rel="preload" as="image" href={heroPreloadHref} type={heroPreloadType} />
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqItems.map(({ question, answer }) => ({
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: { "@type": "Answer", text: answer },
+      })),
+    })}
+  />
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Accueil", item: "https://cleanngo.be" },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: service.name,
+          item: `https://cleanngo.be${service.href}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: `${service.name} à ${commune.name}`,
+          item: `https://cleanngo.be/${commune.slug}/${serviceSlug}`,
+        },
+      ],
+    })}
+  />
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: `${service.name} à ${commune.name}`,
+      description: content.metaDescription,
+      url: `https://cleanngo.be/${commune.slug}/${serviceSlug}/`,
+      provider: {
+        "@type": "LocalBusiness",
+        name: "CleanNgo",
+        url: "https://cleanngo.be",
+        telephone: "+32486518181",
+        areaServed: {
+          "@type": "City",
+          name: commune.name,
+          postalCode: commune.postalCode,
+        },
+      },
+      areaServed: { "@type": "City", name: commune.name, postalCode: commune.postalCode },
+      serviceType: service.name,
+      image: `https://cleanngo.be${service.image.src}`,
+      priceRange: "€€",
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        areaServed: { "@type": "City", name: commune.name },
+      },
+      review: reviews.map((r) => ({
+        "@type": "Review",
+        author: { "@type": "Person", name: r.author },
+        reviewRating: { "@type": "Rating", ratingValue: String(r.rating), bestRating: "5" },
+        reviewBody: r.text,
+      })),
+    })}
+  />
+
+  <Container class="mt-12 items-center">
+    <!-- Headline -->
+    <div class="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
+      <h1
+        data-reveal="words"
+        class="font-display text-5xl leading-[0.9] font-bold uppercase md:text-7xl lg:text-8xl"
+      >
+        {content.h1}
+      </h1>
+
+      <div data-reveal="cards" class="flex flex-wrap justify-center gap-4">
+        <Button
+          href="/contact"
+          size="lg"
+          data-umami-event="cta_click"
+          data-umami-event-location="commune_service_hero"
+          data-umami-event-destination="contact"
+          data-umami-event-commune={commune.slug}
+          data-umami-event-service={serviceSlug}
+        >
+          Réserver
+        </Button>
+        <Button
+          href={service.href}
+          size="lg"
+          variant="secondary"
+          data-umami-event="services_all_click"
+          data-umami-event-location="commune_service_hero"
+          data-umami-event-destination="service"
+          data-umami-event-commune={commune.slug}
+          data-umami-event-service={serviceSlug}
+        >
+          Voir {service.name.toLowerCase()}
+        </Button>
+      </div>
+    </div>
+
+    <!-- Hero image -->
+    <div data-reveal="wipe" class="mt-6 w-full max-w-5xl overflow-hidden rounded-3xl">
+      <Image
+        src={service.image}
+        alt={`${service.name} à ${commune.name}`}
+        widths={[480, 800, 1200, 1400]}
+        width={1400}
+        height={1867}
+        sizes="(max-width: 480px) 480px, (max-width: 767px) 100vw, (max-width: 1280px) 80vw, 1024px"
+        quality={50}
+        loading="eager"
+        fetchpriority="high"
+        class="h-72 w-full object-cover md:h-130 lg:h-160"
+      />
+    </div>
+
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-8">
+    <!-- Local intro -->
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-5 py-8 text-center">
+      {
+        content.intro.map((paragraph) => (
+          <p
+            data-reveal="fade"
+            class="font-accent m-0 text-lg leading-relaxed text-(--color-text-primary)/70"
+          >
+            {paragraph}
+          </p>
+        ))
+      }
+      <div data-reveal="fade" class="mt-3 flex justify-center">
+        <Button
+          href="/contact"
+          size="lg"
+          data-umami-event="cta_click"
+          data-umami-event-location="commune_service_intro"
+          data-umami-event-destination="contact"
+          data-umami-event-commune={commune.slug}
+          data-umami-event-service={serviceSlug}
+        >
+          Réserver à {commune.name}
+        </Button>
+      </div>
+    </div>
+
+    <!-- What's included (reused from the service) -->
+    {
+      service.features && service.features.length > 0 && (
+        <section class="w-full rounded-3xl bg-(--color-surface-secondary) p-8 lg:p-10">
+          <div class="mb-10 flex flex-col items-center gap-4 text-center">
+            <SectionLabel text="Ce qui est inclus" bg="bg-(--color-background)" />
+            <h2
+              data-reveal="words"
+              class="font-display m-0 text-5xl leading-[0.9] font-bold uppercase lg:text-6xl"
+            >
+              À {commune.name}
+            </h2>
+          </div>
+          <ul data-reveal="cards" class="flex flex-col gap-4">
+            {service.features.map((feature) => (
+              <li class="flex w-full items-center gap-6 rounded-2xl bg-(--color-background) px-6 py-5">
+                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-(--color-accent) text-(--color-text-primary)">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M20 6L9 17L4 12"
+                      stroke="currentColor"
+                      stroke-width="5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span class="text-xl leading-snug font-semibold md:text-2xl">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <!-- How it works (reused from the service) -->
+    <section class="w-full">
+      <div class="mb-10 flex flex-col items-center gap-4 text-center">
+        <SectionLabel text="Le déroulé" />
+        <h2
+          data-reveal="words"
+          class="font-display m-0 text-5xl leading-[0.9] font-bold uppercase lg:text-6xl"
+        >
+          Comment fonctionne {service.processTitle} à {commune.name}
+        </h2>
+      </div>
+      <div data-reveal="cards" class="flex w-full flex-col gap-4">
+        {
+          service.process.map((step, index) => (
+            <div
+              class="sticky flex flex-col gap-12 rounded-3xl bg-(--color-surface-secondary) p-8 lg:p-10"
+              style={`top: calc(7.5rem + ${index * 0.5}rem); z-index: ${10 + index};`}
+            >
+              <span class="font-display text-7xl leading-none font-bold text-(--color-accent) lg:text-8xl">
+                {step.step}
+              </span>
+              <div class="flex flex-col gap-4">
+                <h3 class="font-display m-0 text-5xl font-bold text-(--color-text-primary) lg:text-7xl">
+                  {step.title}
+                </h3>
+                <p class="m-0 text-lg leading-relaxed text-(--color-text-primary)/60">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Testimonials (rotating pool, no duplicated order across pages) -->
+    <section class="w-full">
+      <div class="mb-10 flex flex-col items-center gap-4 text-center">
+        <SectionLabel text="Témoignages" bg="bg-(--color-surface-secondary)" />
+        <h2
+          data-reveal="words"
+          class="font-display m-0 text-5xl leading-[0.9] font-bold uppercase lg:text-6xl"
+        >
+          Ils nous ont fait confiance
+        </h2>
+      </div>
+      <div data-reveal="cards" class="grid w-full grid-cols-1 gap-4 md:grid-cols-3">
+        {
+          reviews.map((review) => (
+            <div class="flex flex-col gap-6 rounded-2xl bg-(--color-surface-secondary) p-6">
+              <div class="flex flex-col gap-4">
+                <div class="flex gap-1">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <svg class="h-4 w-4 text-amber-400" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M9.69824 5.26074C9.84349 5.5561 10.1255 5.76082 10.4512 5.80859L14.2598 6.36719L11.502 9.06348C11.2674 9.293 11.1606 9.62275 11.2158 9.94629L11.8652 13.752L8.46387 11.957C8.17179 11.8029 7.82233 11.8029 7.53027 11.957L4.12891 13.752L4.7793 9.94629C4.8345 9.62285 4.72764 9.29298 4.49316 9.06348L1.73535 6.36719L5.54395 5.80859C5.86948 5.76081 6.15062 5.55594 6.2959 5.26074L7.99707 1.80078L9.69824 5.26074Z"
+                        fill={i < review.rating ? "currentColor" : "none"}
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  ))}
+                </div>
+                <p class="m-0 text-base leading-relaxed text-(--color-text-primary)">
+                  "{review.text}"
+                </p>
+              </div>
+              <p class="m-0 text-sm font-semibold text-(--color-text-primary)/70">
+                {review.author} (Avis Google)
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- FAQ: 2 general questions reused + 1 commune-specific -->
+    <section class="w-full">
+      <div class="rounded-3xl bg-(--color-surface-secondary) px-6 py-16 md:px-12 md:py-24">
+        <div class="mx-auto mb-16 flex max-w-2xl flex-col items-center gap-4 text-center">
+          <SectionLabel text="FAQ" />
+          <h2
+            data-reveal="words"
+            class="font-display text-5xl leading-[0.8] font-bold tracking-tight uppercase lg:text-[64px]"
+          >
+            Questions sur {commune.name}
+          </h2>
+        </div>
+        <div class="mx-auto flex max-w-2xl flex-col gap-3">
+          {
+            faqItems.map((faq) => (
+              <div class="commune-faq-item rounded-xl bg-white px-6 py-5">
+                <button
+                  class="commune-faq-trigger flex w-full items-center justify-between gap-6 text-left"
+                  aria-expanded="false"
+                >
+                  <span class="text-lg leading-snug font-semibold md:text-2xl">{faq.question}</span>
+                  <span class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-(--color-accent)">
+                    <span class="absolute h-0.5 w-3 rounded-full bg-(--color-text-primary)" />
+                    <span class="commune-faq-v-bar absolute h-3 w-0.5 rounded-full bg-(--color-text-primary) transition-transform duration-300" />
+                  </span>
+                </button>
+                <div class="commune-faq-body grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+                  <div class="overflow-hidden">
+                    <p class="m-0 pt-5 text-lg leading-relaxed font-medium opacity-60">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Neighboring communes + general service link -->
+    <section class="w-full rounded-3xl bg-(--color-surface-secondary) p-8 lg:p-10">
+      <div class="mb-8 flex flex-col gap-4">
+        <SectionLabel text="Zones voisines" bg="bg-(--color-background)" />
+        <h2
+          data-reveal="words"
+          class="font-display m-0 text-5xl leading-[0.9] font-bold uppercase lg:text-6xl"
+        >
+          Également desservi autour de {commune.name}
+        </h2>
+      </div>
+      <div data-reveal="cards" class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          neighborCommunes.map((neighbor) => (
+            <a
+              href={`/${neighbor.slug}/${serviceSlug}`}
+              class="group flex flex-col gap-8 rounded-2xl bg-(--color-background) p-6 transition-colors duration-300 hover:bg-(--color-accent) lg:p-8"
+              data-umami-event="commune_neighbor_click"
+              data-umami-event-location="commune_service_neighbors"
+              data-umami-event-commune={commune.slug}
+              data-umami-event-destination={neighbor.slug}
+            >
+              <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-(--color-surface-secondary) text-(--color-text-primary)">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 32 32" fill="none">
+                  <path
+                    d="M25.334 13.3333C25.334 22.6666 16.0007 29.3333 16.0007 29.3333C16.0007 29.3333 6.66732 22.6666 6.66732 13.3333C6.66732 10.8464 7.65958 8.46079 9.42659 6.70379C11.1936 4.94679 13.5792 3.99997 16.0673 3.99997C18.5539 3.99997 20.9385 4.94679 22.7055 6.70379C24.4726 8.46079 25.3327 10.8464 25.334 13.3333Z"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M16.0007 17.3333C18.2098 17.3333 20.0007 15.5425 20.0007 13.3333C20.0007 11.1242 18.2098 9.33329 16.0007 9.33329C13.7915 9.33329 12.0007 11.1242 12.0007 13.3333C12.0007 15.5425 13.7915 17.3333 16.0007 17.3333Z"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <div class="flex flex-col gap-2">
+                <h3 class="font-display m-0 text-xl font-bold text-(--color-text-primary)">
+                  {neighbor.name}
+                </h3>
+                <p class="m-0 text-sm leading-relaxed font-semibold text-(--color-text-primary)/70">
+                  {service.name}
+                </p>
+              </div>
+            </a>
+          ))
+        }
+        <a
+          href={service.href}
+          class="group flex flex-col gap-8 rounded-2xl bg-(--color-text-primary) p-6 text-(--color-surface) transition-opacity duration-300 hover:opacity-85 lg:p-8"
+          data-umami-event="services_all_click"
+          data-umami-event-location="commune_service_neighbors"
+          data-umami-event-commune={commune.slug}
+          data-umami-event-service={serviceSlug}
+        >
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-(--color-surface)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 32 32" fill="none">
+              <path
+                d="M4 8L12 5.33333L20 8L28 5.33333V24L20 26.6667L12 24L4 26.6667V8Z"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 5.33333V24M20 8V26.6667"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-display m-0 text-xl font-bold">{service.name}</h3>
+            <p class="m-0 text-sm leading-relaxed font-semibold text-(--color-surface)/70">
+              Toute la région
+            </p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <CTA />
+    </div>
+  </Container>
+</BaseLayout>
+
+<style>
+  .commune-faq-item.is-open .commune-faq-body {
+    grid-template-rows: 1fr;
+  }
+  .commune-faq-item.is-open .commune-faq-v-bar {
+    transform: rotate(90deg);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".commune-faq-item").forEach((item) => {
+    item.querySelector(".commune-faq-trigger")?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+
+      document.querySelectorAll(".commune-faq-item").forEach((other) => {
+        other.classList.remove("is-open");
+        other.querySelector(".commune-faq-trigger")?.setAttribute("aria-expanded", "false");
+      });
+
+      if (!isOpen) {
+        item.classList.add("is-open");
+        item.querySelector(".commune-faq-trigger")?.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+</script>

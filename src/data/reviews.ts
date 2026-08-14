@@ -36,7 +36,7 @@ export const reviews: Review[] = [
     author: "Laurent P.",
     location: "Bruxelles",
     rating: 5,
-    text: "J'étais sceptique au départ — chaque service que j'avais essayé avant était soit bâclé, soit négligent. Cette équipe m'a vraiment surpris. Ils ont organisé chaque surface et ma petite cuisine n'a jamais semblé aussi lumineuse.",
+    text: "J'étais sceptique au départ : chaque service que j'avais essayé avant était soit bâclé, soit négligent. Cette équipe m'a vraiment surpris. Ils ont organisé chaque surface et ma petite cuisine n'a jamais semblé aussi lumineuse.",
     service: "nettoyage-residentiel",
   },
   {
@@ -63,7 +63,7 @@ export const reviews: Review[] = [
     author: "Julia S.",
     location: "Bruxelles",
     rating: 4,
-    text: "Rentrer chez moi après le nettoyage, c'est comme découvrir un autre appartement. Vraiment agréable — juste un créneau légèrement décalé par rapport à ce qui était prévu.",
+    text: "Rentrer chez moi après le nettoyage, c'est comme découvrir un autre appartement. Vraiment agréable, juste un créneau légèrement décalé par rapport à ce qui était prévu.",
   },
   {
     author: "Pierre F.",
@@ -79,3 +79,19 @@ export const reviewColumns: Review[][] = [
   reviews.slice(3, 6),
   reviews.slice(6, 9),
 ];
+
+/**
+ * Deterministic rotation so commune × service pages don't all show the same
+ * testimonials in the same order. No fabricated per-commune reviews are
+ * generated — this only reorders/samples the real review pool using a seed
+ * derived from the page (e.g. "ixelles-nettoyage-vitres").
+ */
+export function getRotatingReviews(seed: string, count = 3): Review[] {
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) {
+    hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+  }
+  const start = hash % reviews.length;
+  const rotated = reviews.slice(start).concat(reviews.slice(0, start));
+  return rotated.slice(0, count);
+}
