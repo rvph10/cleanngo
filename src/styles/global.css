@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 /* =========================================================
-   Font Faces — Local Assets
+   Font Faces: Local Assets
    ========================================================= */
 
 /* --- Decalotype Fix --- */
-/* ExtraBold (700) and Black (900) are preloaded in BaseLayout — keep
+/* ExtraBold (700) and Black (900) are preloaded in BaseLayout: keep
    font-display:block so invisible text holds until the preloaded file
    arrives, preventing a reflow that would break GSAP entrance timing.
    All other weights are NOT preloaded; swap shows the fallback
@@ -51,8 +51,8 @@
 }
 
 /* --- Bricolage Grotesque --- */
-/* Regular (400) and Bold (700) are preloaded — keep block.
-   Medium, SemiBold, ExtraBold are not preloaded — use swap. */
+/* Regular (400) and Bold (700) are preloaded: keep block.
+   Medium, SemiBold, ExtraBold are not preloaded: use swap. */
 @font-face {
   font-family: "Bricolage Grotesque";
   src: url("/fonts/BricolageGrotesque-Regular.woff2") format("woff2");
@@ -94,7 +94,7 @@
 }
 
 /* =========================================================
-   Design tokens — CSS custom properties for runtime theming
+   Design tokens: CSS custom properties for runtime theming
    ========================================================= */
 
 @layer base {
@@ -145,7 +145,7 @@
 }
 
 /* =========================================================
-   Header — scroll state
+   Header: scroll state
    Applied via JS when page is scrolled past the hero.
    ========================================================= */
 
@@ -161,13 +161,13 @@
 }
 
 /* =========================================================
-   Animation initial states — prevents FOUC by hiding
+   Animation initial states: prevents FOUC by hiding
    animated elements before GSAP's deferred script runs.
    GSAP's inline styles will override these once it fires.
    ========================================================= */
 
 @media (prefers-reduced-motion: no-preference) {
-  /* Hero entrance — hidden before GSAP sets its inline styles,
+  /* Hero entrance: hidden before GSAP sets its inline styles,
      prevents the visible→invisible→animate flash on hard refresh. */
   [data-hero-left] {
     opacity: 0;

@@ -4,7 +4,7 @@ import { gsap } from "gsap";
  * Splits an element's text content into per-word spans suitable for
  * typographic reveal animations. Returns the inner animated spans.
  *
- * ⚠️  Replaces innerHTML — only safe for plain-text elements (no HTML children).
+ * ⚠️  Replaces innerHTML: only safe for plain-text elements (no HTML children).
  */
 export function splitWords(el: HTMLElement): HTMLSpanElement[] {
   const text = el.innerText.trim();
@@ -25,11 +25,11 @@ export function splitWords(el: HTMLElement): HTMLSpanElement[] {
 }
 
 /**
- * Magnetic hover effect — element drifts toward the cursor and snaps back
+ * Magnetic hover effect: element drifts toward the cursor and snaps back
  * on leave with a slight elastic rebound.
  *
  * @param selector  CSS selector for elements to magnetise
- * @param strength  Movement factor (0–1). Lower = subtler. Default 0.2.
+ * @param strength  Movement factor (0 to 1). Lower = subtler. Default 0.2.
  */
 export function magneticEffect(selector: string, strength = 0.2): void {
   document.querySelectorAll<HTMLElement>(selector).forEach((el) => {

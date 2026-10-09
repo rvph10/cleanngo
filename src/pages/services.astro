@@ -28,7 +28,7 @@ import { services } from "@/data/services";
       </p>
     </div>
 
-    <!-- Services list — each card animates individually via ServiceCard's own script -->
+    <!-- Services list: each card animates individually via ServiceCard's own script -->
     <ul class="flex w-full max-w-7xl flex-col justify-center gap-5 self-center md:gap-6">
       {services.map((service, index) => <ServiceCard service={service} index={index} />)}
     </ul>

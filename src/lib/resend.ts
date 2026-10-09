@@ -41,7 +41,7 @@ export async function sendBookingEmail(data: ContactFormData): Promise<void> {
     from: fromEmail,
     to: [toEmail],
     ...(replyTo ? { replyTo } : {}),
-    subject: `Nouvelle demande de réservation — ${escapeHtml(data.name)} (${escapeHtml(data.city)})`,
+    subject: `Nouvelle demande de réservation : ${escapeHtml(data.name)} (${escapeHtml(data.city)})`,
     html: `
       <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a">
         <h2 style="margin-bottom:4px">Nouvelle demande de réservation</h2>
@@ -90,7 +90,7 @@ export async function sendBookingEmail(data: ContactFormData): Promise<void> {
       </div>
     `,
     text: [
-      "Nouvelle demande de réservation — cleanngo.be",
+      "Nouvelle demande de réservation sur cleanngo.be",
       "",
       `Nom      : ${data.name}`,
       `Téléphone: ${data.phone ?? "Non renseigné"}`,
@@ -126,7 +126,7 @@ export async function sendConfirmationEmail(data: ContactFormData): Promise<void
     from: "CleanNgo <noreply@cleanngo.be>",
     to: [data.email],
     replyTo: "contact@cleanngo.be",
-    subject: "Nous avons bien reçu votre demande — CleanNgo",
+    subject: "CleanNgo : nous avons bien reçu votre demande",
     html: `
       <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a">
         <h2 style="margin-bottom:4px">Merci, ${escapeHtml(data.name)} !</h2>
@@ -163,7 +163,7 @@ export async function sendConfirmationEmail(data: ContactFormData): Promise<void
         </p>
 
         <p style="margin-top:32px;font-size:13px;color:#999">
-          — L'équipe CleanNgo
+          L'équipe CleanNgo
         </p>
       </div>
     `,
@@ -179,7 +179,7 @@ export async function sendConfirmationEmail(data: ContactFormData): Promise<void
       "",
       "Une question ? Répondez à cet e-mail ou appelez-nous au +32 486 51 81 81.",
       "",
-      "— L'équipe CleanNgo",
+      "L'équipe CleanNgo",
     ]
       .filter((l) => l !== null)
       .join("\n"),

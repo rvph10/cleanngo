@@ -83,7 +83,7 @@ export const reviewColumns: Review[][] = [
 /**
  * Deterministic rotation so commune × service pages don't all show the same
  * testimonials in the same order. No fabricated per-commune reviews are
- * generated — this only reorders/samples the real review pool using a seed
+ * generated: this only reorders/samples the real review pool using a seed
  * derived from the page (e.g. "ixelles-nettoyage-vitres").
  */
 export function getRotatingReviews(seed: string, count = 3): Review[] {

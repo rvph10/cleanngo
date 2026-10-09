@@ -87,7 +87,7 @@ import { navServices, featuredServices, navLinks } from "../../data/nav";
     gsap.to(servicesChevron, { rotation: 0, duration: 0.25, ease: "power2.out" });
     if (!mobileOpen) hideOverlay();
 
-    // Instant close — no linger
+    // Instant close: no linger
     servicesPanel.classList.add("pointer-events-none");
     gsap.set([serviceItems, featuredCards], { opacity: 0, y: 10 });
     gsap.set(servicesPanel, { opacity: 0, y: -12, scaleY: 0.95 });

@@ -467,7 +467,7 @@ Sur demande, nous délivrons un certificat de propreté attestant de notre inter
       "Nettoyage de bureaux et commerces à Bruxelles. Postes de travail, sanitaires, espaces communs. Contrats réguliers ou ponctuels. Devis gratuit.",
     href: "/services/bureaux-commerces",
     image: serviceImageAssets.officeCleaning,
-    imagePosition: "50% 20%",
+    imagePosition: "50% 55%",
     relatedServices: ["nettoyage-vitres", "nettoyage-post-travaux", "nettoyage-etat-des-lieux"],
     quote:
       "Un espace de travail propre, c'est plus qu'une question d'image. C'est une condition pour que vos équipes performent et que vos clients reviennent.",

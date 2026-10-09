@@ -59,7 +59,7 @@ const pageTitle = hasSiteName ? title : `${title} | ${siteName}`;
     <meta name="twitter:image" content={ogImageUrl} />
     <meta property="og:locale" content="fr_BE" />
 
-    <!-- Font preloads — Regular + Bold for each family (most-used weights) -->
+    <!-- Font preloads: Regular + Bold for each family (most-used weights) -->
     <link
       rel="preload"
       href="/fonts/Decalotype-ExtraBold-fix.woff2"
@@ -168,7 +168,7 @@ const pageTitle = hasSiteName ? title : `${title} | ${siteName}`;
       })}
     />
 
-    <!-- Umami analytics (production only — omit PUBLIC_UMAMI_WEBSITE_ID on staging) -->
+    <!-- Umami analytics (production only: omit PUBLIC_UMAMI_WEBSITE_ID on staging) -->
     {
       import.meta.env.PUBLIC_UMAMI_WEBSITE_ID && (
         <script
@@ -204,7 +204,7 @@ const pageTitle = hasSiteName ? title : `${title} | ${siteName}`;
   // Respect user's motion preference
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     // ── Header scroll state ────────────────────────────────
-    // Synchronous: single, lightweight ScrollTrigger — safe to run immediately.
+    // Synchronous: single, lightweight ScrollTrigger, safe to run immediately.
     const header = document.getElementById("site-header");
     if (header) {
       ScrollTrigger.create({
@@ -224,7 +224,7 @@ const pageTitle = hasSiteName ? title : `${title} | ${siteName}`;
       document.querySelectorAll<HTMLElement>('[data-reveal="words"]').forEach((el) => {
         const spans = splitWords(el);
         gsap.set(spans, { y: "105%" });
-        // Unhide the container — CSS hides it to prevent FOUC; now the words
+        // Unhide the container: CSS hides it to prevent FOUC; now the words
         // are clipped by their overflow:hidden wrappers so nothing shows yet.
         gsap.set(el, { opacity: 1 });
         ScrollTrigger.create({

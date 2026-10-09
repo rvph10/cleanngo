@@ -25,7 +25,7 @@ function validateBody(
 
   const d = data as Record<string, unknown>;
 
-  // Honeypot – silently succeed if filled by a bot
+  // Honeypot: silently succeed if filled by a bot
   if (d.website) {
     return { valid: true, data: null as never };
   }
@@ -102,7 +102,7 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  // Honeypot triggered — respond as if success but don't send email
+  // Honeypot triggered: respond as if success but don't send email
   if (!validation.data) {
     return Response.json(
       { success: true, message: "Demande envoyée." } satisfies ContactFormResponse,

@@ -61,7 +61,7 @@ import { staticImageAssets } from "@/data/images";
     const card = document.querySelector<HTMLElement>("[data-team-card]");
 
     if (image) {
-      // Wipe from right to left — reveals as if sliding open a curtain
+      // Wipe from right to left: reveals as if sliding open a curtain
       gsap.set(image, { clipPath: "inset(0 100% 0 0)" });
       ScrollTrigger.create({
         trigger: image,

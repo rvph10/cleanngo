@@ -13,7 +13,7 @@ const contactInfo = {
 };
 
 const hours = [
-  { day: "Lundi – Samedi", time: "8h – 18h" },
+  { day: "Lundi au samedi", time: "8h à 18h" },
   { day: "Dimanche", time: "Fermé" },
 ];
 
@@ -27,7 +27,7 @@ const stats = [
 <footer class="mt-8 w-full">
   <Container class="pb-8">
     <div class="overflow-hidden rounded-3xl bg-(--color-text-primary) text-(--color-surface)">
-      <!-- Billboard — bold headline + CTA -->
+      <!-- Billboard: bold headline + CTA -->
       <div class="border-b border-(--color-surface)/10 px-8 py-12 md:px-14 md:py-16">
         <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div class="flex flex-col gap-3">
@@ -58,9 +58,9 @@ const stats = [
       <div
         class="grid grid-cols-1 gap-12 px-8 py-12 md:grid-cols-2 md:px-14 lg:grid-cols-3 lg:gap-10"
       >
-        <!-- Col 1 — Brand + Stats -->
+        <!-- Col 1: Brand + Stats -->
         <div class="flex flex-col gap-7">
-          <a href="/" aria-label="CleanNgo – Accueil" class="group w-fit">
+          <a href="/" aria-label="Accueil CleanNgo" class="group w-fit">
             <img
               src={imageAssets.brandLogo}
               alt="CleanNgo"
@@ -74,7 +74,7 @@ const stats = [
             Des espaces impeccables, une équipe de confiance. Votre propreté, notre fierté.
           </p>
 
-          <!-- Typography variation — stats as display figures -->
+          <!-- Typography variation: stats as display figures -->
           <div class="grid grid-cols-3 gap-3 border-t border-(--color-surface)/10 pt-6">
             {
               stats.map((stat) => (
@@ -95,7 +95,7 @@ const stats = [
           </div>
         </div>
 
-        <!-- Col 2 — Navigation -->
+        <!-- Col 2: Navigation -->
         <div class="flex flex-col gap-6">
           <p class="font-display text-xl font-bold tracking-widest text-(--color-accent) uppercase">
             Navigation
@@ -132,7 +132,7 @@ const stats = [
           </ul>
         </div>
 
-        <!-- Col 3 — Contact & Hours -->
+        <!-- Col 3: Contact & Hours -->
         <div class="flex flex-col gap-6">
           <p class="font-display text-xl font-bold tracking-widest text-(--color-accent) uppercase">
             Contact

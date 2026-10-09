@@ -430,7 +430,7 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
             <p class="text-sm text-green-600">Nous vous confirmons par téléphone dans les 2h.</p>
           </div>
 
-          <!-- Honeypot – invisible to humans, filled by bots -->
+          <!-- Honeypot: invisible to humans, filled by bots -->
           <div aria-hidden="true" class="absolute -top-[9999px] -left-[9999px] overflow-hidden">
             <label for="website">Ne pas remplir</label>
             <input id="website" name="website" type="text" autocomplete="off" tabindex="-1" />
@@ -485,7 +485,7 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
             <div class="font-display text-2xl font-bold">Appeler</div>
             <div class="text-lg font-medium opacity-80">+32 486 51 81 81</div>
             <div class="mt-1 text-xs font-semibold tracking-wide uppercase opacity-50">
-              Lun – Sam · 8h – 19h
+              Lun au sam · 8h à 19h
             </div>
           </div>
         </a>
@@ -629,7 +629,7 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
       });
     }
 
-    // 4. Input focus micro-interaction — subtle scale on the wrapper
+    // 4. Input focus micro-interaction: subtle scale on the wrapper
     document.querySelectorAll<HTMLElement>(".input-wrap").forEach((wrap) => {
       const input = wrap.querySelector("input");
       input?.addEventListener("focus", () =>
@@ -640,7 +640,7 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
       );
     });
 
-    // 5. Service chip selection — bounce on toggle
+    // 5. Service chip selection: bounce on toggle
     document.querySelectorAll<HTMLElement>(".service-chip").forEach((chip) => {
       const checkbox = chip.querySelector("input");
       const label = chip.querySelector("span");
@@ -650,7 +650,7 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
       });
     });
 
-    // 5b. Frequency chip selection — bounce on select
+    // 5b. Frequency chip selection: bounce on select
     document.querySelectorAll<HTMLElement>(".frequency-chip").forEach((chip) => {
       const radio = chip.querySelector("input");
       const label = chip.querySelector("span");
@@ -731,7 +731,7 @@ const marqueeReviews = [...reviews, ...reviews, ...reviews];
     const selectedFrequency = form.querySelector('input[name="frequency"]:checked');
     const frequencyValue = (selectedFrequency as HTMLInputElement | null)?.value ?? "none";
 
-    // Honeypot check – abort silently if filled by a bot
+    // Honeypot check: abort silently if filled by a bot
     const honeypot = (form.querySelector("#website") as HTMLInputElement)?.value;
     if (honeypot) return;
 
