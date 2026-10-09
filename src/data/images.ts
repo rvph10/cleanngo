@@ -29,12 +29,10 @@ export const staticImageAssets: Record<string, ImageMetadata> = {
 // and add an entry to serviceImageAssets.
 import _glassCleaning from "@/assets/images/glass_cleaning.jpg";
 import _solarPanel from "@/assets/images/solar_panel.jpg";
-import _mossRoof from "@/assets/images/moss_removal_roof.jpg";
 import _houseCleaning from "@/assets/images/house_cleaning.jpg";
 import _postWork from "@/assets/images/post_work.jpg";
 import _movingIn from "@/assets/images/move_in_cleaning_service.jpg";
 import _officeCleaning from "@/assets/images/office_cleaning.webp";
-import _facadeCleaning from "@/assets/images/facade_cleaning.jpg";
 import _outsideCleaning from "@/assets/images/outside_cleaning.avif";
 import _verandaCleaning from "@/assets/images/veranda_cleaning.jpg";
 import _corniere from "@/assets/images/corniere_cleaning.avif";
@@ -42,12 +40,10 @@ import _corniere from "@/assets/images/corniere_cleaning.avif";
 export const serviceImageAssets: Record<string, ImageMetadata> = {
   glassCleaning: _glassCleaning,
   solarPanel: _solarPanel,
-  demoussage: _mossRoof,
   houseCleaning: _houseCleaning,
   postWork: _postWork,
   movingIn: _movingIn,
   officeCleaning: _officeCleaning,
-  facadeCleaning: _facadeCleaning,
   outsideCleaning: _outsideCleaning,
   verandaCleaning: _verandaCleaning,
   corniere: _corniere,

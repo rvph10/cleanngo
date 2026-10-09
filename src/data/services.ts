@@ -21,6 +21,8 @@ export interface Service {
   metaDescription: string;
   href: string;
   image: ImageMetadata;
+  /** CSS object-position for the wide hero crop on the service page (default: center). */
+  imagePosition?: string;
   featured?: boolean;
   quote?: string;
   editorial?: string;
@@ -114,7 +116,7 @@ Nous intervenons dans tout Bruxelles et le Brabant : maisons, appartements, comm
     href: "/services/panneaux-solaires",
     image: serviceImageAssets.solarPanel,
     featured: true,
-    relatedServices: ["nettoyage-toiture", "nettoyage-facade", "nettoyage-gouttieres"],
+    relatedServices: ["nettoyage-gouttieres", "nettoyage-veranda", "nettoyage-vitres"],
     quote:
       "Des panneaux encrassés, c'est de l'énergie perdue. Un nettoyage régulier, c'est un investissement qui se rentabilise, et qui protège vos cellules.",
     editorial: `Un investissement dans des panneaux photovoltaïques se rembourse sur le long terme, à condition que les cellules fonctionnent à leur plein potentiel. Or, en milieu urbain comme dans la périphérie bruxelloise, les salissures s'accumulent rapidement : fientes d'oiseaux, pollens de printemps, poussières industrielles et dépôts calcaires peuvent réduire le rendement énergétique de 15 à 30 % en quelques mois. Ce que l'œil ne voit pas se traduit directement sur la facture d'électricité.
@@ -175,79 +177,73 @@ Nous intervenons en sécurité sur les toitures inclinées de Bruxelles et du Br
     ],
   },
   {
-    name: "Toitures & Démoussage",
-    h1: "Démoussage et nettoyage de toiture à Bruxelles",
-    processTitle: "notre démoussage de toiture",
-    metaTitle: "Démoussage toiture Bruxelles : anti-mousse | CleanNgo",
+    name: "Vérandas & Coupoles",
+    processTitle: "notre nettoyage de vérandas",
+    metaTitle: "Nettoyage vérandas et coupoles à Bruxelles | CleanNgo",
     description:
-      "La mousse et les lichens retiennent l'humidité et accélèrent la dégradation de vos tuiles, ardoises et toitures plates. Notre traitement anti-mousse combine nettoyage haute pression, application de produit biocide et traitement hydrofuge pour protéger durablement votre couverture. Nous intervenons en toute sécurité sur tous types de toitures pour prolonger leur durée de vie et prévenir les infiltrations.",
+      "Les vérandas et coupoles accumulent poussières, dépôts calcaires et algues sur leurs surfaces vitrées et leur structure en aluminium ou PVC. Notre nettoyage intérieur et extérieur restaure la transparence de vos vitrages et l'éclat de votre charpente, pour profiter pleinement de la luminosité naturelle. Nous intervenons en hauteur en toute sécurité, avec des produits adaptés à chaque matériau.",
     metaDescription:
-      "Démoussage de toiture à Bruxelles et Brabant. Traitement anti-mousse, biocide et hydrofuge sur tuiles, ardoises et toits plats. Devis gratuit.",
-    href: "/services/nettoyage-toiture",
-    image: serviceImageAssets.demoussage,
+      "Nettoyage de vérandas et coupoles à Bruxelles et périphérie. Vitrages intérieur/extérieur, dépôts calcaires, structure aluminium ou PVC. Devis gratuit.",
+    href: "/services/nettoyage-veranda",
+    image: serviceImageAssets.verandaCleaning,
     featured: true,
-    relatedServices: ["panneaux-solaires", "nettoyage-facade", "nettoyage-gouttieres"],
+    relatedServices: ["nettoyage-vitres", "nettoyage-terrasse", "panneaux-solaires"],
     quote:
-      "La mousse sur votre toiture, c'est silencieux mais ravageur. On intervient avant que les dégâts ne deviennent coûteux.",
-    editorial: `La mousse et les lichens s'installent discrètement, mais leurs effets sur une couverture sont loin d'être anodins. En retenant l'humidité en permanence contre les tuiles ou les ardoises, ils accélèrent la dégradation des matériaux, soulèvent progressivement les éléments de couverture et créent les conditions idéales pour des infiltrations. À Bruxelles et dans le Brabant, où les hivers sont humides et les toitures exposées au nord peu séchées par le soleil, ce phénomène s'amplifie rapidement.
+      "Une véranda, c'est fait pour laisser entrer la lumière. Quand les vitres sont propres, vous redécouvrez l'espace que vous avez.",
+    editorial: `Une véranda est l'espace de la maison le plus exposé aux éléments, et le plus difficile à entretenir correctement. Les vitrages orientés vers le ciel accumulent les dépôts calcaires, les algues et les résidus de pollen en couches successives qui opacifient progressivement le verre. La structure aluminium ou PVC, exposée aux UV et aux intempéries, se ternit et accumule des traces qui résistent à un simple essuyage.
 
-Le nettoyage toiture en autonomie est non seulement risqué (monter sur un toit sans équipement professionnel représente un danger réel), mais souvent contre-productif. Un jet d'eau à pression inadaptée peut déplacer des tuiles, créer des infiltrations ou endommager des ardoises fragiles. Le démoussage toiture professionnel repose sur une pression calibrée selon le type de matériau, orientée dans le bon sens pour ne pas forcer sous les éléments de couverture, suivie d'un traitement biocide qui continue d'agir plusieurs semaines après l'intervention.
+Le nettoyage de vitres chez particulier sur une véranda pose des contraintes spécifiques : il faut intervenir simultanément sur les deux faces des vitrages inclinés, traiter la structure sans abîmer les joints d'étanchéité, et éliminer des dépôts calcaires souvent anciens sans rayer les surfaces. Les produits du commerce ne sont généralement pas conçus pour ce niveau d'encrassement : les laveurs de vitres pour particuliers expérimentés utilisent des détartrants spécifiques au verre, appliqués avec un temps de contact contrôlé.
 
-Le nettoyage du toit que nous réalisons intègre également un traitement hydrofuge final : une protection qui repousse l'humidité et ralentit significativement le retour de la végétation, pour une durée d'effet généralement comprise entre trois et cinq ans.`,
+Nous traitons les vérandas et coupoles de A à Z (vitrages intérieur et extérieur, structure aluminium ou PVC, rails de coulissement et joints) dans tout Bruxelles et le Brabant. Résultat : transparence retrouvée, luminosité maximale, sans traces ni résidus calcaires.`,
     features: [
-      "Traitement anti-mousse haute pression",
-      "Application de produit biocide",
-      "Traitement hydrofuge de protection",
-      "Nettoyage tuiles, ardoises et toitures plates",
-      "Contrôle visuel des fixations",
-      "Intervention sécurisée en hauteur",
+      "Nettoyage intérieur et extérieur des vitrages",
+      "Traitement des dépôts calcaires",
+      "Nettoyage de la structure aluminium ou PVC",
+      "Intervention en hauteur sécurisée",
+      "Produits adaptés à chaque matériau",
+      "Finition brillante sans traces",
     ],
     faqItems: [
       {
-        question: "Quelle est la durée de protection après un traitement anti-mousse ?",
+        question: "Nettoyez-vous la véranda intérieur et extérieur en une seule intervention ?",
         answer:
-          "Avec le traitement biocide et hydrofuge que nous appliquons, la protection est généralement efficace entre 3 et 5 ans selon l'exposition de la toiture et les conditions climatiques locales.",
+          "Oui, notre intervention couvre systématiquement les deux faces des vitrages ainsi que la structure. Tout faire en une seule visite est plus efficace et vous évite de multiplier les rendez-vous.",
       },
       {
-        question: "Quel est le prix d'un nettoyage de toiture à Bruxelles ?",
+        question: "Les dépôts calcaires peuvent-ils être totalement éliminés ?",
         answer:
-          "Le prix dépend surtout de la surface à traiter, du type de toit (tuiles, ardoises, toit plat), du niveau d'encrassement, de l'accessibilité et des options choisies (traitement anti-mousse, biocide, hydrofuge). Nous privilégions toujours un devis clair et transparent après évaluation, avec un devis gratuit et sans engagement.",
+          "Dans la grande majorité des cas, oui. Nous utilisons des produits détartrants spécifiques adaptés au verre. Sur les calcaires très anciens et épais, le résultat est nettement amélioré mais une trace résiduelle légère peut subsister.",
       },
       {
-        question: "Intervenez-vous sur tous types de toitures ?",
+        question: "Les produits utilisés conviennent-ils aux structures en aluminium et PVC ?",
         answer:
-          "Oui, nous traitons les toitures en tuiles, ardoises, béton et toitures plates. Nous adaptons la pression et les produits utilisés à chaque type de matériau pour éviter tout endommagement.",
-      },
-      {
-        question: "Y a-t-il un risque d'infiltration lors du nettoyage haute pression ?",
-        answer:
-          "Non, à condition de régler correctement la pression et de travailler dans le bon sens. Nos techniciens sont formés à ces techniques spécifiques. Nous réalisons également un contrôle visuel des fixations avant intervention.",
+          "Oui, nous sélectionnons nos produits en fonction du matériau. Les nettoyants pour aluminium et PVC sont non abrasifs et ne risquent pas d'altérer les joints, les profils ou les finitions de votre véranda.",
       },
     ],
     process: [
       {
         step: "01",
-        title: "Diagnostic de couverture",
+        title: "Bilan calcaire et algues",
         description:
-          "Inspection du type de toiture (tuiles, ardoises, toit plat) et cartographie des zones envahies par la mousse et les lichens. Contrôle visuel des fixations.",
+          "Évaluation de l'épaisseur des dépôts calcaires sur les vitrages et de la présence d'algues sur la structure aluminium ou PVC avant toute intervention.",
       },
       {
         step: "02",
-        title: "Traitement haute pression",
+        title: "Application du détartrant",
         description:
-          "Projection d'eau sous pression calibrée selon le matériau pour décoller et évacuer la mousse. La pression est orientée dans le sens des tuiles pour éviter toute infiltration.",
+          "Pulvérisation d'un produit détartrant spécifique verre sur les faces intérieures et extérieures. Temps de contact ajusté selon l'ancienneté des dépôts.",
       },
       {
         step: "03",
-        title: "Application du biocide",
+        title: "Nettoyage de la structure",
         description:
-          "Pulvérisation du produit biocide sur l'ensemble de la surface traitée. Le produit agit en profondeur pendant plusieurs semaines pour éliminer spores et lichens résiduels.",
+          "Brossage et essuyage des profilés aluminium ou PVC, joints d'étanchéité et rails de coulissement avec des produits non abrasifs respectant les traitements de surface.",
       },
       {
         step: "04",
-        title: "Traitement hydrofuge",
+        title: "Rinçage et finition brillante",
         description:
-          "Application d'un hydrofuge de protection pour imperméabiliser la couverture et ralentir le retour de la mousse. Durée de protection effective de 3 à 5 ans.",
+          "Rinçage complet des vitrages à l'eau pure et séchage à la raclette pour un résultat sans traces. Vérification de chaque panneau vitré en lumière naturelle.",
       },
     ],
   },
@@ -471,7 +467,8 @@ Sur demande, nous délivrons un certificat de propreté attestant de notre inter
       "Nettoyage de bureaux et commerces à Bruxelles. Postes de travail, sanitaires, espaces communs. Contrats réguliers ou ponctuels. Devis gratuit.",
     href: "/services/bureaux-commerces",
     image: serviceImageAssets.officeCleaning,
-    relatedServices: ["nettoyage-vitres", "nettoyage-facade", "nettoyage-post-travaux"],
+    imagePosition: "50% 20%",
+    relatedServices: ["nettoyage-vitres", "nettoyage-post-travaux", "nettoyage-etat-des-lieux"],
     quote:
       "Un espace de travail propre, c'est plus qu'une question d'image. C'est une condition pour que vos équipes performent et que vos clients reviennent.",
     editorial: `Un espace professionnel mal entretenu crée une impression durable, et rarement la bonne. Pour les clients et partenaires qui visitent vos locaux, l'état d'un bureau ou d'un commerce reflète directement le soin apporté à votre activité. Pour vos collaborateurs, travailler dans un environnement propre a un impact mesurable sur la concentration, le confort et l'absentéisme. Ce n'est pas un luxe : c'est une condition de travail.
@@ -532,81 +529,6 @@ En tant que société de nettoyage à Bruxelles, nous proposons des contrats d'e
     ],
   },
   {
-    name: "Nettoyage de Façades",
-    processTitle: "notre nettoyage de façades",
-    metaTitle: "Nettoyage de façades à Bruxelles : prix & devis | CleanNgo",
-    description:
-      "Les façades exposées aux intempéries accumulent avec le temps mousses, algues, pollution et salissures qui ternissent l'esthétique de votre bâtiment. Notre équipe réalise des interventions techniques par nettoyage haute pression, traitement chimique adapté ou sablage selon la nature du support : crépi, pierre, brique ou béton. Redonnez de l'éclat à votre façade et protégez votre patrimoine immobilier.",
-    metaDescription:
-      "Nettoyage de façades à Bruxelles et périphérie. Haute pression, traitement algues et mousses sur crépi, pierre, brique et béton. Devis gratuit.",
-    href: "/services/nettoyage-facade",
-    image: serviceImageAssets.facadeCleaning,
-    relatedServices: ["nettoyage-toiture", "nettoyage-terrasse", "nettoyage-gouttieres"],
-    quote:
-      "La façade, c'est la première impression de votre bâtiment. Une surface propre, c'est une valeur préservée et une image soignée.",
-    editorial: `La façade d'un bâtiment absorbe tout : pluie acide, pollution urbaine, algues, mousses et lichens. À Bruxelles, où le parc immobilier est majoritairement ancien et les façades souvent en brique ou en crépi, ces dépôts s'accumulent rapidement et finissent par ternir l'aspect d'un bien, et parfois par favoriser les infiltrations lorsqu'ils retiennent l'humidité contre des matériaux poreux.
-
-Le nettoyage des façades n'est pas une opération standard. Nettoyer une façade crépi avec la même pression qu'une façade en béton peut la détériorer irrémédiablement. Pour les briques, un traitement algicide est souvent nécessaire en complément du nettoyage facade brique à haute pression, pour éliminer les mousses en profondeur et pas seulement en surface. Nettoyer une facade crepi demande une pression plus douce et un produit détartrant adapté à la porosité du support : chaque matériau a ses contraintes.
-
-Nous réalisons un diagnostic préalable avant chaque intervention pour adapter la méthode : haute pression calibrée, pré-traitement chimique ou combinaison des deux. Un traitement hydrofuge peut être appliqué en finition pour imperméabiliser la façade et prolonger durablement l'effet du nettoyage. Nous intervenons sur les bâtiments résidentiels et commerciaux de Bruxelles et du Brabant wallon.`,
-    features: [
-      "Nettoyage haute pression adapté au support",
-      "Traitement des mousses et algues",
-      "Crépi, pierre, brique et béton",
-      "Application de traitement hydrofuge",
-      "Élimination des salissures et traces de pollution",
-      "Bilan visuel des fissures inclus",
-    ],
-    faqItems: [
-      {
-        question: "Le nettoyage haute pression peut-il abîmer ma façade ?",
-        answer:
-          "Pas si la pression est adaptée au matériau. Nous réglons systématiquement la pression en fonction du support : plus douce sur crépi ou pierre taillée, plus forte sur béton. Une évaluation préalable est toujours réalisée.",
-      },
-      {
-        question: "Quel est le prix d'un nettoyage de façade à Bruxelles ?",
-        answer:
-          "Le tarif varie selon la surface de façade, le type de support (crépi, brique, pierre, béton), la hauteur du bâtiment, l'accessibilité et le niveau de salissures (pollution, mousses, algues). Des traitements complémentaires peuvent aussi influencer le prix. Nous vous remettons un devis gratuit, détaillé et sans engagement.",
-      },
-      {
-        question: "Traitez-vous aussi les graffitis sur façades ?",
-        answer:
-          "Oui, nous pouvons traiter les graffitis selon la nature du support et du produit utilisé. Un traitement anti-graffiti peut également être appliqué en prévention pour faciliter les nettoyages futurs.",
-      },
-      {
-        question: "Combien de temps faut-il attendre avant de voir le résultat final ?",
-        answer:
-          "Après le nettoyage, le résultat est immédiatement visible. Si un traitement biocide est appliqué, l'élimination complète des algues et mousses peut prendre 2 à 4 semaines supplémentaires sous l'effet du produit.",
-      },
-    ],
-    process: [
-      {
-        step: "01",
-        title: "Diagnostic du support",
-        description:
-          "Identification du matériau (crépi, brique, pierre, béton) et évaluation du type de salissures (algues, pollution, graffiti). Réglage de la pression en conséquence.",
-      },
-      {
-        step: "02",
-        title: "Pré-traitement chimique",
-        description:
-          "Application d'un produit algicide ou détartrant selon le diagnostic pour ramollir les dépôts avant la projection haute pression. Temps de pose respecté.",
-      },
-      {
-        step: "03",
-        title: "Nettoyage haute pression",
-        description:
-          "Projection d'eau calibrée de haut en bas pour décoller les salissures sans endommager les joints ni créer d'infiltration. Zones délicates traitées à la brosse.",
-      },
-      {
-        step: "04",
-        title: "Hydrofuge de protection",
-        description:
-          "Application d'un traitement hydrofuge sur le support propre et sec pour imperméabiliser la façade et prolonger l'effet du nettoyage. Bilan des fissures communiqué.",
-      },
-    ],
-  },
-  {
     name: "Terrasses & Allées",
     h1: "Nettoyage de terrasse et allées à Bruxelles : haute pression",
     processTitle: "notre nettoyage de terrasses",
@@ -617,7 +539,7 @@ Nous réalisons un diagnostic préalable avant chaque intervention pour adapter 
       "Nettoyage de terrasses et allées à Bruxelles. Haute pression sur bois, dalles, pavés et carrelage. Option imperméabilisant. Devis gratuit.",
     href: "/services/nettoyage-terrasse",
     image: serviceImageAssets.outsideCleaning,
-    relatedServices: ["nettoyage-facade", "nettoyage-veranda", "nettoyage-gouttieres"],
+    relatedServices: ["nettoyage-veranda", "nettoyage-gouttieres", "nettoyage-vitres"],
     quote:
       "Vos espaces extérieurs méritent autant d'attention que l'intérieur. Un nettoyage professionnel, et ils retrouvent leur éclat et leur sécurité.",
     editorial: `Les terrasses et allées accumulent tout ce que les intérieurs ne voient jamais : mousses humides entre les joints, taches de barbecue, dépôts verts sur le dallage, laitances calcaires sur les dalles en pierre. Ce qui ressemblait à une surface présentable à l'installation devient en quelques saisons un revêtement terne et glissant, rendu dangereux par les algues après les pluies.
@@ -678,76 +600,6 @@ Nous intervenons sur tous les types de surfaces extérieures (terrasses bois, da
     ],
   },
   {
-    name: "Vérandas & Coupoles",
-    processTitle: "notre nettoyage de vérandas",
-    metaTitle: "Nettoyage vérandas et coupoles à Bruxelles | CleanNgo",
-    description:
-      "Les vérandas et coupoles accumulent poussières, dépôts calcaires et algues sur leurs surfaces vitrées et leur structure en aluminium ou PVC. Notre nettoyage intérieur et extérieur restaure la transparence de vos vitrages et l'éclat de votre charpente, pour profiter pleinement de la luminosité naturelle. Nous intervenons en hauteur en toute sécurité, avec des produits adaptés à chaque matériau.",
-    metaDescription:
-      "Nettoyage de vérandas et coupoles à Bruxelles et périphérie. Vitrages intérieur/extérieur, dépôts calcaires, structure aluminium ou PVC. Devis gratuit.",
-    href: "/services/nettoyage-veranda",
-    image: serviceImageAssets.verandaCleaning,
-    relatedServices: ["nettoyage-vitres", "nettoyage-terrasse", "nettoyage-facade"],
-    quote:
-      "Une véranda, c'est fait pour laisser entrer la lumière. Quand les vitres sont propres, vous redécouvrez l'espace que vous avez.",
-    editorial: `Une véranda est l'espace de la maison le plus exposé aux éléments, et le plus difficile à entretenir correctement. Les vitrages orientés vers le ciel accumulent les dépôts calcaires, les algues et les résidus de pollen en couches successives qui opacifient progressivement le verre. La structure aluminium ou PVC, exposée aux UV et aux intempéries, se ternit et accumule des traces qui résistent à un simple essuyage.
-
-Le nettoyage de vitres chez particulier sur une véranda pose des contraintes spécifiques : il faut intervenir simultanément sur les deux faces des vitrages inclinés, traiter la structure sans abîmer les joints d'étanchéité, et éliminer des dépôts calcaires souvent anciens sans rayer les surfaces. Les produits du commerce ne sont généralement pas conçus pour ce niveau d'encrassement : les laveurs de vitres pour particuliers expérimentés utilisent des détartrants spécifiques au verre, appliqués avec un temps de contact contrôlé.
-
-Nous traitons les vérandas et coupoles de A à Z (vitrages intérieur et extérieur, structure aluminium ou PVC, rails de coulissement et joints) dans tout Bruxelles et le Brabant. Résultat : transparence retrouvée, luminosité maximale, sans traces ni résidus calcaires.`,
-    features: [
-      "Nettoyage intérieur et extérieur des vitrages",
-      "Traitement des dépôts calcaires",
-      "Nettoyage de la structure aluminium ou PVC",
-      "Intervention en hauteur sécurisée",
-      "Produits adaptés à chaque matériau",
-      "Finition brillante sans traces",
-    ],
-    faqItems: [
-      {
-        question: "Nettoyez-vous la véranda intérieur et extérieur en une seule intervention ?",
-        answer:
-          "Oui, notre intervention couvre systématiquement les deux faces des vitrages ainsi que la structure. Tout faire en une seule visite est plus efficace et vous évite de multiplier les rendez-vous.",
-      },
-      {
-        question: "Les dépôts calcaires peuvent-ils être totalement éliminés ?",
-        answer:
-          "Dans la grande majorité des cas, oui. Nous utilisons des produits détartrants spécifiques adaptés au verre. Sur les calcaires très anciens et épais, le résultat est nettement amélioré mais une trace résiduelle légère peut subsister.",
-      },
-      {
-        question: "Les produits utilisés conviennent-ils aux structures en aluminium et PVC ?",
-        answer:
-          "Oui, nous sélectionnons nos produits en fonction du matériau. Les nettoyants pour aluminium et PVC sont non abrasifs et ne risquent pas d'altérer les joints, les profils ou les finitions de votre véranda.",
-      },
-    ],
-    process: [
-      {
-        step: "01",
-        title: "Bilan calcaire et algues",
-        description:
-          "Évaluation de l'épaisseur des dépôts calcaires sur les vitrages et de la présence d'algues sur la structure aluminium ou PVC avant toute intervention.",
-      },
-      {
-        step: "02",
-        title: "Application du détartrant",
-        description:
-          "Pulvérisation d'un produit détartrant spécifique verre sur les faces intérieures et extérieures. Temps de contact ajusté selon l'ancienneté des dépôts.",
-      },
-      {
-        step: "03",
-        title: "Nettoyage de la structure",
-        description:
-          "Brossage et essuyage des profilés aluminium ou PVC, joints d'étanchéité et rails de coulissement avec des produits non abrasifs respectant les traitements de surface.",
-      },
-      {
-        step: "04",
-        title: "Rinçage et finition brillante",
-        description:
-          "Rinçage complet des vitrages à l'eau pure et séchage à la raclette pour un résultat sans traces. Vérification de chaque panneau vitré en lumière naturelle.",
-      },
-    ],
-  },
-  {
     name: "Corniches & Gouttières",
     processTitle: "notre nettoyage de gouttières",
     metaTitle: "Débouchage et nettoyage gouttières à Bruxelles | CleanNgo",
@@ -757,7 +609,7 @@ Nous traitons les vérandas et coupoles de A à Z (vitrages intérieur et extér
       "Débouchage et nettoyage de gouttières à Bruxelles. Évacuation optimale, contrôle des fixations. Intervention sécurisée en hauteur. Devis gratuit.",
     href: "/services/nettoyage-gouttieres",
     image: serviceImageAssets.corniere,
-    relatedServices: ["nettoyage-toiture", "nettoyage-facade", "panneaux-solaires"],
+    relatedServices: ["panneaux-solaires", "nettoyage-terrasse", "nettoyage-veranda"],
     quote:
       "Des gouttières bouchées, ça ne se voit pas, jusqu'au jour où l'eau s'infiltre. Mieux vaut prévenir que réparer.",
     editorial: `Les gouttières font partie de ces éléments qu'on n'inspecte jamais, jusqu'au moment où elles débordent ou où une tache d'humidité apparaît sur un mur. Pourtant, des gouttières obstruées par des feuilles, de la mousse ou des débris créent une pression d'eau qui, à force de cycles gel-dégel, peut déformer les profils, desceller les fixations et favoriser les infiltrations dans les murs ou les planchers de toiture.

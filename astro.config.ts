@@ -39,5 +39,14 @@ export default defineConfig({
     "/services-9": "/services",
     "/about-6": "/",
     "/copie-de-politique-de-confidentialité": "/politique-de-confidentialite",
+    // Services discontinued in October 2026 (roofs, facades)
+    "/services/nettoyage-toiture": "/services",
+    "/services/nettoyage-facade": "/services",
+    "/ixelles/nettoyage-toiture": "/services",
+    "/uccle/nettoyage-toiture": "/services",
+    "/waterloo/nettoyage-toiture": "/services",
+    "/woluwe-saint-lambert/nettoyage-toiture": "/services",
+    "/etterbeek/nettoyage-toiture": "/services",
+    "/watermael-boitsfort/nettoyage-toiture": "/services",
   },
 });

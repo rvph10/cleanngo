@@ -193,6 +193,7 @@ const faqItems = service.faqItems;
         loading="eager"
         fetchpriority="high"
         class="h-72 w-full object-cover md:h-130 lg:h-160"
+        style={service.imagePosition ? `object-position: ${service.imagePosition}` : undefined}
       />
     </div>
 

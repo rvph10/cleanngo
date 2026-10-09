@@ -9,9 +9,8 @@
  * (not templated from a single string) so each page reads as distinct,
  * locally-relevant content rather than a mail-merge.
  *
- * Priority services are the two keyed by `services[].href` slug:
- *   - "nettoyage-vitres"  (nettoyage de vitres)
- *   - "nettoyage-toiture" (démoussage toiture)
+ * Priority services, keyed by `services[].href` slug:
+ *   - "nettoyage-vitres" (nettoyage de vitres)
  */
 
 export interface FaqItem {
@@ -104,7 +103,7 @@ export const communes: Commune[] = [
   },
 ];
 
-export const priorityServiceSlugs = ["nettoyage-vitres", "nettoyage-toiture"] as const;
+export const priorityServiceSlugs = ["nettoyage-vitres"] as const;
 
 export interface CommuneServiceContent {
   h1: string;
@@ -156,37 +155,6 @@ export const communeServiceContent: Record<
         },
       ],
     },
-    "nettoyage-toiture": {
-      h1: "Démoussage de toiture à Ixelles : traitement anti-mousse et hydrofuge",
-      metaTitle: "Démoussage toiture à Ixelles (1050) | CleanNgo",
-      metaDescription:
-        "Démoussage et nettoyage de toiture à Ixelles : immeubles à appartements, toits plats et maisons de maître. Traitement biocide et hydrofuge, devis gratuit.",
-      intro: [
-        `À Ixelles, le bâti est dominé par des immeubles à appartements et des maisons de maître mitoyennes, souvent avec des toitures plates ou à faible pente, une configuration où la mousse s'installe moins vite qu'en zone très arborée, mais où les points bas et les évacuations restent des zones sensibles à surveiller.`,
-        `Autour des Étangs d'Ixelles et du bas de la commune, la proximité de grands arbres favorise localement l'accumulation de mousse et de feuilles sur certaines toitures et corniches. Un démoussage professionnel, avec pression calibrée selon le type de couverture et traitement hydrofuge en finition, évite que l'humidité ne s'installe durablement sur ces toits densément voisins les uns des autres.`,
-        `Nous intervenons sur les toitures plates et en pente d'Ixelles, avec un contrôle visuel des fixations à chaque passage.`,
-      ],
-      faqs: [
-        {
-          question:
-            "Les toits plats d'Ixelles nécessitent-ils un entretien différent des toitures en pente ?",
-          answer:
-            "Oui. Sur les toitures plates, fréquentes dans le bâti ixellois, nous portons une attention particulière aux évacuations d'eau et aux points bas où les feuilles et débris s'accumulent, en plus du traitement anti-mousse classique appliqué sur les toitures en pente.",
-        },
-        {
-          question:
-            "Pouvez-vous intervenir sur la toiture d'un immeuble en copropriété à Ixelles ?",
-          answer:
-            "Oui. Une grande partie du bâti ixellois est en copropriété : nous établissons alors un devis pour l'ensemble de la toiture, adressé au syndic ou à l'association des copropriétaires, et convenons avec eux de l'accès (trappe, terrasse, cage d'escalier).",
-        },
-        {
-          question:
-            "Faut-il aussi nettoyer les corniches et gouttières autour des Étangs d'Ixelles ?",
-          answer:
-            "C'est souvent utile. Près des Étangs, les grands arbres remplissent corniches et gouttières de feuilles, ce qui retient l'eau au bord de la toiture. Le démoussage peut être combiné avec un nettoyage des gouttières lors de la même intervention.",
-        },
-      ],
-    },
   },
   uccle: {
     "nettoyage-vitres": {
@@ -218,36 +186,6 @@ export const communeServiceContent: Record<
         },
       ],
     },
-    "nettoyage-toiture": {
-      h1: "Démoussage de toiture à Uccle : la commune la plus exposée à la mousse",
-      metaTitle: "Démoussage toiture à Uccle (1180) | CleanNgo",
-      metaDescription:
-        "Traitement anti-mousse pour toitures en tuiles et ardoises à Uccle, commune la plus boisée de Bruxelles. Biocide et hydrofuge. Devis gratuit.",
-      intro: [
-        `Uccle est la commune la plus boisée de la région bruxelloise, en lisière directe de la forêt de Soignes. Cette proximité avec les grands arbres, un atout pour le cadre de vie, se traduit aussi par une ombre et une humidité quasi permanentes sur les toitures en tuiles et ardoises des villas du Fort-Jaco, de Saint-Job ou de l'Observatoire.`,
-        `Sur ce type de toiture en pente, la mousse et les lichens progressent plus vite qu'ailleurs à Bruxelles, en particulier sur les versants orientés nord, à l'abri du soleil. Un démoussage haute pression calibré selon le matériau, suivi d'un traitement biocide et hydrofuge, retarde nettement le retour de la végétation malgré l'humidité constante du voisinage boisé.`,
-        `Nous intervenons sur les toitures d'Uccle, du Fort-Jaco à Calevoet, avec un contrôle visuel des fixations à chaque passage.`,
-      ],
-      faqs: [
-        {
-          question:
-            "Pourquoi la mousse revient-elle plus vite sur les toitures uccloises qu'ailleurs à Bruxelles ?",
-          answer:
-            "L'ombre et l'humidité apportées par la proximité de la forêt de Soignes créent des conditions particulièrement favorables à la mousse, surtout sur les versants de toiture orientés nord. C'est pourquoi nous recommandons un traitement hydrofuge systématique en finition pour les toitures uccloises, afin de prolonger l'effet du démoussage.",
-        },
-        {
-          question: "Les toitures en ardoises d'Uccle peuvent-elles être démoussées sans risque ?",
-          answer:
-            "Oui, à condition d'adapter la méthode. L'ardoise est plus fragile que la tuile : nous réduisons la pression et laissons davantage agir le traitement biocide, qui continue d'éliminer la mousse plusieurs semaines après l'intervention.",
-        },
-        {
-          question:
-            "Les versants nord et sud d'une même toiture reçoivent-ils le même traitement ?",
-          answer:
-            "Pas forcément. Nous établissons un diagnostic par versant : à Uccle, le versant nord, ombragé et humide, est généralement le plus chargé et demande plus d'attention, alors que le versant sud peut se limiter à un traitement préventif.",
-        },
-      ],
-    },
   },
   waterloo: {
     "nettoyage-vitres": {
@@ -276,35 +214,6 @@ export const communeServiceContent: Record<
           question: "Proposez-vous un entretien régulier des vitres pour les villas de Waterloo ?",
           answer:
             "Oui. Pour les grandes surfaces vitrées, un entretien planifié, par exemple au printemps et à l'automne, évite que le calcaire et les résidus végétaux ne s'incrustent. Nous pouvons convenir d'un contrat d'entretien adapté à votre maison.",
-        },
-      ],
-    },
-    "nettoyage-toiture": {
-      h1: "Démoussage de toiture à Waterloo : protection anti-mousse et hydrofuge",
-      metaTitle: "Démoussage toiture à Waterloo (1410) | CleanNgo",
-      metaDescription:
-        "Traitement anti-mousse pour toitures de villas à Waterloo, en lisière de la forêt de Soignes. Biocide, hydrofuge, devis gratuit.",
-      intro: [
-        `Waterloo, commune résidentielle du Brabant wallon en lisière de la forêt de Soignes, compte de nombreuses villas avec jardin dont les toitures en pente subissent la même exposition à l'humidité que les communes boisées de la périphérie sud de Bruxelles.`,
-        `Le bâti plus récent et plus aéré qu'en zone urbaine dense n'empêche pas la mousse de s'installer sur les tuiles, en particulier sur les toitures ombragées par les grands arbres de jardin ou par la forêt toute proche. Un traitement anti-mousse haute pression, suivi d'une application biocide et d'un hydrofuge de finition, protège durablement ces toitures exposées.`,
-        `Nous intervenons dans tout Waterloo, du Vieux Waterloo au Chenois, avec un contrôle visuel des fixations à chaque intervention.`,
-      ],
-      faqs: [
-        {
-          question:
-            "Les grands jardins arborés de Waterloo favorisent-ils la mousse sur les toitures ?",
-          answer:
-            "Oui. Les villas avec jardin, très présentes à Waterloo, sont souvent ombragées par des arbres matures qui retiennent l'humidité sur la toiture. Nous recommandons un traitement hydrofuge en finition pour limiter le retour de la mousse malgré cette ombre persistante.",
-        },
-        {
-          question: "Pouvez-vous nettoyer les panneaux solaires en même temps que le démoussage ?",
-          answer:
-            "Oui. Beaucoup de villas de Waterloo sont équipées de panneaux solaires : nous pouvons les nettoyer à l'eau déminéralisée lors de la même intervention, ce qui évite que la mousse et les poussières délogées de la toiture ne restent sur les panneaux.",
-        },
-        {
-          question: "À quelle période faut-il démousser une toiture à Waterloo ?",
-          answer:
-            "De préférence au printemps ou au début de l'automne, par temps sec : le traitement biocide et l'hydrofuge ont besoin de quelques jours sans pluie pour bien agir. Nous évitons les périodes de gel.",
         },
       ],
     },
@@ -340,36 +249,6 @@ export const communeServiceContent: Record<
         },
       ],
     },
-    "nettoyage-toiture": {
-      h1: "Démoussage de toiture à Woluwe-Saint-Lambert : maisons de cité-jardin protégées",
-      metaTitle: "Démoussage toiture à Woluwe-Saint-Lambert (1200) | CleanNgo",
-      metaDescription:
-        "Traitement anti-mousse pour toitures en tuiles à Woluwe-Saint-Lambert, quartier Kapelleveld et parc de Woluwe. Biocide, hydrofuge, devis gratuit.",
-      intro: [
-        `Woluwe-Saint-Lambert est structurée autour du parc de Woluwe et du quartier-jardin de Kapelleveld, où les maisons de l'entre-deux-guerres affichent des toitures en tuiles typiques, entourées de grands arbres plantés à la même époque que les habitations.`,
-        `Ces arbres matures, aujourd'hui pleinement développés, projettent une ombre importante sur les toitures et retiennent l'humidité bien après la pluie, des conditions qui favorisent nettement le développement de la mousse sur les tuiles anciennes du quartier Kapelleveld comme sur celles du Val des Seigneurs.`,
-        `Nous intervenons dans toute la commune avec un traitement anti-mousse haute pression, une application biocide et un hydrofuge de finition adaptés aux toitures anciennes en tuiles.`,
-      ],
-      faqs: [
-        {
-          question:
-            "Les toitures anciennes des maisons de cité-jardin de Kapelleveld nécessitent-elles des précautions particulières ?",
-          answer:
-            "Oui. Les tuiles anciennes de ce quartier de l'entre-deux-guerres sont parfois plus fragiles, nous adaptons donc la pression de nettoyage au type et à l'état des tuiles avant toute intervention, pour un résultat efficace sans risque d'endommagement.",
-        },
-        {
-          question: "Que se passe-t-il si des tuiles cassées sont repérées pendant le démoussage ?",
-          answer:
-            "Nous réalisons un contrôle visuel des fixations à chaque intervention. Si des tuiles cassées ou déplacées sont repérées, nous vous les signalons à la fin du chantier afin que vous puissiez planifier la réparation.",
-        },
-        {
-          question:
-            "À quelle fréquence démousser une toiture de cité-jardin à Woluwe-Saint-Lambert ?",
-          answer:
-            "Avec un traitement biocide et hydrofuge, la protection dure généralement entre 3 et 5 ans. Sous les grands arbres de Kapelleveld ou du parc de Woluwe, nous conseillons plutôt le bas de cette fourchette et un contrôle visuel entre deux traitements.",
-        },
-      ],
-    },
   },
   etterbeek: {
     "nettoyage-vitres": {
@@ -402,37 +281,6 @@ export const communeServiceContent: Record<
         },
       ],
     },
-    "nettoyage-toiture": {
-      h1: "Démoussage de toiture à Etterbeek : toitures plates et mitoyennes",
-      metaTitle: "Démoussage toiture à Etterbeek (1040) | CleanNgo",
-      metaDescription:
-        "Nettoyage anti-mousse pour toitures d'Etterbeek, quartier Jourdan et Cinquantenaire. Toits plats et pentus, biocide, hydrofuge. Devis gratuit.",
-      intro: [
-        `Etterbeek est une commune très densément bâtie, où les maisons de maître mitoyennes et les immeubles à appartements du quartier Jourdan ou du Cinquantenaire se succèdent avec peu d'espace entre les toitures, souvent plates ou à faible pente sur les extensions arrière.`,
-        `Cette densité limite la formation de mousse par manque d'ombrage direct des arbres, contrairement aux communes plus vertes de la périphérie, mais les toitures plates et les corniches mitoyennes accumulent feuilles et débris dans les points bas, créant des zones d'humidité stagnante propices à la mousse localisée.`,
-        `Nous intervenons dans tout Etterbeek, du quartier Jourdan à la Chasse, avec une attention particulière aux évacuations et points bas des toitures plates, en complément du traitement anti-mousse classique sur les toitures en pente.`,
-      ],
-      faqs: [
-        {
-          question:
-            "Les toitures plates fréquentes à Etterbeek nécessitent-elles un traitement différent ?",
-          answer:
-            "Oui. Sur les toitures plates, très présentes sur les extensions arrière des maisons mitoyennes d'Etterbeek, nous vérifions systématiquement les évacuations d'eau et les points bas où s'accumulent feuilles et débris, en plus du traitement anti-mousse habituel.",
-        },
-        {
-          question:
-            "Pouvez-vous accéder au toit d'une maison mitoyenne sans passer par chez les voisins ?",
-          answer:
-            "Dans la plupart des cas, oui : par une trappe, une terrasse ou une fenêtre de toit, ou depuis la façade avec le matériel adapté. Nous évaluons l'accès lors du devis pour choisir la solution la plus simple et la plus sûre.",
-        },
-        {
-          question:
-            "La mousse est-elle moins problématique à Etterbeek que dans les communes vertes ?",
-          answer:
-            "Elle est généralement moins étendue, faute de grands arbres au-dessus des toitures, mais elle se concentre dans les corniches et les points bas. Un traitement ciblé de ces zones suffit souvent, sans devoir traiter toute la couverture.",
-        },
-      ],
-    },
   },
   "watermael-boitsfort": {
     "nettoyage-vitres": {
@@ -462,35 +310,6 @@ export const communeServiceContent: Record<
             "Comment éliminer les traces de calcaire sur les vitres près des Étangs de Boitsfort ?",
           answer:
             "L'humidité ambiante près des étangs favorise les dépôts calcaires. Nous utilisons des solutions détartrantes calibrées, suivies d'un passage à la raclette, pour retirer ces traces sans rayer le verre.",
-        },
-      ],
-    },
-    "nettoyage-toiture": {
-      h1: "Démoussage de toiture à Watermael-Boitsfort : la lisière de la forêt de Soignes",
-      metaTitle: "Démoussage toiture à Watermael-Boitsfort (1170) | CleanNgo",
-      metaDescription:
-        "Traitement anti-mousse pour toitures à Watermael-Boitsfort, en lisière de la forêt de Soignes. Logis-Floréal, biocide, hydrofuge. Devis gratuit.",
-      intro: [
-        `Watermael-Boitsfort est directement adossée à la forêt de Soignes, ce qui en fait, avec Uccle, l'une des communes les plus arborées de la région bruxelloise. Les toitures des maisons de la cité-jardin du Logis-Floréal et des villas proches de la Vénerie restent humides et ombragées une grande partie de l'année.`,
-        `Ce terrain est particulièrement favorable au développement de la mousse et des lichens, surtout sur les toitures en tuiles orientées vers la forêt, à l'abri du soleil quasi toute la journée. Un démoussage haute pression, suivi d'un traitement biocide en profondeur et d'un hydrofuge de finition, est nécessaire plus fréquemment ici que dans les communes moins boisées.`,
-        `Nous intervenons dans toute la commune, du Logis-Floréal aux Étangs de Boitsfort, avec un contrôle visuel des fixations à chaque intervention.`,
-      ],
-      faqs: [
-        {
-          question:
-            "Faut-il démousser sa toiture plus souvent à Watermael-Boitsfort que dans une commune moins boisée ?",
-          answer:
-            "C'est effectivement recommandé. L'ombre quasi permanente de la forêt de Soignes maintient l'humidité sur les toitures plus longtemps qu'ailleurs à Bruxelles. Pour les toitures très exposées du Logis-Floréal ou de la Vénerie, un contrôle annuel plutôt que biennal permet d'éviter une réinstallation importante de la mousse.",
-        },
-        {
-          question: "Les lichens disparaissent-ils aussi bien que la mousse ?",
-          answer:
-            "Les lichens s'accrochent plus fortement à la tuile. Le nettoyage en retire la majeure partie, puis le traitement biocide continue d'agir plusieurs semaines : les derniers résidus s'éliminent progressivement avec les pluies.",
-        },
-        {
-          question: "Intervenez-vous sur les toitures du Logis-Floréal ?",
-          answer:
-            "Oui. Sur ces maisons de cité-jardin protégées, nous adaptons la pression à l'état des tuiles d'origine afin de les nettoyer sans les fragiliser ni modifier l'aspect de la couverture.",
         },
       ],
     },
