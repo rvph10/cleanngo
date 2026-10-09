@@ -16,10 +16,10 @@ export default defineConfig({
     }),
   ],
   build: {
-    // Inline all stylesheets to eliminate the render-blocking CSS request.
-    // The generated CSS bundle is small (~10 KiB) so the inline cost is
-    // negligible compared to the round-trip saved on the critical render path.
-    inlineStylesheets: "always",
+    // The CSS bundle is ~50 KiB, so serve it as a hashed file under /_astro/
+    // (cached for a year by server.mjs) instead of repeating it in every page.
+    // Astro still inlines stylesheets small enough to not be worth a request.
+    inlineStylesheets: "auto",
   },
   vite: {
     plugins: [tailwindcss() as never],

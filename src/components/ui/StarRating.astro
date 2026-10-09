@@ -1,0 +1,20 @@
+---
+// Five stars, `rating` of them filled. Uses the #icon-star symbol from IconSprite.
+interface Props {
+  rating?: number;
+  size?: "sm" | "lg";
+}
+
+const { rating = 5, size = "sm" } = Astro.props;
+const iconClass = size === "lg" ? "h-6 w-6" : "h-4 w-4";
+---
+
+<div class="flex gap-1 text-amber-400" role="img" aria-label={`${rating} sur 5`}>
+  {
+    Array.from({ length: 5 }, (_, i) => (
+      <svg class={iconClass} fill={i < rating ? "currentColor" : "none"}>
+        <use href="#icon-star" />
+      </svg>
+    ))
+  }
+</div>

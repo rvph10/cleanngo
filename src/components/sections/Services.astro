@@ -2,10 +2,6 @@
 import { Image } from "astro:assets";
 import SectionLabel from "../ui/SectionLabel.astro";
 import { services } from "@/data/services";
-
-const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path d="M4.168 10H15.835M15.835 10L10.001 4.167M15.835 10L10.001 15.833" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`;
 ---
 
 <section>
@@ -21,14 +17,12 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
   <div class="marquee-viewport -mx-8 hidden overflow-hidden md:block" aria-label="Nos services">
     <div class="marquee-track flex gap-4">
       {
-        [...services, ...services].map((service, i) => (
+        services.map((service) => (
           <a
             href={service.href}
             class="group relative block w-88 flex-none overflow-hidden rounded-2xl text-white uppercase"
             style="aspect-ratio: 4/5;"
             aria-label={service.name}
-            aria-hidden={i >= services.length ? "true" : undefined}
-            tabindex={i >= services.length ? -1 : undefined}
           >
             <div class="absolute inset-0 z-1">
               <Image
@@ -47,7 +41,9 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
               <h3 class="font-display leading-tighter text-3xl font-bold">{service.name}</h3>
             </div>
             <div class="absolute right-6 bottom-6 z-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 p-2.5 backdrop-blur-sm transition-colors duration-300 group-hover:bg-white/20">
-              <Fragment set:html={arrowSvg} />
+              <svg class="h-full w-full" aria-hidden="true">
+                <use href="#icon-arrow-right" />
+              </svg>
             </div>
           </a>
         ))
@@ -87,7 +83,9 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
             <h3 class="font-display m-0 text-xl leading-tight font-bold">{service.name}</h3>
           </div>
           <div class="absolute right-6 bottom-6 z-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 p-2.5 backdrop-blur-sm transition-colors duration-300 group-hover:bg-white/20">
-            <Fragment set:html={arrowSvg} />
+            <svg class="h-full w-full" aria-hidden="true">
+              <use href="#icon-arrow-right" />
+            </svg>
           </div>
         </a>
       ))
@@ -155,6 +153,17 @@ const arrowSvg = `<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none
 
 <script>
   const track = document.querySelector<HTMLElement>(".marquee-track");
+
+  // The marquee loops by sliding -50%, so it needs a second copy of the cards.
+  // Cloned here rather than rendered, to keep it out of the HTML payload.
+  if (track) {
+    for (const card of Array.from(track.children)) {
+      const clone = card.cloneNode(true) as HTMLElement;
+      clone.setAttribute("aria-hidden", "true");
+      clone.tabIndex = -1;
+      track.append(clone);
+    }
+  }
   const mobileScroll = document.querySelector<HTMLElement>(".mobile-scroll");
 
   let mobileAutoScrollTimer: number | undefined;

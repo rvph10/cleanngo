@@ -2,6 +2,7 @@
 // headers apply to every response, including prerendered pages and static
 // assets, which are served by the adapter without running Astro middleware.
 import http from "node:http";
+import process from "node:process";
 
 process.env.ASTRO_NODE_AUTOSTART = "disabled";
 const { handler } = await import("./dist/server/entry.mjs");
@@ -56,5 +57,5 @@ const server = http.createServer((req, res) => {
 const port = Number(process.env.PORT ?? 4321);
 const host = process.env.HOST ?? "0.0.0.0";
 server.listen(port, host, () => {
-  console.log(`Server listening on http://${host}:${port}`);
+  process.stdout.write(`Server listening on http://${host}:${port}\n`);
 });
