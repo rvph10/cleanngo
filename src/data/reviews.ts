@@ -8,7 +8,7 @@ export interface Review {
 
 export const googleAggregate = {
   ratingValue: 4.9,
-  ratingCount: 15,
+  ratingCount: 36,
 };
 
 export const reviews: Review[] = [
