@@ -9,7 +9,14 @@ import { imageAssets } from "@/data/images";
       data-hero-left
       class="relative flex flex-col justify-between gap-12 overflow-hidden rounded-3xl bg-(--color-text-primary) p-4 text-(--color-surface) md:p-8 lg:gap-16 lg:p-12"
     >
-      <div class="relative mb-8 h-56 overflow-hidden rounded-2xl lg:hidden">
+      <div class="relative isolate mb-8 h-56 overflow-hidden rounded-2xl lg:hidden">
+        <!-- Poster as a background, see the desktop video below for why. -->
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 -z-10 bg-cover bg-center"
+          style={`background-image: url(${imageAssets.heroPosterMobile})`}
+        >
+        </div>
         <video
           loop
           muted
@@ -17,10 +24,9 @@ import { imageAssets } from "@/data/images";
           preload="none"
           data-hero-video
           class="absolute inset-0 h-full w-full object-cover"
-          poster={imageAssets.heroPoster}
         >
-          <source src={imageAssets.heroVideoWebm} type="video/webm" />
-          <source src={imageAssets.heroVideoMp4} type="video/mp4" />
+          <source src={imageAssets.heroVideoMobileWebm} type="video/webm" />
+          <source src={imageAssets.heroVideoMobileMp4} type="video/mp4" />
         </video>
       </div>
 
@@ -129,14 +135,22 @@ import { imageAssets } from "@/data/images";
       data-hero-right
       class="relative isolate hidden h-56 w-full overflow-hidden rounded-3xl sm:h-80 lg:block lg:h-full"
     >
+      <!-- Poster as a background on a child of the breakpoint-hidden wrapper:
+           browsers skip backgrounds inside display:none, while a video poster
+           attribute is fetched even when hidden. -->
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 -z-20 bg-cover bg-center"
+        style={`background-image: url(${imageAssets.heroPoster})`}
+      >
+      </div>
       <video
         loop
         muted
         playsinline
         preload="none"
         data-hero-video
-        class="absolute inset-0 -z-10 h-full w-full bg-center object-cover"
-        poster={imageAssets.heroPoster}
+        class="absolute inset-0 -z-10 h-full w-full object-cover"
       >
         <source src={imageAssets.heroVideoWebm} type="video/webm" />
         <source src={imageAssets.heroVideoMp4} type="video/mp4" />

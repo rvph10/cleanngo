@@ -17,8 +17,23 @@ import { imageAssets } from "@/data/images";
   title="Nettoyage de vitres, toitures et façades à Bruxelles"
   description="Lavage de vitres, démoussage toiture, nettoyage façades, gouttières et panneaux solaires à Bruxelles. Matériel professionnel. Devis gratuit."
 >
-  <!-- Preload the LCP video poster (hero, above the fold) -->
-  <link slot="head" rel="preload" as="image" href={imageAssets.heroPoster} type="image/avif" />
+  <!-- Preload the LCP video poster (hero, above the fold), one per breakpoint -->
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={imageAssets.heroPosterMobile}
+    type="image/avif"
+    media="(max-width: 1023px)"
+  />
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={imageAssets.heroPoster}
+    type="image/avif"
+    media="(min-width: 1024px)"
+  />
   <Container>
     <Hero />
     <Services />

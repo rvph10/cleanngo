@@ -8,6 +8,10 @@ export const imageAssets = {
   heroPoster: "/images/glass_cleaning.avif",
   heroVideoWebm: "/images/hero_video.webm",
   heroVideoMp4: "/images/hero_video_opt.mp4",
+  // 16:9 crops for the short mobile hero box (h-56), about 1 MB instead of 4-5 MB
+  heroPosterMobile: "/images/glass_cleaning_mobile.avif",
+  heroVideoMobileWebm: "/images/hero_video_mobile.webm",
+  heroVideoMobileMp4: "/images/hero_video_mobile.mp4",
   ogImage: "/og-image.png",
   favicon: "/favicon.svg",
 } as const;
