@@ -284,9 +284,9 @@ Nous intervenons dans les maisons et appartements de Bruxelles et de la périph�
           "Pour un entretien courant, nous recommandons une intervention hebdomadaire ou bimensuelle. Pour les ménages chargés ou les familles avec enfants, une fois par semaine garantit un intérieur toujours sain. Nous adaptons la fréquence à votre mode de vie.",
       },
       {
-        question: "Faut-il être présent lors de l'intervention ?",
+        question: "Comment se passe l'accès à mon logement si je travaille pendant le nettoyage ?",
         answer:
-          "Non, votre présence n'est pas obligatoire. Beaucoup de nos clients nous confient une clé ou un code d'accès. Nos équipes sont assurées et formées pour intervenir en toute discrétion et sécurité.",
+          "Vous n'avez pas besoin d'être là. Pour un nettoyage régulier, la plupart de nos clients nous confient une clé ou un code d'accès, et nous convenons ensemble d'un créneau fixe. Nos équipes sont assurées et formées pour intervenir en toute discrétion et sécurité.",
       },
       {
         question: "Utilisez-vous des produits éco-responsables ?",

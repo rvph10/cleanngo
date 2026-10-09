@@ -38,7 +38,7 @@ const commune = communes.find((c) => c.slug === communeSlug)!;
 const content = communeServiceContent[communeSlug]![serviceSlug]!;
 const service = services.find((s) => s.href === `/services/${serviceSlug}`)!;
 
-const faqItems = [...service.faqItems.slice(0, 2), content.uniqueFaq];
+const faqItems = content.faqs;
 
 const reviews = getRotatingReviews(`${communeSlug}-${serviceSlug}`, 3);
 
