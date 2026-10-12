@@ -2,6 +2,23 @@ import { defineConfig } from "astro/config";
 import node from "@astrojs/node";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import { locales, localeMeta } from "./src/i18n/config";
+import { allAlternates } from "./src/i18n/routes";
+
+const SITE = "https://cleanngo.be";
+
+// Sitemap entries list their translations as xhtml:link alternates, keyed by
+// URL without trailing slash.
+const stripSlash = (url: string) => url.replace(/\/$/, "");
+const sitemapLinks = new Map(
+  allAlternates().flatMap((alternates) => {
+    const links = [
+      ...locales.map((l) => ({ lang: localeMeta[l].hreflang, url: SITE + alternates[l] })),
+      { lang: "x-default", url: SITE + alternates.fr },
+    ].map((link) => ({ ...link, url: stripSlash(link.url) }));
+    return locales.map((l) => [stripSlash(SITE + alternates[l]), links] as const);
+  })
+);
 
 export default defineConfig({
   // "static" is the default in Astro v5. Pages with `export const prerender = false`
@@ -13,6 +30,10 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !page.includes("/api/") && !page.includes("/review"),
+      serialize: (item) => {
+        const links = sitemapLinks.get(stripSlash(item.url));
+        return links ? { ...item, links } : item;
+      },
     }),
   ],
   build: {
@@ -27,7 +48,7 @@ export default defineConfig({
       minify: "esbuild",
     },
   },
-  site: "https://cleanngo.be",
+  site: SITE,
   trailingSlash: "never",
   redirects: {
     "/review": "https://g.page/r/CR0AgGP0Bx2HEBM/review",
@@ -48,5 +69,7 @@ export default defineConfig({
     "/woluwe-saint-lambert/nettoyage-toiture": "/services",
     "/etterbeek/nettoyage-toiture": "/services",
     "/watermael-boitsfort/nettoyage-toiture": "/services",
+    // Residential cleaning replaced by communal areas (October 2026)
+    "/services/nettoyage-residentiel": "/services",
   },
 });

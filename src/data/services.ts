@@ -1,5 +1,9 @@
 import type { ImageMetadata } from "astro";
 import { serviceImageAssets } from "./images";
+import type { Locale } from "@/i18n/config";
+import { servicePath } from "@/i18n/routes";
+import { servicesNl } from "./services.nl";
+import { servicesEn } from "./services.en";
 
 export interface FaqItem {
   question: string;
@@ -248,72 +252,73 @@ Nous traitons les vérandas et coupoles de A à Z (vitrages intérieur et extér
     ],
   },
   {
-    name: "Nettoyage résidentiel",
-    processTitle: "notre nettoyage résidentiel",
-    metaTitle: "Nettoyage résidentiel à Bruxelles : maisons & appartements | CleanNgo",
+    name: "Nettoyage des parties communes",
+    h1: "Nettoyage des parties communes à Bruxelles : halls, escaliers & copropriétés",
+    processTitle: "notre nettoyage des parties communes",
+    metaTitle: "Nettoyage des parties communes à Bruxelles : syndics & copropriétés | CleanNgo",
     description:
-      "Profitez d'un intérieur sain et impeccable grâce à notre service de nettoyage résidentiel professionnel. Que ce soit pour un entretien régulier hebdomadaire ou une intervention ponctuelle, notre équipe prend en charge maisons, appartements et studios. Sols, sanitaires, cuisine et pièces à vivre : chaque surface est traitée avec soin et des produits adaptés.",
+      "Le hall et la cage d'escalier sont la première impression que donne un immeuble, aux résidents comme aux visiteurs. Nous assurons l'entretien régulier des parties communes pour les syndics et les copropriétés : halls d'entrée, escaliers, paliers, ascenseurs, portes vitrées et locaux techniques. Un passage à jour fixe, selon un cahier des charges défini ensemble.",
     metaDescription:
-      "Nettoyage résidentiel professionnel à Bruxelles et périphérie. Maisons, appartements, studios : sols, sanitaires, cuisine. Devis gratuit en ligne.",
-    href: "/services/nettoyage-residentiel",
+      "Entretien des parties communes à Bruxelles et périphérie : halls, escaliers, paliers, ascenseurs. Contrats réguliers pour syndics et copropriétés. Devis gratuit.",
+    href: "/services/nettoyage-parties-communes",
     image: serviceImageAssets.houseCleaning,
-    relatedServices: ["nettoyage-etat-des-lieux", "nettoyage-post-travaux", "nettoyage-vitres"],
+    relatedServices: ["nettoyage-vitres", "bureaux-commerces", "nettoyage-post-travaux"],
     quote:
-      "Un chez-soi propre, c'est un espace où l'on se ressource vraiment. Moins de poussière, plus d'air, et une sérénité que vous méritez.",
-    editorial: `Dans le rythme d'une semaine chargée, le nettoyage résidentiel est souvent la première chose qui passe à la trappe, et la poussière, le calcaire et les graisses de cuisine ne font pas de compromis. Ce n'est pas une question de volonté : entretenir correctement une maison ou un appartement demande du temps, des produits adaptés à chaque surface et une méthode rigoureuse qui va au-delà du coup de serpillière rapide.
+      "Le hall d'entrée, c'est la carte de visite de l'immeuble. Quand il est propre chaque semaine, les résidents le remarquent, et le syndic reçoit moins de plaintes.",
+    editorial: `Dans une copropriété, les parties communes sont utilisées par tout le monde et entretenues par personne en particulier. Halls, escaliers et paliers concentrent tout le passage de l'immeuble : traces de pas par temps de pluie, poussière dans les angles des marches, empreintes sur les portes vitrées, les rampes et les boîtes aux lettres. Sans entretien régulier, l'immeuble se dégrade vite et le sujet finit en point de discorde à l'assemblée générale.
 
-La différence entre un ménage professionnel et un entretien quotidien tient à la méthode autant qu'aux produits. Un technicien de nettoyage travaille de haut en bas (plafonds, luminaires, étagères avant les sols) pour ne jamais recontaminer une surface déjà traitée. Il dégraisse la cuisine avec des produits calibrés pour chaque support, détartre les sanitaires en profondeur et atteint les recoins que l'habitude fait oublier : rails de fenêtres, plinthes, espaces derrière les meubles.
+Un entretien des parties communes efficace repose sur un planning fixe et un cahier des charges clair. Certaines tâches reviennent à chaque passage : balayage et lavage des escaliers et du hall, essuyage des points de contact (rampes, poignées, boutons d'ascenseur), nettoyage de la porte d'entrée vitrée. D'autres sont planifiées à intervalle régulier : vitres des cages d'escalier, plinthes, toiles d'araignée, local poubelles, caves et local vélos. Chaque revêtement (pierre bleue, marbre, granito, carrelage, lino) est lavé avec un produit qui lui convient.
 
-Nous intervenons dans les maisons et appartements de Bruxelles et de la périphérie, avec des produits éco-responsables certifiés, sans danger pour les enfants et les animaux. Intervention hebdomadaire, bimensuelle ou ponctuelle : le planning s'adapte à votre mode de vie, pas l'inverse.`,
+Nous travaillons avec les syndics professionnels, les syndics bénévoles et les copropriétaires à Bruxelles et dans la périphérie, pour les petits immeubles comme pour les résidences de plusieurs cages d'escalier. Passage hebdomadaire, bimensuel ou mensuel selon la taille et la fréquentation de l'immeuble, et interventions ponctuelles après un déménagement, des travaux ou avant une assemblée générale.`,
     features: [
-      "Sols aspirés et lavés",
-      "Sanitaires désinfectés de fond en comble",
-      "Cuisine et surfaces de travail",
-      "Dépoussiérage du mobilier et des luminaires",
-      "Miroirs, interrupteurs et poignées",
-      "Vides-poches et recoins oubliés",
+      "Halls d'entrée et sas",
+      "Cages d'escalier, marches et rampes",
+      "Paliers et couloirs",
+      "Ascenseurs : cabine, miroirs et portes",
+      "Portes vitrées, boîtes aux lettres et poignées",
+      "Locaux poubelles, caves et locaux vélos",
     ],
     faqItems: [
       {
-        question: "À quelle fréquence recommandez-vous un nettoyage résidentiel ?",
+        question: "Travaillez-vous avec les syndics et les copropriétés ?",
         answer:
-          "Pour un entretien courant, nous recommandons une intervention hebdomadaire ou bimensuelle. Pour les ménages chargés ou les familles avec enfants, une fois par semaine garantit un intérieur toujours sain. Nous adaptons la fréquence à votre mode de vie.",
+          "Oui, c'est le cœur de ce service. Nous travaillons avec les syndics professionnels, les syndics bénévoles et les copropriétaires. Après une visite de l'immeuble, nous établissons un devis et un cahier des charges qui précisent les tâches et la fréquence des passages.",
       },
       {
-        question: "Comment se passe l'accès à mon logement si je travaille pendant le nettoyage ?",
+        question: "À quelle fréquence faut-il nettoyer les parties communes ?",
         answer:
-          "Vous n'avez pas besoin d'être là. Pour un nettoyage régulier, la plupart de nos clients nous confient une clé ou un code d'accès, et nous convenons ensemble d'un créneau fixe. Nos équipes sont assurées et formées pour intervenir en toute discrétion et sécurité.",
+          "Pour la plupart des immeubles, un passage par semaine suffit. Les immeubles très fréquentés peuvent demander deux passages par semaine, et les petites copropriétés peuvent se contenter d'un passage tous les quinze jours. Les tâches de fond (vitres, plinthes, caves) sont planifiées en plus, par exemple chaque mois ou chaque trimestre.",
       },
       {
-        question: "Utilisez-vous des produits éco-responsables ?",
+        question: "Faut-il que quelqu'un soit présent lors des passages ?",
         answer:
-          "Oui, nous privilégions des produits certifiés éco-responsables, efficaces et sans danger pour vos enfants et animaux de compagnie. Sur demande, nous pouvons adapter les produits utilisés selon vos préférences ou allergies.",
+          "Non. Le syndic nous confie une clé, un badge ou un code d'accès et nous convenons d'un jour de passage fixe. Nos équipes sont assurées et interviennent en toute discrétion. Si nous constatons un problème dans l'immeuble (ampoule grillée, dégât, encombrant abandonné), nous le signalons au syndic.",
       },
     ],
     process: [
       {
         step: "01",
-        title: "Tour du logement",
+        title: "Visite et cahier des charges",
         description:
-          "Parcours rapide avec le client ou selon la fiche d'instructions pour identifier les priorités, les matériaux sensibles et les zones à traiter en profondeur.",
+          "Visite de l'immeuble avec le syndic ou un copropriétaire : surfaces, revêtements, nombre d'étages et points sensibles. Nous définissons ensemble les tâches à chaque passage et les tâches périodiques.",
       },
       {
         step: "02",
-        title: "Dépoussiérage de haut en bas",
+        title: "Points de contact et dépoussiérage",
         description:
-          "Plafonds, luminaires, étagères et mobilier traités avant les sols pour éviter de les recontaminer. Micro-fibres humides sur toutes les surfaces.",
+          "Rampes, poignées, interrupteurs, boutons d'ascenseur et boîtes aux lettres essuyés et désinfectés. Dépoussiérage des rebords, des radiateurs et des encadrements de portes.",
       },
       {
         step: "03",
-        title: "Sanitaires et cuisine",
+        title: "Escaliers et paliers",
         description:
-          "Désinfection des surfaces de contact (robinets, poignées, commandes), détartrage des sanitaires, dégraissage de la cuisine et des plans de travail.",
+          "Balayage ou aspiration de haut en bas, puis lavage des marches et des paliers avec un produit adapté au revêtement : pierre bleue, marbre, granito, carrelage ou lino.",
       },
       {
         step: "04",
-        title: "Sols aspirés et lavés",
+        title: "Hall d'entrée et contrôle final",
         description:
-          "Aspiration fine puis lavage adapté selon le revêtement (parquet, carrelage, vinyle). Recoins, plinthes et rails de portes traités en dernier.",
+          "Lavage du sol du hall et des tapis d'entrée, nettoyage de la porte vitrée et de la cabine d'ascenseur. Tour de contrôle de l'immeuble avant de refermer.",
       },
     ],
   },
@@ -327,7 +332,8 @@ Nous intervenons dans les maisons et appartements de Bruxelles et de la périph�
       "Nettoyage après travaux à Bruxelles et périphérie. Élimination plâtre, silicone, peinture sur toutes surfaces. Espace livré prêt à habiter. Devis gratuit.",
     href: "/services/nettoyage-post-travaux",
     image: serviceImageAssets.postWork,
-    relatedServices: ["nettoyage-residentiel", "nettoyage-etat-des-lieux", "nettoyage-vitres"],
+    imagePosition: "50% 40%",
+    relatedServices: ["nettoyage-parties-communes", "nettoyage-etat-des-lieux", "nettoyage-vitres"],
     quote:
       "Après les travaux, la poussière s'installe partout, même là où vous ne regardez jamais. On s'en charge, vous récupérez un espace prêt à vivre.",
     editorial: `Après un chantier de rénovation ou de construction, la poussière de chantier s'infiltre dans des endroits improbables : derrière les prises, dans les gaines de ventilation, sur les dessus de portes, dans les rails de fenêtres. Ce que vous voyez à l'œil nu n'est qu'une partie du problème : les particules fines de plâtre ou de ponçage se déposent partout et se redistribuent dans l'air pendant plusieurs jours si elles ne sont pas aspirées correctement.
@@ -397,7 +403,7 @@ Nous intervenons en fin de chantier à Bruxelles et dans toute la périphérie (
       "Nettoyage état des lieux à Bruxelles et périphérie. Remise en état complète pour sortie ou entrée de location. Certification de propreté disponible.",
     href: "/services/nettoyage-etat-des-lieux",
     image: serviceImageAssets.movingIn,
-    relatedServices: ["nettoyage-residentiel", "nettoyage-post-travaux", "nettoyage-vitres"],
+    relatedServices: ["nettoyage-parties-communes", "nettoyage-post-travaux", "nettoyage-vitres"],
     quote:
       "Un état des lieux, ça ne pardonne pas. On s'assure que chaque surface est irréprochable, pour que vous récupériez votre caution sans discussion.",
     editorial: `La restitution d'un logement est un moment de tension : un état des lieux de sortie raté peut aboutir à des retenues sur caution pour des motifs de propreté qui auraient pu être évités. Les propriétaires et agences immobilières à Bruxelles et en Brabant sont souvent plus exigeants qu'on ne l'anticipe (four, hotte, joints de salle de bain, intérieur des placards, plinthes) : chaque surface est vérifiée méthodiquement.
@@ -468,7 +474,7 @@ Sur demande, nous délivrons un certificat de propreté attestant de notre inter
     href: "/services/bureaux-commerces",
     image: serviceImageAssets.officeCleaning,
     imagePosition: "50% 55%",
-    relatedServices: ["nettoyage-vitres", "nettoyage-post-travaux", "nettoyage-etat-des-lieux"],
+    relatedServices: ["nettoyage-vitres", "nettoyage-post-travaux", "nettoyage-parties-communes"],
     quote:
       "Un espace de travail propre, c'est plus qu'une question d'image. C'est une condition pour que vos équipes performent et que vos clients reviennent.",
     editorial: `Un espace professionnel mal entretenu crée une impression durable, et rarement la bonne. Pour les clients et partenaires qui visitent vos locaux, l'état d'un bureau ou d'un commerce reflète directement le soin apporté à votre activité. Pour vos collaborateurs, travailler dans un environnement propre a un impact mesurable sur la concentration, le confort et l'absentéisme. Ce n'est pas un luxe : c'est une condition de travail.
@@ -677,3 +683,52 @@ Nous réalisons systématiquement un contrôle visuel complet lors de chaque int
 ];
 
 export const featuredServices = services.filter((s) => s.featured);
+
+// =========================================================
+// Translations
+// =========================================================
+
+/** The fields that change per locale. Images, order and links stay shared. */
+export type ServiceText = Pick<
+  Service,
+  | "name"
+  | "h1"
+  | "processTitle"
+  | "metaTitle"
+  | "description"
+  | "metaDescription"
+  | "quote"
+  | "editorial"
+  | "features"
+  | "faqItems"
+  | "process"
+>;
+
+export interface LocalizedService extends Service {
+  /** Locale-independent id: the French slug, e.g. "nettoyage-vitres". */
+  id: string;
+}
+
+const translations: Record<Exclude<Locale, "fr">, Record<string, ServiceText>> = {
+  nl: servicesNl,
+  en: servicesEn,
+};
+
+/** Services in the given locale, with `href` pointing at the localized page. */
+export function getServices(locale: Locale): LocalizedService[] {
+  return services.map((service) => {
+    const id = service.href.replace("/services/", "");
+    const text = locale === "fr" ? undefined : translations[locale][id];
+    if (locale !== "fr" && !text) throw new Error(`Missing ${locale} translation for ${id}`);
+    // Reset the optional text fields so a missing translation never falls
+    // back to French.
+    const localized = text
+      ? { h1: undefined, metaTitle: undefined, quote: undefined, editorial: undefined, ...text }
+      : {};
+    return { ...service, ...localized, id, href: servicePath(id, locale) };
+  });
+}
+
+export function getService(id: string, locale: Locale): LocalizedService | undefined {
+  return getServices(locale).find((s) => s.id === id);
+}

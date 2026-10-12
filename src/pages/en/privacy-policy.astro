@@ -1,0 +1,303 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import { pageAlternates } from "@/i18n/routes";
+---
+
+<BaseLayout
+  title="Privacy policy"
+  description="CleanNgo's privacy policy. Find out how we collect, use and protect your personal data in line with the GDPR."
+  noindex={false}
+  alternates={pageAlternates("privacy")}
+>
+  <Container class="py-20">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="font-display mb-4 text-4xl font-bold uppercase md:text-5xl">Privacy policy</h1>
+      <p class="mb-16 text-sm text-(--color-text-primary)/40">Last updated: April 2025</p>
+
+      <div class="space-y-12 text-(--color-text-primary)">
+        <!-- 1. Data controller -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">1. Data controller</h2>
+          <p class="text-(--color-text-primary)/80">
+            The controller of the personal data collected through this website is:
+          </p>
+          <ul class="mt-4 space-y-1 text-(--color-text-primary)/80">
+            <li><strong>Trading name:</strong> CleanNgo</li>
+            <li><strong>Company name:</strong> NDN Services SRL</li>
+            <li><strong>Legal form:</strong> private limited company (SRL)</li>
+            <li><strong>Company number (BCE/KBO):</strong> 1016.238.910</li>
+            <li><strong>VAT number:</strong> BE 1016.238.910</li>
+            <li>
+              <strong>Registered office:</strong> Leliestraat 51, 1800 Vilvoorde, Belgium
+            </li>
+            <li>
+              <strong>Phone:</strong>
+              <a
+                href="tel:+32486518181"
+                data-umami-event="phone_click"
+                data-umami-event-location="privacy_policy"
+                data-umami-event-channel="phone"
+                class="underline">+32 486 51 81 81</a
+              >
+            </li>
+            <li>
+              <strong>Email:</strong>
+              <a
+                href="mailto:contact@cleanngo.be"
+                data-umami-event="email_click"
+                data-umami-event-location="privacy_policy"
+                data-umami-event-channel="email"
+                class="underline">contact@cleanngo.be</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <!-- 2. Data collected -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">2. Personal data collected</h2>
+          <p class="text-(--color-text-primary)/80">
+            We only collect the data you choose to send us through our contact and quote request
+            form:
+          </p>
+          <ul class="mt-4 list-disc space-y-1 pl-6 text-(--color-text-primary)/80">
+            <li>First name and surname</li>
+            <li>Email address</li>
+            <li>Phone number</li>
+            <li>Type of service required</li>
+            <li>Free-text message (description of your request)</li>
+          </ul>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            We do not collect any personal browsing data. Our audience analytics tool (Umami) is set
+            up without cookies and does not process any data that could identify you personally.
+          </p>
+        </section>
+
+        <!-- 3. Purposes and legal basis -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">
+            3. Purposes and legal basis for processing
+          </h2>
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full border-collapse text-sm">
+              <thead>
+                <tr class="bg-(--color-surface-secondary)">
+                  <th class="border border-(--color-text-primary)/10 p-3 text-left font-semibold"
+                    >Purpose</th
+                  >
+                  <th class="border border-(--color-text-primary)/10 p-3 text-left font-semibold"
+                    >Legal basis (GDPR art. 6)</th
+                  >
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Responding to your quote or booking request</td
+                  >
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Art. 6(1)(b): pre-contractual steps taken at your request</td
+                  >
+                </tr>
+                <tr class="bg-(--color-surface-secondary)/50">
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Customer relationship management and service follow-up</td
+                  >
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Art. 6(1)(b): performance of the contract</td
+                  >
+                </tr>
+                <tr>
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Anonymous statistical analysis of website traffic</td
+                  >
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Art. 6(1)(f): legitimate interest (no personal data processed)</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 4. Retention period -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">4. Retention period</h2>
+          <p class="text-(--color-text-primary)/80">
+            Your data is kept only for as long as necessary for the purposes for which it was
+            collected:
+          </p>
+          <ul class="mt-4 list-disc space-y-2 pl-6 text-(--color-text-primary)/80">
+            <li>
+              <strong>Quote requests not followed up:</strong> 1 year from your request.
+            </li>
+            <li>
+              <strong>Client data (service carried out):</strong> 3 years from the end of the business
+              relationship, in line with limitation periods under Belgian law.
+            </li>
+            <li>
+              <strong>Billing data:</strong> 7 years, in line with Belgian accounting obligations.
+            </li>
+          </ul>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            When these periods expire, your data is irreversibly deleted or anonymised.
+          </p>
+        </section>
+
+        <!-- 5. Recipients -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">5. Recipients of the data</h2>
+          <p class="text-(--color-text-primary)/80">
+            Your personal data is accessible only to authorised people within CleanNgo. It is never
+            sold, rented or passed on to third parties for commercial purposes.
+          </p>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            To send confirmation emails following your contact request, we use the following
+            processor:
+          </p>
+          <ul class="mt-4 list-disc space-y-1 pl-6 text-(--color-text-primary)/80">
+            <li>
+              <strong>Resend, Inc.</strong>: transactional email provider. Registered office: 2261
+              Market Street #5039, San Francisco, CA 94114, United States. (<a
+                href="https://resend.com/legal/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline">Resend privacy policy</a
+              >)
+            </li>
+          </ul>
+        </section>
+
+        <!-- 6. Transfers outside the EU -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">
+            6. Data transfers outside the European Union
+          </h2>
+          <p class="text-(--color-text-primary)/80">
+            Resend, Inc. is based in the United States. The transfer of your data to that country is
+            covered by the <strong>Standard Contractual Clauses (SCCs)</strong> approved by the European
+            Commission, in accordance with Article 46 of the GDPR, ensuring an adequate level of protection.
+          </p>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            No other data is transferred to third countries. Our audience analytics tool (Umami) is
+            self-hosted on servers located in Europe.
+          </p>
+        </section>
+
+        <!-- 7. Cookies and trackers -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">7. Cookies and trackers</h2>
+          <p class="text-(--color-text-primary)/80">
+            This website <strong>does not use any tracking or profiling cookies</strong>. We use
+            Umami, a privacy-friendly open-source analytics tool:
+          </p>
+          <ul class="mt-4 list-disc space-y-1 pl-6 text-(--color-text-primary)/80">
+            <li>No cookies are placed in your browser.</li>
+            <li>No personally identifiable data is collected or stored.</li>
+            <li>Statistics are anonymised and aggregated (page views, traffic sources).</li>
+            <li>The tool is self-hosted on our servers located in Europe.</li>
+          </ul>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            No cookie consent banner is required for this use, in line with the guidelines of the
+            Belgian Data Protection Authority (DPA).
+          </p>
+        </section>
+
+        <!-- 8. Security -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">8. Data security</h2>
+          <p class="text-(--color-text-primary)/80">
+            We take appropriate technical and organisational measures to protect your data against
+            unauthorised access, disclosure, alteration or destruction:
+          </p>
+          <ul class="mt-4 list-disc space-y-1 pl-6 text-(--color-text-primary)/80">
+            <li>Secure connection over HTTPS (TLS).</li>
+            <li>Access to data restricted to authorised people only.</li>
+            <li>Infrastructure hosted on secure servers.</li>
+          </ul>
+        </section>
+
+        <!-- 9. Your rights -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">9. Your rights</h2>
+          <p class="text-(--color-text-primary)/80">
+            Under the GDPR (Articles 15 to 22), you have the following rights:
+          </p>
+          <ul class="mt-4 list-disc space-y-2 pl-6 text-(--color-text-primary)/80">
+            <li>
+              <strong>Right of access:</strong> obtain a copy of the data we hold about you.
+            </li>
+            <li>
+              <strong>Right to rectification:</strong> correct inaccurate or incomplete data.
+            </li>
+            <li>
+              <strong>Right to erasure:</strong> ask for your data to be deleted (the "right to be forgotten").
+            </li>
+            <li>
+              <strong>Right to restriction:</strong> limit processing in certain circumstances.
+            </li>
+            <li>
+              <strong>Right to object:</strong> object to processing on legitimate grounds.
+            </li>
+            <li>
+              <strong>Right to data portability:</strong> receive your data in a structured, machine-readable
+              format.
+            </li>
+          </ul>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            To exercise any of these rights, send your request by email to
+            <a
+              href="mailto:contact@cleanngo.be"
+              data-umami-event="email_click"
+              data-umami-event-location="privacy_policy"
+              data-umami-event-channel="email"
+              class="underline">contact@cleanngo.be</a
+            >. We undertake to reply within one month, in accordance with Article 12 of the GDPR.
+          </p>
+        </section>
+
+        <!-- 10. Complaint to the DPA -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">10. Right to lodge a complaint</h2>
+          <p class="text-(--color-text-primary)/80">
+            If you believe the processing of your data does not comply with the GDPR, you have the
+            right to lodge a complaint with the competent supervisory authority in Belgium:
+          </p>
+          <address class="mt-4 space-y-1 text-(--color-text-primary)/80 not-italic">
+            <p><strong>Data Protection Authority (DPA)</strong></p>
+            <p>Rue de la Presse 35, 1000 Brussels</p>
+            <p>Tel.: +32 (0)2 274 48 00</p>
+            <p>
+              Website:
+              <a
+                href="https://www.dataprotectionauthority.be/citizen"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline"
+              >
+                www.dataprotectionauthority.be
+              </a>
+            </p>
+          </address>
+        </section>
+
+        <!-- 11. Changes -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">11. Changes to this policy</h2>
+          <p class="text-(--color-text-primary)/80">
+            We reserve the right to update this policy at any time, in particular to comply with any
+            legal or regulatory changes. The date of the last update is shown at the top of this
+            page. We encourage you to check it regularly.
+          </p>
+        </section>
+      </div>
+    </div>
+  </Container>
+</BaseLayout>

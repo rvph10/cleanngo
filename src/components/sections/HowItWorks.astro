@@ -1,28 +1,12 @@
 ---
 import Button from "@components/ui/Button.astro";
+import { getLocaleFromUrl } from "@/i18n/config";
+import { pagePath } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/ui";
 
-const steps = [
-  {
-    number: "01",
-    title: "Réservez en ligne",
-    description: "Choisissez votre créneau en moins de 60 secondes sur notre plateforme.",
-  },
-  {
-    number: "02",
-    title: "Nettoyage expert",
-    description: "Nos techniciens arrivent avec le matériel professionnel adapté à votre prestation.",
-  },
-  {
-    number: "03",
-    title: "Résultat impeccable",
-    description: "Tout est nettoyé et rangé selon vos standards. Il ne vous reste qu'à profiter.",
-  },
-  {
-    number: "04",
-    title: "Tranquillité durable",
-    description: "Un suivi personnalisé et un résultat garanti à chaque intervention.",
-  },
-];
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale).howItWorks;
+const steps = t.steps.map((step, i) => ({ ...step, number: String(i + 1).padStart(2, "0") }));
 ---
 
 <section class="w-full">
@@ -32,13 +16,12 @@ const steps = [
       <h2
         class="font-display m-0 text-5xl leading-tight font-bold tracking-tight text-(--color-text-primary) uppercase lg:text-6xl"
       >
-        Comment ça marche
+        {t.title}
       </h2>
       <p class="m-0 text-lg leading-relaxed text-(--color-text-primary)/70">
-        Découvrez comment votre nettoyage est géré, étape par étape : simple, rapide et conçu pour
-        vous simplifier la vie.
+        {t.text}
       </p>
-      <Button href="/contact" size="lg">Réserver votre nettoyage</Button>
+      <Button href={pagePath("contact", locale)} size="lg">{t.button}</Button>
     </div>
 
     <!-- Right: stacking step cards -->

@@ -1,5 +1,11 @@
 ---
 import Button from "@components/ui/Button.astro";
+import { getLocaleFromUrl } from "@/i18n/config";
+import { pagePath } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/ui";
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale).cta;
 ---
 
 <section class="w-full">
@@ -11,30 +17,29 @@ import Button from "@components/ui/Button.astro";
         data-reveal="words"
         class="font-display m-0 text-5xl leading-[0.9] font-bold tracking-tight text-(--color-text-primary) uppercase lg:text-6xl"
       >
-        Prêt pour un bâtiment impeccable ?
+        {t.title}
       </h2>
 
       <p data-reveal="fade" class="max-w-lg text-xl leading-[0.9] text-(--color-text-primary)/70">
-        Nos techniciens interviennent à Bruxelles et périphérie pour vitres, vérandas, panneaux solaires et
-        gouttières. Devis gratuit en 2 heures.
+        {t.text}
       </p>
 
       <div data-reveal="cards" class="flex flex-wrap items-center justify-center gap-3">
         <Button
-          href="/contact"
+          href={pagePath("contact", locale)}
           size="lg"
           data-umami-event="cta_click"
           data-umami-event-location="cta_section"
           class="bg-(--color-text-primary) text-(--color-surface) hover:bg-(--color-background) hover:text-(--color-text-primary) [&_svg]:text-(--color-text-primary)"
         >
-          Demandez votre devis gratuit
+          {t.quote}
         </Button>
         <Button
-          href="/services"
+          href={pagePath("services", locale)}
           size="lg"
           class="bg-transparent text-(--color-text-primary) ring-2 ring-(--color-text-primary) hover:bg-(--color-text-primary) hover:text-(--color-surface) [&_svg]:text-(--color-surface)"
         >
-          Voir tous nos services
+          {t.allServices}
         </Button>
       </div>
     </div>

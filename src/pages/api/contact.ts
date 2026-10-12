@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { sendBookingEmail, sendConfirmationEmail } from "@lib/resend";
 import type { ContactFormData, ContactFormResponse } from "@/types/index";
+import { defaultLocale, isLocale } from "@/i18n/config";
 
 export const prerender = false;
 
@@ -73,6 +74,7 @@ function validateBody(
       city: (d.city as string).trim(),
       services: d.services.trim(),
       notes: notes || undefined,
+      locale: isLocale(d.locale) ? d.locale : defaultLocale,
     },
   };
 }

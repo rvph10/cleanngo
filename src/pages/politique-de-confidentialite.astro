@@ -1,12 +1,14 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
+import { pageAlternates } from "@/i18n/routes";
 ---
 
 <BaseLayout
   title="Politique de confidentialité"
   description="Politique de confidentialité de CleanNgo. Découvrez comment nous collectons, utilisons et protégeons vos données personnelles conformément au RGPD."
   noindex={false}
+  alternates={pageAlternates("privacy")}
 >
   <Container class="py-20">
     <div class="mx-auto max-w-3xl">

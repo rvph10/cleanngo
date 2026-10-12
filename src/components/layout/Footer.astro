@@ -2,8 +2,21 @@
 import Container from "@components/ui/Container.astro";
 import SocialLinks from "@components/ui/SocialLinks.astro";
 import Button from "@components/ui/Button.astro";
+import LanguageSwitcher from "@components/ui/LanguageSwitcher.astro";
 import { imageAssets } from "@/data/images";
-import { navLinks } from "../../data/nav";
+import { getNavLinks } from "../../data/nav";
+import { getLocaleFromUrl } from "@/i18n/config";
+import { pagePath, type Alternates } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/ui";
+
+interface Props {
+  alternates?: Alternates;
+}
+
+const { alternates } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale).footer;
+const navLinks = getNavLinks(locale);
 
 const year = new Date().getFullYear();
 
@@ -13,14 +26,14 @@ const contactInfo = {
 };
 
 const hours = [
-  { day: "Lundi au samedi", time: "8h à 18h" },
-  { day: "Dimanche", time: "Fermé" },
+  { day: t.weekdays, time: t.openHours, closed: false },
+  { day: t.sunday, time: t.closed, closed: true },
 ];
 
 const stats = [
-  { value: "10+", label: "Années\nd'expérience" },
-  { value: "98%", label: "Clients\nsatisfaits" },
-  { value: "4.9", label: "Note\nmoyenne" },
+  { value: "10+", label: t.stats[0] },
+  { value: "98%", label: t.stats[1] },
+  { value: "4.9", label: t.stats[2] },
 ];
 ---
 
@@ -34,22 +47,22 @@ const stats = [
             <p
               class="font-display text-xs font-bold tracking-[0.25em] text-(--color-accent) uppercase"
             >
-              Votre partenaire propreté
+              {t.tagline}
             </p>
             <h2
               class="font-display text-5xl leading-none font-black tracking-tight text-(--color-surface) md:text-6xl lg:text-7xl"
             >
-              Des espaces<br />impeccables.
+              {t.headline[0]}<br />{t.headline[1]}
             </h2>
           </div>
           <Button
-            href="/contact"
+            href={pagePath("contact", locale)}
             size="lg"
             data-umami-event="cta_click"
             data-umami-event-location="footer"
             class="hover:bg-(--color-surface) hover:text-(--color-text-primary)"
           >
-            Contactez-nous
+            {t.contactUs}
           </Button>
         </div>
       </div>
@@ -60,7 +73,7 @@ const stats = [
       >
         <!-- Col 1: Brand + Stats -->
         <div class="flex flex-col gap-7">
-          <a href="/" aria-label="Accueil CleanNgo" class="group w-fit">
+          <a href={pagePath("home", locale)} aria-label={t.homeAria} class="group w-fit">
             <img
               src={imageAssets.brandLogo}
               alt="CleanNgo"
@@ -71,7 +84,7 @@ const stats = [
           </a>
 
           <p class="max-w-xs text-base leading-relaxed text-(--color-surface)/60">
-            Des espaces impeccables, une équipe de confiance. Votre propreté, notre fierté.
+            {t.blurb}
           </p>
 
           <!-- Typography variation: stats as display figures -->
@@ -98,23 +111,23 @@ const stats = [
         <!-- Col 2: Navigation -->
         <div class="flex flex-col gap-6">
           <p class="font-display text-xl font-bold tracking-widest text-(--color-accent) uppercase">
-            Navigation
+            {t.navTitle}
           </p>
           <ul class="flex flex-col gap-3.5">
             <li>
               <a
-                href="/"
+                href={pagePath("home", locale)}
                 class="text-base text-(--color-surface)/70 transition-colors duration-200 hover:text-(--color-accent)"
               >
-                Accueil
+                {t.home}
               </a>
             </li>
             <li>
               <a
-                href="/services"
+                href={pagePath("services", locale)}
                 class="text-base text-(--color-surface)/70 transition-colors duration-200 hover:text-(--color-accent)"
               >
-                Tous nos services
+                {t.allServices}
               </a>
             </li>
             {
@@ -135,7 +148,7 @@ const stats = [
         <!-- Col 3: Contact & Hours -->
         <div class="flex flex-col gap-6">
           <p class="font-display text-xl font-bold tracking-widest text-(--color-accent) uppercase">
-            Contact
+            {t.contactTitle}
           </p>
 
           <div class="flex flex-col gap-4">
@@ -200,7 +213,7 @@ const stats = [
             <p
               class="font-display text-xs font-bold tracking-widest text-(--color-accent) uppercase"
             >
-              Horaires
+              {t.hoursTitle}
             </p>
             <div class="grid grid-cols-3 gap-3">
               {
@@ -212,7 +225,7 @@ const stats = [
                     <span
                       class:list={[
                         "font-accent text-xl leading-none font-black tabular-nums",
-                        entry.time === "Fermé"
+                        entry.closed
                           ? "text-(--color-surface)/50"
                           : "text-(--color-surface)",
                       ]}
@@ -232,20 +245,20 @@ const stats = [
         class="flex flex-col items-center justify-between gap-4 border-t border-(--color-surface)/10 px-8 py-6 sm:flex-row md:px-14"
       >
         <p class="text-sm text-(--color-surface)/65">
-          © {year} CleanNgo. Tous droits réservés.
+          © {year} CleanNgo. {t.rights}
         </p>
         <div class="flex items-center gap-6 text-sm text-(--color-surface)/65">
           <a
-            href="/politique-de-confidentialite"
+            href={pagePath("privacy", locale)}
             class="transition-colors duration-200 hover:text-(--color-accent)"
           >
-            Politique de confidentialité
+            {t.privacy}
           </a>
           <a
-            href="/mentions-legales"
+            href={pagePath("legal", locale)}
             class="transition-colors duration-200 hover:text-(--color-accent)"
           >
-            Mentions légales
+            {t.legal}
           </a>
           <span class="text-(--color-surface)/40">·</span>
           <a
@@ -254,9 +267,12 @@ const stats = [
             rel="noopener noreferrer"
             class="transition-colors duration-200 hover:text-(--color-accent)"
           >
-            Conçu par upintown
+            {t.designedBy}
           </a>
         </div>
+      </div>
+      <div class="flex justify-center px-8 pb-6 md:px-14">
+        <LanguageSwitcher alternates={alternates} tone="dark" />
       </div>
     </div>
   </Container>

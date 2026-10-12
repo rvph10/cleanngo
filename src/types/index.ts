@@ -2,6 +2,8 @@
 // Contact form
 // =========================================================
 
+import type { Locale } from "@/i18n/config";
+
 export interface ContactFormData {
   name: string;
   /** At least one of phone / email is required */
@@ -11,6 +13,8 @@ export interface ContactFormData {
   /** Comma-separated list of service slugs */
   services: string;
   notes?: string;
+  /** Language of the page the form was sent from. */
+  locale: Locale;
 }
 
 export interface ContactFormResponse {

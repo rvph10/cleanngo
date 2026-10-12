@@ -1,0 +1,15 @@
+---
+import ServiceDetailPage from "@/views/ServiceDetailPage.astro";
+import { serviceSlugs } from "@/i18n/routes";
+
+export function getStaticPaths() {
+  return Object.entries(serviceSlugs).map(([serviceId, slugs]) => ({
+    params: { slug: slugs.nl },
+    props: { serviceId },
+  }));
+}
+
+const { serviceId } = Astro.props;
+---
+
+<ServiceDetailPage serviceId={serviceId} />

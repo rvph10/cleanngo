@@ -1,12 +1,14 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
+import { pageAlternates } from "@/i18n/routes";
 ---
 
 <BaseLayout
   title="Mentions légales"
   description="Mentions légales de CleanNgo, entreprise de nettoyage à Bruxelles et périphérie."
   noindex={false}
+  alternates={pageAlternates("legal")}
 >
   <Container class="py-20">
     <div class="mx-auto max-w-3xl">

@@ -1,0 +1,58 @@
+---
+// Plain links to the same page in the other locales, so crawlers can follow
+// them. No automatic redirect based on the browser language: Googlebot crawls
+// without Accept-Language and would only ever see one version.
+import { locales, localeMeta, getLocaleFromUrl } from "@/i18n/config";
+import { pageAlternates, type Alternates } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/ui";
+
+interface Props {
+  alternates?: Alternates;
+  variant?: "desktop" | "mobile";
+  /** "dark" for use on a dark background (footer). */
+  tone?: "light" | "dark";
+  class?: string;
+}
+
+const {
+  alternates = pageAlternates("home"),
+  variant = "desktop",
+  tone = "light",
+  class: className,
+} = Astro.props;
+const current = getLocaleFromUrl(Astro.url);
+const t = useTranslations(current);
+---
+
+<nav aria-label={t.nav.languageAria} class:list={["flex items-center", className]}>
+  <ul class:list={["flex items-center", variant === "desktop" ? "gap-1" : "gap-2"]}>
+    {
+      locales.map((locale) => (
+        <li>
+          <a
+            href={alternates[locale]}
+            hreflang={localeMeta[locale].hreflang}
+            lang={localeMeta[locale].htmlLang}
+            title={localeMeta[locale].label}
+            aria-current={locale === current ? "true" : undefined}
+            data-umami-event={locale === current ? undefined : "language_switch"}
+            data-umami-event-destination={locale === current ? undefined : locale}
+            class:list={[
+              "font-accent block rounded-full font-bold tracking-wide transition-colors duration-200",
+              variant === "desktop" ? "px-2 py-1 text-sm" : "px-4 py-2 text-base",
+              locale === current
+                ? tone === "light"
+                  ? "bg-(--color-text-primary) text-(--color-background)"
+                  : "bg-(--color-surface) text-(--color-text-primary)"
+                : tone === "light"
+                  ? "text-(--color-text-primary)/60 hover:text-(--color-accent)"
+                  : "text-(--color-surface)/65 hover:text-(--color-accent)",
+            ]}
+          >
+            {localeMeta[locale].short}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

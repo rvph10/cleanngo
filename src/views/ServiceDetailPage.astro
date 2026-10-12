@@ -1,0 +1,393 @@
+---
+import { Image, getImage } from "astro:assets";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Button from "@components/ui/Button.astro";
+import CTA from "@/components/sections/CTA.astro";
+import ServiceAreas from "@/components/sections/ServiceAreas.astro";
+import RelatedServices from "@/components/sections/RelatedServices.astro";
+import { getServices } from "@/data/services";
+import { reviews } from "@/data/reviews";
+import { getLocaleFromUrl } from "@/i18n/config";
+import { pagePath, serviceAlternates } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/ui";
+
+interface Props {
+  /** Locale-independent service id, e.g. "nettoyage-vitres". */
+  serviceId: string;
+}
+
+const { serviceId } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const services = getServices(locale);
+const service = services.find((s) => s.id === serviceId)!;
+const slug = service.id;
+const serviceReviews = reviews.filter((r) => !r.service || r.service === slug).slice(0, 3);
+const contactPath = pagePath("contact", locale);
+const servicesPath = pagePath("services", locale);
+
+const related = (service.relatedServices ?? [])
+  .map((s) => services.find((item) => item.id === s))
+  .filter((s): s is (typeof services)[0] => s !== undefined);
+
+// Preload the LCP hero image using the actual optimized URL from Astro's image pipeline
+const heroOptimized = await getImage({ src: service.image, width: 1200, format: "webp" });
+const heroPreloadHref = heroOptimized.src;
+const heroPreloadType = "image/webp";
+
+const faqItems = service.faqItems;
+---
+
+<BaseLayout
+  title={service.metaTitle ?? t.serviceDetail.fallbackTitle(service.name)}
+  description={service.metaDescription}
+  image={service.image.src}
+  alternates={serviceAlternates(serviceId)}
+>
+  <link slot="head" rel="preload" as="image" href={heroPreloadHref} type={heroPreloadType} />
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqItems.map(({ question, answer }) => ({
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: { "@type": "Answer", text: answer },
+      })),
+    })}
+  />
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: t.breadcrumb.home,
+          item: `https://cleanngo.be${locale === "fr" ? "" : pagePath("home", locale)}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: t.breadcrumb.services,
+          item: `https://cleanngo.be${servicesPath}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: service.name,
+          item: `https://cleanngo.be${service.href}`,
+        },
+      ],
+    })}
+  />
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: service.name,
+      description: service.metaDescription,
+      url: `https://cleanngo.be${service.href}/`,
+      provider: {
+        "@type": "LocalBusiness",
+        name: "CleanNgo",
+        url: "https://cleanngo.be",
+        telephone: "+32486518181",
+      },
+      areaServed: [
+        "Bruxelles",
+        "Ixelles",
+        "Etterbeek",
+        "Woluwe-Saint-Lambert",
+        "Woluwe-Saint-Pierre",
+        "Auderghem",
+        "Watermael-Boitsfort",
+        "Schaerbeek",
+        "Evere",
+        "Saint-Gilles",
+        "Forest",
+        "Uccle",
+        "Anderlecht",
+        "Molenbeek",
+        "Laeken",
+        "Jette",
+        "Koekelberg",
+        "Berchem-Sainte-Agathe",
+        "Kraainem",
+        "Wezembeek-Oppem",
+        "Tervuren",
+        "Zaventem",
+        "Overijse",
+        "Rhode-Saint-Genèse",
+        "Rixensart",
+        "Waterloo",
+        "Braine-l'Alleud",
+        "Lasne",
+        "Wavre",
+        "Ottignies",
+        "Louvain-la-Neuve",
+        "Genappe",
+      ].map((city) => ({ "@type": "City", name: city })),
+      serviceType: service.name,
+      image: `https://cleanngo.be${service.image.src}`,
+      priceRange: "€€",
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+      },
+      review: serviceReviews.map((r) => ({
+        "@type": "Review",
+        author: { "@type": "Person", name: r.author },
+        reviewRating: { "@type": "Rating", ratingValue: String(r.rating), bestRating: "5" },
+        reviewBody: r.text,
+      })),
+    })}
+  />
+  <Container class="mt-12 items-center">
+    <!-- Headline -->
+    <div class="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
+      <h1
+        data-reveal="words"
+        class="font-display text-5xl leading-[0.9] font-bold uppercase md:text-7xl lg:text-8xl"
+      >
+        {service.h1 ?? t.serviceDetail.fallbackH1(service.name)}
+      </h1>
+
+      <div data-reveal="cards" class="flex flex-wrap justify-center gap-4">
+        <Button
+          href={contactPath}
+          size="lg"
+          data-umami-event="cta_click"
+          data-umami-event-location="service_detail_hero"
+          data-umami-event-destination="contact"
+          data-umami-event-service={service.id}
+        >
+          {t.serviceDetail.book}
+        </Button>
+        <Button
+          href={servicesPath}
+          size="lg"
+          variant="secondary"
+          data-umami-event="services_all_click"
+          data-umami-event-location="service_detail_hero"
+          data-umami-event-destination="services"
+          data-umami-event-service={service.id}
+        >
+          {t.serviceDetail.allServices}
+        </Button>
+      </div>
+    </div>
+
+    <!-- Hero image -->
+    <div data-reveal="wipe" class="mt-6 w-full max-w-5xl overflow-hidden rounded-3xl">
+      <Image
+        src={service.image}
+        alt={service.name}
+        widths={[480, 800, 1200, 1400]}
+        width={1400}
+        height={1867}
+        sizes="(max-width: 480px) 480px, (max-width: 767px) 100vw, (max-width: 1280px) 80vw, 1024px"
+        quality={50}
+        loading="eager"
+        fetchpriority="high"
+        class="h-72 w-full object-cover md:h-130 lg:h-160"
+        style={service.imagePosition ? `object-position: ${service.imagePosition}` : undefined}
+      />
+    </div>
+
+    <!-- Service body -->
+    <div class="mx-auto w-full max-w-5xl px-4 md:px-8">
+      <!-- Quote -->
+      {
+        service.quote && (
+          <div class="py-8">
+            <blockquote
+              data-reveal="fade"
+              class="font-display text-center text-3xl leading-[0.9] font-bold md:text-4xl lg:text-5xl"
+            >
+              {service.quote}
+            </blockquote>
+          </div>
+        )
+      }
+
+      <!-- What's included -->
+      {
+        service.features && service.features.length > 0 && (
+          <div class="items-center py-16 md:py-24">
+            <h2
+              data-reveal="words"
+              class="font-display mb-10 text-center text-3xl font-bold md:text-5xl"
+            >
+              {t.serviceDetail.included(service)}
+            </h2>
+            <ul data-reveal="cards" class="flex flex-col gap-6">
+              {service.features.map((feature) => (
+                <li class="flex w-full items-center gap-6 rounded-2xl bg-(--color-surface-secondary) px-6 py-5">
+                  <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-(--color-accent) text-(--color-text-primary)">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M20 6L9 17L4 12"
+                        stroke="currentColor"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span class="text-2xl leading-snug font-semibold">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      <!-- Editorial content -->
+      {
+        service.editorial && (
+          <div class="">
+            <h2 data-reveal="words" class="font-display mb-8 text-xl font-bold md:text-2xl">
+              {t.serviceDetail.learnMore(service)}
+            </h2>
+            <div class="mb-10 flex flex-col gap-5">
+              {service.editorial.split("\n\n").map((paragraph) => (
+                <p data-reveal="fade" class="font-accent m-0 text-lg leading-relaxed text-(--color-text-primary)/70">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+            <div
+              data-reveal="fade"
+              class="flex flex-col gap-4 rounded-2xl bg-(--color-surface-secondary) p-6 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <p class="font-accent m-0 text-base font-medium text-(--color-text-primary)/80">
+                {t.serviceDetail.editorialCta}
+              </p>
+              <Button
+                href={contactPath}
+                size="md"
+                data-umami-event="cta_click"
+                data-umami-event-location="service_detail_editorial"
+                data-umami-event-destination="contact"
+                data-umami-event-service={service.id}
+              >
+                {t.serviceDetail.book}
+              </Button>
+            </div>
+          </div>
+        )
+      }
+
+      <!-- How it works -->
+      <div class="flex flex-col items-center py-12">
+        <h2 data-reveal="words" class="font-display mb-10 text-2xl font-bold md:text-5xl">
+          {t.serviceDetail.howItWorks(service)}
+        </h2>
+        <div data-reveal="cards" class="flex w-full flex-col gap-4">
+          {
+            service.process.map((step, index) => (
+              <div
+                class="sticky flex flex-col gap-12 rounded-3xl bg-(--color-surface-secondary) p-8 lg:p-10"
+                style={`top: calc(7.5rem + ${index * 0.5}rem); z-index: ${10 + index};`}
+              >
+                <span class="font-display text-7xl leading-none font-bold text-(--color-accent) lg:text-8xl">
+                  {step.step}
+                </span>
+                <div class="flex flex-col gap-4">
+                  <h3 class="font-display m-0 text-5xl font-bold text-(--color-text-primary) lg:text-7xl">
+                    {step.title}
+                  </h3>
+                  <p class="m-0 text-lg leading-relaxed text-(--color-text-primary)/60">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="flex flex-col items-center py-12">
+        <h2 data-reveal="words" class="font-display mb-10 text-2xl font-bold md:text-5xl">
+          {t.serviceDetail.questions}
+        </h2>
+        <div class="flex flex-col gap-3">
+          {
+            faqItems.map((faq) => (
+              <div class="slug-faq-item rounded-xl bg-white px-6 py-5">
+                <button
+                  class="slug-faq-trigger flex w-full items-center justify-between gap-6 text-left"
+                  aria-expanded="false"
+                >
+                  <span class="text-lg leading-snug font-semibold md:text-2xl">{faq.question}</span>
+                  <span class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-(--color-accent)">
+                    <span class="absolute h-0.5 w-3 rounded-full bg-(--color-text-primary)" />
+                    <span class="slug-faq-v-bar absolute h-3 w-0.5 rounded-full bg-(--color-text-primary) transition-transform duration-300" />
+                  </span>
+                </button>
+                <div class="slug-faq-body grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+                  <div class="overflow-hidden">
+                    <p class="m-0 pt-5 text-lg leading-relaxed font-medium opacity-60">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    {related.length > 0 && <RelatedServices relatedServices={related} />}
+    <ServiceAreas />
+    <CTA />
+  </Container>
+</BaseLayout>
+
+<style>
+  .slug-faq-item.is-open .slug-faq-body {
+    grid-template-rows: 1fr;
+  }
+  .slug-faq-item.is-open .slug-faq-v-bar {
+    transform: rotate(90deg);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".slug-faq-item").forEach((item) => {
+    item.querySelector(".slug-faq-trigger")?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+
+      document.querySelectorAll(".slug-faq-item").forEach((other) => {
+        other.classList.remove("is-open");
+        other.querySelector(".slug-faq-trigger")?.setAttribute("aria-expanded", "false");
+      });
+
+      if (!isOpen) {
+        item.classList.add("is-open");
+        item.querySelector(".slug-faq-trigger")?.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+</script>

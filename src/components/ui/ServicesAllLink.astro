@@ -1,9 +1,15 @@
 ---
+import { getLocaleFromUrl } from "@/i18n/config";
+import { pagePath } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/ui";
+
 interface Props {
   variant?: "desktop" | "mobile";
 }
 
 const { variant = "desktop" } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 
 const linkClass =
   variant === "desktop"
@@ -14,12 +20,12 @@ const strokeWidth = variant === "desktop" ? "2.5" : "1.5";
 ---
 
 <a
-  href="/services"
+  href={pagePath("services", locale)}
   data-umami-event="services_all_click"
   data-umami-event-location={variant === "desktop" ? "nav_dropdown" : "mobile_menu"}
   class={linkClass}
 >
-  Découvrir tous nos services
+  {t.nav.allServices}
   <svg
     class={variant === "desktop"
       ? "transition-transform duration-300 ease-in-out group-hover:translate-x-1"

@@ -3,6 +3,12 @@ import { Image } from "astro:assets";
 import Button from "@components/ui/Button.astro";
 import SectionLabel from "@components/ui/SectionLabel.astro";
 import { staticImageAssets } from "@/data/images";
+import { getLocaleFromUrl } from "@/i18n/config";
+import { pagePath } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/ui";
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale).team;
 ---
 
 <section id="equipe" class="w-full">
@@ -19,7 +25,7 @@ import { staticImageAssets } from "@/data/images";
         widths={[400, 800, 1200]}
         sizes="(max-width: 767px) 100vw, 70vw"
         loading="lazy"
-        alt="Résultat de l'équipe de nettoyage sur un projet"
+        alt={t.imageAlt}
         class="h-full w-full object-cover"
       />
     </div>
@@ -29,21 +35,21 @@ import { staticImageAssets } from "@/data/images";
       data-team-card
       class="relative z-10 flex flex-col gap-8 rounded-2xl bg-(--color-accent) p-8 md:max-w-[42%] lg:p-12"
     >
-      <SectionLabel text="Notre équipe" />
+      <SectionLabel text={t.label} />
 
       <h2 class="text-xl font-bold tracking-tight text-(--color-text-primary) lg:text-4xl">
-        Nos techniciens interviennent sur vitres, vérandas, panneaux solaires et bien plus, avec le matériel professionnel adapté.
+        {t.title}
       </h2>
 
       <div>
         <Button
-          href="/contact"
+          href={pagePath("contact", locale)}
           size="lg"
           data-umami-event="cta_click"
           data-umami-event-location="team_cta"
           class="bg-(--color-background)"
         >
-          Travailler avec nous
+          {t.button}
         </Button>
       </div>
     </div>

@@ -1,39 +1,11 @@
 ---
 import Button from "@components/ui/Button.astro";
 import SectionLabel from "@components/ui/SectionLabel.astro";
+import { getLocaleFromUrl } from "@/i18n/config";
+import { useTranslations } from "@/i18n/ui";
 
-const faqs = [
-  {
-    question: "Dans quelles communes intervenez-vous ?",
-    answer:
-      "Nous intervenons à Bruxelles et dans toute la périphérie : Uccle, Ixelles, Waterloo, Braine-l'Alleud, Wavre, Ottignies, Louvain-la-Neuve, Nivelles, Tervuren, Overijse et environs. Vous ne trouvez pas votre commune ? Contactez-nous, nous étudions toute demande.",
-  },
-  {
-    question: "Combien coûte un nettoyage à Bruxelles ?",
-    answer:
-      "Le prix dépend du type de prestation, de la superficie et de la fréquence. Nous proposons des devis gratuits et personnalisés : contactez-nous pour recevoir une estimation en moins de 2 heures. Les contrats réguliers bénéficient de tarifs préférentiels.",
-  },
-  {
-    question: "Intervenez-vous pour des particuliers et des professionnels ?",
-    answer:
-      "Oui, nous travaillons aussi bien pour des particuliers que pour des professionnels (gérants d'immeubles, agences immobilières, entreprises). Nos prestations s'adaptent à chaque contexte : intervention ponctuelle ou contrat d'entretien régulier.",
-  },
-  {
-    question: "Faut-il être présent lors de l'intervention ?",
-    answer:
-      "Non, votre présence n'est pas obligatoire. Beaucoup de nos clients nous confient un accès (clé, code, digicode). Nos équipes sont assurées et formées pour intervenir en toute discrétion et sécurité.",
-  },
-  {
-    question: "Les agents sont-ils vérifiés et assurés ?",
-    answer:
-      "Oui. Chaque agent fait l'objet d'une vérification des antécédents, d'un entretien et d'une sélection rigoureuse. Nos équipes sont entièrement assurées pour intervenir chez vous en toute sécurité.",
-  },
-  {
-    question: "Utilisez-vous des produits écologiques ?",
-    answer:
-      "Oui, nous privilégions des produits certifiés éco-responsables, non toxiques et sans danger pour les enfants et les animaux de compagnie. Sur demande, nous adaptons les produits selon vos préférences ou allergies.",
-  },
-];
+const t = useTranslations(getLocaleFromUrl(Astro.url)).faq;
+const faqs = t.items;
 ---
 
 <script
@@ -54,15 +26,15 @@ const faqs = [
   <div class="rounded-3xl bg-(--color-surface-secondary) px-6 py-16 md:px-12 md:py-24">
     <!-- Headline -->
     <div class="mx-auto mb-16 flex max-w-2xl flex-col items-center gap-4 text-center">
-      <SectionLabel text="FAQ" />
+      <SectionLabel text={t.label} />
       <h2
         data-reveal="words"
         class="font-display text-5xl leading-[0.8] font-bold tracking-tight uppercase lg:text-[88px]"
       >
-        Réponses à vos questions
+        {t.title}
       </h2>
       <p class="max-w-sm text-2xl leading-none font-semibold tracking-tight opacity-70">
-        Tout ce que vous devez savoir avant de réserver votre premier nettoyage.
+        {t.subtitle}
       </p>
     </div>
 
@@ -100,7 +72,7 @@ const faqs = [
         data-umami-event-channel="phone"
         class="hover:bg-(--color-text-primary) hover:text-(--color-background) [&_svg]:text-(--color-background)"
       >
-        Poser nous vos questions
+        {t.button}
       </Button>
     </div>
   </div>

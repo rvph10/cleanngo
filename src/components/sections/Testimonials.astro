@@ -3,17 +3,24 @@ import SectionLabel from "@components/ui/SectionLabel.astro";
 import { imageAssets } from "@/data/images";
 import { reviews, reviewColumns } from "@/data/reviews";
 import StarRating from "@components/ui/StarRating.astro";
+import { getLocaleFromUrl } from "@/i18n/config";
+import { useTranslations } from "@/i18n/ui";
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+// Reviews are quoted as written on Google (in French), never translated.
+const reviewLang = locale === "fr" ? undefined : "fr";
 ---
 
 <section class="w-full py-12">
   <div class="mb-16 flex flex-col items-center gap-8 text-center">
-    <SectionLabel text="Témoignages" bg="bg-(--color-surface-secondary)" />
+    <SectionLabel text={t.testimonials.label} bg="bg-(--color-surface-secondary)" />
 
     <h2
       data-reveal="fade"
       class="font-display m-0 text-5xl leading-tight font-bold tracking-tight text-(--color-text-primary) uppercase lg:text-6xl"
     >
-      Ils nous ont fait confiance <br />4.9/5
+      {t.testimonials.title} <br />4.9/5
     </h2>
 
     <a
@@ -23,7 +30,7 @@ import StarRating from "@components/ui/StarRating.astro";
       class="group flex items-center gap-2 rounded-full border border-(--color-border) px-5 py-2.5 text-sm font-semibold text-(--color-text-primary) transition-colors duration-200 hover:bg-(--color-text-primary) hover:text-(--color-surface)"
     >
       <img src={imageAssets.googleLogo} alt="Google" class="h-5 w-5 shrink-0" />
-      Voir tous les avis
+      {t.testimonials.seeAll}
     </a>
   </div>
 
@@ -38,12 +45,12 @@ import StarRating from "@components/ui/StarRating.astro";
                 <div class="flex flex-col gap-6 rounded-2xl bg-(--color-surface) p-6">
                   <div class="flex flex-col gap-4">
                     <StarRating rating={review.rating} />
-                    <p class="m-0 text-base leading-relaxed text-(--color-text-primary)">
+                    <p class="m-0 text-base leading-relaxed text-(--color-text-primary)" lang={reviewLang}>
                       "{review.text}"
                     </p>
                   </div>
                   <p class="m-0 text-sm font-semibold text-(--color-text-primary)/70">
-                    {review.author} (Avis Google)
+                    {review.author} ({t.reviewSource})
                   </p>
                 </div>
               ))}
@@ -66,12 +73,12 @@ import StarRating from "@components/ui/StarRating.astro";
             <div class="flex flex-col gap-6 rounded-2xl bg-(--color-surface) p-6">
               <div class="flex flex-col gap-4">
                 <StarRating rating={review.rating} />
-                <p class="m-0 text-base leading-relaxed text-(--color-text-primary)">
+                <p class="m-0 text-base leading-relaxed text-(--color-text-primary)" lang={reviewLang}>
                   "{review.text}"
                 </p>
               </div>
               <p class="m-0 text-sm font-semibold text-(--color-text-primary)/70">
-                {review.author} (Avis Google)
+                {review.author} ({t.reviewSource})
               </p>
             </div>
           </div>
@@ -83,7 +90,7 @@ import StarRating from "@components/ui/StarRating.astro";
       <div class="flex gap-2">
         <button
           id="prev-btn"
-          aria-label="Avis précédent"
+          aria-label={t.testimonials.prev}
           class="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-text-primary) transition-colors hover:bg-(--color-text-primary) hover:text-(--color-surface)"
         >
           <svg
@@ -102,7 +109,7 @@ import StarRating from "@components/ui/StarRating.astro";
         </button>
         <button
           id="next-btn"
-          aria-label="Avis suivant"
+          aria-label={t.testimonials.next}
           class="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-text-primary) transition-colors hover:bg-(--color-text-primary) hover:text-(--color-surface)"
         >
           <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

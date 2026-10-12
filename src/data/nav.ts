@@ -1,7 +1,9 @@
 export type { Service } from "./services";
 export { services, featuredServices } from "./services";
-import { services as allServices } from "./services";
-export const navServices = allServices.filter((s) => !s.featured);
+import { getServices, type LocalizedService } from "./services";
+import type { Locale } from "@/i18n/config";
+import { homeAnchor, pagePath } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/ui";
 
 // FeaturedService is an alias kept for backward compatibility with nav components
 export type { Service as FeaturedService } from "./services";
@@ -11,8 +13,19 @@ export interface NavLink {
   href: string;
 }
 
-export const navLinks: NavLink[] = [
-  { name: "À propos", href: "/#equipe" },
-  { name: "FAQ", href: "/#faq" },
-  { name: "Contact", href: "/contact" },
-];
+export function getNavServices(locale: Locale): LocalizedService[] {
+  return getServices(locale).filter((s) => !s.featured);
+}
+
+export function getFeaturedServices(locale: Locale): LocalizedService[] {
+  return getServices(locale).filter((s) => s.featured);
+}
+
+export function getNavLinks(locale: Locale): NavLink[] {
+  const t = useTranslations(locale).nav;
+  return [
+    { name: t.about, href: homeAnchor("equipe", locale) },
+    { name: t.faq, href: homeAnchor("faq", locale) },
+    { name: t.contact, href: pagePath("contact", locale) },
+  ];
+}

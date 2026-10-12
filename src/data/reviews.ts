@@ -17,7 +17,6 @@ export const reviews: Review[] = [
     location: "Bruxelles",
     rating: 5,
     text: "J'ai deux enfants et un chat, donc mon appartement se salit très vite. CleanNgo est le premier service qui nettoie vraiment en profondeur sans que j'aie besoin de revérifier derrière eux. Un vrai soulagement.",
-    service: "nettoyage-residentiel",
   },
   {
     author: "Thomas B.",
@@ -30,14 +29,12 @@ export const reviews: Review[] = [
     location: "Bruxelles",
     rating: 4,
     text: "Rentrer chez moi après leur passage change vraiment mon humeur. Tout semble plus léger et l'appartement paraît plus grand. Le seul bémol : je n'ai pas reçu de rappel la veille, mais le résultat était parfait.",
-    service: "nettoyage-residentiel",
   },
   {
     author: "Laurent P.",
     location: "Bruxelles",
     rating: 5,
     text: "J'étais sceptique au départ : chaque service que j'avais essayé avant était soit bâclé, soit négligent. Cette équipe m'a vraiment surpris. Ils ont organisé chaque surface et ma petite cuisine n'a jamais semblé aussi lumineuse.",
-    service: "nettoyage-residentiel",
   },
   {
     author: "Sophie M.",
@@ -57,7 +54,6 @@ export const reviews: Review[] = [
     location: "Bruxelles",
     rating: 5,
     text: "Ils utilisent des produits naturels, ce qui est essentiel avec mes allergies. L'appartement sent le propre sans cette odeur chimique agressive. Je recommande vraiment.",
-    service: "nettoyage-residentiel",
   },
   {
     author: "Julia S.",
@@ -70,7 +66,6 @@ export const reviews: Review[] = [
     location: "Bruxelles",
     rating: 5,
     text: "Mon appartement n'a jamais été aussi calme et ordonné. Je comprends maintenant pourquoi on dit que l'ordre extérieur apaise l'esprit.",
-    service: "nettoyage-residentiel",
   },
 ];
 

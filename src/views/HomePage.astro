@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Hero from "@components/sections/Hero.astro";
+import Services from "@components/sections/Services.astro";
+import Features from "@components/sections/Features.astro";
+import Testimonials from "@components/sections/Testimonials.astro";
+import HowItWorks from "@components/sections/HowItWorks.astro";
+import TeamCTA from "@components/sections/TeamCTA.astro";
+import ServiceAreas from "@components/sections/ServiceAreas.astro";
+import FAQ from "@components/sections/FAQ.astro";
+import CTA from "@components/sections/CTA.astro";
+import { imageAssets } from "@/data/images";
+import { getLocaleFromUrl } from "@/i18n/config";
+import { pageAlternates } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/ui";
+
+const t = useTranslations(getLocaleFromUrl(Astro.url)).home;
+---
+
+<BaseLayout title={t.title} description={t.description} alternates={pageAlternates("home")}>
+  <!-- Preload the LCP video poster (hero, above the fold), one per breakpoint -->
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={imageAssets.heroPosterMobile}
+    type="image/avif"
+    media="(max-width: 1023px)"
+  />
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={imageAssets.heroPoster}
+    type="image/avif"
+    media="(min-width: 1024px)"
+  />
+  <Container>
+    <Hero />
+    <Services />
+    <Features />
+    <Testimonials />
+    <HowItWorks />
+    <TeamCTA />
+    <ServiceAreas />
+    <FAQ />
+    <CTA />
+  </Container>
+</BaseLayout>

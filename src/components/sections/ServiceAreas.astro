@@ -1,56 +1,26 @@
 ---
 import SectionLabel from "@components/ui/SectionLabel.astro";
+import { getLocaleFromUrl } from "@/i18n/config";
+import { useTranslations } from "@/i18n/ui";
 
-const areas = [
-  "Bruxelles",
-  "Ixelles",
-  "Etterbeek",
-  "Woluwe-Saint-Lambert",
-  "Woluwe-Saint-Pierre",
-  "Auderghem",
-  "Watermael-Boitsfort",
-  "Schaerbeek",
-  "Evere",
-  "Saint-Gilles",
-  "Forest",
-  "Uccle",
-  "Anderlecht",
-  "Molenbeek",
-  "Laeken",
-  "Jette",
-  "Koekelberg",
-  "Berchem-Sainte-Agathe",
-  "Kraainem",
-  "Wezembeek-Oppem",
-  "Tervuren",
-  "Zaventem",
-  "Overijse",
-  "Rhode-Saint-Genèse",
-  "Rixensart",
-  "Waterloo",
-  "Braine-l'Alleud",
-  "Lasne",
-  "Wavre",
-  "Ottignies",
-  "Louvain-la-Neuve",
-  "Genappe",
-];
+const t = useTranslations(getLocaleFromUrl(Astro.url)).areas;
+const areas = t.list;
 ---
 
-<section class="w-full" aria-label="Zones d'intervention CleanNgo">
+<section class="w-full" aria-label={t.sectionAria}>
   <!-- Card: heading + towns -->
   <div data-reveal="wipe" class="rounded-3xl bg-(--color-surface-secondary) p-8 lg:p-10">
     <div class="mb-8 flex flex-col gap-4">
-      <SectionLabel text="Zones d'intervention" />
+      <SectionLabel text={t.label} />
       <h2
         data-reveal="words"
         class="font-display m-0 text-5xl leading-[0.9] font-bold uppercase lg:text-6xl"
       >
-        Bruxelles &amp; toute la périphérie
+        {t.title}
       </h2>
     </div>
 
-    <ul data-reveal="cards" class="flex flex-wrap gap-2" aria-label="Communes desservies">
+    <ul data-reveal="cards" class="flex flex-wrap gap-2" aria-label={t.listAria}>
       {
         areas.map((area) => (
           <li class="rounded-full bg-(--color-background) px-4 py-2 text-sm font-semibold text-(--color-text-primary)/70">

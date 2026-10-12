@@ -1,0 +1,315 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import { pageAlternates } from "@/i18n/routes";
+---
+
+<BaseLayout
+  title="Privacybeleid"
+  description="Privacybeleid van CleanNgo. Ontdek hoe we uw persoonsgegevens verzamelen, gebruiken en beschermen volgens de AVG."
+  noindex={false}
+  alternates={pageAlternates("privacy")}
+>
+  <Container class="py-20">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="font-display mb-4 text-4xl font-bold uppercase md:text-5xl">Privacybeleid</h1>
+      <p class="mb-16 text-sm text-(--color-text-primary)/40">Laatst bijgewerkt: april 2025</p>
+
+      <div class="space-y-12 text-(--color-text-primary)">
+        <!-- 1. Verwerkingsverantwoordelijke -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">1. Verwerkingsverantwoordelijke</h2>
+          <p class="text-(--color-text-primary)/80">
+            De verwerkingsverantwoordelijke voor de persoonsgegevens die via deze website worden
+            verzameld, is:
+          </p>
+          <ul class="mt-4 space-y-1 text-(--color-text-primary)/80">
+            <li><strong>Handelsnaam:</strong> CleanNgo</li>
+            <li><strong>Maatschappelijke naam:</strong> NDN Services SRL</li>
+            <li><strong>Rechtsvorm:</strong> besloten vennootschap (SRL/BV)</li>
+            <li><strong>Ondernemingsnummer (KBO):</strong> 1016.238.910</li>
+            <li><strong>Btw-nummer:</strong> BE 1016.238.910</li>
+            <li>
+              <strong>Maatschappelijke zetel:</strong> Leliestraat 51, 1800 Vilvoorde, België
+            </li>
+            <li>
+              <strong>Telefoon:</strong>
+              <a
+                href="tel:+32486518181"
+                data-umami-event="phone_click"
+                data-umami-event-location="privacy_policy"
+                data-umami-event-channel="phone"
+                class="underline">+32 486 51 81 81</a
+              >
+            </li>
+            <li>
+              <strong>E-mail:</strong>
+              <a
+                href="mailto:contact@cleanngo.be"
+                data-umami-event="email_click"
+                data-umami-event-location="privacy_policy"
+                data-umami-event-channel="email"
+                class="underline">contact@cleanngo.be</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <!-- 2. Verzamelde gegevens -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">2. Verzamelde persoonsgegevens</h2>
+          <p class="text-(--color-text-primary)/80">
+            We verzamelen enkel de gegevens die u ons vrijwillig bezorgt via ons contact- en
+            offerteformulier:
+          </p>
+          <ul class="mt-4 list-disc space-y-1 pl-6 text-(--color-text-primary)/80">
+            <li>Naam en voornaam</li>
+            <li>E-mailadres</li>
+            <li>Telefoonnummer</li>
+            <li>Gewenste dienst</li>
+            <li>Vrij bericht (beschrijving van uw aanvraag)</li>
+          </ul>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            We verzamelen geen persoonlijke surfgegevens. Ons tool voor bezoekersstatistieken
+            (Umami) is ingesteld zonder cookies en verwerkt geen gegevens waarmee u persoonlijk kunt
+            worden geïdentificeerd.
+          </p>
+        </section>
+
+        <!-- 3. Doeleinden en rechtsgrond -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">
+            3. Doeleinden en rechtsgrond van de verwerking
+          </h2>
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full border-collapse text-sm">
+              <thead>
+                <tr class="bg-(--color-surface-secondary)">
+                  <th class="border border-(--color-text-primary)/10 p-3 text-left font-semibold"
+                    >Doeleinde</th
+                  >
+                  <th class="border border-(--color-text-primary)/10 p-3 text-left font-semibold"
+                    >Rechtsgrond (AVG art. 6)</th
+                  >
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Uw offerte- of boekingsaanvraag beantwoorden</td
+                  >
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Art. 6(1)(b): precontractuele maatregelen op uw verzoek</td
+                  >
+                </tr>
+                <tr class="bg-(--color-surface-secondary)/50">
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Klantenbeheer en opvolging van de diensten</td
+                  >
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Art. 6(1)(b): uitvoering van de overeenkomst</td
+                  >
+                </tr>
+                <tr>
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Anonieme statistische analyse van het websitebezoek</td
+                  >
+                  <td
+                    class="border border-(--color-text-primary)/10 p-3 text-(--color-text-primary)/80"
+                    >Art. 6(1)(f): gerechtvaardigd belang (geen persoonsgegevens verwerkt)</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 4. Bewaartermijn -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">4. Bewaartermijn</h2>
+          <p class="text-(--color-text-primary)/80">
+            Uw gegevens worden enkel bewaard zolang nodig is voor de doeleinden waarvoor ze werden
+            verzameld:
+          </p>
+          <ul class="mt-4 list-disc space-y-2 pl-6 text-(--color-text-primary)/80">
+            <li>
+              <strong>Offerteaanvragen zonder vervolg:</strong> 1 jaar vanaf uw aanvraag.
+            </li>
+            <li>
+              <strong>Klantgegevens (uitgevoerde dienst):</strong> 3 jaar na het einde van de commerciële
+              relatie, overeenkomstig de verjaringstermijnen in het Belgisch recht.
+            </li>
+            <li>
+              <strong>Facturatiegegevens:</strong> 7 jaar, overeenkomstig de Belgische boekhoudkundige
+              verplichtingen.
+            </li>
+          </ul>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            Na afloop van deze termijnen worden uw gegevens onherroepelijk verwijderd of
+            geanonimiseerd.
+          </p>
+        </section>
+
+        <!-- 5. Ontvangers -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">5. Ontvangers van de gegevens</h2>
+          <p class="text-(--color-text-primary)/80">
+            Uw persoonsgegevens zijn enkel toegankelijk voor bevoegde personen binnen CleanNgo. Ze
+            worden nooit verkocht, verhuurd of overgedragen aan derden voor commerciële doeleinden.
+          </p>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            Voor het versturen van bevestigingsmails na uw contactaanvraag doen we een beroep op de
+            volgende verwerker:
+          </p>
+          <ul class="mt-4 list-disc space-y-1 pl-6 text-(--color-text-primary)/80">
+            <li>
+              <strong>Resend, Inc.</strong>: dienstverlener voor transactionele e-mails.
+              Maatschappelijke zetel: 2261 Market Street #5039, San Francisco, CA 94114, Verenigde
+              Staten. (<a
+                href="https://resend.com/legal/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline">Privacybeleid van Resend</a
+              >)
+            </li>
+          </ul>
+        </section>
+
+        <!-- 6. Doorgifte buiten de EU -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">
+            6. Doorgifte van gegevens buiten de Europese Unie
+          </h2>
+          <p class="text-(--color-text-primary)/80">
+            Resend, Inc. is gevestigd in de Verenigde Staten. De doorgifte van uw gegevens naar dat
+            land is omkaderd door de <strong>standaardcontractbepalingen (SCC)</strong> die de Europese
+            Commissie heeft goedgekeurd, overeenkomstig artikel 46 van de AVG, die een passend beschermingsniveau
+            waarborgen.
+          </p>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            Er vindt geen andere doorgifte van gegevens naar derde landen plaats. Ons tool voor
+            bezoekersstatistieken (Umami) wordt zelf gehost op servers in Europa.
+          </p>
+        </section>
+
+        <!-- 7. Cookies en trackers -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">7. Cookies en trackers</h2>
+          <p class="text-(--color-text-primary)/80">
+            Deze website <strong>gebruikt geen tracking- of profileringscookies</strong>. We
+            gebruiken Umami, een privacyvriendelijk opensourcetool voor bezoekersstatistieken:
+          </p>
+          <ul class="mt-4 list-disc space-y-1 pl-6 text-(--color-text-primary)/80">
+            <li>Er worden geen cookies in uw browser geplaatst.</li>
+            <li>Er worden geen identificeerbare persoonsgegevens verzameld of opgeslagen.</li>
+            <li>
+              De statistieken zijn geanonimiseerd en geaggregeerd (paginaweergaven,
+              verkeersbronnen).
+            </li>
+            <li>Het tool wordt zelf gehost op onze servers in Europa.</li>
+          </ul>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            Voor dit gebruik is geen cookiebanner nodig, overeenkomstig de richtlijnen van de
+            Gegevensbeschermingsautoriteit (GBA).
+          </p>
+        </section>
+
+        <!-- 8. Beveiliging -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">8. Beveiliging van de gegevens</h2>
+          <p class="text-(--color-text-primary)/80">
+            We nemen passende technische en organisatorische maatregelen om uw gegevens te
+            beschermen tegen ongeoorloofde toegang, openbaarmaking, wijziging of vernietiging:
+          </p>
+          <ul class="mt-4 list-disc space-y-1 pl-6 text-(--color-text-primary)/80">
+            <li>Beveiligde verbinding via het HTTPS-protocol (TLS).</li>
+            <li>Toegang tot de gegevens beperkt tot bevoegde personen.</li>
+            <li>Infrastructuur gehost op beveiligde servers.</li>
+          </ul>
+        </section>
+
+        <!-- 9. Uw rechten -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">9. Uw rechten</h2>
+          <p class="text-(--color-text-primary)/80">
+            Overeenkomstig de AVG (artikelen 15 tot 22) hebt u de volgende rechten:
+          </p>
+          <ul class="mt-4 list-disc space-y-2 pl-6 text-(--color-text-primary)/80">
+            <li>
+              <strong>Recht op inzage:</strong> een kopie krijgen van de gegevens die we over u bijhouden.
+            </li>
+            <li>
+              <strong>Recht op rectificatie:</strong> onjuiste of onvolledige gegevens laten verbeteren.
+            </li>
+            <li>
+              <strong>Recht op gegevenswissing:</strong> vragen om uw gegevens te verwijderen („recht
+              op vergetelheid”).
+            </li>
+            <li>
+              <strong>Recht op beperking:</strong> de verwerking in bepaalde omstandigheden laten beperken.
+            </li>
+            <li>
+              <strong>Recht van bezwaar:</strong> u om gerechtvaardigde redenen verzetten tegen de verwerking.
+            </li>
+            <li>
+              <strong>Recht op overdraagbaarheid:</strong> uw gegevens ontvangen in een gestructureerd,
+              machineleesbaar formaat.
+            </li>
+          </ul>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            Om een van deze rechten uit te oefenen, stuurt u uw verzoek per e-mail naar
+            <a
+              href="mailto:contact@cleanngo.be"
+              data-umami-event="email_click"
+              data-umami-event-location="privacy_policy"
+              data-umami-event-channel="email"
+              class="underline">contact@cleanngo.be</a
+            >. We verbinden ons ertoe u binnen een maand te antwoorden, overeenkomstig artikel 12
+            van de AVG.
+          </p>
+        </section>
+
+        <!-- 10. Klacht bij de GBA -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">10. Recht om klacht in te dienen</h2>
+          <p class="text-(--color-text-primary)/80">
+            Als u vindt dat de verwerking van uw gegevens niet in overeenstemming is met de AVG,
+            hebt u het recht een klacht in te dienen bij de bevoegde toezichthoudende autoriteit in
+            België:
+          </p>
+          <address class="mt-4 space-y-1 text-(--color-text-primary)/80 not-italic">
+            <p><strong>Gegevensbeschermingsautoriteit (GBA)</strong></p>
+            <p>Drukpersstraat 35, 1000 Brussel</p>
+            <p>Tel.: +32 (0)2 274 48 00</p>
+            <p>
+              Website:
+              <a
+                href="https://www.gegevensbeschermingsautoriteit.be/burger"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline"
+              >
+                www.gegevensbeschermingsautoriteit.be
+              </a>
+            </p>
+          </address>
+        </section>
+
+        <!-- 11. Wijzigingen -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">11. Wijzigingen van dit beleid</h2>
+          <p class="text-(--color-text-primary)/80">
+            We behouden ons het recht voor dit beleid op elk moment bij te werken, onder meer om te
+            voldoen aan wettelijke of reglementaire wijzigingen. De datum van de laatste update
+            staat bovenaan deze pagina. We raden u aan het regelmatig te raadplegen.
+          </p>
+        </section>
+      </div>
+    </div>
+  </Container>
+</BaseLayout>

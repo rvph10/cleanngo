@@ -30,7 +30,7 @@ export const staticImageAssets: Record<string, ImageMetadata> = {
 import _glassCleaning from "@/assets/images/glass_cleaning.jpg";
 import _solarPanel from "@/assets/images/solar_panel.jpg";
 import _houseCleaning from "@/assets/images/house_cleaning.jpg";
-import _postWork from "@/assets/images/post_work.jpg";
+import _postWork from "@/assets/images/post_work.webp";
 import _movingIn from "@/assets/images/move_in_cleaning_service.jpg";
 import _officeCleaning from "@/assets/images/office_cleaning.webp";
 import _outsideCleaning from "@/assets/images/outside_cleaning.avif";

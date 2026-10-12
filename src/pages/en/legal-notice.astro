@@ -1,0 +1,177 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import { pageAlternates, pagePath } from "@/i18n/routes";
+---
+
+<BaseLayout
+  title="Legal notice"
+  description="Legal notice of CleanNgo, a cleaning company in Brussels and the surrounding area."
+  noindex={false}
+  alternates={pageAlternates("legal")}
+>
+  <Container class="py-20">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="font-display mb-4 text-4xl font-bold uppercase md:text-5xl">Legal notice</h1>
+      <p class="mb-16 text-sm text-(--color-text-primary)/40">Last updated: April 2025</p>
+
+      <div class="space-y-12 text-(--color-text-primary)">
+        <!-- 1. Website publisher -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">1. Website publisher</h2>
+          <p class="mb-4 text-(--color-text-primary)/80">
+            The website <strong>cleanngo.be</strong> is published by:
+          </p>
+          <ul class="space-y-1 text-(--color-text-primary)/80">
+            <li><strong>Trading name:</strong> CleanNgo</li>
+            <li><strong>Company name:</strong> NDN Services SRL</li>
+            <li><strong>Legal form:</strong> private limited company (SRL)</li>
+            <li><strong>Company number (BCE/KBO):</strong> 1016.238.910</li>
+            <li><strong>VAT number:</strong> BE 1016.238.910</li>
+            <li>
+              <strong>Registered office:</strong> Leliestraat 51, 1800 Vilvoorde, Belgium
+            </li>
+            <li>
+              <strong>Phone:</strong>
+              <a
+                href="tel:+32486518181"
+                data-umami-event="phone_click"
+                data-umami-event-location="mentions_legales"
+                data-umami-event-channel="phone"
+                class="underline">+32 486 51 81 81</a
+              >
+            </li>
+            <li>
+              <strong>Email:</strong>
+              <a
+                href="mailto:contact@cleanngo.be"
+                data-umami-event="email_click"
+                data-umami-event-location="mentions_legales"
+                data-umami-event-channel="email"
+                class="underline">contact@cleanngo.be</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <!-- 2. Publication director -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">2. Publication director</h2>
+          <p class="text-(--color-text-primary)/80">
+            The publication director is <strong>Trung Ngo</strong>, in his capacity as manager of
+            NDN Services SRL (CleanNgo).
+          </p>
+        </section>
+
+        <!-- 3. Hosting -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">3. Hosting</h2>
+          <p class="mb-6 text-(--color-text-primary)/80">
+            The website is hosted and administered by:
+          </p>
+
+          <div class="space-y-6">
+            <div>
+              <p class="mb-2 font-semibold text-(--color-text-primary)">Technical host</p>
+              <ul class="space-y-1 text-(--color-text-primary)/80">
+                <li><strong>Name:</strong> Raphael Genu</li>
+                <li>
+                  <strong>Address:</strong> Kerkedelle 51A, 1200 Woluwe-Saint-Lambert, Brussels, Belgium
+                </li>
+                <li>
+                  <strong>Website:</strong>
+                  <a
+                    href="https://upintown.dev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline">upintown.dev</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="mb-2 font-semibold text-(--color-text-primary)">Physical host (server)</p>
+              <ul class="space-y-1 text-(--color-text-primary)/80">
+                <li><strong>Company:</strong> Hetzner Online GmbH</li>
+                <li><strong>Address:</strong> Industriestr. 25, 91710 Gunzenhausen, Germany</li>
+                <li>
+                  <strong>Website:</strong>
+                  <a
+                    href="https://www.hetzner.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline">www.hetzner.com</a
+                  >
+                </li>
+                <li><strong>Server location:</strong> Germany (European Union)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Intellectual property -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">4. Intellectual property</h2>
+          <p class="text-(--color-text-primary)/80">
+            All elements of this website (text, images, logo, structure, visual identity) are the
+            exclusive property of CleanNgo or its rights holders, and are protected by Belgian and
+            international intellectual property law.
+          </p>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            Any reproduction, representation, modification, publication or adaptation of all or part
+            of the website, by any means or process, is prohibited without the prior written consent
+            of CleanNgo.
+          </p>
+        </section>
+
+        <!-- 5. Limitation of liability -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">5. Limitation of liability</h2>
+          <p class="text-(--color-text-primary)/80">
+            CleanNgo strives to ensure that the information published on this website is accurate
+            and up to date. However, CleanNgo cannot guarantee the accuracy, precision or
+            completeness of the information provided and accepts no liability for any imprecision,
+            inaccuracy or omission.
+          </p>
+          <p class="mt-4 text-(--color-text-primary)/80">
+            CleanNgo cannot be held liable for any direct or indirect damage resulting from access
+            to the website or the use of the information it contains, nor for damage resulting from
+            a service interruption, an external intrusion or the presence of computer viruses.
+          </p>
+        </section>
+
+        <!-- 6. Hyperlinks -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">6. Hyperlinks</h2>
+          <p class="text-(--color-text-primary)/80">
+            This website may contain links to third-party websites. CleanNgo has no control over
+            those websites and accepts no liability for their content or their data protection
+            practices.
+          </p>
+        </section>
+
+        <!-- 7. Governing law -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">7. Governing law</h2>
+          <p class="text-(--color-text-primary)/80">
+            This legal notice is governed by Belgian law. In the event of a dispute regarding its
+            interpretation or performance, and failing an amicable settlement, the courts of the
+            judicial district of Brussels shall have exclusive jurisdiction.
+          </p>
+        </section>
+
+        <!-- 8. Data protection -->
+        <section>
+          <h2 class="font-display mb-4 text-2xl font-bold">8. Personal data protection</h2>
+          <p class="text-(--color-text-primary)/80">
+            For any information about how your personal data is processed, please see our <a
+              href={pagePath("privacy", "en")}
+              class="underline">privacy policy</a
+            >.
+          </p>
+        </section>
+      </div>
+    </div>
+  </Container>
+</BaseLayout>

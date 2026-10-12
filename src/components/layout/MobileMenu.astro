@@ -1,14 +1,22 @@
 ---
 import Button from "@components/ui/Button.astro";
 import ServicesAllLink from "@components/ui/ServicesAllLink.astro";
+import LanguageSwitcher from "@components/ui/LanguageSwitcher.astro";
 import type { Service, NavLink } from "../../data/nav";
+import { getLocaleFromUrl } from "@/i18n/config";
+import { pagePath, type Alternates } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/ui";
 
 interface Props {
   services: Service[];
   navLinks: NavLink[];
+  alternates?: Alternates;
 }
 
-const { services, navLinks } = Astro.props;
+const { services, navLinks, alternates } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale).nav;
+const servicesPath = pagePath("services", locale);
 
 const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 
@@ -16,7 +24,8 @@ const normalizePath = (path: string) => path.replace(/\/+$/, "") || "/";
 
 const isActivePath = (href: string) => normalizePath(href) === currentPath;
 
-const isServicesActive = currentPath === "/services" || currentPath.startsWith("/services/");
+const isServicesActive =
+  currentPath === servicesPath || currentPath.startsWith(`${servicesPath}/`);
 ---
 
 <div
@@ -36,7 +45,7 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
             isServicesActive ? "text-(--color-accent)" : "text-(--color-text-primary)",
           ]}
         >
-          Nos Services
+          {t.services}
           <span
             id="mobile-services-icon"
             class="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-(--color-surface-secondary) transition-transform duration-300"
@@ -95,8 +104,10 @@ const isServicesActive = currentPath === "/services" || currentPath.startsWith("
         data-umami-event-channel="phone"
         class="mt-6 w-full justify-center"
       >
-        Appelez-nous
+        {t.call}
       </Button>
+
+      <LanguageSwitcher alternates={alternates} variant="mobile" class="mt-6 justify-center" />
     </div>
   </div>
 </div>

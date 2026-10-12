@@ -6,9 +6,13 @@ import IconSprite from "@components/ui/IconSprite.astro";
 import { imageAssets } from "@/data/images";
 import type { SEOMeta } from "@/types/index";
 import { googleAggregate } from "@/data/reviews";
+import { locales, localeMeta, getLocaleFromUrl } from "@/i18n/config";
+import type { Alternates } from "@/i18n/routes";
 
 interface Props extends SEOMeta {
   class?: string;
+  /** The same page in every locale. Drives hreflang and the language switcher. */
+  alternates?: Alternates;
 }
 
 const {
@@ -17,12 +21,16 @@ const {
   image = imageAssets.ogImage,
   noindex = false,
   class: className,
+  alternates,
 } = Astro.props;
+
+const locale = getLocaleFromUrl(Astro.url);
 
 const siteUrl = (Astro.site ?? new URL("https://cleanngo.be")).toString().replace(/\/$/, "");
 const canonicalPath = Astro.url.pathname !== "/" ? Astro.url.pathname.replace(/\/$/, "") : "/";
 const canonicalUrl = new URL(canonicalPath, siteUrl + "/").toString();
 const ogImageUrl = new URL(image, siteUrl).toString();
+const absoluteUrl = (path: string) => new URL(path, siteUrl + "/").toString();
 
 const siteName = "CleanNgo";
 const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -31,7 +39,7 @@ const pageTitle = hasSiteName ? title : `${title} | ${siteName}`;
 ---
 
 <!doctype html>
-<html lang="fr-BE" class="scroll-smooth">
+<html lang={localeMeta[locale].htmlLang} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,8 +49,21 @@ const pageTitle = hasSiteName ? title : `${title} | ${siteName}`;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="alternate" hreflang="fr-BE" href={canonicalUrl} />
-    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    {
+      alternates ? (
+        <>
+          {locales.map((l) => (
+            <link rel="alternate" hreflang={localeMeta[l].hreflang} href={absoluteUrl(alternates[l])} />
+          ))}
+          <link rel="alternate" hreflang="x-default" href={absoluteUrl(alternates.fr)} />
+        </>
+      ) : (
+        <>
+          <link rel="alternate" hreflang={localeMeta[locale].hreflang} href={canonicalUrl} />
+          <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+        </>
+      )
+    }
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Open Graph -->
@@ -57,7 +78,13 @@ const pageTitle = hasSiteName ? title : `${title} | ${siteName}`;
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
-    <meta property="og:locale" content="fr_BE" />
+    <meta property="og:locale" content={localeMeta[locale].ogLocale} />
+    {
+      alternates &&
+        locales
+          .filter((l) => l !== locale)
+          .map((l) => <meta property="og:locale:alternate" content={localeMeta[l].ogLocale} />)
+    }
 
     <!-- Font preloads: Regular + Bold for each family (most-used weights) -->
     <link
@@ -103,6 +130,7 @@ const pageTitle = hasSiteName ? title : `${title} | ${siteName}`;
         url: "https://cleanngo.be",
         telephone: "+32486518181",
         email: "contact@cleanngo.be",
+        knowsLanguage: ["fr", "nl", "en"],
         image: `${siteUrl}${imageAssets.ogImage}`,
         priceRange: "€€",
         address: {
@@ -186,11 +214,11 @@ const pageTitle = hasSiteName ? title : `${title} | ${siteName}`;
 
   <body class:list={["flex min-h-dvh flex-col", className]}>
     <IconSprite />
-    <Header />
+    <Header alternates={alternates} />
     <main class="flex-1 pt-18">
       <slot />
     </main>
-    <Footer />
+    <Footer alternates={alternates} />
   </body>
 </html>
 

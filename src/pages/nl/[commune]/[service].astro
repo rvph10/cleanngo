@@ -1,0 +1,15 @@
+---
+import CommuneServicePage from "@/views/CommuneServicePage.astro";
+import { communeServicePairs, communeSlugs, serviceSlugs } from "@/i18n/routes";
+
+export function getStaticPaths() {
+  return communeServicePairs().map(({ communeId, serviceId }) => ({
+    params: { commune: communeSlugs[communeId]!.nl, service: serviceSlugs[serviceId]!.nl },
+    props: { communeSlug: communeId, serviceSlug: serviceId },
+  }));
+}
+
+const { communeSlug, serviceSlug } = Astro.props;
+---
+
+<CommuneServicePage communeSlug={communeSlug} serviceSlug={serviceSlug} />

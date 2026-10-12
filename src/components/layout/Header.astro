@@ -1,12 +1,24 @@
 ---
 import DesktopNav from "./DesktopNav.astro";
 import MobileMenu from "./MobileMenu.astro";
-import { navServices, featuredServices, navLinks } from "../../data/nav";
+import { getNavServices, getFeaturedServices, getNavLinks } from "../../data/nav";
+import { getLocaleFromUrl } from "@/i18n/config";
+import type { Alternates } from "@/i18n/routes";
+
+interface Props {
+  alternates?: Alternates;
+}
+
+const { alternates } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const navServices = getNavServices(locale);
+const featuredServices = getFeaturedServices(locale);
+const navLinks = getNavLinks(locale);
 ---
 
 <header id="site-header" class="fixed inset-x-0 top-0 z-50">
-  <DesktopNav services={navServices} {featuredServices} {navLinks} />
-  <MobileMenu services={navServices} {navLinks} />
+  <DesktopNav services={navServices} {featuredServices} {navLinks} {alternates} />
+  <MobileMenu services={navServices} {navLinks} {alternates} />
 </header>
 
 <!-- ── Page overlay (dimmed bg when dropdown/mobile menu open) ── -->

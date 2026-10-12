@@ -1,17 +1,20 @@
 ---
 import { Image } from "astro:assets";
 import type { Service } from "@/data/services";
+import { getLocaleFromUrl } from "@/i18n/config";
+import { useTranslations } from "@/i18n/ui";
 
 interface Props {
   relatedServices: Service[];
 }
 
 const { relatedServices } = Astro.props;
+const t = useTranslations(getLocaleFromUrl(Astro.url)).related;
 ---
 
 <section class="mx-auto w-full max-w-7xl px-4 py-12 md:px-8">
   <h2 data-reveal="words" class="font-display mb-8 text-2xl font-bold md:text-4xl">
-    Vous pourriez aussi avoir besoin de
+    {t.title}
   </h2>
   <div data-reveal="cards" class="grid grid-cols-2 gap-4 md:grid-cols-3">
     {
