@@ -47,6 +47,7 @@ export const services: Service[] = [
       "Nettoyage de vitres professionnel à Bruxelles et périphérie. Fenêtres, baies vitrées, vitrines, velux, intérieur et extérieur. Résultat sans traces.",
     href: "/services/nettoyage-vitres",
     image: serviceImageAssets.glassCleaning,
+    imagePosition: "50% 70%",
     featured: true,
     relatedServices: ["nettoyage-veranda", "bureaux-commerces", "nettoyage-etat-des-lieux"],
     quote:

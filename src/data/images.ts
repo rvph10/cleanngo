@@ -27,7 +27,7 @@ export const staticImageAssets: Record<string, ImageMetadata> = {
 // Service images imported as assets so Astro generates responsive srcset at build time.
 // Adding a new service image: copy the file to src/assets/images/, import it here,
 // and add an entry to serviceImageAssets.
-import _glassCleaning from "@/assets/images/glass_cleaning.jpg";
+import _glassCleaning from "@/assets/images/glass_cleaning.webp";
 import _solarPanel from "@/assets/images/solar_panel.jpg";
 import _houseCleaning from "@/assets/images/house_cleaning.jpg";
 import _postWork from "@/assets/images/post_work.webp";
